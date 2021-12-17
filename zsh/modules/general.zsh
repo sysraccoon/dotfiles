@@ -61,3 +61,5 @@ alias xxq='xbps-query -Rs'
 alias ipshow='ip -o -f inet  address show'
 alias adbip='adb shell ip -o -f inet  address show'
 
+alias adb-fzf='adb shell pm list packages | cut -c 9- | fzf'
+alias adb-fzf-prune='adb-fzf | xargs --no-run-if-empty adb-prune-app.sh'
