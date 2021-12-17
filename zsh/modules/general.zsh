@@ -11,8 +11,10 @@ export PATH=$PATH:"$HOME/linuxbrew/.linuxbrew/bin"
 export PATH=$PATH:"$HOME/bin"
 export PATH=$PATH:"$HOME/.local/bin"
 
+export EDITOR=$(command -v vim)
+
 # zsh autosuggestions
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#111111,bg=cyan,underline"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bg=black,underline"
 bindkey '^ ' autosuggest-accept
 
 # history managment
@@ -46,7 +48,7 @@ alias sudo='sudo '
 alias belloff='rmmod pcspkr'
 
 alias upzsh='source ~/.zshrc'
-alias vizsh='vim '$ZSH_CONFIG_DIR
+alias editzsh=$EDITOR' $(find $ZSH_CONFIG_DIR -follow | fzf) && upzsh'
 
 alias copyit='xclip -sel clip'
 alias wifilist='wpa_cli -i wlp4s0 list_networks'
@@ -58,8 +60,19 @@ alias ghidra='~/store/programs/ghidra_10.0.2_PUBLIC/ghidraRun'
 alias xxi='xbps-install -Sy'
 alias xxq='xbps-query -Rs'
 
-alias ipshow='ip -o -f inet  address show'
-alias adbip='adb shell ip -o -f inet  address show'
+alias local-ip="ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f 1"
 
-alias adb-fzf='adb shell pm list packages | cut -c 9- | fzf'
-alias adb-fzf-prune='adb-fzf | xargs --no-run-if-empty adb-prune-app.sh'
+alias adb-ip="adb shell ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f 1"
+alias extract-ip="cut -d ' ' -f 2"
+
+function local-ip-grep() {
+  local-ip | grep $1 | extract-ip
+}
+
+function adb-ip-grep() {
+  adb-ip | grep $1 | extract-ip
+}
+
+alias adb-fzf-ip="adb-ip | fzf | extract-ip"
+alias adb-fzf-app='adb shell pm list packages | cut -c 9- | fzf'
+alias adb-fzf-prune='adb-fzf-app | xargs --no-run-if-empty adb-prune-app'

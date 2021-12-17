@@ -11,5 +11,5 @@ where:
   exit
 fi
 
-adb-stop-app.sh $1;
-adb-clear-app.sh $1;
+adb-stop-app $1;
+adb-clear-app $1;
