@@ -1,0 +1,5 @@
+antigen bundle git
+antigen bundle hcgraf/zsh-sudo
+antigen bundle zsh-users/zsh-autosuggestions
+
+antigen apply

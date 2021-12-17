@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+if [[ -z "$1" || "$1" == "-h"  ||  "$1" == "--help" ]]; then
+  echo "Stop and clear data of specific android application
+
+usage: $(basename "$0") [-h|--help] PKG
+
+where:
+  -h | --help - show this message
+  PKG - packages name (like com.example.package)"
+
+  exit
+fi
+
+adb-stop-app.sh $1;
+adb-clear-app.sh $1;

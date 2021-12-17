@@ -1,0 +1,8 @@
+# temp files
+*~
+*.swp
+*.swo
+
+# antigen load automatically
+zsh/antigen/antigen.zsh
+
