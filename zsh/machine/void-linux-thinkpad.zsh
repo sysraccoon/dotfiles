@@ -25,10 +25,13 @@ MODULES=(
 
   # other
   "general" # enable general features
+  "work" # work specific features (ignored in .gitignore)
 )
 
 for module in ${MODULES[@]}; do
-  source "$ZSH_CONFIG_DIR/modules/$module.zsh"
+  if [[ -f "$ZSH_CONFIG_DIR/modules/$module.zsh" ]]; then
+    source "$ZSH_CONFIG_DIR/modules/$module.zsh";
+  fi
 done
 
 # >>> conda initialize >>>

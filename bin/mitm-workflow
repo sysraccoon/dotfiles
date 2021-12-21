@@ -1,0 +1,108 @@
+#!/usr/bin/env bash
+
+## Helper Functions
+
+function show-help {
+  echo "Automatically enable mitmproxy and connect to it from android device";
+  echo "usage: $(basename "$0") [-p|--port VAL] [-n|--network-device VAL] [-d|--dump VAL] [-u|--upstream VAL] [-h|--help]";
+  echo "where:";
+  echo "  -p | --port ) set port (8080 by default)";
+  echo "  -n | --network-device ) set network device (based on route by default)";
+  echo "  -d | --dump ) write mitmproxy dump to specific path (dump not used if argument skipped)";
+  echo "  -u | --upstream ) proxy url with format scheme://username:password@address:port (upstream not used if argument skipped)";
+  echo "  -h | --help ) show this message";
+}
+
+function clean-up {
+  adb-set-proxy ":0";
+
+  if [ -f "$TEMP_FILE" ]; then
+    rm "$TEMP_FILE";
+  fi
+}
+
+function adb-set-proxy {
+  adb shell "settings put global http_proxy $1";
+}
+
+function default-network-device {
+  route | grep '^default' | grep -o '[^ ]*$';
+}
+
+function missed-argument-value {
+  echo "argument '$1' require value";
+  exit 1;
+}
+
+function get-local-ip {
+  local_ip=$(ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f 1 | grep "$1" | cut -d ' ' -f 2);
+  if [ -z "$local_ip" ]; then
+    echo "Local ip missed. Recheck network device '$1'";
+    exit 1;
+  fi
+  echo "$local_ip";
+}
+
+function adb-check-net-availability {
+  adb shell "ping -c 1 $local_ip" &> /dev/null;
+  if [[ $? -ne 0 ]]; then
+    echo "Host unreachable from android device. Recheck network and adb connection";
+    exit 1;
+  fi
+}
+
+## Default values of arguments
+
+ARG_PORT=8080
+ARG_NETWORK_DEVICE="$(default-network-device)"
+ARG_DUMP=""
+ARG_UPSTREAM=""
+
+## Parse arguments
+
+while true ; do
+  case "$1" in
+    -p|--port)
+      case "$2" in
+        "") missed-argument-value "$1" ;;
+        *) ARG_PORT=$2 ; shift 2 ;;
+      esac ;;
+    -n|--network-device)
+      case "$2" in
+        "") missed-argument-value "$1" ;;
+        *) ARG_NETWORK_DEVICE=$2 ; shift 2 ;;
+      esac ;;
+    -d|--dump)
+      case "$2" in
+        "") missed-argument-value "$1" ;;
+        *) ARG_DUMP=$2 ; shift 2 ;;
+      esac ;;
+    -u|--upstream)
+      case "$2" in
+        "") missed-argument-value "$1" ;;
+        *) ARG_UPSTREAM=$2 ; shift 2 ;;
+      esac ;;
+    -h|--help) show-help ; exit 0 ;;
+    *) break ;;
+  esac
+done
+
+local_ip="$(get-local-ip "$ARG_NETWORK_DEVICE")";
+adb-check-net-availability "$local_ip";
+
+trap clean-up EXIT;
+adb-set-proxy "$local_ip:$ARG_PORT";
+
+mitmproxy_args=(-p "$ARG_PORT" --showhost);
+
+if [ "$ARG_DUMP" ]; then
+  mitmproxy_args+=(-w "$ARG_DUMP");
+fi
+
+if [ "$ARG_UPSTREAM" ]; then
+  TEMP_FILE=$(mktemp);
+  printf '[ProxyList]\n%s\n' "$(prox2chains "$ARG_UPSTREAM")" > "$TEMP_FILE";
+  proxychains4 -q -f "$TEMP_FILE" mitmproxy "${mitmproxy_args[@]}";
+else
+  mitmproxy "${mitmproxy_args[@]}";
+fi

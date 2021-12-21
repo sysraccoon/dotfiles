@@ -12,6 +12,7 @@ export PATH=$PATH:"$HOME/bin"
 export PATH=$PATH:"$HOME/.local/bin"
 
 export EDITOR=$(command -v vim)
+alias e=$EDITOR
 
 # zsh autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bg=black,underline"
@@ -48,26 +49,30 @@ alias sudo='sudo '
 alias belloff='rmmod pcspkr'
 
 alias upzsh='source ~/.zshrc'
-alias editzsh=$EDITOR' $(find $ZSH_CONFIG_DIR -follow | fzf) && upzsh'
+alias ezsh=$EDITOR' $(find $ZSH_CONFIG_DIR -follow | fzf) && upzsh'
 
 alias copyit='xclip -sel clip'
-alias wifilist='wpa_cli -i wlp4s0 list_networks'
 alias unzip='7za x'
 alias reloadscreen='xrandr --output HDMI2 --off; xrandr --output HDMI2 --right-of eDP1 --auto; ~/.launchers/polybar.sh'
-alias ida='wine ~/store/programs/wine/ida_pro/ida64.exe'
-alias ghidra='~/store/programs/ghidra_10.0.2_PUBLIC/ghidraRun'
 
 alias xxi='xbps-install -Sy'
 alias xxq='xbps-query -Rs'
+
+alias c='clear'
+
+alias adb-run-frida='adb shell su -c "frida-server-15.1.6-android-arm64 -l 0.0.0.0 &"'
 
 alias local-ip="ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f 1"
 
 alias adb-ip="adb shell ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f 1"
 alias extract-ip="cut -d ' ' -f 2"
+alias default-network-device="route | grep '^default' | grep -o '[^ ]*$'"
 
 function local-ip-grep() {
   local-ip | grep $1 | extract-ip
 }
+
+alias local-ip-default='local-ip-grep $(default-network-device)'
 
 function adb-ip-grep() {
   adb-ip | grep $1 | extract-ip
@@ -76,3 +81,5 @@ function adb-ip-grep() {
 alias adb-fzf-ip="adb-ip | fzf | extract-ip"
 alias adb-fzf-app='adb shell pm list packages | cut -c 9- | fzf'
 alias adb-fzf-prune='adb-fzf-app | xargs --no-run-if-empty adb-prune-app'
+
+alias wifi-list='wpa_cli -i $(default-network-device) list_networks'
