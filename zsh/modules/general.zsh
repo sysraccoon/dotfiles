@@ -14,9 +14,10 @@ export PATH=$PATH:"$HOME/.local/bin"
 export EDITOR=$(command -v vim)
 alias e=$EDITOR
 
-# zsh autosuggestions
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bg=black,underline"
-bindkey '^ ' autosuggest-accept
+# matches case insensitive for lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# pasting with tabs doesn't perform completion
+zstyle ':completion:*' insert-tab pending
 
 # history managment
 HISTFILE=~/.zsh_history
@@ -60,10 +61,7 @@ alias xxq='xbps-query -Rs'
 
 alias c='clear'
 
-alias adb-run-frida='adb shell su -c "frida-server-15.1.6-android-arm64 -l 0.0.0.0 &"'
-
 alias local-ip="ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f 1"
-
 alias adb-ip="adb shell ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f 1"
 alias extract-ip="cut -d ' ' -f 2"
 alias default-network-device="route | grep '^default' | grep -o '[^ ]*$'"

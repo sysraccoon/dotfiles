@@ -13,3 +13,4 @@ if [ -f "$ANTIGEN_DIR/antigenrc" ]; then
 else
   echo "Error: $ANTIGEN_DIR/antigenrc missed";
 fi
+

@@ -9,9 +9,6 @@
 export ZSH_CONFIG_DIR="$HOME/dotfiles/zsh"
 
 MODULES=(
-  # external dependencies
-  "antigen"
-
   # applications
   "xorg" # x11 features
   "urxvt" # urxvt-unicode support
@@ -26,6 +23,9 @@ MODULES=(
   # other
   "general" # enable general features
   "work" # work specific features (ignored in .gitignore)
+
+  # external dependencies
+  "antigen"
 )
 
 for module in ${MODULES[@]}; do

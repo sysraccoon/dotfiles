@@ -5,5 +5,7 @@
 
 # antigen load automatically
 zsh/antigen/antigen.zsh
+# antigen cache
+zsh/antigen/antigenrc.zwc
 # hide work specific aliases
 zsh/modules/work.zsh

@@ -1,8 +1,9 @@
 # enable fuzzy finder features if exists
-FZF_SHARE="/usr/share/fzf"
-if [ -d $FZF_SHARE ]; then
-  source $FZF_SHARE"/key-bindings.zsh"
-  source $FZF_SHARE"/completion.zsh"
+export FZF_DEFAULT_OPTS='--reverse'
+FZF_SHARE_DIR="/usr/share/fzf"
+if [ -d $FZF_SHARE_DIR ]; then
+  source $FZF_SHARE_DIR"/key-bindings.zsh"
+  source $FZF_SHARE_DIR"/completion.zsh"
 else
   echo "Error: fuzzy finder (fzf) missed"
 fi
