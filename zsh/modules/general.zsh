@@ -16,7 +16,18 @@ export MANPAGER="man-pager";
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 
-export EDITOR=$(command -v vim)
+EDITOR=$(command -v nvim)
+
+if [ -z "$EDITOR" ]; then
+    export EDITOR=$(command -v vim)
+fi
+
+if [ -z "$EDITOR" ]; then
+    export EDITOR=$(command -v vi)
+fi
+
+export EDITOR
+
 alias e=$EDITOR
 
 # matches case insensitive for lowercase
