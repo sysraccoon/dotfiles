@@ -16,18 +16,20 @@ export MANPAGER="man-pager";
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 
-EDITOR=$(command -v nvim)
-
-if [ -z "$EDITOR" ]; then
-    export EDITOR=$(command -v vim)
-fi
-
-if [ -z "$EDITOR" ]; then
-    export EDITOR=$(command -v vi)
+if [ $+commands[nvim] ]; then
+  EDITOR=nvim;
+elif [ $+commands[vim] ]; then
+  EDITOR=vim;
+elif [ $+commands[vi] ]; then
+  EDITOR=$(command -v vi);
+else
+  echo "Warning: editor not found"
 fi
 
 export EDITOR
-
+alias nvim=$EDITOR
+alias vim=$EDITOR
+alias vi=$EDITOR
 alias e=$EDITOR
 
 # matches case insensitive for lowercase
@@ -53,26 +55,27 @@ alias info='info --vi-keys'
 alias ducks='du -cks * | sort -rn | head -11'
 alias addgroup='gpasswd -a $(whoami) $1'
 
-function command-exists {
-  command -v rg >/dev/null 2>&1 
-}
-
 # use binutils alternatives if exists
-command -v rg >/dev/null 2>&1 && { alias grep='rg' }
-command -v zoxide >/dev/null 2>&1 && { 
+if [ $+commands[rg] ]; then
+  alias grep='rg';
+fi
+
+if [ $+commands[zoxide] ]; then
   eval "$(zoxide init zsh)";
   alias cd='z';
-}
-command -v bat >/dev/null 2>&1 && {
-  alias cat='bat';
-}
+fi
 
+if [ $+commands[bat] ]; then
+  alias cat='bat';
+fi
 
 # other aliases
-alias sudo='sudo '
-command-exists && {
+
+alias sudo='sudo' # autocompletion hack
+
+if [ $+commands[doas] ]; then
   alias sudo='doas'
-}
+fi
 
 alias belloff='rmmod pcspkr'
 

@@ -18,7 +18,7 @@ MODULES=(
   # "python" # python features
 
   # tools
-  # "fzf" # fuzzy finder
+  "fzf" # fuzzy finder
 
   # other
   "general" # enable general features
