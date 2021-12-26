@@ -1,3 +1,4 @@
+autoload -Uz compinit && compinit
 autoload -U colors && colors
 
 export LINUX_DISTRO="$( grep ^ID /etc/os-release | cut -d '=' -f2 | tr -d \" )"
@@ -7,9 +8,13 @@ export PROMPT="
 
 export LANG=en_US.UTF-8
 export PAGER=less
-export PATH=$PATH:"$HOME/linuxbrew/.linuxbrew/bin"
 export PATH=$PATH:"$HOME/bin"
 export PATH=$PATH:"$HOME/.local/bin"
+
+export MANPAGER="man-pager";
+
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 export EDITOR=$(command -v vim)
 alias e=$EDITOR
@@ -37,16 +42,27 @@ alias info='info --vi-keys'
 alias ducks='du -cks * | sort -rn | head -11'
 alias addgroup='gpasswd -a $(whoami) $1'
 
+function command-exists {
+  command -v rg >/dev/null 2>&1 
+}
+
 # use binutils alternatives if exists
 command -v rg >/dev/null 2>&1 && { alias grep='rg' }
 command -v zoxide >/dev/null 2>&1 && { 
-  eval "$(zoxide init zsh)"
+  eval "$(zoxide init zsh)";
   alias cd='z';
 }
-command -v bat >/dev/null 2>&1 && { alias cat='bat' }
+command -v bat >/dev/null 2>&1 && {
+  alias cat='bat';
+}
+
 
 # other aliases
 alias sudo='sudo '
+command-exists && {
+  alias sudo='doas'
+}
+
 alias belloff='rmmod pcspkr'
 
 alias upzsh='source ~/.zshrc'

@@ -6,11 +6,11 @@ function show-help {
   echo "Automatically enable mitmproxy and connect to it from android device";
   echo "usage: $(basename "$0") [-p|--port VAL] [-n|--network-device VAL] [-d|--dump VAL] [-u|--upstream VAL] [-h|--help]";
   echo "where:";
-  echo "  -p | --port ) set port (8080 by default)";
-  echo "  -n | --network-device ) set network device (based on route by default)";
-  echo "  -d | --dump ) write mitmproxy dump to specific path (dump not used if argument skipped)";
-  echo "  -u | --upstream ) proxy url with format scheme://username:password@address:port (upstream not used if argument skipped)";
-  echo "  -h | --help ) show this message";
+  echo "  -p | --port             set port (8080 by default)";
+  echo "  -n | --network-device   set network device (based on route by default)";
+  echo "  -d | --dump             write mitmproxy dump to specific path (dump not used if argument skipped)";
+  echo "  -u | --upstream         proxy url with format scheme://username:password@address:port (upstream not used if argument skipped)";
+  echo "  -h | --help             show this message";
 }
 
 function clean-up {

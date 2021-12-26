@@ -13,19 +13,19 @@ MODULES=(
   "xorg" # x11 features
   "urxvt" # urxvt-unicode support
 
-  # languages
-  "rust" # rust features
-  "python" # python features
-
-  # tools
-  "fzf" # fuzzy finder
+  # external dependencies
+  "antigen"
 
   # other
   "general" # enable general features
   "work" # work specific features (ignored in .gitignore)
 
-  # external dependencies
-  "antigen"
+  # tools
+  "fzf" # fuzzy finder
+
+  # languages
+  "rust" # rust features
+  "python" # python features
 )
 
 for module in ${MODULES[@]}; do

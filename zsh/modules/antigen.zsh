@@ -11,6 +11,7 @@ source "$ANTIGEN_DIR/antigen.zsh";
 antigen bundle git
 antigen bundle hcgraf/zsh-sudo
 antigen bundle Aloxaf/fzf-tab
+antigen bundle chrissicool/zsh-256color
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 antigen apply

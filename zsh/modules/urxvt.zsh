@@ -26,4 +26,4 @@ bindkey '^[h' backward-char
 bindkey '^r' history-incremental-search-backward
 
 stty sane
-export TERM=linux
+export TERM=xterm-256color
