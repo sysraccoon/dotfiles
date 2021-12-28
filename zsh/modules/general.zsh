@@ -16,12 +16,12 @@ export MANPAGER="man-pager";
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 
-if [ $+commands[nvim] ]; then
+if [ $+commands[nvim] -eq 1 ]; then
   EDITOR=nvim;
-elif [ $+commands[vim] ]; then
+elif [ $+commands[vim] -eq 1 ]; then
   EDITOR=vim;
-elif [ $+commands[vi] ]; then
-  EDITOR=$(command -v vi);
+elif [ $+commands[vi] -eq 1 ]; then
+  EDITOR=vi;
 else
   echo "Warning: editor not found"
 fi
@@ -56,16 +56,16 @@ alias ducks='du -cks * | sort -rn | head -11'
 alias addgroup='gpasswd -a $(whoami) $1'
 
 # use binutils alternatives if exists
-if [ $+commands[rg] ]; then
+if [ $+commands[rg] -eq 1 ]; then
   alias grep='rg';
 fi
 
-if [ $+commands[zoxide] ]; then
+if [ $+commands[zoxide] -eq 1 ]; then
   eval "$(zoxide init zsh)";
   alias cd='z';
 fi
 
-if [ $+commands[bat] ]; then
+if [ $+commands[bat] -eq 1 ]; then
   alias cat='bat';
 fi
 
@@ -73,7 +73,7 @@ fi
 
 alias sudo='sudo' # autocompletion hack
 
-if [ $+commands[doas] ]; then
+if [ $+commands[doas] -eq 1 ]; then
   alias sudo='doas'
 fi
 
