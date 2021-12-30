@@ -71,10 +71,10 @@ fi
 
 # other aliases
 
-alias sudo='sudo' # autocompletion hack
+alias sudo='sudo ' # autocompletion hack
 
 if [ $+commands[doas] -eq 1 ]; then
-  alias sudo='doas'
+  alias sudo='doas '
 fi
 
 alias belloff='rmmod pcspkr'
