@@ -1,0 +1,184 @@
+#exec --no-startup-id nitrogen
+
+#{{{ Variables
+  set $mod Mod4
+  set $sup Mod1
+
+  set $left h
+  set $right l
+  set $down j
+  set $up k
+
+  set $resources_dir 
+  set $bg1 "$HOME/.config/i3/resources/i3_bg2.png"
+  set $bg2 "$HOME/.config/i3/resources/i3_bg2.png"
+  set $lock_bg "$HOME/.config/i3/resources/i3lock_bg.png"
+
+  set $term "alacritty"
+
+  set $primary_display "HDMI2"
+  set $minor_display "eDP1"
+#}}}
+
+#{{{ Autorun
+  exec picom
+  exec $HOME/.launchers/polybar.sh
+  exec $HOME/.launchers/bg.sh $bg1 $bg2
+  exec urxvt
+  exec flameshot
+#}}}
+
+#{{{ Base config
+  popup_during_fullscreen leave_fullscreen
+  focus_follows_mouse no
+  # mouse_warping none
+#}}}
+
+#{{{ Theme
+  font pango:ubuntu 9.4
+  # 1 pixel border for all windows
+  for_window [tiling] border pixel 1
+  # focus border colors
+  # #FF9E21
+  set $focus_color #C77000
+  client.focused $focus_color $focus_color #FFFFFF $focus_color $focus_color
+  # if open single window on display, ignore margins
+  smart_gaps on
+  # margin
+  gaps inner 10
+#}}}
+
+##{{{ Bindings
+
+  #{{{ Specials bindings
+    # reload i3 config
+    bindsym $mod+shift+c reload
+
+    bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 2%-
+    bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 2%+
+    bindsym XF86AudioMute exec --no-startup-id amixer set Master 1+ toggle
+    bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 5%+
+    bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
+    bindsym Shift+escape exec --no-startup-id xdotool key asciitilde
+  #}}}
+  
+  #{{{ Window navigation and manipulation
+    # kill focused window
+    bindsym $mod+Tab kill
+
+    # change focus
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+
+    # move focused window
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+
+    # split in horizontal/vertical orientation
+    bindsym $mod+i split h
+    bindsym $mod+u split v
+
+    bindsym $mod+Shift+p exec $HOME/.launchers/lock.sh -i $lock_bg
+
+    # change container layout (stacked, tabbed, toggle split)
+    bindsym $mod+g layout stacking border none
+    bindsym $mod+c layout tabbed border none
+    #bindsym $mod+e layout toggle split
+
+    # enter fullscreen mode for the focused container
+    bindsym $mod+m fullscreen toggle
+
+    # focus the parent container
+    bindsym $mod+a focus parent
+
+    # mouse special button
+    bindsym Mod1+Control+Tab kill
+
+    # toggle tiling / floating
+    bindsym $mod+f floating toggle
+    # change focus between tiling / floating windows
+    # bindsym $mod+space focus mode_toggle
+    # $mod+Mouse move resize or move float window
+    floating_modifier $mod
+
+    bindsym $sup+semicolon exec i3-easyfocus --all --color-unfocused-fg FFFFFF
+    bindsym $mod+x exec rewifi
+  #}}}
+
+  #{{{ Workspace navigation and manipulation
+    # switch to workspace
+    bindsym $mod+1 workspace 1; move workspace to output $minor_display
+    bindsym $mod+2 workspace 2; move workspace to output $minor_display
+    bindsym $mod+3 workspace 3; move workspace to output $minor_display
+    bindsym $mod+4 workspace 4; move workspace to output $minor_display
+    bindsym $mod+5 workspace 5; move workspace to output $minor_display
+    bindsym $mod+6 workspace 6; move workspace to output $primary_display
+    bindsym $mod+7 workspace 7; move workspace to output $primary_display
+    bindsym $mod+8 workspace 8; move workspace to output $primary_display
+    bindsym $mod+9 workspace 9; move workspace to output $primary_display
+    bindsym $mod+0 workspace 10; move workspace to output $primary_display
+
+    bindsym $mod+ampersand workspace 1
+    bindsym $mod+bracketleft workspace 2
+    bindsym $mod+braceleft workspace 3
+    bindsym $mod+braceright workspace 4
+
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9
+    bindsym $mod+Shift+0 move container to workspace 10
+
+    bindsym $mod+Shift+ampersand move container to workspace 1
+    bindsym $mod+Shift+bracketleft move container to workspace 2
+    bindsym $mod+Shift+braceleft move container to workspace 3
+    bindsym $mod+Shift+braceright move container to workspace 4
+
+    # move workspace to other display
+    bindsym $mod+Control+h move workspace to output left
+    bindsym $mod+Control+l move workspace to output right
+  #}}}
+
+  #{{{ Default programs
+    # start a terminal
+    bindsym $mod+Return exec $term
+    # make screenshot
+    bindsym Print exec flameshot gui
+    # start rofi (a program launcher)
+    bindsym $mod+space exec rofi -show drun -modi drun # -theme ~/.config/rofi/launcher.rasi
+  #}}}
+  
+  #{{{ RESIZE MODE
+    bindsym $mod+r mode "resize"
+    # resize window (you can also use the mouse for that)
+    mode "resize" {
+            # These bindings trigger as soon as you enter the resize mode
+
+            # Pressing left will shrink the window’s width.
+            # Pressing right will grow the window’s width.
+            # Pressing up will shrink the window’s height.
+            # Pressing down will grow the window’s height.
+            bindsym $left resize shrink width 15 px or 5 ppt
+            bindsym $down resize grow height 15 px or 5 ppt
+            bindsym $up resize shrink height 15 px or 5 ppt
+            bindsym $right resize grow width 15 px or 5 ppt
+
+            # back to normal: Escape
+            bindsym Escape mode "default"
+            bindsym Space mode "default"
+    }
+  #}}}
+
+#}}}
+
