@@ -11,7 +11,6 @@ export ZSH_CONFIG_DIR="$HOME/dotfiles/zsh"
 MODULES=(
   # applications
   "xorg" # x11 features
-  "urxvt" # urxvt-unicode support
 
   # external dependencies
   "antigen"
@@ -22,6 +21,7 @@ MODULES=(
 
   # tools
   "fzf" # fuzzy finder
+  "term-hotkeys" # enhance term hotkeys
 
   # languages
   "rust" # rust features

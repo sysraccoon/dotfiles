@@ -1,6 +1,9 @@
 autoload -Uz compinit && compinit
 autoload -U colors && colors
 
+stty sane
+export TERM=xterm-256color
+
 export LINUX_DISTRO="$( grep ^ID /etc/os-release | cut -d '=' -f2 | tr -d \" )"
 export PROMPT="
 ╭─%{$fg[cyan]%}⌠ %n ⌡%{$reset_color%}─%{$fg[cyan]%}⌠ %~ ⌡

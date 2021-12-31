@@ -11,7 +11,6 @@ export ZSH_CONFIG_DIR="$HOME/dotfiles/zsh"
 MODULES=(
   # applications
   # "xorg" # x11 features
-  # "urxvt" # urxvt-unicode support
 
   # languages
   # "rust" # rust features
@@ -22,6 +21,7 @@ MODULES=(
 
   # other
   "general" # enable general features
+  "term-hotkeys" # enhance terminal hotkeys
   # "work" # work specific features (ignored in .gitignore)
 
   # external dependencies
