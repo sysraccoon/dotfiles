@@ -1,6 +1,8 @@
 !! libs and base packages
 base-devel base-system binutils-devel 
 openjdk openjdk-jre openjdk11
+!! drivers, codecs, etc.
+ffmpeg
 !! cli tools
 zsh git curl fzf bat zip zoxide vim neovim tmux ranger htop dua-cli
 !! reverse

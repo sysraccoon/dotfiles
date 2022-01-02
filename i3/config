@@ -10,9 +10,9 @@
   set $up k
 
   set $resources_dir 
-  set $bg1 "$HOME/.config/i3/resources/i3_bg2.png"
-  set $bg2 "$HOME/.config/i3/resources/i3_bg2.png"
-  set $lock_bg "$HOME/.config/i3/resources/i3lock_bg.png"
+  set $bg1 "$HOME/.config/i3/resources/bg.png"
+  set $bg2 "$HOME/.config/i3/resources/bg.png"
+  set $lock_bg "$HOME/.config/i3/resources/bg.png"
 
   set $term "alacritty"
 
@@ -24,7 +24,7 @@
   exec picom
   exec $HOME/.launchers/polybar.sh
   exec $HOME/.launchers/bg.sh $bg1 $bg2
-  exec urxvt
+  exec $term
   exec flameshot
 #}}}
 
@@ -156,7 +156,7 @@
     # make screenshot
     bindsym Print exec flameshot gui
     # start rofi (a program launcher)
-    bindsym $mod+space exec rofi -show drun -modi drun # -theme ~/.config/rofi/launcher.rasi
+    bindsym $mod+space exec rofi -show drun -modi drun # -theme ~/.config/rofi/gruvbox-dark.rasi
   #}}}
   
   #{{{ RESIZE MODE
