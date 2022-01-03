@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+## Helper Functions
+
+PROGNAME=$(basename $0)
+
+function show-help {
+  echo "Install pem cert to android system store";
+  echo "usage: $PROGNAME [-h|--help] [--skip-reboot] -p|--pem VAL";
+  echo "where:";
+  echo "  -p | --pem              set port (8080 by default)";
+  echo "  --skip-reboot           don't ask and don't do reboot";
+  echo "  -h | --help             show this message";
+}
+
+function error-exit {
+    echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
+    exit 1
+}
+
+function missed-argument-value {
+  error-exit "argument $1 require value";
+}
+
+## Default values of arguments
+
+ARG_PEM=""
+ARG_SKIP_REBOOT_CONFIRM=0
+
+## Parse arguments
+
+while true ; do
+  case "$1" in
+    -p|--pem)
+      case "$2" in
+        "") missed-argument-value "$1" ;;
+        *) ARG_PEM=$2 ; shift 2 ;;
+      esac ;;
+    --skip-reboot) ARG_SKIP_REBOOT_CONFIRM=1 ; shift 1 ;;
+    -h|--help) show-help ; exit 0 ;;
+    *) break ;;
+  esac
+done
+
+if [ -z "$ARG_PEM" ]; then
+  show-help;
+  exit 0;
+fi
+
+if ! [ -f "$ARG_PEM" ]; then
+  error-exit "file '$ARG_PEM' not found"
+fi
+
+PEM_FILE_NAME=$ARG_PEM
+hash=$(openssl x509 -inform PEM -subject_hash_old -in "$PEM_FILE_NAME" | head -1)
+OUT_FILE_NAME="$hash.0"
+
+cp "$PEM_FILE_NAME" "$OUT_FILE_NAME"
+openssl x509 -inform PEM -text -in "$PEM_FILE_NAME" -out /dev/null >> "$OUT_FILE_NAME"
+
+adb shell su -c "mount -o rw,remount,rw /"
+adb push "$OUT_FILE_NAME" "/storage/self/primary/tmp/"
+rm "$OUT_FILE_NAME"
+
+adb shell su -c "mv /storage/self/primary/tmp/$OUT_FILE_NAME /system/etc/security/cacerts/$OUT_FILE_NAME"
+adb shell su -c "chmod 644 /system/etc/security/cacerts/$OUT_FILE_NAME"
+adb shell su -c "mount -o ro,remount,ro /"
+
+if [ "$ARG_SKIP_REBOOT_CONFIRM" -eq 0 ]; then
+  read -r -p "To complete the installation of the certificate, you must restart the device. Restart now? [y/N] " response
+  case "$response" in
+      [yY][eE][sS]|[yY]) adb reboot ;;
+  esac
+fi
