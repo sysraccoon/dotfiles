@@ -7,7 +7,7 @@ if ! [ -e $CACHE_FOLDER ]; then
     mkdir -p $CACHE_FOLDER
 fi
 
-arg_image="$HOME"/.config/i3/resources/i3lock_bg.png
+arg_image="$HOME"/.config/i3/resources/bg.png
 lock_args="-u -e"
 
 #Image paths
