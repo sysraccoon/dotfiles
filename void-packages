@@ -10,7 +10,7 @@ ghidra radare2 jadx
 !! develop
 gcc clang make cmake gdb lldb rustup
 !! X11
-xorg xclip xdotool
+xorg xclip xdotool picom
 !! wm
 i3-gaps i3lock polybar compton nitrogen alacritty rxvt-unicode 
 !! gui tools
