@@ -13,6 +13,8 @@ export LANG=en_US.UTF-8
 export PAGER=less
 export PATH=$PATH:"$HOME/bin"
 export PATH=$PATH:"$HOME/.local/bin"
+export PATH=$PATH:"$HOME/.cargo/bin"
+export PATH=$PATH:"$HOME/go/bin"
 
 export MANPAGER="man-pager";
 
