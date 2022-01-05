@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+adb-set-proxy ":0"

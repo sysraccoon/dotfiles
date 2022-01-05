@@ -14,15 +14,11 @@ function show-help {
 }
 
 function clean-up {
-  adb-set-proxy ":0";
+  adb-reset-proxy;
 
   if [ -f "$TEMP_FILE" ]; then
     rm "$TEMP_FILE";
   fi
-}
-
-function adb-set-proxy {
-  adb shell "settings put global http_proxy $1";
 }
 
 function default-network-device {
@@ -44,7 +40,7 @@ function get-local-ip {
 }
 
 function adb-check-net-availability {
-  adb shell "ping -c 1 $local_ip" &> /dev/null;
+  adb shell "ping -c 1 $1" &> /dev/null;
   if [[ $? -ne 0 ]]; then
     echo "Host unreachable from android device. Recheck network and adb connection";
     exit 1;
