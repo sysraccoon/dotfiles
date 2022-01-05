@@ -16,12 +16,14 @@ MODULES=(
   # "rust" # rust features
   # "python" # python features
 
+  # terminal
+  "term-hotkeys" # enhance terminal hotkeys
+
   # tools
   "fzf" # fuzzy finder
 
   # other
   "general" # enable general features
-  "term-hotkeys" # enhance terminal hotkeys
   # "work" # work specific features (ignored in .gitignore)
 
   # external dependencies

@@ -15,13 +15,15 @@ MODULES=(
   # external dependencies
   "antigen"
 
+  # terminal
+  "term-hotkeys" # enhance term hotkeys
+
   # other
   "general" # enable general features
   "work" # work specific features (ignored in .gitignore)
 
   # tools
   "fzf" # fuzzy finder
-  "term-hotkeys" # enhance term hotkeys
 
   # languages
   "rust" # rust features
