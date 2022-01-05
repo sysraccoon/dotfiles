@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+PROGNAME=$(basename $0)
+
+missed_dependencies=()
+
+for util in "$@"
+do
+    if ! command -v "$util" >/dev/null 2>&1 ; then
+        missed_dependencies+=($util)
+    fi
+done
+
+if (( ${#missed_dependencies[@]} )); then
+    echo "$PROGNAME: missed $missed_dependencies" >&2
+    exit 1
+fi

@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+## Check All Dependencies
+
+if ! check-dependencies openssl adb ; then
+    exit 1;
+fi
+
 ## Helper Functions
 
 PROGNAME=$(basename $0)
@@ -47,16 +53,22 @@ if [ -z "$ARG_PEM" ]; then
   exit 0;
 fi
 
-if ! [ -f "$ARG_PEM" ]; then
-  error-exit "file '$ARG_PEM' not found"
+
+android_version=$(adb-android-version)
+if (( $android_version > 9 )) ; then
+  error-exit "detected not supported android version $android_version";
 fi
 
-PEM_FILE_NAME=$ARG_PEM
-hash=$(openssl x509 -inform PEM -subject_hash_old -in "$PEM_FILE_NAME" | head -1)
-OUT_FILE_NAME="$hash.0"
+if ! [ -f "$ARG_PEM" ]; then
+  error-exit "file '$ARG_PEM' not found";
+fi
 
-cp "$PEM_FILE_NAME" "$OUT_FILE_NAME"
-openssl x509 -inform PEM -text -in "$PEM_FILE_NAME" -out /dev/null >> "$OUT_FILE_NAME"
+PEM_FILE_NAME=$ARG_PEM;
+hash=$(openssl x509 -inform PEM -subject_hash_old -in "$PEM_FILE_NAME" | head -1);
+OUT_FILE_NAME="$hash.0";
+
+cp "$PEM_FILE_NAME" "$OUT_FILE_NAME";
+openssl x509 -inform PEM -text -in "$PEM_FILE_NAME" -out /dev/null >> "$OUT_FILE_NAME";
 
 adb shell su -c "mount -o rw,remount,rw /"
 adb push "$OUT_FILE_NAME" "/storage/self/primary/tmp/"

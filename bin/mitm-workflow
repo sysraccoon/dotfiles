@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+## Check All Dependencies
+
+if ! check-dependencies \
+    adb ip route proxychains4 mitmproxy \
+    adb-set-proxy adb-reset-proxy prox2chains ; then
+    exit 1
+fi
+
 ## Helper Functions
 
 function show-help {
