@@ -3,30 +3,28 @@
 ## Check All Dependencies
 
 if ! check-dependencies \
-    adb ip route proxychains4 mitmproxy \
-    adb-set-proxy adb-reset-proxy prox2chains ; then
+    adb ip route mitmproxy adb-set-proxy adb-reset-proxy ; then
     exit 1
 fi
 
 ## Helper Functions
 
 function show-help {
-  echo "Automatically enable mitmproxy and connect to it from android device";
-  echo "usage: $(basename "$0") [-p|--port VAL] [-n|--network-device VAL] [-d|--dump VAL] [-u|--upstream VAL] [-h|--help]";
-  echo "where:";
-  echo "  -p | --port             set port (8080 by default)";
-  echo "  -n | --network-device   set network device (based on route by default)";
-  echo "  -d | --dump             write mitmproxy dump to specific path (dump not used if argument skipped)";
-  echo "  -u | --upstream         proxy url with format scheme://username:password@address:port (upstream not used if argument skipped)";
-  echo "  -h | --help             show this message";
+  cat <<EOF
+Usage: $(basename "$0") [-p|--port VAL] [-n|--network-device VAL] [-d|--dump VAL] [-h|--help]
+
+Automatically enable mitmproxy and connect to it from android device
+
+Available options:
+  -p | --port             set port (8080 by default)
+  -n | --network-device   set network device (based on route by default)
+  -d | --dump             write mitmproxy dump to specific path (dump not used if argument skipped)
+  -h | --help             show this message
+EOF
 }
 
 function clean-up {
   adb-reset-proxy;
-
-  if [ -f "$TEMP_FILE" ]; then
-    rm "$TEMP_FILE";
-  fi
 }
 
 function default-network-device {
@@ -60,7 +58,6 @@ function adb-check-net-availability {
 ARG_PORT=8080
 ARG_NETWORK_DEVICE="$(default-network-device)"
 ARG_DUMP=""
-ARG_UPSTREAM=""
 
 ## Parse arguments
 
@@ -81,11 +78,6 @@ while true ; do
         "") missed-argument-value "$1" ;;
         *) ARG_DUMP=$2 ; shift 2 ;;
       esac ;;
-    -u|--upstream)
-      case "$2" in
-        "") missed-argument-value "$1" ;;
-        *) ARG_UPSTREAM=$2 ; shift 2 ;;
-      esac ;;
     -h|--help) show-help ; exit 0 ;;
     *) break ;;
   esac
@@ -103,10 +95,5 @@ if [ "$ARG_DUMP" ]; then
   mitmproxy_args+=(-w "$ARG_DUMP");
 fi
 
-if [ "$ARG_UPSTREAM" ]; then
-  TEMP_FILE=$(mktemp);
-  printf '[ProxyList]\n%s\n' "$(prox2chains "$ARG_UPSTREAM")" > "$TEMP_FILE";
-  proxychains4 -q -f "$TEMP_FILE" mitmproxy "${mitmproxy_args[@]}";
-else
-  mitmproxy "${mitmproxy_args[@]}";
-fi
+mitmproxy "${mitmproxy_args[@]}";
+
