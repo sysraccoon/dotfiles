@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+if ! check-dependencies \
+  adb ip route adb-set-proxy adb-reset-proxy ; then
+  exit 1
+fi
+
+set -Eeuo pipefail
+trap cleanup SIGINT SIGTERM ERR EXIT
+
+function show-help {
+  cat <<EOF
+Usage: $(basename "$0") [-p|--port VAL] [-n|--network-device VAL] [-d|--dump VAL] [-h|--help]
+
+Set proxy from active network device, execute given command and reset proxy
+
+Available options:
+  -p | --port             set port (8080 by default)
+  -n | --network-device   set network device (based on route by default)
+  -h | --help             show this message
+EOF
+}
+
+function missed-argument-value {
+  echo "argument '$1' require value";
+  exit 1;
+}
+
+function cleanup {
+  trap - SIGINT SIGTERM ERR EXIT;
+  adb-reset-proxy;
+}
+
+function default-network-device {
+  route | grep '^default' | grep -o '[^ ]*$';
+}
+
+function get-local-ip {
+  local_ip=$(ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f 1 | grep "$1" | cut -d ' ' -f 2);
+  if [ -z "$local_ip" ]; then
+    echo "Local ip missed. Recheck network device '$1'";
+    exit 1;
+  fi
+  echo "$local_ip";
+}
+
+function adb-check-net-availability {
+  adb shell "ping -c 1 $1" &> /dev/null;
+  if [[ $? -ne 0 ]]; then
+    echo "Host unreachable from android device. Recheck network and adb connection";
+    exit 1;
+  fi
+}
+
+ARG_PORT=8080;
+ARG_NETWORK_DEVICE="$(default-network-device)";
+
+while true ; do
+  case "$1" in
+    -p|--port)
+      case "$2" in
+        "") missed-argument-value "$1" ;;
+        *) ARG_PORT=$2 ; shift 2 ;;
+      esac ;;
+    -n|--network-device)
+      case "$2" in
+        "") missed-argument-value "$1" ;;
+        *) ARG_NETWORK_DEVICE=$2 ; shift 2 ;;
+      esac ;;
+    -h|--help) show-help ; exit 0 ;;
+    *) break ;;
+  esac
+done
+
+local_ip="$(get-local-ip "$ARG_NETWORK_DEVICE")";
+adb-check-net-availability "$local_ip";
+adb-set-proxy "$local_ip:$ARG_PORT";
+wrapped_command=$1;
+shift 1;
+$wrapped_command "$@"

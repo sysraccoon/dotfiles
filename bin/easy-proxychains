@@ -10,13 +10,14 @@ function cleanup {
   fi
 }
 
-ARG_UPSTREAM=$1
+ARG_UPSTREAM="$1"
 
 if [[ -z "$ARG_UPSTREAM" ]]; then
-    echo "$(basename $0): Missed proxy argument" >&2
+  echo "$(basename $0): Missed proxy argument" >&2
 fi
 
 TEMP_FILE=$(mktemp);
 printf '[ProxyList]\n%s\n' "$(prox2chains "$ARG_UPSTREAM")" > "$TEMP_FILE";
 shift 1;
 proxychains4 -q -f "$TEMP_FILE" "$@";
+
