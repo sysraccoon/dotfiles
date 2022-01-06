@@ -21,11 +21,12 @@
 #}}}
 
 #{{{ Autorun
-  exec picom
-  exec $HOME/.launchers/polybar.sh
-  exec $HOME/.launchers/bg.sh $bg1 $bg2
+  exec --no-startup-id picom
+  exec --no-startup-id dunst
+  exec --no-startup-id $HOME/.launchers/polybar.sh
+  exec --no-startup-id $HOME/.launchers/bg.sh $bg1 $bg2
+  exec --no-startup-id flameshot
   exec $term
-  exec flameshot
 #}}}
 
 #{{{ Base config
