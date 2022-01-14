@@ -36,17 +36,13 @@
 #}}}
 
 #{{{ Theme
-  font pango:ubuntu 9.4
+  font pango:Ubuntu Mono 9
   # 1 pixel border for all windows
   for_window [tiling] border pixel 1
   # focus border colors
   # #FF9E21
   set $focus_color #C77000
   client.focused $focus_color $focus_color #FFFFFF $focus_color $focus_color
-  # if open single window on display, ignore margins
-  smart_gaps on
-  # margin
-  gaps inner 10
 #}}}
 
 ##{{{ Bindings
