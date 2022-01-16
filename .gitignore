@@ -9,3 +9,5 @@ zsh/antigen/antigen.zsh
 *.zwc
 # hide work specific aliases
 zsh/modules/work.zsh
+# hide fc metainfo
+fonts/.uuid
