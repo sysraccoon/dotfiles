@@ -14,7 +14,7 @@
   set $bg2 "$HOME/.config/i3/resources/bg.png"
   set $lock_bg "$HOME/.config/i3/resources/bg.png"
 
-  set $term "alacritty"
+  set $term "kitty"
 
   set $primary_display "HDMI2"
   set $minor_display "eDP1"
