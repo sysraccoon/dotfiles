@@ -43,9 +43,14 @@ set clipboard+=unnamedplus
 call plug#begin()
 
 Plug 'gruvbox-community/gruvbox'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
 
 colorscheme gruvbox
 
 let mapleader = " "
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+
