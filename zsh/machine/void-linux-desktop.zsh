@@ -21,6 +21,7 @@ MODULES=(
 
   # tools
   "fzf" # fuzzy finder
+  "xbps" # void package manager
 
   # other
   "general" # enable general features

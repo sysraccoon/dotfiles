@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+openvpn --config "/etc/openvpn/ovpn_udp/$1.udp.ovpn" --auth-user-pass "$2" 
