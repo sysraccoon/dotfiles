@@ -91,9 +91,6 @@ alias copyit='xclip -sel clip'
 alias unzip='7za x'
 alias reloadscreen='xrandr --output HDMI2 --off; xrandr --output HDMI2 --right-of eDP1 --auto; ~/.launchers/polybar.sh'
 
-alias xxi='xbps-install -Sy'
-alias xxq='xbps-query -Rs'
-
 alias c='clear'
 
 alias local-ip="ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f 1"

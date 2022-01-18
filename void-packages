@@ -5,6 +5,7 @@ openjdk openjdk-jre openjdk11
 ffmpeg
 !! cli tools
 zsh git curl fzf bat zip zoxide vim neovim tmux ranger htop dua-cli
+translate-shell
 !! reverse
 ghidra radare2 jadx
 !! develop
@@ -12,7 +13,7 @@ gcc clang make cmake gdb lldb rustup
 !! X11
 xorg xclip xdotool picom dunst
 !! wm
-i3-gaps i3lock polybar compton nitrogen alacritty rxvt-unicode 
+i3-gaps i3lock polybar compton nitrogen alacritty rxvt-unicode kitty
 !! gui tools
 flameshot firefox feh zathura zathura-pdf-mupdf
 !! fonts
