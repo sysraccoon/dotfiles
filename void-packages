@@ -5,6 +5,7 @@ openjdk openjdk-jre openjdk11
 ffmpeg
 !! cli tools
 zsh git curl fzf bat zip zoxide vim neovim tmux ranger htop dua-cli
+psmisc
 translate-shell
 !! reverse
 ghidra radare2 jadx
