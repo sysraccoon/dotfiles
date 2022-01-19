@@ -85,9 +85,9 @@ fi
 alias belloff='rmmod pcspkr'
 
 alias upzsh='source ~/.zshrc'
-alias ezsh=$EDITOR' $(find $ZSH_CONFIG_DIR -follow | fzf) && upzsh'
+alias edot="vim $DOTFILES_DIR +':cd %' +':Telescope find_files'"
 
-alias copyit='xclip -sel clip'
+alias copyit='cb-set'
 alias unzip='7za x'
 alias reloadscreen='xrandr --output HDMI2 --off; xrandr --output HDMI2 --right-of eDP1 --auto; ~/.launchers/polybar.sh'
 
@@ -113,3 +113,5 @@ alias adb-fzf-app='adb shell pm list packages | cut -c 9- | fzf'
 alias adb-fzf-prune='adb-fzf-app | xargs --no-run-if-empty adb-prune-app'
 
 alias wifi-list='wpa_cli -i $(default-network-device) list_networks'
+
+

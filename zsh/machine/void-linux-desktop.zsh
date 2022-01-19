@@ -6,6 +6,7 @@
   exit 1;
 }
 
+export DOTFILES_DIR="$HOME/dotfiles"
 export ZSH_CONFIG_DIR="$HOME/dotfiles/zsh"
 
 MODULES=(

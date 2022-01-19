@@ -1,6 +1,7 @@
 !! libs and base packages
 base-devel base-system binutils-devel 
 openjdk openjdk-jre openjdk11
+python3 python3-neovim
 !! drivers, codecs, etc.
 ffmpeg
 !! cli tools

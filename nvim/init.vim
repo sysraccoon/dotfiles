@@ -1,3 +1,9 @@
+" vim:fileencoding=utf-8:foldmethod=marker
+
+"{{{ General
+set nocp " disable compatible mode
+filetype plugin on
+
 " line numbers
 set number
 set relativenumber
@@ -40,17 +46,28 @@ set termguicolors
 " use system clipboard
 set clipboard+=unnamedplus
 
-call plug#begin()
+" open help in right split
+autocmd! BufEnter * if &ft ==# 'help' | wincmd L | endif
 
+nnoremap <Space> <NOP>
+let mapleader = " "
+"}}}
+
+"{{{ Plugins
+call plug#begin()
 Plug 'gruvbox-community/gruvbox'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
+Plug 'SirVer/ultisnips'
 call plug#end()
+"}}}
 
 colorscheme gruvbox
 
-let mapleader = " "
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
