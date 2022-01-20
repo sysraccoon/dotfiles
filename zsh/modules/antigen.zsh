@@ -8,7 +8,6 @@ fi
 
 source "$ANTIGEN_DIR/antigen.zsh";
 
-antigen bundle git
 antigen bundle hcgraf/zsh-sudo
 antigen bundle Aloxaf/fzf-tab
 antigen bundle zsh-users/zsh-syntax-highlighting

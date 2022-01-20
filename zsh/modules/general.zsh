@@ -44,10 +44,18 @@ zstyle ':completion:*' insert-tab pending
 
 # history managment
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt appendhistory
-setopt histignorealldups
+HISTSIZE=10000000
+SAVEHIST=10000000
+setopt SHARE_HISTORY
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_BY_COPY
+setopt HIST_IGNORE_DUPS
+
+# autocorrection
+setopt CORRECT # enable cmd correction
+setopt DVORAK # autocorrection based on dvorak layout
+setopt HASH_CMDS # add command to autocorrection after use it
 
 # default commands enhancments
 alias ls='ls --color=auto'
@@ -57,7 +65,7 @@ alias s='ls'
 
 alias info='info --vi-keys'
 
-alias ducks='du -cks * | sort -rn | head -11'
+alias ducks='du -cks * | sort -rn | head -11 | numfmt --to=iec-i --suffix=B'
 alias addgroup='gpasswd -a $(whoami) $1'
 
 # use binutils alternatives if exists
@@ -92,6 +100,8 @@ alias unzip='7za x'
 alias reloadscreen='xrandr --output HDMI2 --off; xrandr --output HDMI2 --right-of eDP1 --auto; ~/.launchers/polybar.sh'
 
 alias c='clear'
+alias md='mkdir'
+alias r='ranger-zoxide'
 
 alias local-ip="ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f 1"
 alias adb-ip="adb shell ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f 1"
@@ -114,4 +124,14 @@ alias adb-fzf-prune='adb-fzf-app | xargs --no-run-if-empty adb-prune-app'
 
 alias wifi-list='wpa_cli -i $(default-network-device) list_networks'
 
+alias g='git'
+alias gp='g pull'
+alias gP='g push'
+alias gs='g status'
+alias gss='g status -s'
+alias gd='g diff'
+alias gb='g branch'
+alias ga='g add'
+alias gaa='g add --all'
+alias gcm='g commit -m'
 

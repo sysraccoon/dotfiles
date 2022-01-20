@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+xbps-query -Rs "" | 
+	cut --delimiter " " --fields 1-2 |
+	fzf --multi --exact --cycle --reverse --preview 'xbps-query -R {2} | grep -v "maintainer|filename-sha256|filename-size|architecture|source-revisions"' |
+	cut --delimiter " " --fields 2 |
+	xargs -ro sudo xbps-install
