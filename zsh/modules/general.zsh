@@ -134,4 +134,7 @@ alias gb='g branch'
 alias ga='g add'
 alias gaa='g add --all'
 alias gcm='g commit -m'
+alias gc='g checkout'
+alias grh='g reset --hard'
+alias goo='git-open-origin'
 

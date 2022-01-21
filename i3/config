@@ -32,6 +32,7 @@
   exec --no-startup-id $HOME/.launchers/polybar.sh
   exec --no-startup-id $HOME/.launchers/bg.sh $bg1 $bg2
   exec --no-startup-id flameshot
+  exec --no-startup-id xcape -d -t 200
   exec $term
 #}}}
 
@@ -155,6 +156,20 @@
     # move workspace to other display
     bindsym $mod+Control+h move workspace to output left
     bindsym $mod+Control+l move workspace to output right
+  #}}}
+  
+  #{{{ Browser workflow
+	bindsym $mod+b mode "web_surf"
+	mode "web_surf" {
+		bindsym $mod+g workspace $ws_www; exec xdg-open "https://google.com"; mode "default"
+		bindsym g workspace $ws_www; exec xdg-open "https://google.com"; mode "default"
+
+		bindsym $mod+h workspace $ws_www; exec xdg-open "https://habr.com"; mode "default"
+		bindsym h workspace $ws_www; exec xdg-open "https://habr.com"; mode "default"
+
+		bindsym Escape mode "default"
+		bindsym space mode "default"
+	}
   #}}}
 
   #{{{ Default programs
