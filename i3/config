@@ -15,15 +15,16 @@
   set $lock_bg "$HOME/.config/i3/resources/bg.png"
 
   set $term "alacritty"
-  set $browser "firefox"
+  set $browser "qutebrowser"
 
   set $primary_display "HDMI2"
   set $minor_display "eDP1"
 
-  set $ws_sys "1"
-  set $ws_msg "2"
-  set $ws_dev "3"
-  set $ws_www "4"
+  set $ws_sys "sys"
+  set $ws_msg "msg"
+  set $ws_dev "dev"
+  set $ws_www "www"
+  set $ws_obs "obs"
 #}}}
 
 #{{{ Autorun
@@ -33,6 +34,7 @@
   exec --no-startup-id $HOME/.launchers/bg.sh $bg1 $bg2
   exec --no-startup-id flameshot
   exec --no-startup-id xcape -d -t 200
+  exec --no-startup-id pulseaudio -D
   exec $term
 #}}}
 
@@ -127,11 +129,13 @@
       bindsym $mod+m workspace $ws_msg; mode "default"
       bindsym $mod+d workspace $ws_dev; mode "default"
       bindsym $mod+w workspace $ws_www; mode "default"
+	  bindsym $mod+o workspace $ws_obs; mode "default"
 
       bindsym s workspace $ws_sys; mode "default"
       bindsym m workspace $ws_msg; mode "default"
       bindsym d workspace $ws_dev; mode "default"
       bindsym w workspace $ws_www; mode "default"
+	  bindsym o workspace $ws_obs; mode "default"
 
       bindsym Escape mode "default"
       bindsym space mode "default"
@@ -143,11 +147,13 @@
       bindsym $mod+m move container to workspace $ws_msg; mode "default"
       bindsym $mod+d move container to workspace $ws_dev; mode "default"
       bindsym $mod+w move container to workspace $ws_www; mode "default"
+	  bindsym $mod+o move container to workspace $ws_obs; mode "default"
 
       bindsym s move container to workspace $ws_sys; mode "default"
       bindsym m move container to workspace $ws_msg; mode "default"
       bindsym d move container to workspace $ws_dev; mode "default"
       bindsym w move container to workspace $ws_www; mode "default"
+	  bindsym o move container to workspace $ws_obs; mode "default"
 
       bindsym Escape mode "default"
       bindsym space mode "default"

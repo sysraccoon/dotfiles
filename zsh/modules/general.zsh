@@ -36,6 +36,7 @@ alias nvim=$EDITOR
 alias vim=$EDITOR
 alias vi=$EDITOR
 alias e=$EDITOR
+alias nano=$EDITOR
 
 # matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -51,11 +52,6 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_BY_COPY
 setopt HIST_IGNORE_DUPS
-
-# autocorrection
-setopt CORRECT # enable cmd correction
-setopt DVORAK # autocorrection based on dvorak layout
-setopt HASH_CMDS # add command to autocorrection after use it
 
 # default commands enhancments
 alias ls='ls --color=auto'
@@ -138,3 +134,5 @@ alias gc='g checkout'
 alias grh='g reset --hard'
 alias goo='git-open-origin'
 
+alias screencast-mode='xrandr --output HDMI-A-0 --mode 1920x1080 && reloadscreen'
+alias screen-normal-mode='xrandr --output HDMI-A-0 --mode 2560x1080 && reloadscreen'

@@ -2,8 +2,6 @@
 base-devel base-system binutils-devel 
 openjdk openjdk-jre openjdk11
 python3 python3-neovim
-!! drivers, codecs, etc.
-ffmpeg
 !! cli tools
 zsh git curl fzf bat zip zoxide vim neovim tmux ranger htop dua-cli
 psmisc xdg-utils xcape
@@ -21,3 +19,5 @@ flameshot firefox feh zathura zathura-pdf-mupdf
 !! fonts
 dejavu-fonts-ttf font-misc-misc font-awesome5 font-inconsolata-otf
 font-sourcecodepro terminus-font 
+!! media
+ffmpeg pulseaudio
