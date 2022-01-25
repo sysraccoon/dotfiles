@@ -1,7 +1,7 @@
 !! libs and base packages
 base-devel base-system binutils-devel 
 openjdk openjdk-jre openjdk11
-python3 python3-neovim
+python3 python3-neovim tree-sitter
 !! cli tools
 zsh git curl fzf bat zip zoxide vim neovim tmux ranger htop dua-cli
 psmisc xdg-utils xcape
