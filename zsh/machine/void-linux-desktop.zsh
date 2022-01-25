@@ -11,7 +11,7 @@ export ZSH_CONFIG_DIR="$HOME/dotfiles/zsh"
 
 MODULES=(
   # applications
-  # "xorg" # x11 features
+  "xorg" # x11 features
 
   # languages
   # "rust" # rust features
