@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+xprop | grep 'WM_CLASS' | sed 's/WM_CLASS.* = //g'
