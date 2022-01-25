@@ -1,5 +1,20 @@
 " vim:fileencoding=utf-8:foldmethod=marker
 
+"{{{ Plugins
+call plug#begin()
+Plug 'gruvbox-community/gruvbox' " gruvbox theme origin
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " parser generator. Required by neorg
+Plug 'nvim-neorg/tree-sitter-norg' " tree-sitter support for neorg
+
+Plug 'nvim-lua/plenary.nvim' " required by telescope and neorg
+Plug 'nvim-telescope/telescope.nvim' " fuzzy finder
+Plug 'nvim-neorg/neorg' " emacs org-mode alternative specially for neovim
+
+Plug 'SirVer/ultisnips' " awesome snippet system
+call plug#end()
+"}}}
+
 "{{{ General
 set nocp " disable compatible mode
 filetype plugin on
@@ -29,6 +44,9 @@ set incsearch " enable increment search
 set nohlsearch " disable search highlight
 set mmp=10240 " maximum amount of memory in Kbyte used for pattern matching
 
+" comment options
+set formatoptions-=cro " disable comment continuation on new line
+
 " disable noise
 set noswapfile " disable .swp files
 set nobackup " disable backup
@@ -43,31 +61,52 @@ set nowrap
 " enable more colors
 set termguicolors
 
+" enable colorscheme
+colorscheme gruvbox
+
 " use system clipboard
 set clipboard+=unnamedplus
 
 " open help in right split
 autocmd! BufEnter * if &ft ==# 'help' | wincmd L | endif
 
+"}}}
+
+"{{{ Custom remaps
+let mapleader = ","
+
 nnoremap <Space> <NOP>
-let mapleader = " "
+nnoremap <leader>sv :source $MYVIMRC<cr>
 "}}}
 
-"{{{ Plugins
-call plug#begin()
-Plug 'gruvbox-community/gruvbox'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'SirVer/ultisnips'
-call plug#end()
-"}}}
-
-colorscheme gruvbox
-
+"{{{ Telescope Configuration
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
+"}}}
 
+"{{{ UltiSnips Configuration
 let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"}}}
+
+"{{{ Neorg Configuration
+lua << EOF
+    require('neorg').setup {
+        -- Tell Neorg what modules to load
+        load = {
+            ["core.defaults"] = {}, -- Load all the default modules
+            ["core.norg.concealer"] = {}, -- Allows for use of icons
+            ["core.norg.dirman"] = { -- Manage your directories with Neorg
+                config = {
+                    workspaces = {
+                        my_workspace = "~/neorg"
+                    }
+                }
+            }
+        },
+    }
+EOF
+"}}}

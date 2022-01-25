@@ -1,9 +1,10 @@
-snippet #!
+context "snip.line == 0"
+snippet she "generic unix shebang" ebA
 #!/usr/bin/env $1
-$0
 endsnippet
 
-snippet #!b
-#!/usr/bin/env bash
-$0
+snippet vifold "wrap to vim fold" b
+"\{\{\{ $1
+${VISUAL}
+"\}\}\}
 endsnippet
