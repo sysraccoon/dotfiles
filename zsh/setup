@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+SCRIPT=$(readlink -f $0)
+SCRIPT_PATH=`dirname $SCRIPT`
+SCRIPT_NAME=`basename $0`
+
+ARG_MACHINE_CONFIG="$1"
+if [ -z "$ARG_MACHINE_CONFIG" ]; then
+	echo "$SCRIPT_NAME: config name missed. Select variant below"
+	ARG_MACHINE_CONFIG=`ls "$SCRIPT_PATH/machine" | fzf`
+fi
+
+ZSH_CONFIG_PATH="$SCRIPT_PATH/machine/$ARG_MACHINE_CONFIG" 
+
+if [ -f "$ZSH_CONFIG_PATH" ]; then
+	ln -s "$ZSH_CONFIG_PATH" "$HOME/.zshrc"
+else
+	echo "$SCRIPT_NAME: missed file $ZSH_CONFIG_PATH" 1>&2
+	exit 1
+fi
