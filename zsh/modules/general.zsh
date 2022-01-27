@@ -31,8 +31,11 @@ else
   echo "Warning: editor not found"
 fi
 
+export STAT_DIR=$HOME'/.stats'
+mkdir -p "$STAT_DIR/nvim"
+
 export EDITOR
-alias nvim='nvim -w ~/.stats/nvim/$(date "+%Y-%m-%d:%H-%M-%S")'
+alias nvim='nvim -w $STAT_DIR/$(date "+%Y-%m-%d:%H-%M-%S")'
 alias vim='nvim'
 alias vi='nvim'
 alias e='nvim'
