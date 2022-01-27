@@ -22,21 +22,21 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 if [ $+commands[nvim] -eq 1 ]; then
-  EDITOR=nvim;
+    EDITOR=nvim;
 elif [ $+commands[vim] -eq 1 ]; then
-  EDITOR=vim;
+    EDITOR=vim;
 elif [ $+commands[vi] -eq 1 ]; then
-  EDITOR=vi;
+    EDITOR=vi;
 else
   echo "Warning: editor not found"
 fi
 
 export EDITOR
-alias nvim=$EDITOR
-alias vim=$EDITOR
-alias vi=$EDITOR
-alias e=$EDITOR
-alias nano=$EDITOR
+alias nvim='nvim -w ~/.stats/nvim/$(date "+%Y-%m-%d:%H-%M-%S")'
+alias vim='nvim'
+alias vi='nvim'
+alias e='nvim'
+alias nano='nvim'
 
 # matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -89,7 +89,7 @@ fi
 alias belloff='rmmod pcspkr'
 
 alias upzsh='source ~/.zshrc'
-alias edot="vim $DOTFILES_DIR +':cd %' +':Telescope find_files'"
+alias edot="nvim $DOTFILES_DIR +':cd %' +':Telescope find_files'"
 
 alias copyit='cb-set'
 alias unzip='7za x'

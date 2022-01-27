@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+uptime | cut --delimiter "," --fields 1 | awk '{ print $3 }'

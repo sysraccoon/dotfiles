@@ -45,8 +45,7 @@ function get-local-ip {
 }
 
 function adb-check-net-availability {
-  adb shell "ping -c 1 $1" &> /dev/null;
-  if [[ $? -ne 0 ]]; then
+  if ! adb shell "ping -c 1 $1" &> /dev/null; then
     echo "Host unreachable from android device. Recheck network and adb connection";
     exit 1;
   fi
@@ -64,7 +63,7 @@ while true ; do
       esac ;;
     -n|--network-device)
       case "$2" in
-        "") missed-argument-value "$1" ;;
+        "") missed-argshellcheckument-value "$1" ;;
         *) ARG_NETWORK_DEVICE=$2 ; shift 2 ;;
       esac ;;
     -h|--help) show-help ; exit 0 ;;

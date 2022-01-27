@@ -5,13 +5,13 @@ call plug#begin()
 Plug 'gruvbox-community/gruvbox' " gruvbox theme origin
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " parser generator. Required by neorg
-Plug 'nvim-neorg/tree-sitter-norg' " tree-sitter support for neorg
 
 Plug 'nvim-lua/plenary.nvim' " required by telescope and neorg
 Plug 'nvim-telescope/telescope.nvim' " fuzzy finder
-Plug 'nvim-neorg/neorg' " emacs org-mode alternative specially for neovim
 
 Plug 'SirVer/ultisnips' " awesome snippet system
+
+Plug 'itspriddle/vim-shellcheck' " shell script linter
 call plug#end()
 "}}}
 
@@ -92,21 +92,6 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 "}}}
 
-"{{{ Neorg Configuration
-lua << EOF
-    require('neorg').setup {
-        -- Tell Neorg what modules to load
-        load = {
-            ["core.defaults"] = {}, -- Load all the default modules
-            ["core.norg.concealer"] = {}, -- Allows for use of icons
-            ["core.norg.dirman"] = { -- Manage your directories with Neorg
-                config = {
-                    workspaces = {
-                        my_workspace = "~/neorg"
-                    }
-                }
-            }
-        },
-    }
-EOF
+"{{{ Shellcheck Configuration
+nnoremap <leader>as :ShellCheck!<cr>
 "}}}

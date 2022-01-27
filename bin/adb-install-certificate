@@ -8,7 +8,7 @@ fi
 
 ## Helper Functions
 
-PROGNAME=$(basename $0)
+PROGNAME=$(basename "$0")
 
 function show-help {
   echo "Install pem cert to android system store";
@@ -40,7 +40,7 @@ while true ; do
     -p|--pem)
       case "$2" in
         "") missed-argument-value "$1" ;;
-        *) ARG_PEM=$2 ; shift 2 ;;
+        *) ARG_PEM="$2" ; shift 2 ;;
       esac ;;
     --skip-reboot) ARG_SKIP_REBOOT_CONFIRM=1 ; shift 1 ;;
     -h|--help) show-help ; exit 0 ;;
@@ -55,7 +55,7 @@ fi
 
 
 android_version=$(adb-android-version)
-if (( $android_version > 9 )) ; then
+if (( "$android_version" > 9 )) ; then
   error-exit "detected not supported android version $android_version";
 fi
 
