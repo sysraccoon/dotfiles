@@ -25,7 +25,7 @@ keys = [
     Key([mod], "Tab", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, shift], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "space", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "space", lazy.spawn("rofi -show drun"), desc="Launch rofi"),
     Key([mod], "w", lazy.screen.toggle_group()),
 ]
 
@@ -77,7 +77,7 @@ keys.append(KeyChord([mod], "g", workspace_navigation()))
 
 
 layouts = [
-    layout.Columns(border_focus="#fe8019", border_width=1),
+    layout.Columns(border_focus="#458588", border_width=2),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -94,29 +94,28 @@ layouts = [
 
 widget_defaults = dict(
     font="ubuntu",
-    fontsize=12,
+    fontsize=13,
     padding=3,
+    foreground="#bdae93",
 )
 extension_defaults = widget_defaults.copy()
 
 
 def top_bar():
     return bar.Bar([
-            widget.CurrentLayout(),
             widget.GroupBox(
                 borderwidth=1,
-                active="#fe8019",
-                this_current_screen_border="#fe8019",
+                active="#fbf1c7",
+                inactive="#a89984",
+                this_current_screen_border="#458588",
+                highlight_method="block",
+                rounded=False,
             ),
-            widget.Prompt(),
-            widget.WindowName(),
-            widget.Chord(
-                chords_colors={
-                    "launch": ("#ff0000", "#ffffff"),
-                },
-                name_transform=lambda name: name.upper(),
-            ),
-            widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+            widget.Spacer(),
+            widget.TextBox(text="Battery"),
+            widget.Battery(),
+            widget.Sep(),
+            widget.Clock(format="%I:%M %p"),
         ],
         24,
         # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
