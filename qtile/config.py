@@ -1,3 +1,6 @@
+import os
+import subprocess
+
 from typing import List
 
 from libqtile import bar, layout, widget
@@ -71,8 +74,16 @@ def workspace_navigation():
         keys.append(Key([], group_name[0], lazy.group[group_name].toscreen()))
     return keys
 
+def workspace_window_manipulation():
+    keys = []
+    for _, group_name in groups_meta:
+        keys.append(Key([mod], group_name[0], lazy.window.togroup(group_name)))
+        keys.append(Key([], group_name[0], lazy.window.togroup(group_name)))
+    return keys
+
 keys.extend(window_navigation())
 keys.append(KeyChord([mod], "g", workspace_navigation()))
+keys.append(KeyChord([mod], "m", workspace_window_manipulation()))
 
 
 
@@ -169,3 +180,8 @@ auto_minimize = True
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser("~")
+    subprocess.Popen([home + "/.config/qtile/autostart"])
