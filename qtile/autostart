@@ -1,8 +1,8 @@
 #!/usr/bin/sh
 
 # layouts and keybindings
-setxkbmap -layout "us,ru" -variant "dvorak," -option "grp:alt_shift_toggle,ctrl:nocaps,altwin:swap_lalt_lwin" &
-xcape -d -t 200 &
+setxkbmap -layout "us,ru" -variant "dvorak," -option "grp:alt_shift_toggle,ctrl:nocaps,altwin:swap_lalt_lwin"
+xcape -t 200 &
 
 # fix tearing
 picom &
@@ -10,8 +10,6 @@ picom &
 dunst &
 # screenshots
 flameshot &
-# sound
-pulseaudio -D --exit-idle-time=-1 &
 # bluetooth
 blueman-applet &
 
