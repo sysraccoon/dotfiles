@@ -71,6 +71,11 @@
     # kill focused window
     bindsym $mod+Tab kill
 
+    # toggle between screens
+    bindsym $mod+comma focus output left
+    # toggle botween two last workspaces
+    bindsym $mod+period workspace back_and_forth
+
     # change focus
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down

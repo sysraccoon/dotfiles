@@ -140,3 +140,4 @@ alias goo='git-open-origin'
 alias screencast-mode='xrandr --output HDMI-A-0 --mode 1920x1080 && reloadscreen'
 alias screen-normal-mode='xrandr --output HDMI-A-0 --mode 2560x1080 && reloadscreen'
 alias debugqtile='echo "exec qtile start" > /tmp/.start_qtile; xinit /tmp/.start_qtile -- :2'
+
