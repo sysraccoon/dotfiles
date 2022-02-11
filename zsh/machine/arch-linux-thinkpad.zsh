@@ -25,7 +25,6 @@ MODULES=(
 
   # tools
   "fzf" # fuzzy finder
-  "conda" # python anaconda
   # "xbps" # void package manager
 
   # languages
