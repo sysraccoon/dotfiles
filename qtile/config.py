@@ -30,6 +30,7 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "space", lazy.spawn("rofi -show drun"), desc="Launch rofi"),
     Key([mod], "w", lazy.screen.toggle_group()),
+    Key([mod], "f", lazy.window.toggle_fullscreen()),
 ]
 
 
@@ -39,10 +40,7 @@ def window_navigation():
     down_key = "j"
     up_key = "k"
 
-    bind = lambda key, dir: Key([mod], key, dir)
-
     return [
-
         Key([mod], left_key, lazy.layout.left(), desc="Move focus to left"),
         Key([mod], right_key, lazy.layout.right(), desc="Move focus to right"),
         Key([mod], down_key, lazy.layout.down(), desc="Move focus down"),
@@ -59,7 +57,8 @@ groups_meta = [
     (5, "dev"),
     (6, "www"),
     (7, "msg"),
-    (8, "obs"),
+    (8, "rec"),
+    (9, "game"),
 ]
 
 groups = []
@@ -135,8 +134,8 @@ def top_bar():
     )
 
 screens = [
-    Screen( top=top_bar(),),
-    Screen( top=top_bar(),),
+    Screen(top=top_bar()),
+    Screen(top=top_bar()),
 ]
 
 # Drag floating layouts.

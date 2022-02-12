@@ -22,7 +22,8 @@ MODULES=(
 
   # tools
   "fzf" # fuzzy finder
-  "xbps" # void package manager
+  "conda" # python anaconda
+  # "xbps" # void package manager
 
   # other
   "general" # enable general features

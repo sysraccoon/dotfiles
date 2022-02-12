@@ -1,4 +1,7 @@
 #!/bin/sh
 
+xset s off
+xset -dpms
+xset s noblank
 # exec dbus-run-session -- i3
 qtile start
