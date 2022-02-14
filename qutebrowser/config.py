@@ -158,4 +158,5 @@ config.bind("U", "undo")
 config.bind("J", "tab-prev")
 config.bind("K", "tab-next")
 
-config.source("gruvbox.py")
+# config.source("gruvbox.py")
+config.source("nord.py")
