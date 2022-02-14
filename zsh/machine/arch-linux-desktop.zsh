@@ -22,7 +22,6 @@ MODULES=(
 
   # tools
   "fzf" # fuzzy finder
-  "conda" # python anaconda
   # "xbps" # void package manager
 
   # other
@@ -31,6 +30,8 @@ MODULES=(
 
   # external dependencies
   "antigen"
+
+  "python"
 )
 
 for module in ${MODULES[@]}; do

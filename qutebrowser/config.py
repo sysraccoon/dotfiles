@@ -142,6 +142,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 c.hints.chars = "aoeuhtnspg.c"
 c.hints.min_chars = 1
 c.url.start_pages = ["https://www.google.com"]
+c.scrolling.smooth = True
 
 config.set("url.searchengines", {
     "DEFAULT": "https://www.google.com/search?q={}"

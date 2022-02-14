@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+audio_input=${1:--}
+audio_output=${2:--}
+
+sox -t wav $audio_input -t wav $audio_output compand 0.2,1 -60,-54,-12,-8,0,0 -12 -40 1

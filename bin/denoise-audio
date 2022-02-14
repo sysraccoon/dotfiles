@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+audio_input=${1:--}
+audio_output=${2:--}
+
+tmp_noise_trim="/tmp/noise-trim.wav"
+tmp_noise_profile="/tmp/noise.prof"
+
+sox -t wav $audio_input $tmp_noise_trim trim 0 0.500 
+sox $tmp_noise_trim -n noiseprof $tmp_noise_profile
+sox -t wav $audio_input -t wav $audio_output noisered $tmp_noise_profile 0.21
+
+rm $tmp_noise_profile $tmp_noise_trim

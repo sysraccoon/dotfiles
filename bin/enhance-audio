@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+audio_input=${1:--}
+audio_output=${2:--}
+
+tmp_inter="/tmp/enhanced-intermediate"
+mkdir -p $tmp_inter
+
+function path_step {
+    echo "${tmp_inter}/$1";
+}
+
+denoise-audio $audio_input $(path_step 1)
+sox -v 4 -t wav $(path_step 1) -t wav $(path_step 2)
+compress-audio $(path_step 2) $(path_step 3)
+add-bass-audio $(path_step 3) $(path_step 4)
+cp $(path_step 4) $audio_output
+
+rm -r $tmp_inter

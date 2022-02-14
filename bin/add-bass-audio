@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+audio_input=${1:--}
+audio_output=${2:--}
+
+sox -t wav $audio_input -t wav $audio_output bass 5
+

@@ -3,6 +3,7 @@
 "{{{ Plugins
 call plug#begin()
 Plug 'gruvbox-community/gruvbox' " gruvbox theme origin
+Plug 'shaunsingh/nord.nvim' " nord theme
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " parser generator. Required by neorg
 
@@ -63,7 +64,8 @@ set nowrap
 set termguicolors
 
 " enable colorscheme
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme nord
 
 " use system clipboard
 set clipboard+=unnamedplus
