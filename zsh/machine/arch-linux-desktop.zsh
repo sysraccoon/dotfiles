@@ -22,7 +22,7 @@ MODULES=(
 
   # tools
   "fzf" # fuzzy finder
-  "xbps" # void package manager
+  # "xbps" # void package manager
 
   # other
   "general" # enable general features
@@ -30,6 +30,8 @@ MODULES=(
 
   # external dependencies
   "antigen"
+
+  "python"
 )
 
 for module in ${MODULES[@]}; do

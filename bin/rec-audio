@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+dest=${1:--}
+sox -b 24 -e unsigned-integer -r 44.1k -d -c 1 -t wav $dest

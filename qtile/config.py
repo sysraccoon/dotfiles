@@ -9,6 +9,19 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile import hook
 
+COLOR_WIDGET_FONT = "#eceff4"
+COLOR_WS_ACTIVE = "#eceff4"
+COLOR_WS_INACTIVE = "#d8dee9"
+COLOR_PANEL_BACKGROUND = "#2e3440"
+COLOR_CURRENT_SCREEN_BACKGROUND = "#4c566a"
+COLOR_OTHER_SCREEN_BACKGROUND = "#3b4252"
+COLOR_BORDER_FOCUS = "#4c566a"
+COLOR_BORDER_NORMAL = "#3b4252"
+COLOR_WIDGET_BACKGROUND_PRIMARY = "#434758"
+COLOR_WIDGET_FOREGROUND_PRIMARY = "#e5e9f0"
+COLOR_WIDGET_BACKGROUND_SECONDARY = "#2e3440"
+COLOR_WIDGET_FOREGROUND_SECONDARY = "#e5e9f0"
+
 mod = "mod4"
 shift = "shift"
 
@@ -30,6 +43,7 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "space", lazy.spawn("rofi -show drun"), desc="Launch rofi"),
     Key([mod], "w", lazy.screen.toggle_group()),
+    Key([mod], "f", lazy.window.toggle_fullscreen()),
 ]
 
 
@@ -39,10 +53,7 @@ def window_navigation():
     down_key = "j"
     up_key = "k"
 
-    bind = lambda key, dir: Key([mod], key, dir)
-
     return [
-
         Key([mod], left_key, lazy.layout.left(), desc="Move focus to left"),
         Key([mod], right_key, lazy.layout.right(), desc="Move focus to right"),
         Key([mod], down_key, lazy.layout.down(), desc="Move focus down"),
@@ -59,7 +70,8 @@ groups_meta = [
     (5, "dev"),
     (6, "www"),
     (7, "msg"),
-    (8, "obs"),
+    (8, "rec"),
+    (9, "game"),
 ]
 
 groups = []
@@ -85,58 +97,90 @@ keys.extend(window_navigation())
 keys.append(KeyChord([mod], "g", workspace_navigation()))
 keys.append(KeyChord([mod], "m", workspace_window_manipulation()))
 
-
-
 layouts = [
-    layout.Columns(border_focus="#458588", border_width=2),
+    layout.Columns(border_focus=COLOR_BORDER_FOCUS, border_normal=COLOR_BORDER_NORMAL, border_width=2),
     layout.Max(),
-    # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
 ]
 
 widget_defaults = dict(
     font="ubuntu",
     fontsize=13,
     padding=3,
-    foreground="#bdae93",
+    foreground=COLOR_WIDGET_FONT,
 )
 extension_defaults = widget_defaults.copy()
 
+def widget_sep_primary():
+    return widget.TextBox(
+       text = "\ue0be",
+       padding = 0,
+       fontsize = 24,
+       foreground=COLOR_WIDGET_BACKGROUND_PRIMARY
+   )
+
+def widget_sep_secondary():
+    return  widget.TextBox(
+       text = "\ue0b8",
+       padding = 0,
+       fontsize = 24,
+       foreground=COLOR_WIDGET_BACKGROUND_PRIMARY,
+   )
 
 def top_bar():
     return bar.Bar([
             widget.GroupBox(
                 borderwidth=1,
-                active="#fbf1c7",
-                inactive="#a89984",
-                this_current_screen_border="#458588",
+                active=COLOR_WS_ACTIVE,
+                inactive=COLOR_WS_INACTIVE,
+                this_current_screen_border=COLOR_CURRENT_SCREEN_BACKGROUND,
+                this_screen_border=COLOR_OTHER_SCREEN_BACKGROUND,
+                other_current_screen_border=COLOR_OTHER_SCREEN_BACKGROUND,
+                other_screen_border=COLOR_OTHER_SCREEN_BACKGROUND,
                 highlight_method="block",
                 rounded=False,
             ),
             widget.Spacer(),
-            widget.TextBox(text="Battery"),
-            widget.Battery(),
-            widget.Sep(),
-            widget.Clock(format="%I:%M %p"),
+            widget_sep_primary(),
+            widget.TextBox(
+                text="\uf1eb",
+                fontsize=24,
+                background=COLOR_WIDGET_BACKGROUND_PRIMARY,
+                foreground=COLOR_WIDGET_FOREGROUND_PRIMARY,
+            ),
+            widget.Net(
+                interface="wlp5s0",
+                format="{down} ↓↑ {up}",
+                update_interval=5,
+                background=COLOR_WIDGET_BACKGROUND_PRIMARY,
+                foreground=COLOR_WIDGET_FOREGROUND_PRIMARY,
+            ),
+            widget_sep_secondary(),
+            widget.TextBox(
+                text="\ufa7d", 
+                fontsize=24, 
+                background=COLOR_WIDGET_BACKGROUND_SECONDARY, 
+                foreground=COLOR_WIDGET_FOREGROUND_SECONDARY
+            ),
+            widget.Volume(
+                background=COLOR_WIDGET_BACKGROUND_SECONDARY, 
+                foreground=COLOR_WIDGET_FOREGROUND_SECONDARY
+            ),
+            widget_sep_primary(),
+            widget.Clock(
+                format="%I:%M %p",
+                background=COLOR_WIDGET_BACKGROUND_PRIMARY,
+                foreground=COLOR_WIDGET_FOREGROUND_PRIMARY
+            ),
         ],
         24,
         # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
         # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
-        background="#282828",
+        background=COLOR_PANEL_BACKGROUND,
     )
 
 screens = [
-    Screen( top=top_bar(),),
-    Screen( top=top_bar(),),
+    Screen(top=top_bar()),
+    Screen(top=top_bar()),
 ]
 
 # Drag floating layouts.
