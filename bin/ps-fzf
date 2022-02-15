@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+ps -o pid,cmd -e | awk 'NR != 1' | fzf --multi | awk '{ print $1 }'

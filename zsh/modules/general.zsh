@@ -75,6 +75,7 @@ fi
 if [ $+commands[zoxide] -eq 1 ]; then
   eval "$(zoxide init zsh)";
   alias cd='z';
+  alias cdd='cd $(zoxide query -l | fzf)';
 fi
 
 if [ $+commands[bat] -eq 1 ]; then
