@@ -157,6 +157,8 @@ config.bind("u", "scroll-page 0 -0.5")
 config.bind("U", "undo")
 config.bind("J", "tab-prev")
 config.bind("K", "tab-next")
+config.bind("<", "tab-move -")
+config.bind(">", "tab-move +")
 
 # config.source("gruvbox.py")
 config.source("nord.py")
