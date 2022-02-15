@@ -1,0 +1,9 @@
+[user]
+	name = sysraccoon
+	email = sysraccoon@gmail.com
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
+[core]
+	editor = vim

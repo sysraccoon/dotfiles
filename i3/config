@@ -47,11 +47,11 @@
 #{{{ Theme
   font pango:Ubuntu Mono 9
   # 1 pixel border for all windows
-  for_window [tiling] border pixel 1
+  for_window [tiling] border pixel 2
   # focus border colors
-  # #FF9E21
-  set $focus_color #C77000
-  client.focused $focus_color $focus_color #FFFFFF $focus_color $focus_color
+  set $focus_color #3b4252
+  set $focus_foreground_color #eceff4
+  client.focused $focus_color $focus_color $focus_foreground_color $focus_color $focus_color
 #}}}
 
 ##{{{ Bindings

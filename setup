@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-SCRIPT=$(readlink -f $0)
-SCRIPT_PATH=`dirname $SCRIPT`
-SCRIPT_NAME=`basename $0`
+SCRIPT=$(readlink -f "$0")
+SCRIPT_PATH=$(dirname "$SCRIPT")
+SCRIPT_NAME=$(basename "$0")
 
 mkdir -p "$HOME/.config"
 for module_name in i3 polybar bat nvim kitty qutebrowser qtile picom alacritty;
@@ -20,9 +20,13 @@ ln -Ts "$SCRIPT_PATH/launchers" "$HOME/.launchers"
 echo "$SCRIPT_NAME: link fonts"
 ln -Ts "$SCRIPT_PATH/fonts" "$HOME/.fonts"
 
+echo "$SCRIPT_NAME: link gitconfig"
+ln -Ts "$SCRIPT_PATH/git/gitconfig" "$HOME/.gitconfig"
+
 echo "$SCRIPT_NAME: setup nvim"
-$SCRIPT_PATH/nvim/setup
+"$SCRIPT_PATH"/nvim/setup
 echo "$SCRIPT_NAME: setup zsh"
-$SCRIPT_PATH/zsh/setup
+"$SCRIPT_PATH"/zsh/setup
 echo "$SCRIPT_NAME: setup x11"
-$SCRIPT_PATH/x11/setup
+"$SCRIPT_PATH"/x11/setup
+
