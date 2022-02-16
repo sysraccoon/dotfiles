@@ -141,11 +141,10 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 
 c.hints.chars = "aoeuhtnspg.c"
 c.hints.min_chars = 1
-c.url.start_pages = ["https://www.google.com"]
-c.scrolling.smooth = True
+c.url.start_pages = ["https://duckduckgo.com"]
 
 config.set("url.searchengines", {
-    "DEFAULT": "https://www.google.com/search?q={}"
+    "DEFAULT": "https://duckduckgo.com/?q={}",
 })
 
 for key in "duJK":
@@ -158,5 +157,4 @@ config.bind("U", "undo")
 config.bind("J", "tab-prev")
 config.bind("K", "tab-next")
 
-# config.source("gruvbox.py")
 config.source("nord.py")
