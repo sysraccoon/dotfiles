@@ -5,7 +5,7 @@ config.source("nord.py")
 
 c.hints.chars = "aoeuhtnspg.c"
 c.hints.min_chars = 1
-c.url.start_pages = ["https://duckduckgo.com"]
+c.url.start_pages = ["https://www.google.com"]
 c.aliases = {
     "x": "quit --save",
 }
@@ -35,4 +35,6 @@ config.bind("K", "tab-next")
 config.bind("<", "tab-move -")
 config.bind(">", "tab-move +")
 config.bind("<Shift-Escape>", "fake-key <Escape>")
+config.bind("xb", "config-cycle statusbar.show always never")
+config.bind("xt", "config-cycle tabs.show always never")
 
