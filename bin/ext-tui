@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+
+import subprocess
+import argparse
+
+def main():
+    try:
+        args = parse_arguments()
+        subprocess.run(["alacritty", "--class", args.get("class"), "-e", *args.get("rest")],
+                       check=True)
+    except KeyboardInterrupt:
+        exit()
+
+def parse_arguments():
+    parser = argparse.ArgumentParser(description="Run command in predefined terminal")
+    parser.add_argument("-c", "--class", type=str,
+                        help="define application class")
+    parser.add_argument("rest", nargs=argparse.REMAINDER)
+
+    return vars(parser.parse_args())
+
+if __name__ == "__main__":
+    main()
