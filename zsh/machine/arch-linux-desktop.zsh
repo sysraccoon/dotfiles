@@ -23,6 +23,7 @@ MODULES=(
   # tools
   "fzf" # fuzzy finder
   # "xbps" # void package manager
+  "pacman" # pacman package manager
 
   # other
   "general" # enable general features
