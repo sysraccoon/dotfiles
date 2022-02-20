@@ -33,9 +33,10 @@ def load_commands(command_repo, group_names):
         ("toggle-floating",     ["M-S-f"],               lazy.window.toggle_floating(),        ["manipulation"],      "Toggle floating"),
         ("kill-window",         ["M-<Tab>"],             lazy.window.kill(),                   ["manipulation"],      "Kill focused window"),
 
-        ("app-launcher",        ["M-<space>"],           lazy.spawn(app_launcher),             ["launcher", "app"],   "Run application launcher (rofi)"),
-        ("start-terminal",      ["M-<Return>"],          lazy.spawn(terminal),                 ["terminal", "app"],   "Run terminal (alacritty)"),
-        ("qtile-cmd",           ["M-<apostrophe>"],      rofi_execute_command(command_repo),   ["system"],            "Run qtile command"),
+        ("run-app-launcher",    ["M-<space>"],           lazy.spawn(app_launcher),             ["application"],       "Run application launcher (rofi)"),
+        ("run-terminal",        ["M-<Return>"],          lazy.spawn(terminal),                 ["application"],       "Run terminal (alacritty)"),
+        ("run-qtile-cmd",       ["M-<apostrophe>"],      rofi_execute_command(command_repo),   ["application"],       "Run qtile command"),
+        ("make-screenshot",     ["<Print>"],             lazy.spawn("flameshot gui"),          ["application"],       "Make screenshot (flameshot)"),
 
         ("reload-config",       ["M-S-r"],               lazy.reload_config(),                 ["system"],            "Reload qtile config"),
         ("shutdown-qtile",      ["M-C-q"],               lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
