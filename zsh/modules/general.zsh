@@ -35,7 +35,7 @@ export STAT_DIR=$HOME'/.stats'
 mkdir -p "$STAT_DIR/nvim"
 
 export EDITOR
-alias nvim='nvim -w $STAT_DIR/$(date "+%Y-%m-%d:%H-%M-%S")'
+alias nvim='nvim -w $STAT_DIR/nvim/$(date "+%Y-%m-%d:%H-%M-%S")'
 alias vim='nvim'
 alias vi='nvim'
 alias e='nvim'
@@ -107,6 +107,8 @@ alias local-ip="ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f 1"
 alias adb-ip="adb shell ip -4 -o a | cut -d ' ' -f 2,7 | cut -d '/' -f 1"
 alias extract-ip="cut -d ' ' -f 2"
 alias default-network-device="route | grep '^default' | grep -o '[^ ]*$'"
+
+alias co='curl -O'
 
 function local-ip-grep() {
   local-ip | grep $1 | extract-ip

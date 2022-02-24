@@ -14,6 +14,8 @@ c.fileselect.handler = "external"
 c.fileselect.single_file.command = ["alacritty", "--class", "ranger-file-picker,ranger", "-e", "ranger", "--choosefile", "{}"]
 c.fileselect.multiple_files.command = ["alacritty", "--class", "ranger-file-picker,ranger", "-e", "ranger", "--choosefiles", "{}"]
 
+c.editor.command = ["alacritty", "-e", "nvim", "{}"]
+
 c.url.searchengines = {
     "DEFAULT": "https://www.google.com/search?q={}",
     "re": "https://www.reddit.com/r/{}",
@@ -24,7 +26,7 @@ c.url.searchengines = {
     "aw": "https://wiki.archlinux.org/?search={}",
 }
 
-for key in "duJK":
+for key in "duJKM":
     config.unbind(key)
 
 config.bind("d", "scroll-page 0 0.5")
@@ -37,4 +39,8 @@ config.bind(">", "tab-move +")
 config.bind("<Shift-Escape>", "fake-key <Escape>")
 config.bind("xb", "config-cycle statusbar.show always never")
 config.bind("xt", "config-cycle tabs.show always never")
+config.bind("xm", "hint links spawn mpv {hint-url}")
+config.bind("xM", "spawn mpv {url}")
+config.bind("cs", "config-source")
+config.bind("ce", "config-edit")
 

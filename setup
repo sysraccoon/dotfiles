@@ -5,7 +5,10 @@ SCRIPT_PATH=$(dirname "$SCRIPT")
 SCRIPT_NAME=$(basename "$0")
 
 mkdir -p "$HOME/.config"
-for module_name in i3 polybar bat nvim kitty qutebrowser qtile picom alacritty rofi;
+
+config_names=(i3 polybar bat nvim kitty qutebrowser \
+              qtile picom alacritty rofi picom)
+for module_name in "${config_names[@]}";
 do
 	echo "$SCRIPT_NAME: link $module_name"
     ln -Ts "$SCRIPT_PATH/$module_name" "$HOME/.config/$module_name"
