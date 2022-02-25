@@ -16,11 +16,25 @@ from commands import CommandRepository, load_commands
 
 
 def load_group_names():
-    return [ "sys", "dev", "www", "msg", "rec", "game" ]
+    return [ "sys", "dev", "www", "msg", "rec", "vid", "game" ]
 
 
 def load_groups(group_names):
-    return [ Group(group_name) for group_name in group_names ]
+    groups = []
+    for group_name in group_names:
+        matches = []
+        if group_name == "www":
+            matches = [Match(wm_class=["qutebrowser"])]
+        elif group_name == "msg":
+            matches = [
+                Match(wm_class=["telegram-desktop"]),
+                Match(wm_class=["discord"])
+            ]
+        elif group_name == "vid":
+            matches = [Match(wm_class=["mpv"])]
+        group = Group(group_name, matches=matches)
+        groups.append(group)
+    return groups
 
 
 def load_keys(group_names):
@@ -146,7 +160,7 @@ def load_floating_layout():
     return layout.Floating(
         float_rules=[
             # Run the utility of `xprop` to see the wm class and name of an X client.
-            *layout.Floating.default_float_rules,
+            # *layout.Floating.default_float_rules,
             Match(wm_class="confirmreset"),  # gitk
             Match(wm_class="makebranch"),  # gitk
             Match(wm_class="maketag"),  # gitk
