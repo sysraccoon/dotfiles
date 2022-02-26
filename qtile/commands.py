@@ -42,6 +42,15 @@ def load_commands(command_repo, group_names):
         ("shutdown-qtile",      ["M-C-q"],               lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
     ]))
 
+    for audio_index in range(3):
+        result_commands.append(CommandInfo(
+            name=f"set-default-audio-{audio_index}",
+            hotkeys=[f"M-a M-{audio_index}"],
+            action=lazy.spawn(f"sh -c \"set-default-audio '{audio_index}'\""),
+            tags=["system"],
+            desc=f"Set audio device with index {audio_index} as default",
+        ))
+
     for group_name in group_names:
         result_commands.extend([
             CommandInfo(
