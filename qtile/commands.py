@@ -42,7 +42,7 @@ def load_commands(command_repo, group_names):
         ("shutdown-qtile",      ["M-C-q"],               lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
     ]))
 
-    for audio_index in range(3):
+    for audio_index in range(10):
         result_commands.append(CommandInfo(
             name=f"set-default-audio-{audio_index}",
             hotkeys=[f"M-a M-{audio_index}"],

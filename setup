@@ -26,6 +26,9 @@ ln -Ts "$SCRIPT_PATH/fonts" "$HOME/.fonts"
 echo "$SCRIPT_NAME: link gitconfig"
 ln -Ts "$SCRIPT_PATH/git/gitconfig" "$HOME/.gitconfig"
 
+echo "$SCRIPT_NAME: link shell .profile"
+ln -Ts "$SCRIPT_PATH/shell/profile" "$HOME/.profile"
+
 echo "$SCRIPT_NAME: setup nvim"
 "$SCRIPT_PATH"/nvim/setup
 echo "$SCRIPT_NAME: setup zsh"
