@@ -28,6 +28,7 @@ c.url.searchengines = {
 
 for key in "duJKM":
     config.unbind(key)
+config.unbind("<Control-w>")
 
 config.bind("d", "scroll-page 0 0.5")
 config.bind("u", "scroll-page 0 -0.5")
@@ -43,4 +44,13 @@ config.bind("xm", "hint links spawn mpv {hint-url}")
 config.bind("xM", "spawn mpv {url}")
 config.bind("cs", "config-source")
 config.bind("ce", "config-edit")
+
+config.bind("<Control-w>", "fake-key <Control-BackSpace>", mode="insert")
+config.bind("<Control-h>", "fake-key <BackSpace>", mode="insert")
+config.bind("<Control-b>", "fake-key <Control-Left>", mode="insert")
+config.bind("<Control-f>", "fake-key <Control-Right>", mode="insert")
+config.bind("<Alt-b>", "fake-key <Left>", mode="insert")
+config.bind("<Alt-f>", "fake-key <Right>", mode="insert")
+config.bind("<Control-a>", "fake-key <Home>", mode="insert")
+config.bind("<Control-e>", "fake-key <End>", mode="insert")
 
