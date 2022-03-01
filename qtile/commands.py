@@ -38,8 +38,9 @@ def load_commands(command_repo, group_names):
         ("run-qtile-cmd",       ["M-<apostrophe>"],      rofi_execute_command(command_repo),   ["application"],       "Run qtile command"),
         ("make-screenshot",     ["<Print>"],             lazy.spawn("flameshot gui"),          ["application"],       "Make screenshot (flameshot)"),
 
-        ("reload-config",       ["M-S-r"],               lazy.reload_config(),                 ["system"],            "Reload qtile config"),
-        ("shutdown-qtile",      ["M-C-q"],               lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
+        ("reload-config",       ["M-<minus> M-r"],       lazy.reload_config(),                 ["system"],            "Reload qtile config"),
+        ("shutdown-qtile",      ["M-<minus> M-q"],       lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
+        ("shutdown-system",     ["M-<minus> M-s"],       lazy.spawn("shutdown now"),           ["system"],            "Shutdown system"),
     ]))
 
     for audio_index in range(10):
@@ -47,7 +48,7 @@ def load_commands(command_repo, group_names):
             name=f"set-default-audio-{audio_index}",
             hotkeys=[f"M-a M-{audio_index}"],
             action=lazy.spawn(f"sh -c \"set-default-audio '{audio_index}'\""),
-            tags=["system"],
+            tags=["audio"],
             desc=f"Set audio device with index {audio_index} as default",
         ))
 
