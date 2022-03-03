@@ -41,6 +41,12 @@ def load_commands(command_repo, group_names):
         ("reload-config",       ["M-<minus> M-r"],       lazy.reload_config(),                 ["system"],            "Reload qtile config"),
         ("shutdown-qtile",      ["M-<minus> M-q"],       lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
         ("shutdown-system",     ["M-<minus> M-s"],       lazy.spawn("shutdown now"),           ["system"],            "Shutdown system"),
+
+    ]))
+
+    result_commands.extend(expand_commands([
+        ("set-en-layout", ["M-<bracketleft>"], lazy.spawn("xkb-switch -s 'us(dvorak)'"), ["system"], "Set english dvorak as active layout"),
+        ("set-ru-layout", ["M-<bracketright>"], lazy.spawn("xkb-switch -s 'ru'"), ["system"], "Set russian as active layout"),
     ]))
 
     for audio_index in range(10):

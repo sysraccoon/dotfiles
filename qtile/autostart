@@ -1,8 +1,9 @@
 #!/usr/bin/sh
 
 # layouts and keybindings
-setxkbmap -layout "us,ru" -variant "dvorak," -option "grp:alt_shift_toggle,ctrl:nocaps,altwin:swap_lalt_lwin"
-xcape -t 200
+# setxkbmap -layout "us,ru" -variant "dvorak," -option "grp:alt_shift_toggle,ctrl:nocaps,altwin:swap_lalt_lwin"
+# xcape -t 200
+$HOME/.launchers/keyboard-config.sh
 
 # hide mouse cursor
 unclutter -idle 10 &
