@@ -20,6 +20,7 @@
   set $primary_display "HDMI2"
   set $minor_display "eDP1"
 
+  set $ws_alt 0
   set $ws_sys 1
   set $ws_dev 2
   set $ws_www 3
@@ -130,12 +131,14 @@
   #{{{ Workspace navigation and manipulation
     bindsym $mod+g mode "ws_navigation"
     mode "ws_navigation" {
+      bindsym $mod+a workspace $ws_alt; mode "default"
       bindsym $mod+s workspace $ws_sys; mode "default"
       bindsym $mod+m workspace $ws_msg; mode "default"
       bindsym $mod+d workspace $ws_dev; mode "default"
       bindsym $mod+w workspace $ws_www; mode "default"
 	  bindsym $mod+o workspace $ws_obs; mode "default"
 
+      bindsym a workspace $ws_alt; mode "default"
       bindsym s workspace $ws_sys; mode "default"
       bindsym m workspace $ws_msg; mode "default"
       bindsym d workspace $ws_dev; mode "default"
@@ -148,12 +151,14 @@
 
     bindsym $mod+m mode "ws_manipulation" 
     mode "ws_manipulation" {
+      bindsym $mod+a move container to workspace $ws_alt; mode "default"
       bindsym $mod+s move container to workspace $ws_sys; mode "default"
       bindsym $mod+m move container to workspace $ws_msg; mode "default"
       bindsym $mod+d move container to workspace $ws_dev; mode "default"
       bindsym $mod+w move container to workspace $ws_www; mode "default"
 	  bindsym $mod+o move container to workspace $ws_obs; mode "default"
 
+      bindsym a move container to workspace $ws_alt; mode "default"
       bindsym s move container to workspace $ws_sys; mode "default"
       bindsym m move container to workspace $ws_msg; mode "default"
       bindsym d move container to workspace $ws_dev; mode "default"
