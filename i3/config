@@ -33,6 +33,7 @@
   exec --no-startup-id dunst
   exec --no-startup-id $HOME/.launchers/polybar.sh
   exec --no-startup-id $HOME/.launchers/bg.sh $bg1 $bg2
+  exec --no-startup-id $HOME/.launchers/keyboard-config.sh
   exec --no-startup-id flameshot
   exec --no-startup-id xcape -d -t 200
   exec --no-startup-id pulseaudio --daemonize=no --exit-idle-time=-1
@@ -66,6 +67,9 @@
     bindsym XF86AudioMute exec --no-startup-id amixer set Master 1+ toggle
     bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 5%+
     bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
+    bindsym $mod+bracketleft exec --no-startup-id xkb-switch -s 'us(dvorak)'
+    bindsym $mod+bracketright exec --no-startup-id xkb-switch -s 'ru'
   #}}}
   
   #{{{ Window navigation and manipulation
