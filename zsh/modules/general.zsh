@@ -146,3 +146,5 @@ alias screen-normal-mode='xrandr --output HDMI-A-0 --mode 2560x1080 && reloadscr
 
 alias psgrep='ps aux | grep'
 alias cp-path='pwd | cb-set'
+
+alias ssh='TERM=xterm-256color ssh'
