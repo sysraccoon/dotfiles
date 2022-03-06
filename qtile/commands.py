@@ -42,6 +42,7 @@ def load_commands(command_repo, group_names):
         ("shutdown-qtile",      ["M-<minus> M-q"],       lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
         ("shutdown-system",     ["M-<minus> M-s"],       lazy.spawn("shutdown now"),           ["system"],            "Shutdown system"),
 
+        ("show-key-name",       ["M-t M-k"],             lazy.spawn("show-key-name"),          ["tools"],             "Display next pressed key name"),
     ]))
 
     result_commands.extend(expand_commands([

@@ -1,0 +1,2 @@
+#!/usr/bin/sh
+key-name-picker | xargs -I "{}" notify-send -u low "Pressed key: {}"
