@@ -13,6 +13,14 @@ Plug 'nvim-telescope/telescope.nvim' " fuzzy finder
 Plug 'SirVer/ultisnips' " awesome snippet system
 
 Plug 'itspriddle/vim-shellcheck' " shell script linter
+
+Plug 'tmhedberg/matchit' " more power for '%' command
+
+Plug 'sheerun/vim-polyglot' " more languages support
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocompletion plugin
+Plug 'zchee/deoplete-jedi' " deoplete python autocompletion
+
 call plug#end()
 "}}}
 
@@ -76,7 +84,7 @@ autocmd! BufEnter * if &ft ==# 'help' | wincmd L | endif
 "}}}
 
 "{{{ Custom remaps
-let mapleader = ","
+let mapleader = " "
 
 nnoremap <Space> <NOP>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -86,6 +94,9 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
+
+" Fix deoplete autocompletion in telescope
+autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false)
 "}}}
 
 "{{{ UltiSnips Configuration
@@ -97,4 +108,8 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 "{{{ Shellcheck Configuration
 nnoremap <leader>as :ShellCheck!<cr>
+"}}}
+
+"{{{ Deoplete Configuration
+let g:deoplete#enable_at_startup = 1
 "}}}
