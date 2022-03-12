@@ -11,23 +11,26 @@ config_names=(i3 polybar bat nvim kitty qutebrowser \
 for module_name in "${config_names[@]}";
 do
 	echo "$SCRIPT_NAME: link $module_name"
-    ln -Ts "$SCRIPT_PATH/$module_name" "$HOME/.config/$module_name"
+    ln -Tsf "$SCRIPT_PATH/$module_name" "$HOME/.config/$module_name"
 done
 
 echo "$SCRIPT_NAME: link bin"
-ln -Ts "$SCRIPT_PATH/bin" "$HOME/bin"
+ln -Tsf "$SCRIPT_PATH/bin" "$HOME/bin"
 
 echo "$SCRIPT_NAME: link launchers"
-ln -Ts "$SCRIPT_PATH/launchers" "$HOME/.launchers"
+ln -Tsf "$SCRIPT_PATH/launchers" "$HOME/.launchers"
 
 echo "$SCRIPT_NAME: link fonts"
-ln -Ts "$SCRIPT_PATH/fonts" "$HOME/.fonts"
+ln -Tsf "$SCRIPT_PATH/fonts" "$HOME/.fonts"
 
 echo "$SCRIPT_NAME: link gitconfig"
-ln -Ts "$SCRIPT_PATH/git/gitconfig" "$HOME/.gitconfig"
+ln -Tsf "$SCRIPT_PATH/git/gitconfig" "$HOME/.gitconfig"
 
 echo "$SCRIPT_NAME: link shell .profile"
-ln -Ts "$SCRIPT_PATH/shell/profile" "$HOME/.profile"
+ln -Tsf "$SCRIPT_PATH/shell/profile" "$HOME/.profile"
+
+echo "$SCRIPT_NAME: link tmux config"
+ln -Tsf "$SCRIPT_PATH/tmux/tmux.conf" "$HOME/.tmux.conf"
 
 echo "$SCRIPT_NAME: setup nvim"
 "$SCRIPT_PATH"/nvim/setup

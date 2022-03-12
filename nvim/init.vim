@@ -2,8 +2,8 @@
 
 "{{{ Plugins
 call plug#begin()
-Plug 'gruvbox-community/gruvbox' " gruvbox theme origin
 Plug 'shaunsingh/nord.nvim' " nord theme
+Plug 'joshdick/onedark.vim' " onedark theme
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " parser generator. Required by neorg
 
@@ -68,12 +68,13 @@ set scrolljump=10
 set sidescroll=10
 set nowrap
 
-" enable more colors
+" enable true color support
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 
-" enable colorscheme
-" colorscheme gruvbox
-colorscheme nord
+" code highlighting
+syntax on
+colorscheme onedark
 
 " use system clipboard
 set clipboard+=unnamedplus
@@ -87,7 +88,7 @@ autocmd! BufEnter * if &ft ==# 'help' | wincmd L | endif
 let mapleader = " "
 
 nnoremap <Space> <NOP>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>-r :source $MYVIMRC<cr>
 "}}}
 
 "{{{ Telescope Configuration
