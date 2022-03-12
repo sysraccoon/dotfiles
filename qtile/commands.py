@@ -39,8 +39,9 @@ def load_commands(command_repo, group_names):
         ("make-screenshot",     ["<Print>"],             lazy.spawn("flameshot gui"),          ["application"],       "Make screenshot (flameshot)"),
 
         ("reload-config",       ["M-<minus> M-r"],       lazy.reload_config(),                 ["system"],            "Reload qtile config"),
-        ("shutdown-qtile",      ["M-<minus> M-q"],       lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
-        ("shutdown-system",     ["M-<minus> M-s"],       lazy.spawn("shutdown now"),           ["system"],            "Shutdown system"),
+        ("shutdown-qtile",      ["M-<minus> M-S-q"],     lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
+        ("shutdown-system",     ["M-<minus> M-S-s"],     lazy.spawn("shutdown now"),           ["system"],            "Shutdown system"),
+        ("reboot-system",       ["M-<minus> M-S-r"],     lazy.spawn("reboot"),                 ["system"],            "Shutdown system"),
 
         ("show-key-name",       ["M-t M-k"],             lazy.spawn("show-key-name"),          ["tools"],             "Display next pressed key name"),
     ]))
@@ -151,7 +152,7 @@ class CommandRepository:
                 pos_in_tree[combo] = cmd
 
         return key_tree
-        
+
 
     def _build_qtile_keys(self, tree):
         results = []
