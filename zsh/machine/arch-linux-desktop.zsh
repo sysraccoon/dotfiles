@@ -24,6 +24,7 @@ MODULES=(
   "fzf" # fuzzy finder
   # "xbps" # void package manager
   "pacman" # pacman package manager
+  "yay" # yay package manager
 
   # other
   "general" # enable general features
