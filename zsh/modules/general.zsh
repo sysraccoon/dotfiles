@@ -1,5 +1,5 @@
-autoload -Uz compinit && compinit
-autoload -U colors && colors
+# autoload -Uz compinit && compinit
+# autoload -U colors && colors
 
 stty sane
 
@@ -8,9 +8,6 @@ source "$HOME/.profile"
 export TERMINFO=/usr/share/terminfo toe
 
 export LINUX_DISTRO="$( grep ^ID /etc/os-release | cut -d '=' -f2 | tr -d \" )"
-export PROMPT="
-╭─%{$fg[cyan]%}⌠ %n ⌡%{$reset_color%}─%{$fg[cyan]%}⌠ %~ ⌡
-%{$reset_color%}╰─%# "
 
 export LANG=en_US.UTF-8
 export PAGER=less

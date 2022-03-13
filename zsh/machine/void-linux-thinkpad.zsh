@@ -21,6 +21,7 @@ MODULES=(
 
   # other
   "general" # enable general features
+  "prompt"
   "work" # work specific features (ignored in .gitignore)
 
   # tools

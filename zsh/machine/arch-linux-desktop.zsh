@@ -28,6 +28,7 @@ MODULES=(
 
   # other
   "general" # enable general features
+  "prompt" # enhance prompt
   # "work" # work specific features (ignored in .gitignore)
 
   # external dependencies
