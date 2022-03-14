@@ -2,6 +2,9 @@ autoload -Uz compinit && compinit
 autoload -U colors && colors
 
 stty sane
+
+source "$HOME/.profile"
+
 export TERMINFO=/usr/share/terminfo toe
 
 export LINUX_DISTRO="$( grep ^ID /etc/os-release | cut -d '=' -f2 | tr -d \" )"
@@ -11,10 +14,6 @@ export PROMPT="
 
 export LANG=en_US.UTF-8
 export PAGER=less
-export PATH=$PATH:"$HOME/bin"
-export PATH=$PATH:"$HOME/.local/bin"
-export PATH=$PATH:"$HOME/.cargo/bin"
-export PATH=$PATH:"$HOME/go/bin"
 
 export MANPAGER="man-pager";
 

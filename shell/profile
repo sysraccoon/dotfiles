@@ -1,4 +1,7 @@
+export CUSTOM_TOOL_DIR="$HOME/store/projects/dev/custom-tools"
+
 export PATH=$PATH:"$HOME/bin"
 export PATH=$PATH:"$HOME/.local/bin"
 export PATH=$PATH:"$HOME/.cargo/bin"
 export PATH=$PATH:"$HOME/go/bin"
+

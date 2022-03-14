@@ -2,10 +2,11 @@
 
 "{{{ Plugins
 call plug#begin()
-Plug 'gruvbox-community/gruvbox' " gruvbox theme origin
 Plug 'shaunsingh/nord.nvim' " nord theme
+Plug 'joshdick/onedark.vim' " onedark theme
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " parser generator. Required by neorg
+Plug 'nvim-orgmode/orgmode'
 
 Plug 'nvim-lua/plenary.nvim' " required by telescope and neorg
 Plug 'nvim-telescope/telescope.nvim' " fuzzy finder
@@ -13,6 +14,15 @@ Plug 'nvim-telescope/telescope.nvim' " fuzzy finder
 Plug 'SirVer/ultisnips' " awesome snippet system
 
 Plug 'itspriddle/vim-shellcheck' " shell script linter
+
+Plug 'tmhedberg/matchit' " more power for '%' command
+
+Plug 'sheerun/vim-polyglot' " more languages support
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocompletion plugin
+Plug 'zchee/deoplete-jedi' " deoplete python autocompletion
+
+
 call plug#end()
 "}}}
 
@@ -60,12 +70,13 @@ set scrolljump=10
 set sidescroll=10
 set nowrap
 
-" enable more colors
+" enable true color support
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 
-" enable colorscheme
-" colorscheme gruvbox
-colorscheme nord
+" code highlighting
+syntax on
+colorscheme onedark
 
 " use system clipboard
 set clipboard+=unnamedplus
@@ -76,16 +87,19 @@ autocmd! BufEnter * if &ft ==# 'help' | wincmd L | endif
 "}}}
 
 "{{{ Custom remaps
-let mapleader = ","
+let mapleader = " "
 
 nnoremap <Space> <NOP>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>-r :source $MYVIMRC<cr>
 "}}}
 
 "{{{ Telescope Configuration
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
+
+" Fix deoplete autocompletion in telescope
+autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false)
 "}}}
 
 "{{{ UltiSnips Configuration
@@ -97,4 +111,32 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 "{{{ Shellcheck Configuration
 nnoremap <leader>as :ShellCheck!<cr>
+"}}}
+
+"{{{ Deoplete Configuration
+let g:deoplete#enable_at_startup = 1
+"}}}
+
+"{{{ Org Mode Configuration
+lua << EOF
+
+-- Load custom tree-sitter grammar for org filetype
+require('orgmode').setup_ts_grammar()
+
+-- Tree-sitter configuration
+require'nvim-treesitter.configs'.setup {
+  -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
+  highlight = {
+    enable = true,
+    disable = {'org'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+    additional_vim_regex_highlighting = {'org'}, -- Required since TS highlighter doesn't support all syntax features (conceal)
+  },
+  ensure_installed = {'org'}, -- Or run :TSUpdate org
+}
+
+require('orgmode').setup({
+  org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
+  org_default_notes_file = '~/Dropbox/org/refile.org',
+})
+EOF
 "}}}
