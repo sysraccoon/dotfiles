@@ -22,6 +22,8 @@ Plug 'sheerun/vim-polyglot' " more languages support
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocompletion plugin
 Plug 'zchee/deoplete-jedi' " deoplete python autocompletion
 
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 call plug#end()
 "}}}
@@ -91,6 +93,7 @@ let mapleader = " "
 
 nnoremap <Space> <NOP>
 nnoremap <leader>-r :source $MYVIMRC<cr>
+
 "}}}
 
 "{{{ Telescope Configuration
@@ -139,4 +142,18 @@ require('orgmode').setup({
   org_default_notes_file = '~/Dropbox/org/refile.org',
 })
 EOF
+"}}}
+
+"{{{ Goyo Configuration
+let g:goyo_height = 90
+nnoremap <leader>df :Goyo<cr>
+"}}}
+
+"{{{ Limelight Configuration
+
+let g:limelight_default_coefficient = 0.5
+
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
 "}}}
