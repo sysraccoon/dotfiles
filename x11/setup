@@ -5,4 +5,5 @@ SCRIPT_PATH=`dirname $SCRIPT`
 SCRIPT_NAME=`basename $0`
 
 ln -Ts "$SCRIPT_PATH/xinitrc" "$HOME/.xinitrc"
+ln -Ts "$SCRIPT_PATH/xprofile" "$HOME/.xprofile"
 
