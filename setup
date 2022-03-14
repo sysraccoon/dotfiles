@@ -14,6 +14,10 @@ do
     ln -Tsf "$SCRIPT_PATH/$module_name" "$HOME/.config/$module_name"
 done
 
+echo "$SCRIPT_NAME: link qutebrowser userscritps"
+mkdir -p "$HOME/.local/share/qutebrowser"
+ln -Tsf "$SCRIPT_PATH/qutebrowser/user_scripts" "$HOME/.local/share/qutebrowser/userscripts"
+
 echo "$SCRIPT_NAME: link bin"
 ln -Tsf "$SCRIPT_PATH/bin" "$HOME/bin"
 
