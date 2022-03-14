@@ -1,6 +1,7 @@
 #!/bin/sh
 
-source ~/.profile
+[ -f /etc/xprofile ] && . /etc/xprofile
+[ -f ~/.xprofile ] && . ~/.xprofile
 
 xset s off
 xset -dpms

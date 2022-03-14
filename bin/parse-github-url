@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+
+import argparse
+import logging
+
+from urllib.parse import urlparse, unquote
+from pathlib import PurePosixPath
+
+GITHUB_HOSTNAME = "github.com"
+USERNAME_PART_INDEX = 1
+REPOSITORY_PART_INDEX = 2
+
+def main():
+    logging.basicConfig(level=logging.INFO)
+    args = parse_arguments()
+
+    parsed_url = urlparse(args.url)
+    if parsed_url.hostname.lower() != GITHUB_HOSTNAME:
+        logging.error(f"Expected url with hostname {GITHUB_HOSTNAME}, "
+                      "but found {parsed_url.hostname}")
+        exit(1)
+
+    parsed_path = PurePosixPath(unquote(parsed_url.path))
+
+    result_parts = []
+
+    if args.username:
+        result_parts.append(parsed_path.parts[USERNAME_PART_INDEX])
+
+    if args.repository:
+        result_parts.append(parsed_path.parts[REPOSITORY_PART_INDEX])
+
+    print(args.separator.join(result_parts))
+
+
+def parse_arguments():
+    parser = argparse.ArgumentParser(description="extract specific parts from github url")
+
+    parser.add_argument("url", metavar="URL", type=str, 
+                        help="github url")
+
+    parser.add_argument("-u", "--username", action="store_true",
+                        help="extract username")
+    parser.add_argument("-r", "--repository", action="store_true",
+                        help="extract repository name")
+    parser.add_argument("-s", "--separator", type=str, default="\n")
+
+    args = parser.parse_args()
+
+    return args
+
+
+if __name__ == "__main__":
+    main()

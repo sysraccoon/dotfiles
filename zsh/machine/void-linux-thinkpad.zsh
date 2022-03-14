@@ -18,6 +18,7 @@ MODULES=(
 
   # terminal
   "term-hotkeys" # enhance term hotkeys
+  "widgets" # custom zsh widgets
 
   # other
   "general" # enable general features

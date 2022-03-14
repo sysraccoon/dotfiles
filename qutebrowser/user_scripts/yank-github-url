@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repository_name=$(parse-github-url -urs '/' "$QUTE_URL")
+if [ "$repository_name" ]; then
+    echo "yank inline '$repository_name'" >> "$QUTE_FIFO"
+else
+    exit 1
+fi
+

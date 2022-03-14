@@ -44,6 +44,7 @@ config.bind("xm", "hint links spawn mpv {hint-url}")
 config.bind("xM", "spawn mpv {url}")
 config.bind("cs", "config-source")
 config.bind("ce", "config-edit")
+config.bind("yg", "spawn --userscript yank-github-url")
 
 config.bind("<Control-w>", "fake-key <Control-BackSpace>", mode="insert")
 config.bind("<Control-h>", "fake-key <BackSpace>", mode="insert")
