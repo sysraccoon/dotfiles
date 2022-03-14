@@ -140,6 +140,7 @@ alias gc='g checkout'
 alias grh='g reset --hard'
 alias goo='git-open-origin'
 alias glg='git-log-graph'
+alias gPP='g push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 
 alias screencast-mode='xrandr --output HDMI-A-0 --mode 1920x1080 && reloadscreen'
 alias screen-normal-mode='xrandr --output HDMI-A-0 --mode 2560x1080 && reloadscreen'
