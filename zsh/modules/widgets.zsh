@@ -3,3 +3,4 @@ function yank-current-buffer {
 }
 zle -N yank-current-buffer
 bindkey "\ey" yank-current-buffer
+

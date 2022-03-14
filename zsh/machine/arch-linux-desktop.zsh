@@ -19,6 +19,7 @@ MODULES=(
 
   # terminal
   "term-hotkeys" # enhance terminal hotkeys
+  "widgets"
 
   # tools
   "fzf" # fuzzy finder
