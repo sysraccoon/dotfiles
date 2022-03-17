@@ -32,6 +32,8 @@ MODULES=(
   # languages
   "rust" # rust features
   "python" # python features
+
+  "tmux"
 )
 
 for module in ${MODULES[@]}; do
