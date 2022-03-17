@@ -20,6 +20,7 @@ MODULES=(
   # terminal
   "term-hotkeys" # enhance terminal hotkeys
   "widgets"
+  "tmux"
 
   # tools
   "fzf" # fuzzy finder
@@ -35,6 +36,7 @@ MODULES=(
   # external dependencies
   "antigen"
 
+  # languages
   "python"
 )
 
