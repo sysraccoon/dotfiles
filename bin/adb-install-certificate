@@ -11,12 +11,12 @@ fi
 PROGNAME=$(basename "$0")
 
 function show-help {
-  echo "Install pem cert to android system store";
-  echo "usage: $PROGNAME [-h|--help] [--skip-reboot] -p|--pem VAL";
-  echo "where:";
-  echo "  -p | --pem              set port (8080 by default)";
-  echo "  --skip-reboot           don't ask and don't do reboot";
-  echo "  -h | --help             show this message";
+    echo "Install pem cert to android system store";
+    echo "usage: $PROGNAME [-h|--help] [--skip-reboot] -p|--pem VAL";
+    echo "where:";
+    echo "  -p | --pem              set path to PEM certificate";
+    echo "  --skip-reboot           don't ask and don't do reboot";
+    echo "  -h | --help             show this message";
 }
 
 function error-exit {
@@ -25,7 +25,7 @@ function error-exit {
 }
 
 function missed-argument-value {
-  error-exit "argument $1 require value";
+    error-exit "argument $1 require value";
 }
 
 ## Default values of arguments
@@ -49,38 +49,77 @@ while true ; do
 done
 
 if [ -z "$ARG_PEM" ]; then
-  show-help;
-  exit 0;
-fi
-
-
-android_version=$(adb-android-version)
-if (( "$android_version" > 9 )) ; then
-  error-exit "detected not supported android version $android_version";
+    show-help;
+    exit 0;
 fi
 
 if ! [ -f "$ARG_PEM" ]; then
-  error-exit "file '$ARG_PEM' not found";
+    error-exit "file '$ARG_PEM' not found";
 fi
 
-PEM_FILE_NAME=$ARG_PEM;
-hash=$(openssl x509 -inform PEM -subject_hash_old -in "$PEM_FILE_NAME" | head -1);
-OUT_FILE_NAME="$hash.0";
+set -euxo pipefail
 
-cp "$PEM_FILE_NAME" "$OUT_FILE_NAME";
-openssl x509 -inform PEM -text -in "$PEM_FILE_NAME" -out /dev/null >> "$OUT_FILE_NAME";
+function prepare-pem {
+    PEM_FILE_NAME=$1;
 
-adb shell su -c "mount -o rw,remount,rw /"
-adb push "$OUT_FILE_NAME" "/storage/self/primary/tmp/"
-rm "$OUT_FILE_NAME"
+    hash=$(openssl x509 -inform PEM -subject_hash_old -in "$PEM_FILE_NAME" | head -1);
+    OUT_FILE_NAME="$hash.0";
 
-adb shell su -c "mv /storage/self/primary/tmp/$OUT_FILE_NAME /system/etc/security/cacerts/$OUT_FILE_NAME"
-adb shell su -c "chmod 644 /system/etc/security/cacerts/$OUT_FILE_NAME"
-adb shell su -c "mount -o ro,remount,ro /"
+    cp "$PEM_FILE_NAME" "$OUT_FILE_NAME";
+    openssl x509 -inform PEM -text -in "$PEM_FILE_NAME" -out /dev/null >> "$OUT_FILE_NAME";
 
-if [ "$ARG_SKIP_REBOOT_CONFIRM" -eq 0 ]; then
-  read -r -p "To complete the installation of the certificate, you must restart the device. Restart now? [y/N] " response
-  case "$response" in
-      [yY][eE][sS]|[yY]) adb reboot ;;
-  esac
+    echo "$OUT_FILE_NAME"
+}
+
+function push-pem {
+    PEM_HASHED_NAME="$1"
+
+    DEST_PEM_PATH="/storage/self/primary/tmp"
+    adb shell "mkdir -p '$DEST_PEM_PATH'"
+    adb push "$PEM_HASHED_NAME" "$DEST_PEM_PATH" >nul
+
+    echo "$DEST_PEM_PATH/$PEM_HASHED_NAME"
+}
+
+function install-to-legacy-android {
+    PREPARED_PEM=$(prepare-pem $ARG_PEM)
+    REMOTE_PEM_PATH=$(push-pem $PREPARED_PEM)
+
+    adb shell su -c "mount -o rw,remount,rw /"
+    adb shell su -c "mv '$REMOTE_PEM_PATH' '/system/etc/security/cacerts/$PREPARED_PEM'"
+    adb shell su -c "chmod 644 /system/etc/security/cacerts/$PREPARED_PEM"
+    adb shell su -c "mount -o ro,remount,ro /"
+
+    if [ "$ARG_SKIP_REBOOT_CONFIRM" -eq 0 ]; then
+      read -r -p "To complete the installation of the certificate, you must restart the device. Restart now? [y/N] " response
+      case "$response" in
+          [yY][eE][sS]|[yY]) adb reboot ;;
+      esac
+    fi
+}
+
+function install-to-new-android {
+    PREPARED_PEM=$(prepare-pem $ARG_PEM)
+    REMOTE_PEM_PATH=$(push-pem $PREPARED_PEM)
+    REMOTE_CACERTS_DIR='/system/etc/security/cacerts'
+
+    adb shell su -c "mkdir -p -m 700 '/data/local/tmp/certificates'"
+    adb shell su -c "cp '$REMOTE_CACERTS_DIR/*' '/data/local/tmp/certificates'"
+    adb shell su -c "mount -t tmpfs tmpfs '$REMOTE_CACERTS_DIR'"
+
+    adb shell su -c "mv '$REMOTE_PEM_PATH' '$REMOTE_CACERTS_DIR/$PREPARED_PEM'"
+    adb shell su -c "chmod 644 $REMOTE_CACERTS_DIR/$PREPARED_PEM"
+
+    echo "Success. Certificate will work until reboot"
+}
+
+android_version=$(adb-android-version)
+if (( "$android_version" > 9 )) ; then
+    echo "Detected $android_version androind version. Launch newer installation process"
+    install-to-new-android
+    # error-exit "detected not supported android version $android_version";
+else
+    echo "Detected $android_version androind version. Launch older installation process"
+    install-to-legacy-android
 fi
+
