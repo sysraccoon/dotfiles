@@ -18,10 +18,12 @@ MODULES=(
 
   # terminal
   "term-hotkeys" # enhance term hotkeys
-  "widgets" # custom zsh widgets
 
   # other
   "general" # enable general features
+  "general.aliases"
+  "git.aliases"
+  "editor"
   "prompt"
   "work" # work specific features (ignored in .gitignore)
 
@@ -33,7 +35,7 @@ MODULES=(
   "rust" # rust features
   "python" # python features
 
-  "tmux"
+  # "tmux"
 )
 
 for module in ${MODULES[@]}; do

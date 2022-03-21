@@ -14,8 +14,8 @@ MODULES=(
   "xorg" # x11 features
 
   # languages
-  # "rust" # rust features
-  # "python" # python features
+  "rust" # rust features
+  "python" # python features
 
   # terminal
   "term-hotkeys" # enhance terminal hotkeys
@@ -35,9 +35,6 @@ MODULES=(
 
   # external dependencies
   "antigen"
-
-  # languages
-  "python"
 )
 
 for module in ${MODULES[@]}; do
