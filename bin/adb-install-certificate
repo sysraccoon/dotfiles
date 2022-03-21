@@ -76,7 +76,7 @@ function push-pem {
 
     DEST_PEM_PATH="/storage/self/primary/tmp"
     adb shell "mkdir -p '$DEST_PEM_PATH'"
-    adb push "$PEM_HASHED_NAME" "$DEST_PEM_PATH" >nul
+    adb push "$PEM_HASHED_NAME" "$DEST_PEM_PATH" >>/dev/null
 
     echo "$DEST_PEM_PATH/$PEM_HASHED_NAME"
 }
@@ -106,6 +106,8 @@ function install-to-new-android {
     adb shell su -c "mkdir -p -m 700 '/data/local/tmp/certificates'"
     adb shell su -c "cp '$REMOTE_CACERTS_DIR/*' '/data/local/tmp/certificates'"
     adb shell su -c "mount -t tmpfs tmpfs '$REMOTE_CACERTS_DIR'"
+
+    adb shell su -c "cp '/data/local/tmp/certificates/*' '$REMOTE_CACERTS_DIR'"
 
     adb shell su -c "mv '$REMOTE_PEM_PATH' '$REMOTE_CACERTS_DIR/$PREPARED_PEM'"
     adb shell su -c "chmod 644 $REMOTE_CACERTS_DIR/$PREPARED_PEM"
