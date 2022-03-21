@@ -10,9 +10,9 @@
   set $up k
 
   set $resources_dir 
-  set $bg1 "$HOME/.config/i3/resources/bg.png"
-  set $bg2 "$HOME/.config/i3/resources/bg.png"
-  set $lock_bg "$HOME/.config/i3/resources/bg.png"
+  set $bg1 "$HOME/dotfiles/resources/wallpaper.jpg"
+  set $bg2 "$HOME/dotfiles/resources/wallpaper.jpg"
+  set $lock_bg "$HOME/dotfiles/resources/wallpaper.jpg"
 
   set $term "alacritty"
   set $browser "qutebrowser"
