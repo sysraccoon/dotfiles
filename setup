@@ -6,8 +6,7 @@ SCRIPT_NAME=$(basename "$0")
 
 mkdir -p "$HOME/.config"
 
-config_names=(i3 polybar bat nvim kitty qutebrowser \
-              qtile picom alacritty rofi picom dunst)
+config_names=(nvim qutebrowser qtile alacritty rofi nixpkgs)
 for module_name in "${config_names[@]}";
 do
 	echo "$SCRIPT_NAME: link $module_name"
@@ -21,12 +20,6 @@ ln -Tsf "$SCRIPT_PATH/qutebrowser/user_scripts" "$HOME/.local/share/qutebrowser/
 echo "$SCRIPT_NAME: link bin"
 ln -Tsf "$SCRIPT_PATH/bin" "$HOME/bin"
 
-echo "$SCRIPT_NAME: link launchers"
-ln -Tsf "$SCRIPT_PATH/launchers" "$HOME/.launchers"
-
-echo "$SCRIPT_NAME: link fonts"
-ln -Tsf "$SCRIPT_PATH/fonts" "$HOME/.fonts"
-
 echo "$SCRIPT_NAME: link gitconfig"
 ln -Tsf "$SCRIPT_PATH/git/gitconfig" "$HOME/.gitconfig"
 
@@ -36,10 +29,8 @@ ln -Tsf "$SCRIPT_PATH/shell/profile" "$HOME/.profile"
 echo "$SCRIPT_NAME: link tmux config"
 ln -Tsf "$SCRIPT_PATH/tmux/tmux.conf" "$HOME/.tmux.conf"
 
+ln -Tsf "$SCRIPT_PATH/zsh/zshrc" "$HOME/.zshrc"
+
 echo "$SCRIPT_NAME: setup nvim"
 "$SCRIPT_PATH"/nvim/setup
-echo "$SCRIPT_NAME: setup zsh"
-"$SCRIPT_PATH"/zsh/setup
-echo "$SCRIPT_NAME: setup x11"
-"$SCRIPT_PATH"/x11/setup
 

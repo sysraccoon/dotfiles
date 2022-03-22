@@ -1,5 +1,3 @@
-# config.zsh
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && {
   >&2 echo "interactive mode didn't support"
@@ -13,29 +11,32 @@ MODULES=(
   # applications
   "xorg" # x11 features
 
-  # external dependencies
-  "antigen"
-
-  # terminal
-  "term-hotkeys" # enhance term hotkeys
-
-  # other
-  "general" # enable general features
-  "general.aliases"
-  "git.aliases"
-  "editor"
-  "prompt"
-  "work" # work specific features (ignored in .gitignore)
-
-  # tools
-  "fzf" # fuzzy finder
-  "xbps" # void package manager
-
   # languages
   "rust" # rust features
   "python" # python features
 
-  # "tmux"
+  # terminal
+  "term-hotkeys" # enhance terminal hotkeys
+
+  # tools
+  "fzf" # fuzzy finder
+  # "xbps" # void package manager
+  "pacman" # pacman package manager
+  "yay" # yay package manager
+  "nix" # nix package manager
+
+  # other
+  "general" # enable general features
+  "prompt" # enhance prompt
+  "tmux"
+  "editor"
+  "general.aliases"
+  "git.aliases"
+  "network.aliases"
+  # "work" # work specific features (ignored in .gitignore)
+
+  # external dependencies
+  "antigen"
 )
 
 for module in ${MODULES[@]}; do

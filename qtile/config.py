@@ -37,12 +37,6 @@ def initialize_config(c):
     c.auto_minimize = True
 
 
-@hook.subscribe.startup_once
-def autostart():
-    home = os.path.expanduser("~")
-    subprocess.Popen([home + "/.config/qtile/autostart"])
-
-
 logging.basicConfig(level=logging.DEBUG)
 
 import config

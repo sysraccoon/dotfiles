@@ -42,7 +42,7 @@ config.bind("xb", "config-cycle statusbar.show always never")
 config.bind("xt", "config-cycle tabs.show always never")
 config.bind("xm", "hint links spawn mpv {hint-url}")
 config.bind("xM", "spawn mpv {url}")
-config.bind("<space>-r", "config-source")
+config.bind("cr", "config-source")
 config.bind("ce", "config-edit")
 config.bind("yg", "spawn --userscript yank-github-url")
 
