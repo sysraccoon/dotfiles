@@ -43,6 +43,8 @@
     openssh
     ranger
     xkb-switch
+    jq
+    bashmount
 
     # browsers
     firefox
