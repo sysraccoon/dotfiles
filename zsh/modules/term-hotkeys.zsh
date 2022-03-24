@@ -11,3 +11,9 @@ function yank-current-buffer {
 zle -N yank-current-buffer
 bindkey "\ey" yank-current-buffer
 
+function add-tilde-to-buffer {
+    BUFFER+='~'
+    CURSOR+=1
+}
+zle -N add-tilde-to-buffer
+bindkey "\eo" add-tilde-to-buffer
