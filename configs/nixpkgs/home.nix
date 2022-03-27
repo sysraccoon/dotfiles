@@ -103,7 +103,7 @@
 
   services.random-background = {
     enable = true;
-    imageDirectory = "%h/dotfiles/resources";
+    imageDirectory = "%h/dotfiles/resources/wallpapers";
     display = "fill";
   };
 

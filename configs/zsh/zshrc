@@ -4,8 +4,10 @@
   exit 1;
 }
 
+ZSHRC_PATH=$(readlink -f "$HOME/.zshrc")
+
 export DOTFILES_DIR="$HOME/dotfiles"
-export ZSH_CONFIG_DIR="$HOME/dotfiles/zsh"
+export ZSHRC_DIR=$(dirname "$ZSHRC_PATH")
 
 MODULES=(
   # applications
@@ -28,7 +30,7 @@ MODULES=(
   # other
   "general" # enable general features
   "prompt" # enhance prompt
-  "tmux"
+  # "tmux"
   "editor"
   "general.aliases"
   "git.aliases"
@@ -40,8 +42,8 @@ MODULES=(
 )
 
 for module in ${MODULES[@]}; do
-  if [[ -f "$ZSH_CONFIG_DIR/modules/$module.zsh" ]]; then
-    source "$ZSH_CONFIG_DIR/modules/$module.zsh";
+  if [[ -f "$ZSHRC_DIR/modules/$module.zsh" ]]; then
+    source "$ZSHRC_DIR/modules/$module.zsh";
   fi
 done
 

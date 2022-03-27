@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DOTFILES_PATH="$HOME/dotfiles"
+CONFIG_PATH="$DOTFILES_PATH/configs"
+
+mkdir -p "$HOME/.config"
+ln -Tsf "$CONFIG_PATH/nixpkgs" "$HOME/.config/nixpkgs"
+ln -Tsf "$CONFIG_PATH/shell/profile" "$HOME/.profile"
+ln -Tsf "$CONFIG_PATH/zsh/zshrc" "$HOME/.zshrc"
+ln -Tsf "$CONFIG_PATH/bin" "$HOME/bin"
+

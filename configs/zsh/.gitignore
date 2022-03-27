@@ -1,0 +1,6 @@
+# antigen load automatically
+antigen/antigen.zsh
+# antigen cache
+*.zwc
+# hide work specific module
+modules/work.zsh
