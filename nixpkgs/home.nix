@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ...}:
 
 {
   home.stateVersion = "22.05";
@@ -30,7 +30,6 @@
     git
     gh
     curl
-    neovim
     tmux
     tldr
     zoxide
@@ -61,14 +60,38 @@
     alsa-tools
     alsa-utils
     pamixer
+
+    (python39.withPackages (ps: with ps; [
+      pip
+    ]))
   ];
 
   xsession.enable = true;
+
+  programs.neovim = {
+    enable = true;
+    withPython3 = true;
+    extraPython3Packages = (ps: with ps; [
+      jedi
+      pynvim
+    ]);
+  };
 
   programs.bat = {
     enable = true;
     config = {
       theme = "Nord";
+    };
+  };
+
+  programs.git = {
+    enable = true;
+    userName = "sysraccoon";
+    userEmail = "sysraccoon@gmail.com";
+    extraConfig = {
+      core.editor = "nvim";
+      pull.rebase = false;
+      init.defaultBranch = "main";
     };
   };
 
@@ -133,5 +156,35 @@
       "x-scheme-handler/http" = ["org.qutebrowser.qutebrowser.desktop"];
       "x-scheme-handler/https" = ["org.qutebrowser.qutebrowser.desktop"];
     };
+  };
+
+  xdg.configFile.qtile = {
+    source = ../qtile;
+    recursive = true;
+  };
+
+  xdg.configFile.nvim = {
+    source = ../nvim;
+    recursive = true;
+  };
+
+  xdg.configFile.alacritty = {
+    source = ../alacritty;
+    recursive = true;
+  };
+
+  xdg.configFile.qutebrowser = {
+    source = ../qutebrowser;
+    recursive = true;
+  };
+
+  xdg.configFile.rofi = {
+    source = ../rofi;
+    recursive = true;
+  };
+
+  xdg.configFile.tmux = {
+    source = ../tmux;
+    recursive = true;
   };
 }

@@ -1,9 +1,17 @@
 " vim:fileencoding=utf-8:foldmethod=marker
 
+"{{{ Vim-Plug Installer
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+"}}}
+
 "{{{ Plugins
 call plug#begin()
-Plug 'shaunsingh/nord.nvim' " nord theme
-Plug 'joshdick/onedark.vim' " onedark theme
+
+Plug 'joshdick/onedark.vim' " main theme
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " parser generator. Required by neorg
 Plug 'nvim-orgmode/orgmode'
@@ -21,6 +29,8 @@ Plug 'sheerun/vim-polyglot' " more languages support
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocompletion plugin
 Plug 'zchee/deoplete-jedi' " deoplete python autocompletion
+
+Plug 'jeetsukumaran/vim-pythonsense' " additional text objects and motins for python
 
 call plug#end()
 "}}}
