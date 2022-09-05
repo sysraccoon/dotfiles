@@ -12,10 +12,11 @@
     options = [
       "grp:alt_shift_toggle"
       "ctrl:nocaps"
-      "altwin:swap_lalt_lwin"
       "terminate:ctrl_alt_bksp"
     ];
   };
+
+  nixpkgs.config.allowUnfree = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -55,6 +56,9 @@
     mpv
     flameshot
     zathura
+    discord
+    tdesktop
+    libreoffice
 
     # audio
     alsa-tools
@@ -155,36 +159,14 @@
       "application/pdf" = ["org.pwmt.zathura.desktop"];
       "x-scheme-handler/http" = ["org.qutebrowser.qutebrowser.desktop"];
       "x-scheme-handler/https" = ["org.qutebrowser.qutebrowser.desktop"];
+      "x-scheme-handler/tg" = ["userapp-Telegram Desktop-08XUJ1.desktop"];
     };
   };
 
-  xdg.configFile.qtile = {
-    source = ../qtile;
-    recursive = true;
-  };
-
-  xdg.configFile.nvim = {
-    source = ../nvim;
-    recursive = true;
-  };
-
-  xdg.configFile.alacritty = {
-    source = ../alacritty;
-    recursive = true;
-  };
-
-  xdg.configFile.qutebrowser = {
-    source = ../qutebrowser;
-    recursive = true;
-  };
-
-  xdg.configFile.rofi = {
-    source = ../rofi;
-    recursive = true;
-  };
-
-  xdg.configFile.tmux = {
-    source = ../tmux;
-    recursive = true;
-  };
+  xdg.configFile.qtile.source = ../qtile;
+  xdg.configFile.nvim.source = ../nvim;
+  xdg.configFile.alacritty.source = ../alacritty;
+  xdg.configFile.qutebrowser.source = ../qutebrowser;
+  xdg.configFile.rofi.source = ../rofi;
+  xdg.configFile.tmux.source = ../tmux;
 }
