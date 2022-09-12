@@ -1,4 +1,5 @@
 # core
+lvm2
 efibootmgr
 grub
 syslinux
@@ -9,6 +10,7 @@ linux-firmware
 base
 base-devel
 nix
+polkit
 
 # python
 pyenv
@@ -55,6 +57,7 @@ htop
 fzf
 lshw
 psutils
+github-cli
 
 # editors
 vi
@@ -96,6 +99,7 @@ dunst
 # fonts
 adobe-source-han-sans-jp-fonts
 adobe-source-han-serif-jp-fonts
+adobe-source-code-pro-fonts
 ttf-caladea
 ttf-carlito
 ttf-dejavu
