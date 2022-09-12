@@ -20,13 +20,13 @@ MODULES=(
   # terminal
   "term-hotkeys" # enhance terminal hotkeys
   "widgets"
-  "tmux"
+  # "tmux"
 
   # tools
   "fzf" # fuzzy finder
-  # "xbps" # void package manager
   "pacman" # pacman package manager
   "yay" # yay package manager
+  "editor" # setup vim
 
   # other
   "general" # enable general features
@@ -35,6 +35,11 @@ MODULES=(
 
   # external dependencies
   "antigen"
+
+  # aliases
+  "general.aliases"
+  "git.aliases"
+  "network.aliases"
 )
 
 for module in ${MODULES[@]}; do
