@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-xdg-open $(git-origin-url)
+gh browse
