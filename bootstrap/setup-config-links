@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SCRIPT=$(readlink -f "$0")
-SCRIPT_PATH=$(dirname "$SCRIPT")
+SCRIPT_PATH=$(dirname "$SCRIPT")/..
 SCRIPT_NAME=$(basename "$0")
 
 mkdir -p "$HOME/.config"

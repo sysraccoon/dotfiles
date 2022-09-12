@@ -11,6 +11,7 @@ base
 base-devel
 nix
 polkit
+pacman-mirrorlist
 
 # python
 pyenv

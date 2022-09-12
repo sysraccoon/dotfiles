@@ -4,6 +4,6 @@ SCRIPT=$(readlink -f $0)
 SCRIPT_PATH=`dirname $SCRIPT`
 SCRIPT_NAME=`basename $0`
 
-ln -Ts "$SCRIPT_PATH/xinitrc" "$HOME/.xinitrc"
-ln -Ts "$SCRIPT_PATH/xprofile" "$HOME/.xprofile"
+ln -Tsf "$SCRIPT_PATH/xinitrc" "$HOME/.xinitrc"
+ln -Tsf "$SCRIPT_PATH/xprofile" "$HOME/.xprofile"
 
