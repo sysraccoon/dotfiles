@@ -17,7 +17,7 @@ gh auth login
 ./upgrade-git-origin
 ```
 
-Install yay and aur packages ([snipped source](https://github.com/Jguer/yay#source)):
+Install yay and aur packages ([snippet source](https://github.com/Jguer/yay#source)):
 
 ```bash
 pacman -S --needed git base-devel
@@ -29,7 +29,7 @@ makepkg -si
 ./install-arch-packages packages/arch-aur-packages yay
 ```
 
-Install blackarch ([snipped source](https://blackarch.org/downloads.html)):
+Install blackarch ([snippet source](https://blackarch.org/downloads.html)):
 
 ```bash
 curl -O https://blackarch.org/strap.sh
@@ -39,3 +39,8 @@ sudo ./strap.sh
 sudo pacman -Syu
 ```
 
+Console layout setup ([snippet source](https://wiki.archlinux.org/title/Linux_console/Keyboard_configuration)):
+
+```bash
+localectl set-keymap --no-convert dvorak
+```
