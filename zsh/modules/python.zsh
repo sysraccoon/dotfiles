@@ -1,5 +1,8 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 
+alias pip3='pip3 --require-virtualenv'
+alias pip='pip3'
+
 #{{{ pyenv
 
 lazy_pyenv_aliases=("pyenv")
