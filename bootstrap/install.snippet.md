@@ -5,7 +5,9 @@ cd
 git clone https://github.com/sysraccoon/dotfiles.git
 cd dotfiles/bootstrap
 # install all community and core packages (aur install separately via yay)
-sudo ./install-arch-packages.sh packages/arch-normal-packages
+sudo ./install-arch-packages packages/arch-normal-packages
+# (optionally) install development specific packages
+sudo ./install-arch-packages packages/arch-dev-packages
 # configure links to configurations
 ./setup-config-links
 ```
@@ -29,7 +31,7 @@ makepkg -si
 ./install-arch-packages packages/arch-aur-packages yay
 ```
 
-Install blackarch ([snippet source](https://blackarch.org/downloads.html)):
+Install blackarch and reverse packages([snippet source](https://blackarch.org/downloads.html)):
 
 ```bash
 curl -O https://blackarch.org/strap.sh
@@ -37,6 +39,9 @@ echo 5ea40d49ecd14c2e024deecf90605426db97ea0c strap.sh | sha1sum -c
 chmod +x strap.sh
 sudo ./strap.sh
 sudo pacman -Syu
+
+# install specific packages for reverse engineering
+sudo ./install-arch-packages packages/arch-reverse-packages
 ```
 
 Console layout setup ([snippet source](https://wiki.archlinux.org/title/Linux_console/Keyboard_configuration)):
@@ -44,3 +49,4 @@ Console layout setup ([snippet source](https://wiki.archlinux.org/title/Linux_co
 ```bash
 localectl set-keymap --no-convert dvorak
 ```
+

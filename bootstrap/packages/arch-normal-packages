@@ -24,7 +24,7 @@ python-poetry
 python-psutil
 python-pynvim
 python-tox
-python2
+python-pipx
 
 # ruby
 ruby
@@ -76,10 +76,12 @@ gdb
 lldb
 
 # desktop environment
+xorg
 xorg-server
 xorg-setxkbmap
 xorg-xev
 xorg-xrandr
+xorg-xinit
 qtile
 dmidecode
 picom
