@@ -51,6 +51,7 @@ fzf
 lshw
 psutils
 github-cli
+pass
 
 # editors
 vi
