@@ -50,3 +50,8 @@ Console layout setup ([snippet source](https://wiki.archlinux.org/title/Linux_co
 localectl set-keymap --no-convert dvorak
 ```
 
+Set default applications (browser etc.):
+
+```bash
+./set-default-applications
+```

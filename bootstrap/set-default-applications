@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
+
