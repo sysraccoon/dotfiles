@@ -1,7 +1,6 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 
-alias pip3='pip3 --require-virtualenv'
-alias pip='pip3'
+alias gpip='PIP_REQUIRE_VIRTUALENV=false pip'
 
 #{{{ pyenv
 
