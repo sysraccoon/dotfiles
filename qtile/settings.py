@@ -1,10 +1,12 @@
 # Qtile modules
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 import importlib
+
+import psutil
 
 # Force reload all custom modules
 import theme; importlib.reload(theme)
@@ -55,7 +57,7 @@ def load_mouse():
 
 def load_screens():
     return [
-        Screen(top=top_bar()),
+        Screen(top=top_bar(), bottom=bottom_bar()),
         Screen(top=top_bar()),
     ]
 
@@ -80,7 +82,11 @@ def load_widget_defaults():
 
 def load_layouts():
     return [
-        layout.Columns(border_focus=COLOR_BORDER_FOCUS, border_normal=COLOR_BORDER_NORMAL, border_width=2),
+        layout.Columns(
+            border_focus=COLOR_BORDER_FOCUS, 
+            border_normal=COLOR_BORDER_NORMAL, 
+            border_width=2
+        ),
         layout.Max(),
     ]
 
@@ -101,6 +107,28 @@ def widget_sep_secondary():
        fontsize = 24,
        foreground=COLOR_WIDGET_BACKGROUND_PRIMARY,
    )
+
+
+def bottom_bar():
+    return bar.Bar(
+       [
+            widget.Spacer(),
+            widget.TaskList(
+                borderwidth=1,
+                font=FONT_NAME,
+                fontsize=FONT_SIZE,
+                highlight_method="block",
+                background=COLOR_WIDGET_BACKGROUND_PRIMARY,
+                foreground=COLOR_WIDGET_FOREGROUND_PRIMARY,
+                border=COLOR_WIDGET_BACKGROUND_SECONDARY,
+                max_title_width=150,
+                rounded=False,
+            ),
+            widget.Spacer(),
+       ],
+       size=BAR_HEIGHT,
+       background=COLOR_PANEL_BACKGROUND,
+    )
 
 
 def top_bar():
@@ -124,13 +152,7 @@ def top_bar():
                 background=COLOR_WIDGET_BACKGROUND_PRIMARY,
                 foreground=COLOR_WIDGET_FOREGROUND_PRIMARY,
             ),
-            widget.Net(
-                interface="wlp5s0",
-                format="{down} ↓↑ {up}",
-                update_interval=5,
-                background=COLOR_WIDGET_BACKGROUND_PRIMARY,
-                foreground=COLOR_WIDGET_FOREGROUND_PRIMARY,
-            ),
+            widget_wifi(),
             widget_sep_secondary(),
             widget.TextBox(
                 text="\ufa7d", 
@@ -149,25 +171,33 @@ def top_bar():
                 foreground=COLOR_WIDGET_FOREGROUND_PRIMARY
             ),
         ],
-        24,
-        # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-        # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+        size=BAR_HEIGHT,
         background=COLOR_PANEL_BACKGROUND,
     )
 
+
+def widget_wifi():
+    interface_name = None
+
+    for iname in psutil.net_if_addrs().keys():
+        if iname.startswith("wlp"):
+            interface_name = iname
+            break
+
+    return widget.Net(
+        interface=interface_name,
+        format="{down} ↓↑ {up}",
+        update_interval=5,
+        background=COLOR_WIDGET_BACKGROUND_PRIMARY,
+        foreground=COLOR_WIDGET_FOREGROUND_PRIMARY,
+    )
 
 def load_floating_layout():
     return layout.Floating(
         float_rules=[
             # Run the utility of `xprop` to see the wm class and name of an X client.
             # *layout.Floating.default_float_rules,
-            Match(wm_class="confirmreset"),  # gitk
-            Match(wm_class="makebranch"),  # gitk
-            Match(wm_class="maketag"),  # gitk
-            Match(wm_class="ssh-askpass"),  # ssh-askpass
-            Match(title="branchdialog"),  # gitk
-            Match(title="pinentry"),  # GPG key password entry
-
+            Match(wm_type="dialog"),
             Match(wm_class="ranger-file-picker"),
         ]
     )

@@ -24,6 +24,9 @@ def load_commands(command_repo, group_names):
         ("focus-down-window",   ["M-j"],                 lazy.layout.down(),                   ["navigation"],        "Focus down window"),
         ("focus-up-window",     ["M-k"],                 lazy.layout.up(),                     ["navigation"],        "Focus up window"),
 
+        ("move-section-up",     ["M-C-k"],               lazy.layout.section_up(),             ["manipulation"],      "Move section up"),
+        ("move-section-down",   ["M-C-j"],               lazy.layout.section_down(),           ["manipulation"],      "Move section down"),
+
         ("move-window-left",    ["M-S-h"],               lazy.layout.shuffle_left(),           ["manipulation"],      "Move window left"),
         ("move-window-right",   ["M-S-l"],               lazy.layout.shuffle_right(),          ["manipulation"],      "Move window right"),
         ("move-window-down",    ["M-S-j"],               lazy.layout.shuffle_down(),           ["manipulation"],      "Move window down"),
@@ -31,6 +34,7 @@ def load_commands(command_repo, group_names):
 
         ("toggle-fullscreen",   ["M-f"],                 lazy.window.toggle_fullscreen(),      ["manipulation"],      "Toggle fullscreen"),
         ("toggle-floating",     ["M-S-f"],               lazy.window.toggle_floating(),        ["manipulation"],      "Toggle floating"),
+        ("next-layout",         ["M-S-<space>"],         lazy.next_layout(),                   ["manipulation"],      "Switch to next layout"),
         ("kill-window",         ["M-<Tab>"],             lazy.window.kill(),                   ["manipulation"],      "Kill focused window"),
 
         ("run-app-launcher",    ["M-<space>"],           lazy.spawn(app_launcher),             ["application"],       "Run application launcher (rofi)"),
