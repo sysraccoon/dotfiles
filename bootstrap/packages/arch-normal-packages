@@ -14,6 +14,7 @@ polkit
 pacman-mirrorlist
 
 # python
+python
 pyenv
 pypy3
 python-adblock
@@ -25,15 +26,6 @@ python-psutil
 python-pynvim
 python-tox
 python-pipx
-
-# ruby
-ruby
-
-# rust
-rustup
-
-# node
-npm
 
 # shell
 zsh
@@ -59,6 +51,7 @@ fzf
 lshw
 psutils
 github-cli
+pass
 
 # editors
 vi
@@ -136,3 +129,4 @@ gnu-netcat
 
 # bluetooth
 pavucontrol
+
