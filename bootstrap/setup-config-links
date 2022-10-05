@@ -39,6 +39,9 @@ ln -Tsf "$SCRIPT_PATH/tmux/tmux.conf" "$HOME/.tmux.conf"
 echo "$SCRIPT_NAME: link pip config"
 ln -Tsf "$SCRIPT_PATH/pip" "$HOME/.config/pip"
 
+echo "$SCRIPT_NAME: link ideavim config"
+ln -Tsf "$SCRIPT_PATH/ideavim" "$HOME/.config/ideavim"
+
 echo "$SCRIPT_NAME: setup nvim"
 "$SCRIPT_PATH"/nvim/setup
 echo "$SCRIPT_NAME: setup zsh"

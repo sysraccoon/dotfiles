@@ -1,0 +1,38 @@
+set clipboard+=unnamedplus
+
+let mapleader = " "
+
+" 'c'-prefix idea vim config
+nnoremap <leader>ce :e ~/.ideavimrc<cr>
+nnoremap <leader>cr :action IdeaVim.ReloadVimRc.reload<cr>
+
+" 'g'-prefix goto
+nnoremap <leader><leader> :action SearchEverywhere<cr>
+
+nnoremap <leader>gf :action GotoFile<cr>
+nnoremap <leader>ga :action GotoAction<cr>
+nnoremap <leader>gc :action GotoClass<cr>
+nnoremap <leader>gu :action ShowUsages<cr>
+
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gi :action GotoImplementation<CR>
+
+" 'r'-prefix run project
+nnoremap <leader>rr :action Run<cr>
+nnoremap <leader>rcr :action ChooseRunConfiguration<cr>
+nnoremap <leader>rd :action Debug<cr>
+nnoremap <leader>rcd :action ChooseDebugConfiguration<cr>
+
+" 'b'-prefix breakpoint
+nnoremap <leader>b :action ToggleLineBreakpoint<cr>
+
+" tab operations
+nnoremap <leader>h gT
+nnoremap <leader>l gt
+
+nnoremap <leader>ww :action HideActiveWindow<cr>
+nnoremap <leader>wh :action HideAllWindows<cr>
+
+set visualbell
+set noerrorbells
+
