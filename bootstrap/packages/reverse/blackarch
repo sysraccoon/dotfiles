@@ -1,0 +1,16 @@
+# binary decompilers
+radare2
+ghidra
+
+# android specific
+android-tools
+android-apktool
+smali
+jadx
+
+# traffic analysis
+# mitmproxy # pipx installation preffered
+gost
+
+# dynamic analysis
+# python-frida # pipx installation preffered

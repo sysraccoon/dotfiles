@@ -52,6 +52,7 @@ lshw
 psutils
 github-cli
 pass
+net-tools
 
 # editors
 vi

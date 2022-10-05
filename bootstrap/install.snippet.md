@@ -5,9 +5,9 @@ cd
 git clone https://github.com/sysraccoon/dotfiles.git
 cd dotfiles/bootstrap
 # install all community and core packages (aur install separately via yay)
-sudo ./install-arch-packages packages/arch-normal-packages
+sudo ./install-arch-packages packages/normal/arch
 # (optionally) install development specific packages
-sudo ./install-arch-packages packages/arch-dev-packages
+sudo ./install-arch-packages packages/development/arch
 # configure links to configurations
 ./setup-config-links
 ```
@@ -28,7 +28,7 @@ cd yay
 makepkg -si
 
 # install aur packages
-./install-arch-packages packages/arch-aur-packages yay
+./install-arch-packages packages/normal/aur yay
 ```
 
 Install blackarch and reverse packages([snippet source](https://blackarch.org/downloads.html)):
@@ -41,7 +41,7 @@ sudo ./strap.sh
 sudo pacman -Syu
 
 # install specific packages for reverse engineering
-sudo ./install-arch-packages packages/arch-reverse-packages
+sudo ./install-arch-packages packages/reverse/blackarch
 ```
 
 Console layout setup ([snippet source](https://wiki.archlinux.org/title/Linux_console/Keyboard_configuration)):
