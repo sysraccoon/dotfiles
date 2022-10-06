@@ -13,3 +13,5 @@ show_excerpts: false
 
 theme: minima
 
+minima:
+  skin: dark
