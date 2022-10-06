@@ -1,4 +1,4 @@
-title: SysRaccoon Dotfiles
+title: sys.raccoon dotfiles
 
 author:
   name: sysraccoon
@@ -11,7 +11,11 @@ titles_from_headings:
 
 show_excerpts: false
 
+minima:
+  social_links:
+    github: sysraccoon
+    youtube_channel: UCHjzFDGjrOXwyFd85eU0UhQ
+    youtube_channel_name: sys.raccoon
+
 theme: minima
 
-minima:
-  skin: dark
