@@ -5,9 +5,9 @@ You can freely use any part of it to improve your workflow
 
 # Bootstrap
 
-Bootstrap proccess [described here](bootstrap/bootstrap.md)
+Bootstrap proccess [described here](bootstrap/readme.md)
 
 # Cheatsheets
 
-My personal cheatsheets for different technologies [described here](cheatsheets/index.md)
+My personal cheatsheets for different technologies [described here](cheatsheets/readme.md)
 
