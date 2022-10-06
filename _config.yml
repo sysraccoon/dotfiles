@@ -4,6 +4,11 @@ author:
   name: sysraccoon
   email: sysraccoon@gmail.com
 
+titles_from_headings:
+  enabled:     true
+  strip_title: true
+  collections: true
+
 show_excerpts: false
 
 theme: minima
