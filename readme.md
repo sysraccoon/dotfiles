@@ -1,5 +1,5 @@
 
-This repository contains dotfiles used by me for work and study.
+[This repository](https://github.com/sysraccoon/dotfiles) contains dotfiles used by me for work and study.
 You can freely use any part of it to improve your workflow
 
 # Bootstrap
