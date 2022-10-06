@@ -1,6 +1,5 @@
-# My ⚙️ Dotfiles ⚙️
 
-This repository contains dotfiles used by me for work, study and home use.
+This repository contains dotfiles used by me for work and study.
 You can freely use any part of it to improve your workflow
 
 # Bootstrap
