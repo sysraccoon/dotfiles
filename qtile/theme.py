@@ -20,6 +20,30 @@ COLOR_TAB_INACTIVE_FG = "#e5e9f0"
 
 FONT_NAME = "ubuntu"
 FONT_SIZE = 13
-
+ICON_FONT_SIZE = 24
+FOREGROUND_COLOR = "#e5e9f0"
 BAR_HEIGHT = 24
 
+primary_font = {
+    "font": "ubuntu",
+    "fontsize": FONT_SIZE,
+}
+
+icon_font = {
+    "fontsize": ICON_FONT_SIZE,
+}
+
+primary_colors = {
+    "foreground": FOREGROUND_COLOR,
+    "background": "#434758",
+}
+
+alternate_colors = {
+    "foreground": FOREGROUND_COLOR,
+    "background": "#2e3440",
+}
+
+panel_bar = {
+    "size": BAR_HEIGHT,
+    "background": COLOR_PANEL_BACKGROUND,
+}
