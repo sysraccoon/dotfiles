@@ -55,6 +55,8 @@ pass
 net-tools
 jq
 jc
+nmap
+bc
 
 # editors
 vi
