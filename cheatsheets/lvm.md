@@ -69,5 +69,11 @@ Extending exists **lv**
 ```bash
 # 115G new expected size (lvm skip command if new size less then old)
 lvextend -L 115G main/home-volume
+
+# if btrfs used (use mount point instead of partition name)
+btrfs filesystem resize max /home
+
+# if ext4 used (file system can be mounted)
+resize2fs /dev/main/home-volume
 ```
 
