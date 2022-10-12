@@ -1,3 +1,0 @@
-#!/usr/bin/sh
-
-"$CUSTOM_TOOL_DIR/key-name-picker/run"
