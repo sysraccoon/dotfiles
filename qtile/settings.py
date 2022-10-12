@@ -18,22 +18,42 @@ from commands import CommandRepository, load_commands
 
 
 def load_group_names():
-    return [ "sys", "dev", "www", "msg", "rec", "vid", "game" ]
+    return [
+        "sys",  # generic wm for terminals
+        "dev",  # development software (pycharm, idea, etc.)
+        "net",  # network analysis (mitm, wireshark, etc.)
+        "rev",  # reverse specific (ida, ghidra, etc.)
+        "www",  # web surfing (qutebrowser, firefox, etc.)
+        "msg",  # apps for communication (telegram, slack, etc.)
+        "vid",  # multimedia (mvp)
+        *[
+            f"{i}.gen" for i in range(1, 4)
+        ] # generic wms
+    ]
 
 
 def load_groups(group_names):
     groups = []
+    matches_map = {
+        "www": [
+            Match(wm_class=["qutebrowser"]),
+            Match(wm_class=["firefox"]),
+        ],
+        "dev": [
+            Match(wm_class=["jetbrains-pycharm-ce"]),
+            Match(wm_class=["jetbrains-idea-ce"]),
+        ],
+        "msg": [
+            Match(wm_class=["telegram-desktop"]),
+            Match(wm_class=["discord"]),
+        ],
+        "vid": [
+            Match(wm_class=["mpv"]),
+        ],
+    }
+
     for group_name in group_names:
-        matches = []
-        if group_name == "www":
-            matches = [Match(wm_class=["qutebrowser"])]
-        elif group_name == "msg":
-            matches = [
-                Match(wm_class=["telegram-desktop"]),
-                Match(wm_class=["discord"])
-            ]
-        elif group_name == "vid":
-            matches = [Match(wm_class=["mpv"])]
+        matches = matches_map.get(group_name, [])
         group = Group(group_name, matches=matches)
         groups.append(group)
     return groups
