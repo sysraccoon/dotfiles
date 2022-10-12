@@ -84,18 +84,16 @@ def load_screens():
 
 def load_extension_defaults():
     return dict(
-        font=FONT_NAME,
-        fontsize=FONT_SIZE,
         padding=3,
+        **theme.primary_font,
         foreground=COLOR_WIDGET_FONT,
     )
 
 
 def load_widget_defaults():
     return dict(
-        font=FONT_NAME,
-        fontsize=FONT_SIZE,
         padding=3,
+        **theme.primary_font,
         foreground=COLOR_WIDGET_FONT,
     )
 
@@ -113,25 +111,25 @@ def load_layouts():
 
 def widget_sep_primary():
     return widget.TextBox(
-       text = "\ue0be",
-       padding = 0,
-       fontsize = 24,
-       foreground=COLOR_WIDGET_BACKGROUND_PRIMARY
-   )
+        text = "\ue0be",
+        padding = 0,
+        fontsize = ICON_FONT_SIZE,
+        foreground=COLOR_WIDGET_BACKGROUND_PRIMARY,
+    )
 
 
 def widget_sep_secondary():
     return  widget.TextBox(
-       text = "\ue0b8",
-       padding = 0,
-       fontsize = 24,
-       foreground=COLOR_WIDGET_BACKGROUND_PRIMARY,
-   )
+        text = "\ue0b8",
+        padding = 0,
+        fontsize = ICON_FONT_SIZE,
+        foreground=COLOR_WIDGET_BACKGROUND_PRIMARY,
+    )
 
 
 def bottom_bar():
     return bar.Bar(
-       [
+        [
             widget.Spacer(),
             widget.TaskList(
                 borderwidth=1,
@@ -145,9 +143,8 @@ def bottom_bar():
                 rounded=False,
             ),
             widget.Spacer(),
-       ],
-       size=BAR_HEIGHT,
-       background=COLOR_PANEL_BACKGROUND,
+        ],
+        **theme.panel_bar,
     )
 
 
@@ -168,49 +165,43 @@ def top_bar():
             widget_sep_primary(),
             widget.TextBox(
                 text="\uf1eb",
-                fontsize=24,
-                background=COLOR_WIDGET_BACKGROUND_PRIMARY,
-                foreground=COLOR_WIDGET_FOREGROUND_PRIMARY,
+                **theme.icon_font,
+                **theme.primary_colors,
             ),
             widget_wifi(),
             widget_sep_secondary(),
             widget.TextBox(
                 text="\ufa7d", 
-                fontsize=24, 
-                background=COLOR_WIDGET_BACKGROUND_SECONDARY, 
-                foreground=COLOR_WIDGET_FOREGROUND_SECONDARY
+                **theme.icon_font,
+                **theme.alternate_colors,
             ),
             widget.Volume(
-                background=COLOR_WIDGET_BACKGROUND_SECONDARY, 
-                foreground=COLOR_WIDGET_FOREGROUND_SECONDARY
+                **theme.alternate_colors,
             ),
             widget_sep_primary(),
             widget.Clock(
                 format="%I:%M %p",
-                background=COLOR_WIDGET_BACKGROUND_PRIMARY,
-                foreground=COLOR_WIDGET_FOREGROUND_PRIMARY
+                **theme.primary_colors,
             ),
         ],
-        size=BAR_HEIGHT,
-        background=COLOR_PANEL_BACKGROUND,
-    )
+        **theme.panel_bar)
 
 
 def widget_wifi():
-    interface_name = None
-
-    for iname in psutil.net_if_addrs().keys():
-        if iname.startswith("wlp"):
-            interface_name = iname
-            break
-
     return widget.Net(
-        interface=interface_name,
+        interface=get_wifi_interface_name(),
         format="{down} ↓↑ {up}",
         update_interval=5,
-        background=COLOR_WIDGET_BACKGROUND_PRIMARY,
-        foreground=COLOR_WIDGET_FOREGROUND_PRIMARY,
+        **theme.primary_colors,
     )
+
+
+def get_wifi_interface_name():
+    for iname in psutil.net_if_addrs().keys():
+        if iname.startswith("wlp"):
+            return iname
+    raise None
+
 
 def load_floating_layout():
     return layout.Floating(
@@ -219,6 +210,7 @@ def load_floating_layout():
             # *layout.Floating.default_float_rules,
             Match(wm_type="dialog"),
             Match(wm_class="ranger-file-picker"),
+            Match(wm_class="Emulator"),
         ]
     )
 

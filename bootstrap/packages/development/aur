@@ -1,0 +1,7 @@
+# Android specific
+android-studio
+android-emulator
+android-sdk-cmdline-tools-latest
+android-sdk-build-tools
+android-sdk-platform-tools
+

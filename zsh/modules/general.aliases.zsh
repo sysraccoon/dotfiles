@@ -4,6 +4,8 @@ alias l='ls'
 alias sl='ls'
 alias s='ls'
 
+alias ll='ls -lah'
+
 alias info='info --vi-keys'
 
 alias ducks='du -cks * | sort -rn | head -11 | numfmt --to=iec-i --suffix=B'
