@@ -11,6 +11,7 @@ from command_exec import rofi_execute_command
 def load_commands(command_repo, group_names):
     app_launcher = "rofi -show drun"
     terminal = "alacritty"
+    app_lock = "xsecurelock"
 
     result_commands = []
 
@@ -45,7 +46,8 @@ def load_commands(command_repo, group_names):
         ("reload-config",       ["M-<minus> M-r"],       lazy.reload_config(),                 ["system"],            "Reload qtile config"),
         ("shutdown-qtile",      ["M-<minus> M-S-q"],     lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
         ("shutdown-system",     ["M-<minus> M-S-s"],     lazy.spawn("shutdown now"),           ["system"],            "Shutdown system"),
-        ("reboot-system",       ["M-<minus> M-S-r"],     lazy.spawn("reboot"),                 ["system"],            "Shutdown system"),
+        ("reboot-system",       ["M-<minus> M-S-r"],     lazy.spawn("reboot"),                 ["system"],            "Reboot system"),
+        ("lock-system",         ["M-<minus> M-l"],       lazy.spawn(app_lock),                 ["system"],            "Lock system"),
 
         ("show-key-name",       ["M-t M-k"],             lazy.spawn("show-key-name"),          ["tools"],             "Display next pressed key name"),
     ]))

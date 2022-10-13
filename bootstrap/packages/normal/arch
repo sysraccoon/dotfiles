@@ -83,6 +83,7 @@ xorg-xinit
 qtile
 dmidecode
 picom
+xsecurelock
 
 # terminals
 alacritty
@@ -96,6 +97,9 @@ feh
 mpv
 flameshot
 dunst
+zathura
+zathura-djvu
+zathura-pdf-mupdf
 
 # fonts
 adobe-source-han-sans-jp-fonts
