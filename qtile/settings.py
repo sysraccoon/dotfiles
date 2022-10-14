@@ -131,6 +131,7 @@ def bottom_bar():
     return bar.Bar(
         [
             widget.Spacer(),
+            widget_sep_primary(),
             widget.TaskList(
                 borderwidth=1,
                 font=FONT_NAME,
@@ -142,6 +143,7 @@ def bottom_bar():
                 max_title_width=150,
                 rounded=False,
             ),
+            widget_sep_secondary(),
             widget.Spacer(),
         ],
         **theme.panel_bar,
