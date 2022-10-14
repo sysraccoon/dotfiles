@@ -16,7 +16,6 @@ font:
     family: Source Code Pro
     style: Bold Italic
   size: 10
-  use_thin_strokes: true
   offset:
     x: 0
     y: 0
@@ -53,7 +52,7 @@ colors:
     matches:
       foreground: CellBackground
       background: '#88c0d0'
-    bar:
+  footer_bar:
       background: '#434c5e'
       foreground: '#d8dee9'
   normal:
