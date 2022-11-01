@@ -12,6 +12,7 @@ base-devel
 nix
 polkit
 pacman-mirrorlist
+reflector
 
 # python
 python
