@@ -30,28 +30,43 @@ for key in "duJKM":
     config.unbind(key)
 config.unbind("<Control-w>")
 
-config.bind("d", "scroll-page 0 0.5")
-config.bind("u", "scroll-page 0 -0.5")
-config.bind("U", "undo")
-config.bind("J", "tab-prev")
-config.bind("K", "tab-next")
-config.bind("<", "tab-move -")
-config.bind(">", "tab-move +")
-config.bind("<Shift-Escape>", "fake-key <Escape>")
-config.bind("xb", "config-cycle statusbar.show always never")
-config.bind("xt", "config-cycle tabs.show always never")
-config.bind("xm", "hint links spawn mpv {hint-url}")
-config.bind("xM", "spawn mpv {url}")
-config.bind("<space>-r", "config-source")
-config.bind("ce", "config-edit")
-config.bind("yg", "spawn --userscript yank-github-url")
+keybindings = {
+    "d": "scroll-page 0 0.5",
+    "u": "scroll-page 0 -0.5",
+    "U": "undo",
+    "J": "tab-prev",
+    "K": "tab-next",
+    "<": "tab-move -",
+    ">": "tab-move +",
+    "<Shift-Escape>": "fake-key <Escape>",
+    "xb": "config-cycle statusbar.show always never",
+    "xt": "config-cycle tabs.show always never",
+    "xm": "hint links spawn mpv {hint-url}",
+    "xM": "spawn mpv {url}",
+    "<Control-r>": "config-source",
+    "ce": "config-edit",
+    "yg": "spawn --userscript yank-github-url",
 
-config.bind("<Control-w>", "fake-key <Control-BackSpace>", mode="insert")
-config.bind("<Control-h>", "fake-key <BackSpace>", mode="insert")
-config.bind("<Control-b>", "fake-key <Control-Left>", mode="insert")
-config.bind("<Control-f>", "fake-key <Control-Right>", mode="insert")
-config.bind("<Alt-b>", "fake-key <Left>", mode="insert")
-config.bind("<Alt-f>", "fake-key <Right>", mode="insert")
-config.bind("<Control-a>", "fake-key <Home>", mode="insert")
-config.bind("<Control-e>", "fake-key <End>", mode="insert")
+    "<Control-w>": ("fake-key <Control-BackSpace>", {"mode": "insert"}),
+    "<Control-h>": ("fake-key <BackSpace>", {"mode": "insert"}),
+    "<Control-b>": ("fake-key <Control-Left>", {"mode": "insert"}),
+    "<Control-f>": ("fake-key <Control-Right>", {"mode": "insert"}),
+    "<Alt-b>": ("fake-key <Left>", {"mode": "insert"}),
+    "<Alt-f>": ("fake-key <Right>", {"mode": "insert"}),
+    "<Control-a>": ("fake-key <Home>", {"mode": "insert"}),
+    "<Control-e>": ("fake-key <End>", {"mode": "insert"}),
+}
+
+for keystroke, binding_params in keybindings.items():
+    action = None
+    params = {}
+    if isinstance(binding_params, str):
+        action = binding_params
+    elif isinstance(binding_params, tuple):
+        action = binding_params[0]
+        params = binding_params[1]
+    else:
+        raise NotImplementedError()
+
+    config.bind(keystroke, action, **params)
 
