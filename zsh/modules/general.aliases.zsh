@@ -4,7 +4,8 @@ alias l='ls'
 alias sl='ls'
 alias s='ls'
 
-alias ll='ls -lah'
+alias ll='ls -lh'
+alias lla='ls -lah'
 
 alias info='info --vi-keys'
 
