@@ -9,4 +9,6 @@
 	editor = vim
 [color]
 	ui = auto
+[credential]
+	helper = cache
 
