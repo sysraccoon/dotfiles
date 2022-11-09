@@ -3,6 +3,8 @@ config.load_autoconfig(True)
 config.source("pregenerated.py")
 config.source("nord.py")
 
+c.content.autoplay = False
+
 c.hints.chars = "aoeuhtnspg.c"
 c.hints.min_chars = 1
 c.url.start_pages = ["https://www.google.com"]
@@ -11,8 +13,19 @@ c.aliases = {
 }
 
 c.fileselect.handler = "external"
-c.fileselect.single_file.command = ["alacritty", "--class", "ranger-file-picker,ranger", "-e", "ranger", "--choosefile", "{}"]
-c.fileselect.multiple_files.command = ["alacritty", "--class", "ranger-file-picker,ranger", "-e", "ranger", "--choosefiles", "{}"]
+c.fileselect.single_file.command = [
+    "alacritty",
+    "--class", "ranger-file-picker,ranger",
+    "-e", "ranger",
+    "--choosefile", "{}",
+]
+
+c.fileselect.multiple_files.command = [
+    "alacritty",
+    "--class", "ranger-file-picker,ranger",
+    "-e", "ranger",
+    "--choosefiles", "{}",
+]
 
 c.editor.command = ["alacritty", "-e", "nvim", "{}"]
 
@@ -26,9 +39,18 @@ c.url.searchengines = {
     "aw": "https://wiki.archlinux.org/?search={}",
 }
 
-for key in "duJKM":
-    config.unbind(key)
-config.unbind("<Control-w>")
+unbinded_keybindings = [
+    "d",
+    "u",
+    "J",
+    "K",
+    "M",
+    "<Control-w>",
+    "gf",
+]
+
+for binding in unbinded_keybindings:
+    config.unbind(binding)
 
 keybindings = {
     "d": "scroll-page 0 0.5",
@@ -46,7 +68,7 @@ keybindings = {
     "<Control-r>": "config-source",
     "ce": "config-edit",
     "yg": "spawn --userscript yank-github-url",
-
+    "gf": "open g {url:host}",
     "<Control-w>": ("fake-key <Control-BackSpace>", {"mode": "insert"}),
     "<Control-h>": ("fake-key <BackSpace>", {"mode": "insert"}),
     "<Control-b>": ("fake-key <Control-Left>", {"mode": "insert"}),
