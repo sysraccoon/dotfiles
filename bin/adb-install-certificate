@@ -96,6 +96,8 @@ function install-to-legacy-android {
           [yY][eE][sS]|[yY]) adb reboot ;;
       esac
     fi
+
+    rm $PREPARED_PEM
 }
 
 function install-to-new-android {
@@ -113,6 +115,8 @@ function install-to-new-android {
     adb shell su -c "chmod 644 $REMOTE_CACERTS_DIR/$PREPARED_PEM"
 
     echo "Success. Certificate will work until reboot"
+
+    rm $PREPARED_PEM
 }
 
 android_version=$(adb-android-version)
@@ -122,6 +126,7 @@ if (( "$android_version" > 9 )) ; then
     # error-exit "detected not supported android version $android_version";
 else
     echo "Detected $android_version androind version. Launch older installation process"
+    install-to-new-android
     install-to-legacy-android
 fi
 
