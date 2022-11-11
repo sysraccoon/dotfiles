@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Some commands require external script and don't support built-in commands.
+# This script wrap built-in eval
+eval "$@"
+

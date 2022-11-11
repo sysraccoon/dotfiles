@@ -58,6 +58,7 @@ jq
 jc
 nmap
 bc
+translate-shell
 
 # editors
 vi

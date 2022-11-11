@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-alacritty --class term-popup --command $@
+alacritty --class term-popup --command eval-this "$@"
 

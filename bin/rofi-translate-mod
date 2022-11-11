@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-if [ x"$@" != x"" ]
+set -eu
+
+if [ $ROFI_RETV != 0 ] && [ x"$@" != x"" ]
 then
   lang=$1
   shift 1
-  coproc (term-popup trans-pager $lang $@ > /dev/null 2>&1)&
+  coproc (term-popup "trans-pager $lang $@")
   exit 0
 fi
 
