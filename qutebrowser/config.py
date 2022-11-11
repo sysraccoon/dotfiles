@@ -55,6 +55,8 @@ for binding in unbinded_keybindings:
 keybindings = {
     "d": "scroll-page 0 0.5",
     "u": "scroll-page 0 -0.5",
+    "<Control-d>": "fake-key <PgDown>",
+    "<Control-u>": "fake-key <PgUp>",
     "U": "undo",
     "J": "tab-prev",
     "K": "tab-next",
