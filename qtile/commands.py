@@ -52,6 +52,7 @@ def load_commands(command_repo, group_names):
         ("show-key-name",       ["M-t M-k"],             lazy.spawn("show-key-name"),          ["tools"],             "Display next pressed key name"),
         ("translate-text",      ["M-t M-t"],             lazy.spawn("trans-rofi"),             ["tools"],             "Translate text"),
         ("clip-password",       ["M-t M-p"],             lazy.spawn("pass-rofi"),              ["tools"],             "Get and save password to clipboard"),
+        ("open-cheatsheet",     ["M-t M-c"],             lazy.spawn("cheatsheet-rofi"),        ["tools"],             "Open cheatsheet"),
     ]))
 
     result_commands.extend(expand_commands([
