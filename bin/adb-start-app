@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+adb shell monkey -p $1 1
+
