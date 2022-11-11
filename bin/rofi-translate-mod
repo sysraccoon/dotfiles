@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [ x"$@" != x"" ]
+then
+  lang=$1
+  shift 1
+  coproc (term-popup trans-pager $lang $@ > /dev/null 2>&1)&
+  exit 0
+fi
+

@@ -213,6 +213,7 @@ def load_floating_layout():
             Match(wm_type="dialog"),
             Match(wm_class="ranger-file-picker"),
             Match(wm_class="Emulator"),
+            Match(wm_class="term-popup"),
         ]
     )
 

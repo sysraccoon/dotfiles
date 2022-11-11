@@ -10,6 +10,7 @@ from command_exec import rofi_execute_command
 
 def load_commands(command_repo, group_names):
     app_launcher = "rofi -show drun"
+    window_selector = "rofi -show window"
     terminal = "alacritty"
     app_lock = "xsecurelock"
 
@@ -25,8 +26,7 @@ def load_commands(command_repo, group_names):
         ("focus-down-window",   ["M-j"],                 lazy.layout.down(),                   ["navigation"],        "Focus down window"),
         ("focus-up-window",     ["M-k"],                 lazy.layout.up(),                     ["navigation"],        "Focus up window"),
 
-        ("move-section-up",     ["M-C-k"],               lazy.layout.section_up(),             ["manipulation"],      "Move section up"),
-        ("move-section-down",   ["M-C-j"],               lazy.layout.section_down(),           ["manipulation"],      "Move section down"),
+        ("focus-window-by-name",["M-w M-<space>"],       lazy.spawn(window_selector),          ["navigation"],        "Focus window by name"),
 
         ("move-window-left",    ["M-S-h"],               lazy.layout.shuffle_left(),           ["manipulation"],      "Move window left"),
         ("move-window-right",   ["M-S-l"],               lazy.layout.shuffle_right(),          ["manipulation"],      "Move window right"),
@@ -50,6 +50,7 @@ def load_commands(command_repo, group_names):
         ("lock-system",         ["M-<minus> M-l"],       lazy.spawn(app_lock),                 ["system"],            "Lock system"),
 
         ("show-key-name",       ["M-t M-k"],             lazy.spawn("show-key-name"),          ["tools"],             "Display next pressed key name"),
+        ("translate-text",      ["M-t M-t"],             lazy.spawn("rofi-translate"),         ["tools"],             "Translate text"),
     ]))
 
     result_commands.extend(expand_commands([

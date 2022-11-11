@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+alacritty --class term-popup --command $@
+
