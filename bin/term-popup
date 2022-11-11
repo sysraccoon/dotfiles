@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-alacritty --class term-popup --command eval-this "$@"
+ext-tui --class "term-popup" eval-this "$@"
 
