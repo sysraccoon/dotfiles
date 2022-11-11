@@ -211,6 +211,7 @@ def load_floating_layout():
             # Run the utility of `xprop` to see the wm class and name of an X client.
             # *layout.Floating.default_float_rules,
             Match(wm_type="dialog"),
+            Match(wm_class="pinentry-gtk-2"),
             Match(wm_class="ranger-file-picker"),
             Match(wm_class="Emulator"),
             Match(wm_class="term-popup"),
