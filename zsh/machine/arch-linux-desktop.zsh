@@ -40,6 +40,9 @@ MODULES=(
   "general.aliases"
   "git.aliases"
   "network.aliases"
+
+  # aliases and env variables for AOSP project
+  "aosp"
 )
 
 for module in ${MODULES[@]}; do
