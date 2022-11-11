@@ -50,8 +50,8 @@ def load_commands(command_repo, group_names):
         ("lock-system",         ["M-<minus> M-l"],       lazy.spawn(app_lock),                 ["system"],            "Lock system"),
 
         ("show-key-name",       ["M-t M-k"],             lazy.spawn("show-key-name"),          ["tools"],             "Display next pressed key name"),
-        ("translate-text",      ["M-t M-t"],             lazy.spawn("rofi-translate"),         ["tools"],             "Translate text"),
-        ("clip-password",       ["M-t M-p"],             lazy.spawn("rofi-pass"),              ["tools"],             "Get and save password to clipboard"),
+        ("translate-text",      ["M-t M-t"],             lazy.spawn("trans-rofi"),             ["tools"],             "Translate text"),
+        ("clip-password",       ["M-t M-p"],             lazy.spawn("pass-rofi"),              ["tools"],             "Get and save password to clipboard"),
     ]))
 
     result_commands.extend(expand_commands([
