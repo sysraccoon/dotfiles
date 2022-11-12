@@ -8,7 +8,7 @@ mkdir -p "$HOME/.config"
 
 config_names=(i3 polybar bat nvim kitty qutebrowser \
               qtile picom alacritty rofi picom dunst \
-              mutt)
+              mutt zathura)
 for module_name in "${config_names[@]}";
 do
 	echo "$SCRIPT_NAME: link $module_name"
