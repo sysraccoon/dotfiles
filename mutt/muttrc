@@ -1,0 +1,6 @@
+# vim: filetype=neomuttrc
+source /usr/share/mutt-wizard/mutt-wizard.muttrc
+source /home/raccoon/.config/mutt/accounts/sysraccoon@gmail.com.muttrc
+macro index,pager i1 '<sync-mailbox><enter-command>source /home/raccoon/.config/mutt/accounts/sysraccoon@gmail.com.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to sysraccoon@gmail.com"
+macro index,pager \ee "<pipe-message> $EDITOR -R -<Enter>" "open decoded message in editor (readonly mode)"
+

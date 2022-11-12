@@ -59,6 +59,7 @@ jc
 nmap
 bc
 translate-shell
+neomutt
 
 # editors
 vi
