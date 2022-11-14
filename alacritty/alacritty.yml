@@ -33,6 +33,7 @@ mouse_bindings:
 key_bindings:
   - { key: V, mods: Command, action: Paste }
   - { key: C, mods: Command, action: Copy  }
+  - { key: Return, mods: Super|Shift, action: SpawnNewInstance }
 
 colors:
   primary:
