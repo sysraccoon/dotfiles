@@ -20,11 +20,12 @@ from commands import CommandRepository, load_commands
 def load_group_names():
     return [
         "sys",  # generic wm for terminals
-        "dev",  # development software (pycharm, idea, etc.)
+        "ide",  # integrated development environments (pycharm, idea, etc.)
+        "dat",  # DB clients and other data source stuff (dbeaver, datagrip, etc.)
         "net",  # network analysis (mitm, wireshark, etc.)
         "rev",  # reverse specific (ida, ghidra, etc.)
-        "www",  # web surfing (qutebrowser, firefox, etc.)
-        "msg",  # apps for communication (telegram, slack, etc.)
+        "web",  # web surfing (qutebrowser, firefox, etc.)
+        "cht",  # chat apps (telegram, slack, etc.)
         "vid",  # multimedia (mvp)
         *[
             f"{i}.gen" for i in range(1, 4)
@@ -103,35 +104,42 @@ def load_layouts():
         layout.Columns(
             border_focus=COLOR_BORDER_FOCUS, 
             border_normal=COLOR_BORDER_NORMAL, 
-            border_width=2
+            border_width=2,
         ),
         layout.Max(),
     ]
 
 
-def widget_sep_primary():
+def widget_sep_generic(text: str):
     return widget.TextBox(
-        text = "\ue0be",
+        text = text,
         padding = 0,
         fontsize = ICON_FONT_SIZE,
-        foreground=COLOR_WIDGET_BACKGROUND_PRIMARY,
+        foreground = COLOR_WIDGET_BACKGROUND_PRIMARY,
     )
+
+
+def widget_sep_primary():
+    return widget_sep_generic("▝")
 
 
 def widget_sep_secondary():
-    return  widget.TextBox(
-        text = "\ue0b8",
-        padding = 0,
-        fontsize = ICON_FONT_SIZE,
-        foreground=COLOR_WIDGET_BACKGROUND_PRIMARY,
-    )
+    return widget_sep_generic("▘")
+
+
+def widget_left_end():
+    return widget_sep_generic("▝▞")
+
+
+def widget_right_end():
+    return widget_sep_generic("▚▘")
 
 
 def bottom_bar():
     return bar.Bar(
         [
             widget.Spacer(),
-            widget_sep_primary(),
+            widget_left_end(),
             widget.TaskList(
                 borderwidth=1,
                 font=FONT_NAME,
@@ -143,7 +151,7 @@ def bottom_bar():
                 max_title_width=150,
                 rounded=False,
             ),
-            widget_sep_secondary(),
+            widget_right_end(),
             widget.Spacer(),
         ],
         **theme.panel_bar,
@@ -152,6 +160,8 @@ def bottom_bar():
 
 def top_bar():
     return bar.Bar([
+            widget.Spacer(),
+            widget_left_end(),
             widget.GroupBox(
                 borderwidth=1,
                 active=COLOR_WS_ACTIVE,
@@ -160,9 +170,11 @@ def top_bar():
                 this_screen_border=COLOR_OTHER_SCREEN_BACKGROUND,
                 other_current_screen_border=COLOR_OTHER_SCREEN_BACKGROUND,
                 other_screen_border=COLOR_OTHER_SCREEN_BACKGROUND,
+                background=COLOR_GROUP_BOX_BACKGROUND,
                 highlight_method="block",
                 rounded=False,
             ),
+            widget_right_end(),
             widget.Spacer(),
             widget_sep_primary(),
             widget.TextBox(
@@ -190,12 +202,18 @@ def top_bar():
 
 
 def widget_wifi():
-    return widget.Net(
+    return widget.Wlan(
         interface=get_wifi_interface_name(),
-        format="{down} ↓↑ {up}",
-        update_interval=5,
+        format="{essid} | {percent:2.0%}",
+        update_interval=10,
         **theme.primary_colors,
     )
+    # return widget.Net(
+    #     interface=get_wifi_interface_name(),
+    #     format="{down} ↓↑ {up}",
+    #     update_interval=5,
+    #     **theme.primary_colors,
+    # )
 
 
 def get_wifi_interface_name():
