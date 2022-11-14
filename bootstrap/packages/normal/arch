@@ -87,7 +87,7 @@ qtile
 dmidecode
 picom
 xsecurelock
-gksudo
+gksu
 
 # terminals
 alacritty
