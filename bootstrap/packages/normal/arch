@@ -27,6 +27,7 @@ python-psutil
 python-pynvim
 python-tox
 python-pipx
+python-iwlib
 
 # shell
 zsh

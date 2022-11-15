@@ -43,6 +43,7 @@ MODULES=(
 
   # aliases and env variables for AOSP project
   "aosp"
+  "office.aliases"
 )
 
 for module in ${MODULES[@]}; do

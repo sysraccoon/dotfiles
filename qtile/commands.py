@@ -33,6 +33,11 @@ def load_commands(command_repo, group_names):
         ("move-window-down",    ["M-S-j"],               lazy.layout.shuffle_down(),           ["manipulation"],      "Move window down"),
         ("move-window-up",      ["M-S-k"],               lazy.layout.shuffle_up(),             ["manipulation"],      "Move window up"),
 
+        ("grow-window-down",    ["M-C-j"],               lazy.layout.grow_down(),              ["manipulation"],      "Grow window down"),
+        ("grow-window-up",      ["M-C-k"],              lazy.layout.grow_up(),                 ["manipulation"],      "Grow window up"),
+        ("grow-window-left",    ["M-C-h"],              lazy.layout.grow_left(),               ["manipulation"],      "Grow window left"),
+        ("grow-window-right",   ["M-C-l"],              lazy.layout.grow_right(),              ["manipulation"],      "Grow window right"),
+
         ("toggle-fullscreen",   ["M-f"],                 lazy.window.toggle_fullscreen(),      ["manipulation"],      "Toggle fullscreen"),
         ("toggle-floating",     ["M-S-f"],               lazy.window.toggle_floating(),        ["manipulation"],      "Toggle floating"),
         ("next-layout",         ["M-S-<space>"],         lazy.next_layout(),                   ["manipulation"],      "Switch to next layout"),
@@ -59,6 +64,10 @@ def load_commands(command_repo, group_names):
     result_commands.extend(expand_commands([
         ("set-en-layout", ["M-<bracketleft>"], lazy.spawn("xkb-switch -s 'us(dvorak)'"), ["system"], "Set english dvorak as active layout"),
         ("set-ru-layout", ["M-<bracketright>"], lazy.spawn("xkb-switch -s 'ru'"), ["system"], "Set russian as active layout"),
+
+        ("lower-audio-volume", ["<XF86AudioLowerVolume>", "M-a M-j"], lazy.spawn("amixer -q sset Master 10%-"), ["system"], "Lower audio volume"),
+        ("raise-audio-volume", ["<XF86AudioRaiseVolume>", "M-a M-k"], lazy.spawn("amixer -q sset Master 10%+"), ["system"], "Raise audio volume"),
+        ("mute-audio", ["<XF86AudioMute>", "M-a M-m"], lazy.spawn("amixer set Master 1+ toggle"), ["system"], "Mute/Unmute audio"),
     ]))
 
     for audio_index in range(10):
