@@ -26,13 +26,15 @@ font:
 draw_bold_text_with_bright_colors: true
 
 window.opacity: 1.0
+dynamic_title: true
 
 mouse_bindings:
  - { mouse: Middle, action: PasteSelection }
 
 key_bindings:
-  - { key: V, mods: Command, action: Paste }
-  - { key: C, mods: Command, action: Copy  }
+  - { key: V, mods: Control, action: Paste }
+  - { key: C, mods: Control, action: Copy  }
+  - { key: C, mods: Alt, chars: "\x03"}
   - { key: Return, mods: Super|Shift, action: SpawnNewInstance }
 
 colors:
