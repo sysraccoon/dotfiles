@@ -8,5 +8,7 @@ function local-ip-grep() {
 
 alias local-ip-default='local-ip-grep $(default-network-device)'
 
-alias wifi-list='wpa_cli -i $(default-network-device) list_networks'
+# alias wifi-list='wpa_cli -i $(default-network-device) list_networks'
+alias wifi-rescan='nmcli device wifi rescan'
+alias wifi-connect='nmcli device wifi connect'
 
