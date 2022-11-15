@@ -15,3 +15,7 @@ alias adb-select-device='export ANDROID_SERIAL=$(adb-fzf-device)'
 alias adb-select-device-global='export ANDROID_SERIAL=$(adb-fzf-device); echo "$ANDROID_SERIAL" > /tmp/android_serial'
 alias adb-reset-device-global='rm --force /tmp/android_serial && export ANDROID_SERIAL=""'
 
+function adb-type {
+  adb shell "input text '$@' && input keyevent 66"
+}
+
