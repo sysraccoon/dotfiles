@@ -25,7 +25,7 @@ def load_group_names():
         "net",  # network analysis (mitm, wireshark, etc.)
         "rev",  # reverse specific (ida, ghidra, etc.)
         "web",  # web surfing (qutebrowser, firefox, etc.)
-        "cht",  # chat apps (telegram, slack, etc.)
+        "com",  # communication apps (telegram, slack, etc.)
         "vid",  # multimedia (mvp)
         *[
             f"{i}.gen" for i in range(1, 4)
