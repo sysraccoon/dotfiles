@@ -28,6 +28,6 @@ export VIRTUAL_ENV_DISABLE_PROMPT=0
 setopt PROMPT_SUBST
 #$(dyn_prompt_part '$(git rev-parse --show-toplevel &2>/dev/null | xargs basename)')
 export PROMPT="
-%{$reset_color%}╭$(prompt_part '%~')$(dyn_prompt_part '$(venv_name)' '3')$(dyn_prompt_part '$(git-project-name)' '1')
+%{$reset_color%}╭$(prompt_part '%~')$(dyn_prompt_part '$(venv_name)' '3')$(dyn_prompt_part '$(git-project-name)' '1')$(dyn_prompt_part '$ANDROID_SERIAL' '2')
 %{$reset_color%}╰─%# "
 

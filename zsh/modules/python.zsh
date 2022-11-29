@@ -1,6 +1,7 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 
 alias gpip='PIP_REQUIRE_VIRTUALENV=false pip'
+alias pva='source venv/bin/activate'
 
 #{{{ pyenv
 

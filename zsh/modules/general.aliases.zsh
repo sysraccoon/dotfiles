@@ -22,7 +22,7 @@ alias me='chmod +x'
 alias co='curl -O'
 alias r='ranger-zoxide'
 
-alias zsh-up='source ~/.zshrc'
+alias zsh-up='reset && source ~/.zshrc'
 alias psgrep='ps aux | grep'
 
 alias ssh='TERM=xterm-256color ssh'
