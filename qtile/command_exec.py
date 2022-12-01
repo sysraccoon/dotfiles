@@ -20,7 +20,8 @@ def prepare_for_format(commands):
 
     result.sort(key=lambda x: x[2], reverse=True)
 
-    result.insert(0, ("key", "name", "desc", "tags"))
+    # result.insert(0, ("key", "name", "desc", "tags"))
+    result.insert(0, ("key", "name"))
     return result
 
 def rofi_format(commands):
@@ -36,8 +37,8 @@ def rofi_format(commands):
             if col_size > col_sizes[col_id]:
                 col_sizes[col_id] = col_size
 
-    format_template = " | ".join([
-        "{:<" + str(col_size) + "s}" for col_size in col_sizes
+    format_template = " ".join([
+        "{} " for col_size in col_sizes
     ])
 
     for row in prepared:
@@ -54,7 +55,7 @@ def rofi_execute_command(qtile, command_repo):
     commands = available_commands(command_repo.commands)
     title, input_values = rofi_format(commands)
 
-    rofi_command = ["rofi", "-dmenu", "-p", "qtile", "-mesg", title]
+    rofi_command = ["rofi", "-dmenu", "-p", "qtile"]
 
     input_binary = input_values.encode(encoding='UTF-8', errors='strict')
 

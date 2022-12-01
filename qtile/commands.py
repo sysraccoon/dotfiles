@@ -11,7 +11,7 @@ from command_exec import rofi_execute_command
 def load_commands(command_repo, group_names):
     app_launcher = "rofi -show drun"
     window_selector = "rofi -show window"
-    terminal = "alacritty"
+    terminal = "kitty"
     app_lock = "xsecurelock"
 
     result_commands = []
@@ -59,6 +59,15 @@ def load_commands(command_repo, group_names):
         ("clip-password",       ["M-t M-p"],             lazy.spawn("pass-rofi"),              ["tools"],             "Get and save password to clipboard"),
         ("open-cheatsheet",     ["M-t M-c"],             lazy.spawn("cheatsheet-rofi"),        ["tools"],             "Open cheatsheet"),
         ("open-email",          ["M-t M-m"],             lazy.spawn("ext-tui neomutt"),        ["tools"],             "Open local mail client"),
+        ("adb-unlock",          ["M-a M-u"],             lazy.spawn("/home/raccoon/.local/bin/adb-unlock"),   ["tools", "android"], "Unlock android device through adb"),
+    ]))
+
+    # custom keyboard layout
+    result_commands.extend(expand_commands([
+        ("type-left-bracket",   ["M-e M-h"],   lazy.spawn("xvkbd -xsendevent -text '['"),["tools", "keyboard"], "Type left bracket"),
+        ("type-right-bracket",  ["M-e M-l"],   lazy.spawn("xvkbd -xsendevent -text ']'"),["tools", "keyboard"],"Type right bracket"),
+        ("type-left-brace",   ["M-C-e M-C-h"],   lazy.spawn("xvkbd -xsendevent -text '{'"),["tools", "keyboard"], "Type left bracket"),
+        ("type-right-brace",  ["M-C-e M-C-l"],   lazy.spawn("xvkbd -xsendevent -text '}'"),["tools", "keyboard"],"Type right bracket"),
     ]))
 
     result_commands.extend(expand_commands([

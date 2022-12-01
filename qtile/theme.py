@@ -26,7 +26,7 @@ FOREGROUND_COLOR = "#e5e9f0"
 BAR_HEIGHT = 24
 
 primary_font = {
-    "font": "ubuntu",
+    "font": FONT_NAME,
     "fontsize": FONT_SIZE,
 }
 
