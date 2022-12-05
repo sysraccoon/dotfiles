@@ -93,6 +93,7 @@ gksu
 
 # terminals
 alacritty
+kitty
 xterm
 
 # gui tools
