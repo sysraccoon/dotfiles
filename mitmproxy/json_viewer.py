@@ -13,7 +13,7 @@ def load(l):
     ctx.master.keymap.add(
         "J", 
         """
-        console.choose.cmd Yank json_viewer.content_source_types
+        console.choose.cmd 'JSON Viewer' json_viewer.content_source_types
         json_viewer.view_from {choice} @focus
         """,
         ["flowlist", "flowview"],
