@@ -27,6 +27,7 @@ def load_group_names():
         "web",  # web surfing (qutebrowser, firefox, etc.)
         "com",  # communication apps (telegram, slack, etc.)
         "vid",  # multimedia (mvp)
+        "plo",  # plover (stenography softwary)
         *[
             f"{i}.gen" for i in range(1, 4)
         ] # generic wms
@@ -50,6 +51,9 @@ def load_groups(group_names):
         ],
         "vid": [
             Match(wm_class=["mpv"]),
+        ],
+        "plo": [
+            Match(wm_class=["plover"]),
         ],
     }
 

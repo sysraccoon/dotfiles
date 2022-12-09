@@ -60,6 +60,8 @@ def load_commands(command_repo, group_names):
         ("open-cheatsheet",     ["M-t M-c"],             lazy.spawn("cheatsheet-rofi"),        ["tools"],             "Open cheatsheet"),
         ("open-email",          ["M-t M-m"],             lazy.spawn("ext-tui neomutt"),        ["tools"],             "Open local mail client"),
         ("adb-unlock",          ["M-a M-u"],             lazy.spawn("/home/raccoon/.local/bin/adb-unlock"),   ["tools", "android"], "Unlock android device through adb"),
+
+        ("toggle-plover",       ["M-p"],                 lazy.spawn("plover -s plover_send_command toggle"),        ["tools"],             "Toggle plover (steno mode)"),
     ]))
 
     # custom keyboard layout
