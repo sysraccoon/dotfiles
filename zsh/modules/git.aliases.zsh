@@ -14,5 +14,7 @@ alias glg='git-log-graph'
 alias gPP='g push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 alias gcb='g checkout -b'
 alias gcF='g clean -xdf'
-
+alias gI='g init'
+alias gC='g clone'
 alias goo='gh browse'
+
