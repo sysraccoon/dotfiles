@@ -8,7 +8,7 @@ from libqtile.lazy import lazy
 
 from command_exec import rofi_execute_command
 
-def load_commands(command_repo, group_names):
+def load_commands(command_repo, workspaces):
     app_launcher = "rofi -show drun"
     window_selector = "rofi -show window"
     terminal = "kitty"
@@ -34,9 +34,9 @@ def load_commands(command_repo, group_names):
         ("move-window-up",      ["M-S-k"],               lazy.layout.shuffle_up(),             ["manipulation"],      "Move window up"),
 
         ("grow-window-down",    ["M-C-j"],               lazy.layout.grow_down(),              ["manipulation"],      "Grow window down"),
-        ("grow-window-up",      ["M-C-k"],              lazy.layout.grow_up(),                 ["manipulation"],      "Grow window up"),
-        ("grow-window-left",    ["M-C-h"],              lazy.layout.grow_left(),               ["manipulation"],      "Grow window left"),
-        ("grow-window-right",   ["M-C-l"],              lazy.layout.grow_right(),              ["manipulation"],      "Grow window right"),
+        ("grow-window-up",      ["M-C-k"],               lazy.layout.grow_up(),                ["manipulation"],      "Grow window up"),
+        ("grow-window-left",    ["M-C-h"],               lazy.layout.grow_left(),              ["manipulation"],      "Grow window left"),
+        ("grow-window-right",   ["M-C-l"],               lazy.layout.grow_right(),             ["manipulation"],      "Grow window right"),
 
         ("toggle-fullscreen",   ["M-f"],                 lazy.window.toggle_fullscreen(),      ["manipulation"],      "Toggle fullscreen"),
         ("toggle-floating",     ["M-S-f"],               lazy.window.toggle_floating(),        ["manipulation"],      "Toggle floating"),
@@ -90,25 +90,45 @@ def load_commands(command_repo, group_names):
             desc=f"Set audio device with index {audio_index} as default",
         ))
 
-    for group_name in group_names:
+    for ws in workspaces:
+        focus_hotkeys = [f"M-g M-{key}" for key in ws.navigation_keys]
+        move_hotkeys = [f"M-m M-{key}" for key in ws.navigation_keys]
+
+        focus_action = focus_workspace_action(ws)
+        
         result_commands.extend([
             CommandInfo(
-                name=f"focus-{group_name}-ws", 
-                hotkeys=[f"M-g M-{group_name[0]}"],
-                action=lazy.group[group_name].toscreen(), 
+                name=f"focus-{ws.name}-ws", 
+                hotkeys=focus_hotkeys,
+                action=focus_action,
                 tags=["navigation"], 
-                desc=f"Focus {group_name} workspace",
+                desc=f"Focus {ws.name} workspace",
             ),
             CommandInfo(
-                name=f"move-window-to-{group_name}-ws",
-                hotkeys=[f"M-m M-{group_name[0]}"],
-                action=lazy.window.togroup(group_name),
+                name=f"move-window-to-{ws.name}-ws",
+                hotkeys=move_hotkeys,
+                action=lazy.window.togroup(ws.name),
                 tags=["manipulation"],
-                desc=f"Move current window to {group_name} workspace",
+                desc=f"Move current window to {ws.name} workspace",
             ),
         ])
 
     return result_commands
+
+
+def focus_workspace_action(workspace):
+    if not workspace.on_enter_callbacks:
+        return lazy.group[workspace.name].toscreen()
+
+    @lazy.function
+    def _inner(qtile):
+        target_grp = next(grp for grp in qtile.groups if grp.name == workspace.name)
+        target_grp.cmd_toscreen(qtile.screens.index(qtile.current_screen))
+
+        for callback in workspace.on_enter_callbacks:
+            callback(qtile, workspace)
+
+    return _inner
 
 
 @dataclass

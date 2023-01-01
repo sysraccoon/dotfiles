@@ -16,52 +16,58 @@ import commands; importlib.reload(commands)
 from theme import *
 from commands import CommandRepository, load_commands
 
+from dataclasses import dataclass, field
+from typing import List, Callable
 
-def load_group_names():
+
+@dataclass
+class WorkSpace:
+    name: str
+    navigation_keys: List[str]
+    matches: List[Match] = field(default_factory=list)
+    on_enter_callbacks: List[Callable] = field(default_factory=list)
+
+
+def load_workspaces():
     return [
-        "sys",  # generic wm for terminals
-        "ide",  # integrated development environments (pycharm, idea, etc.)
-        "dat",  # DB clients and other data source stuff (dbeaver, datagrip, etc.)
-        "net",  # network analysis (mitm, wireshark, etc.)
-        "rev",  # reverse specific (ida, ghidra, etc.)
-        "web",  # web surfing (qutebrowser, firefox, etc.)
-        "com",  # communication apps (telegram, slack, etc.)
-        "vid",  # multimedia (mvp)
-        "plo",  # plover (stenography softwary)
-        *[
-            f"{i}.gen" for i in range(1, 4)
-        ] # generic wms
-    ]
-
-
-def load_groups(group_names):
-    groups = []
-    matches_map = {
-        "www": [
-            Match(wm_class=["qutebrowser"]),
-            Match(wm_class=["firefox"]),
-        ],
-        "dev": [
+        WorkSpace("sys", ["s"]),
+        WorkSpace("ide", ["i"], [
             Match(wm_class=["jetbrains-pycharm-ce"]),
             Match(wm_class=["jetbrains-idea-ce"]),
-        ],
-        "msg": [
+        ]),
+        WorkSpace("dat", ["d"]),
+        WorkSpace("net", ["n"]),
+        WorkSpace("rev", ["r"]),
+        WorkSpace("web", ["w"], [
+            Match(wm_class=["qutebrowser"]),
+            Match(wm_class=["firefox"]),
+        ], on_enter_callbacks=[web_workspace_on_enter]),
+        WorkSpace("com", ["c"], [
             Match(wm_class=["telegram-desktop"]),
             Match(wm_class=["discord"]),
-        ],
-        "vid": [
+        ]),
+        WorkSpace("vid", ["v"], [
             Match(wm_class=["mpv"]),
-        ],
-        "plo": [
+            Match(wm_class=["kdenlive"]),
+        ]),
+        WorkSpace("brd", ["b"], [
+            Match(wm_class=["obs"]),
+        ]),
+        WorkSpace("plo", ["p"], [
             Match(wm_class=["plover"]),
-        ],
-    }
+        ]),
+        *[
+            WorkSpace(f"{i}.gen", [str(i)])
+            for i in range(1, 4)
+        ]
+    ]
 
-    for group_name in group_names:
-        matches = matches_map.get(group_name, [])
-        group = Group(group_name, matches=matches)
-        groups.append(group)
-    return groups
+def web_workspace_on_enter(qtile, ws):
+    import subprocess
+    subprocess.Popen(["start-browser-if-unexist"])
+
+def load_groups(workspaces: List[WorkSpace]):
+    return [Group(ws.name, matches=ws.matches) for ws in workspaces]
 
 
 def load_keys(group_names):
@@ -163,6 +169,21 @@ def bottom_bar():
 
 
 def top_bar():
+    wifi_widgets = []
+    try:
+        wifi_widgets.extend([
+            widget.TextBox(
+                text="\uf1eb",
+                **theme.icon_font,
+                **theme.primary_colors,
+            ),
+            widget_wifi(),
+            widget_sep_secondary(),
+        ])
+    except ValueError:
+        pass
+
+
     return bar.Bar([
             widget.Spacer(),
             widget_left_end(),
@@ -181,13 +202,7 @@ def top_bar():
             widget_right_end(),
             widget.Spacer(),
             widget_sep_primary(),
-            widget.TextBox(
-                text="\uf1eb",
-                **theme.icon_font,
-                **theme.primary_colors,
-            ),
-            widget_wifi(),
-            widget_sep_secondary(),
+            *wifi_widgets,
             widget.TextBox(
                 text="\ufa7d", 
                 **theme.icon_font,
@@ -224,7 +239,7 @@ def get_wifi_interface_name():
     for iname in psutil.net_if_addrs().keys():
         if iname.startswith("wlp"):
             return iname
-    raise None
+    raise ValueError("WiFi interface not found")
 
 
 def load_floating_layout():
