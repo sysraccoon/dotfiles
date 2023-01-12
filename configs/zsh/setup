@@ -13,7 +13,7 @@ fi
 ZSH_CONFIG_PATH="$SCRIPT_PATH/machine/$ARG_MACHINE_CONFIG" 
 
 if [ -f "$ZSH_CONFIG_PATH" ]; then
-	ln -s "$ZSH_CONFIG_PATH" "$HOME/.zshrc"
+	ln -Tsf "$ZSH_CONFIG_PATH" "$HOME/.zshrc"
 else
 	echo "$SCRIPT_NAME: missed file $ZSH_CONFIG_PATH" 1>&2
 	exit 1

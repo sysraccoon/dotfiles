@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+for serial in $(adb-devices-serial); do
+  adb -s "$serial" shell \
+    cmd notification post \
+      -S bigtext \
+      -t "'Android Serial'" \
+      "android_serial" \
+      "$serial"
+done
+

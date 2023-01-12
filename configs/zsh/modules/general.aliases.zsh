@@ -4,6 +4,9 @@ alias l='ls'
 alias sl='ls'
 alias s='ls'
 
+alias ll='ls -lh'
+alias lla='ls -lah'
+
 alias info='info --vi-keys'
 
 alias ducks='du -cks * | sort -rn | head -11 | numfmt --to=iec-i --suffix=B'
@@ -19,7 +22,7 @@ alias me='chmod +x'
 alias co='curl -O'
 alias r='ranger-zoxide'
 
-alias zsh-up='source ~/.zshrc'
+alias zsh-up='reset && source ~/.zshrc'
 alias psgrep='ps aux | grep'
 
 alias ssh='TERM=xterm-256color ssh'

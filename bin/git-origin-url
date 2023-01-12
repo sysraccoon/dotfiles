@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-git remote get-url origin | sed 's/:/\//g;s/.*@/https:\/\//g'
+git remote get-url origin

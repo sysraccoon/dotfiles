@@ -1,6 +1,6 @@
 env:
   TERM: xterm-256color
-  WINIT_X11_SCALE_FACTOR: "1.1"
+  WINIT_X11_SCALE_FACTOR: "1.0"
 
 font:
   normal:
@@ -15,25 +15,28 @@ font:
   bold_italic:
     family: Source Code Pro
     style: Bold Italic
-  size: 10
-  use_thin_strokes: true
+  size: 11
   offset:
     x: 0
     y: 0
   glyph_offset:
     x: 0
     y: 0
+  builtin_box_drawing: false
 
 draw_bold_text_with_bright_colors: true
 
 window.opacity: 1.0
+dynamic_title: true
 
 mouse_bindings:
  - { mouse: Middle, action: PasteSelection }
 
 key_bindings:
-  - { key: V, mods: Command, action: Paste }
-  - { key: C, mods: Command, action: Copy  }
+  - { key: V, mods: Control, action: Paste }
+  - { key: C, mods: Control, action: Copy  }
+  - { key: C, mods: Alt, chars: "\x03"}
+  - { key: Return, mods: Super|Shift, action: SpawnNewInstance }
 
 colors:
   primary:
@@ -53,7 +56,7 @@ colors:
     matches:
       foreground: CellBackground
       background: '#88c0d0'
-    bar:
+  footer_bar:
       background: '#434c5e'
       foreground: '#d8dee9'
   normal:

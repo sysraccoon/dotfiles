@@ -6,7 +6,8 @@ import argparse
 def main():
     try:
         args = parse_arguments()
-        subprocess.run(["alacritty", "--class", args.get("class"), "-e", *args.get("rest")],
+        class_args = ["--class", args.get("class")] if args.get("class") else []
+        subprocess.run(["alacritty", *class_args, "-e", *args.get("rest")],
                        check=True)
     except KeyboardInterrupt:
         exit()

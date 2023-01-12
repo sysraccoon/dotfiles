@@ -1,9 +1,2 @@
 #!/usr/bin/env bash
-set -exuo pipefail
-
-if command -v gh &> /dev/null
-then
-    gh browse
-else
-    xdg-open $(git-origin-url)
-fi
+gh browse

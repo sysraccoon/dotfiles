@@ -1,4 +1,4 @@
-config.load_autoconfig(True)
+config.load_autoconfig(False)
 
 config.source("pregenerated.py")
 config.source("nord.py")

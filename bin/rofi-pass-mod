@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [ $ROFI_RETV = 0 ]; then
+  set -eux
+  shopt -s nullglob globstar
+
+  prefix=${PASSWORD_STORE_DIR-~/.password-store}
+  password_files=( "$prefix"/**/*.gpg )
+  password_files=( "${password_files[@]#"$prefix"/}" )
+  password_files=( "${password_files[@]%.gpg}" )
+
+  echo "${password_files[@]}"
+elif [ $ROFI_RETV = 1 ] && [ x"$@" != x"" ]; then
+  coproc (pass show --clip "$@")
+fi
+

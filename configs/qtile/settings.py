@@ -1,10 +1,12 @@
 # Qtile modules
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 import importlib
+
+import psutil
 
 # Force reload all custom modules
 import theme; importlib.reload(theme)
@@ -14,27 +16,58 @@ import commands; importlib.reload(commands)
 from theme import *
 from commands import CommandRepository, load_commands
 
+from dataclasses import dataclass, field
+from typing import List, Callable
 
-def load_group_names():
-    return [ "sys", "dev", "www", "msg", "rec", "vid", "game" ]
+
+@dataclass
+class WorkSpace:
+    name: str
+    navigation_keys: List[str]
+    matches: List[Match] = field(default_factory=list)
+    on_enter_callbacks: List[Callable] = field(default_factory=list)
 
 
-def load_groups(group_names):
-    groups = []
-    for group_name in group_names:
-        matches = []
-        if group_name == "www":
-            matches = [Match(wm_class=["qutebrowser"])]
-        elif group_name == "msg":
-            matches = [
-                Match(wm_class=["telegram-desktop"]),
-                Match(wm_class=["discord"])
-            ]
-        elif group_name == "vid":
-            matches = [Match(wm_class=["mpv"])]
-        group = Group(group_name, matches=matches)
-        groups.append(group)
-    return groups
+def load_workspaces():
+    return [
+        WorkSpace("sys", ["s"]),
+        WorkSpace("ide", ["i"], [
+            Match(wm_class=["jetbrains-pycharm-ce"]),
+            Match(wm_class=["jetbrains-idea-ce"]),
+        ]),
+        WorkSpace("dat", ["d"]),
+        WorkSpace("net", ["n"]),
+        WorkSpace("rev", ["r"]),
+        WorkSpace("web", ["w"], [
+            Match(wm_class=["qutebrowser"]),
+            Match(wm_class=["firefox"]),
+        ], on_enter_callbacks=[web_workspace_on_enter]),
+        WorkSpace("com", ["c"], [
+            Match(wm_class=["telegram-desktop"]),
+            Match(wm_class=["discord"]),
+        ]),
+        WorkSpace("vid", ["v"], [
+            Match(wm_class=["mpv"]),
+            Match(wm_class=["kdenlive"]),
+        ]),
+        WorkSpace("brd", ["b"], [
+            Match(wm_class=["obs"]),
+        ]),
+        WorkSpace("plo", ["p"], [
+            Match(wm_class=["plover"]),
+        ]),
+        *[
+            WorkSpace(f"{i}.gen", [str(i)])
+            for i in range(1, 4)
+        ]
+    ]
+
+def web_workspace_on_enter(qtile, ws):
+    import subprocess
+    subprocess.Popen(["start-browser-if-unexist"])
+
+def load_groups(workspaces: List[WorkSpace]):
+    return [Group(ws.name, matches=ws.matches) for ws in workspaces]
 
 
 def load_keys(group_names):
@@ -55,56 +88,105 @@ def load_mouse():
 
 def load_screens():
     return [
-        Screen(top=top_bar()),
+        Screen(top=top_bar(), bottom=bottom_bar()),
         Screen(top=top_bar()),
     ]
 
 
 def load_extension_defaults():
     return dict(
-        font=FONT_NAME,
-        fontsize=FONT_SIZE,
         padding=3,
+        **theme.primary_font,
         foreground=COLOR_WIDGET_FONT,
     )
 
 
 def load_widget_defaults():
     return dict(
-        font=FONT_NAME,
-        fontsize=FONT_SIZE,
         padding=3,
+        **theme.primary_font,
         foreground=COLOR_WIDGET_FONT,
     )
 
 
 def load_layouts():
     return [
-        layout.Columns(border_focus=COLOR_BORDER_FOCUS, border_normal=COLOR_BORDER_NORMAL, border_width=2),
+        layout.Columns(
+            border_focus=COLOR_BORDER_FOCUS, 
+            border_normal=COLOR_BORDER_NORMAL, 
+            border_width=2,
+        ),
         layout.Max(),
     ]
 
 
-def widget_sep_primary():
+def widget_sep_generic(text: str):
     return widget.TextBox(
-       text = "\ue0be",
-       padding = 0,
-       fontsize = 24,
-       foreground=COLOR_WIDGET_BACKGROUND_PRIMARY
-   )
+        text = text,
+        padding = 0,
+        fontsize = ICON_FONT_SIZE,
+        foreground = COLOR_WIDGET_BACKGROUND_PRIMARY,
+    )
+
+
+def widget_sep_primary():
+    return widget_sep_generic("▝")
 
 
 def widget_sep_secondary():
-    return  widget.TextBox(
-       text = "\ue0b8",
-       padding = 0,
-       fontsize = 24,
-       foreground=COLOR_WIDGET_BACKGROUND_PRIMARY,
-   )
+    return widget_sep_generic("▘")
+
+
+def widget_left_end():
+    return widget_sep_generic("▝▞")
+
+
+def widget_right_end():
+    return widget_sep_generic("▚▘")
+
+
+def bottom_bar():
+    return bar.Bar(
+        [
+            widget.Spacer(),
+            widget_left_end(),
+            widget.TaskList(
+                borderwidth=1,
+                font=FONT_NAME,
+                fontsize=FONT_SIZE,
+                highlight_method="block",
+                background=COLOR_WIDGET_BACKGROUND_PRIMARY,
+                foreground=COLOR_WIDGET_FOREGROUND_PRIMARY,
+                border=COLOR_WIDGET_BACKGROUND_SECONDARY,
+                max_title_width=150,
+                rounded=False,
+            ),
+            widget_right_end(),
+            widget.Spacer(),
+        ],
+        **theme.panel_bar,
+    )
 
 
 def top_bar():
+    wifi_widgets = []
+    try:
+        wifi_widgets.extend([
+            widget.TextBox(
+                text="\uf1eb",
+                **theme.icon_font,
+                **theme.primary_colors,
+            ),
+            widget_wifi(),
+            widget_sep_secondary(),
+        ])
+    except ValueError:
+        pass
+
+
     return bar.Bar([
+            widget.Spacer(),
+            widget_left_end(),
             widget.GroupBox(
                 borderwidth=1,
                 active=COLOR_WS_ACTIVE,
@@ -113,47 +195,51 @@ def top_bar():
                 this_screen_border=COLOR_OTHER_SCREEN_BACKGROUND,
                 other_current_screen_border=COLOR_OTHER_SCREEN_BACKGROUND,
                 other_screen_border=COLOR_OTHER_SCREEN_BACKGROUND,
+                background=COLOR_GROUP_BOX_BACKGROUND,
                 highlight_method="block",
                 rounded=False,
             ),
+            widget_right_end(),
             widget.Spacer(),
             widget_sep_primary(),
-            widget.TextBox(
-                text="\uf1eb",
-                fontsize=24,
-                background=COLOR_WIDGET_BACKGROUND_PRIMARY,
-                foreground=COLOR_WIDGET_FOREGROUND_PRIMARY,
-            ),
-            widget.Net(
-                interface="wlp5s0",
-                format="{down} ↓↑ {up}",
-                update_interval=5,
-                background=COLOR_WIDGET_BACKGROUND_PRIMARY,
-                foreground=COLOR_WIDGET_FOREGROUND_PRIMARY,
-            ),
-            widget_sep_secondary(),
+            *wifi_widgets,
             widget.TextBox(
                 text="\ufa7d", 
-                fontsize=24, 
-                background=COLOR_WIDGET_BACKGROUND_SECONDARY, 
-                foreground=COLOR_WIDGET_FOREGROUND_SECONDARY
+                **theme.icon_font,
+                **theme.alternate_colors,
             ),
             widget.Volume(
-                background=COLOR_WIDGET_BACKGROUND_SECONDARY, 
-                foreground=COLOR_WIDGET_FOREGROUND_SECONDARY
+                **theme.alternate_colors,
             ),
             widget_sep_primary(),
             widget.Clock(
                 format="%I:%M %p",
-                background=COLOR_WIDGET_BACKGROUND_PRIMARY,
-                foreground=COLOR_WIDGET_FOREGROUND_PRIMARY
+                **theme.primary_colors,
             ),
         ],
-        24,
-        # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-        # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
-        background=COLOR_PANEL_BACKGROUND,
+        **theme.panel_bar)
+
+
+def widget_wifi():
+    return widget.Wlan(
+        interface=get_wifi_interface_name(),
+        format="{essid} | {percent:2.0%}",
+        update_interval=10,
+        **theme.primary_colors,
     )
+    # return widget.Net(
+    #     interface=get_wifi_interface_name(),
+    #     format="{down} ↓↑ {up}",
+    #     update_interval=5,
+    #     **theme.primary_colors,
+    # )
+
+
+def get_wifi_interface_name():
+    for iname in psutil.net_if_addrs().keys():
+        if iname.startswith("wlp"):
+            return iname
+    raise ValueError("WiFi interface not found")
 
 
 def load_floating_layout():
@@ -161,14 +247,11 @@ def load_floating_layout():
         float_rules=[
             # Run the utility of `xprop` to see the wm class and name of an X client.
             # *layout.Floating.default_float_rules,
-            Match(wm_class="confirmreset"),  # gitk
-            Match(wm_class="makebranch"),  # gitk
-            Match(wm_class="maketag"),  # gitk
-            Match(wm_class="ssh-askpass"),  # ssh-askpass
-            Match(title="branchdialog"),  # gitk
-            Match(title="pinentry"),  # GPG key password entry
-
+            Match(wm_type="dialog"),
+            Match(wm_class="pinentry-gtk-2"),
             Match(wm_class="ranger-file-picker"),
+            Match(wm_class="Emulator"),
+            Match(wm_class="term-popup"),
         ]
     )
 

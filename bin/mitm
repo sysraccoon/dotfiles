@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+MITM_HOME="$HOME/dotfiles/mitmproxy"
+mitmproxy \
+  -s "$MITM_HOME/transfer_headers.py" \
+  -s "$MITM_HOME/json_viewer.py" \
+  -s "$MITM_HOME/chooser_custom_alphabet.py" \
+  $@

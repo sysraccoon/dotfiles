@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+shopt -s globstar
+
+cd "${DOTFILES_DIR:-$HOME/dotfiles}/cheatsheets"
+selected_cheatsheet=$(ls **/*.md | rofi -dmenu)
+
+if [ -n "$selected_cheatsheet" ]; then
+  coproc ( ext-tui nvim "$selected_cheatsheet" )
+fi
+

@@ -1,7 +1,11 @@
-{ config, pkgs, ...}:
+{ config, pkgs, lib, ...}:
 
 {
-  home.stateVersion = "22.05";
+  imports = [
+    ./firefox.nix
+  ];
+
+  home.stateVersion = "22.11";
 
   home.username = "raccoon";
   home.homeDirectory = "/home/raccoon";
@@ -12,6 +16,7 @@
     options = [
       "grp:alt_shift_toggle"
       "ctrl:nocaps"
+      "altwin:swap_lalt_lwin"
       "terminate:ctrl_alt_bksp"
     ];
   };
@@ -22,7 +27,12 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    # build
+    gcc
+    rustup
+
     # terminals
+    kitty
     alacritty
     xterm
 
@@ -65,6 +75,10 @@
     alsa-utils
     pamixer
 
+    # fonts
+    ubuntu_font_family
+    source-code-pro
+
     (python39.withPackages (ps: with ps; [
       pip
     ]))
@@ -79,24 +93,6 @@
       jedi
       pynvim
     ]);
-  };
-
-  programs.bat = {
-    enable = true;
-    config = {
-      theme = "Nord";
-    };
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "sysraccoon";
-    userEmail = "sysraccoon@gmail.com";
-    extraConfig = {
-      core.editor = "nvim";
-      pull.rebase = false;
-      init.defaultBranch = "main";
-    };
   };
 
   services.picom = {
@@ -121,33 +117,8 @@
     timeout = 200;
     mapExpression = {
       "Control_L" = "Escape";
-      "Shift_L" = "Super_L|bracketleft";
-      "Shift_R" = "Super_L|bracketright";
-    };
-  };
-
-  services.dunst = {
-    enable = true;
-    settings = {
-      global = {
-        flame_color = "#2e3440";
-        separator_color = "auto";
-      };
-      nord_low = {
-        msg_urgency = "low";
-        background = "#4c566a";
-        foreground = "#d8dee9";
-      };
-      nord_normal = {
-        msg_urgency = "normal";
-        background = "#5e81ac";
-        foreground = "#eceff4";
-      };
-      nord_critical = {
-        msg_urgency = "critical";
-        background = "#bf616a";
-        foreground = "#eceff4";
-      };
+      "Shift_L" = "Super_L|F11";
+      "Shift_R" = "Super_L|F12";
     };
   };
 
@@ -157,16 +128,23 @@
     enable = true;
     defaultApplications = {
       "application/pdf" = ["org.pwmt.zathura.desktop"];
-      "x-scheme-handler/http" = ["org.qutebrowser.qutebrowser.desktop"];
-      "x-scheme-handler/https" = ["org.qutebrowser.qutebrowser.desktop"];
+      "x-scheme-handler/http" = ["firefox.desktop"];
+      "x-scheme-handler/https" = ["firefox.desktop"];
       "x-scheme-handler/tg" = ["userapp-Telegram Desktop-08XUJ1.desktop"];
     };
   };
 
-  xdg.configFile.qtile.source = ../qtile;
-  xdg.configFile.nvim.source = ../nvim;
-  xdg.configFile.alacritty.source = ../alacritty;
-  xdg.configFile.qutebrowser.source = ../qutebrowser;
-  xdg.configFile.rofi.source = ../rofi;
-  xdg.configFile.tmux.source = ../tmux;
+  xdg.configFile.qtile.source = config.lib.file.mkOutOfStoreSymlink ../qtile;
+  xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink ../nvim;
+  xdg.configFile.alacritty.source = config.lib.file.mkOutOfStoreSymlink ../alacritty;
+  xdg.configFile.qutebrowser.source = config.lib.file.mkOutOfStoreSymlink ../qutebrowser;
+  xdg.configFile.rofi.source = config.lib.file.mkOutOfStoreSymlink ../rofi;
+  xdg.configFile.tmux.source = config.lib.file.mkOutOfStoreSymlink ../tmux;
+  xdg.configFile.dunst.source = config.lib.file.mkOutOfStoreSymlink ../dunst;
+  xdg.configFile.kitty.source = config.lib.file.mkOutOfStoreSymlink ../kitty;
+
+  xdg.dataFile.fonts.source = config.lib.file.mkOutOfStoreSymlink ../../resources/fonts;
+
+  home.file.".gitconfig".source  = config.lib.file.mkOutOfStoreSymlink ../git/gitconfig;
+
 }

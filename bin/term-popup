@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+ext-tui --class "term-popup" eval-this "$@"
+

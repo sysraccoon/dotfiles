@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+ARG_PACKAGES=$1
+if [ -z "$ARG_PACKAGES" ]; then
+    echo "$(basename $0): Missed void-packages file path" >&2
+fi
+xbps-install -S $(cat $ARG_PACKAGES | grep -v '!!')

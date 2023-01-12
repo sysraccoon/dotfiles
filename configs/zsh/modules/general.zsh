@@ -4,13 +4,9 @@ source "$HOME/.profile"
 
 export LINUX_DISTRO="$(grep ^ID /etc/os-release | cut -d '=' -f2 | tr -d \")"
 
-export LANG="en_US.UTF-8"
 export PAGER="less"
 
 export MANPAGER="man-pager"
-
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CONFIG_HOME="$HOME/.config"
 
 # matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'

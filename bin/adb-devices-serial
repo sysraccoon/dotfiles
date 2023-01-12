@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+adb devices | awk 'NR>1 && NF' | awk '{ print $1 }'
+

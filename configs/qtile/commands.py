@@ -8,9 +8,11 @@ from libqtile.lazy import lazy
 
 from command_exec import rofi_execute_command
 
-def load_commands(command_repo, group_names):
+def load_commands(command_repo, workspaces):
     app_launcher = "rofi -show drun"
-    terminal = "alacritty"
+    window_selector = "rofi -show window"
+    terminal = "kitty"
+    app_lock = "xsecurelock"
 
     result_commands = []
 
@@ -24,13 +26,21 @@ def load_commands(command_repo, group_names):
         ("focus-down-window",   ["M-j"],                 lazy.layout.down(),                   ["navigation"],        "Focus down window"),
         ("focus-up-window",     ["M-k"],                 lazy.layout.up(),                     ["navigation"],        "Focus up window"),
 
+        ("focus-window-by-name",["M-w M-<space>"],       lazy.spawn(window_selector),          ["navigation"],        "Focus window by name"),
+
         ("move-window-left",    ["M-S-h"],               lazy.layout.shuffle_left(),           ["manipulation"],      "Move window left"),
         ("move-window-right",   ["M-S-l"],               lazy.layout.shuffle_right(),          ["manipulation"],      "Move window right"),
         ("move-window-down",    ["M-S-j"],               lazy.layout.shuffle_down(),           ["manipulation"],      "Move window down"),
         ("move-window-up",      ["M-S-k"],               lazy.layout.shuffle_up(),             ["manipulation"],      "Move window up"),
 
+        ("grow-window-down",    ["M-C-j"],               lazy.layout.grow_down(),              ["manipulation"],      "Grow window down"),
+        ("grow-window-up",      ["M-C-k"],               lazy.layout.grow_up(),                ["manipulation"],      "Grow window up"),
+        ("grow-window-left",    ["M-C-h"],               lazy.layout.grow_left(),              ["manipulation"],      "Grow window left"),
+        ("grow-window-right",   ["M-C-l"],               lazy.layout.grow_right(),             ["manipulation"],      "Grow window right"),
+
         ("toggle-fullscreen",   ["M-f"],                 lazy.window.toggle_fullscreen(),      ["manipulation"],      "Toggle fullscreen"),
         ("toggle-floating",     ["M-S-f"],               lazy.window.toggle_floating(),        ["manipulation"],      "Toggle floating"),
+        ("next-layout",         ["M-S-<space>"],         lazy.next_layout(),                   ["manipulation"],      "Switch to next layout"),
         ("kill-window",         ["M-<Tab>"],             lazy.window.kill(),                   ["manipulation"],      "Kill focused window"),
 
         ("run-app-launcher",    ["M-<space>"],           lazy.spawn(app_launcher),             ["application"],       "Run application launcher (rofi)"),
@@ -41,14 +51,34 @@ def load_commands(command_repo, group_names):
         ("reload-config",       ["M-<minus> M-r"],       lazy.reload_config(),                 ["system"],            "Reload qtile config"),
         ("shutdown-qtile",      ["M-<minus> M-S-q"],     lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
         ("shutdown-system",     ["M-<minus> M-S-s"],     lazy.spawn("shutdown now"),           ["system"],            "Shutdown system"),
-        ("reboot-system",       ["M-<minus> M-S-r"],     lazy.spawn("reboot"),                 ["system"],            "Shutdown system"),
+        ("reboot-system",       ["M-<minus> M-S-r"],     lazy.spawn("reboot"),                 ["system"],            "Reboot system"),
+        ("lock-system",         ["M-<minus> M-l"],       lazy.spawn(app_lock),                 ["system"],            "Lock system"),
 
         ("show-key-name",       ["M-t M-k"],             lazy.spawn("show-key-name"),          ["tools"],             "Display next pressed key name"),
+        ("translate-text",      ["M-t M-t"],             lazy.spawn("trans-rofi"),             ["tools"],             "Translate text"),
+        ("clip-password",       ["M-t M-p"],             lazy.spawn("pass-rofi"),              ["tools"],             "Get and save password to clipboard"),
+        ("open-cheatsheet",     ["M-t M-c"],             lazy.spawn("cheatsheet-rofi"),        ["tools"],             "Open cheatsheet"),
+        ("open-email",          ["M-t M-m"],             lazy.spawn("ext-tui neomutt"),        ["tools"],             "Open local mail client"),
+        ("adb-unlock",          ["M-a M-u"],             lazy.spawn("/home/raccoon/.local/bin/adb-unlock"),   ["tools", "android"], "Unlock android device through adb"),
+
+        ("toggle-plover",       ["M-p"],                 lazy.spawn("plover -s plover_send_command toggle"),        ["tools"],             "Toggle plover (steno mode)"),
+    ]))
+
+    # custom keyboard layout
+    result_commands.extend(expand_commands([
+        ("type-left-bracket",   ["M-e M-h"],   lazy.spawn("xvkbd -xsendevent -text '['"),["tools", "keyboard"], "Type left bracket"),
+        ("type-right-bracket",  ["M-e M-l"],   lazy.spawn("xvkbd -xsendevent -text ']'"),["tools", "keyboard"],"Type right bracket"),
+        ("type-left-brace",   ["M-C-e M-C-h"],   lazy.spawn("xvkbd -xsendevent -text '{'"),["tools", "keyboard"], "Type left bracket"),
+        ("type-right-brace",  ["M-C-e M-C-l"],   lazy.spawn("xvkbd -xsendevent -text '}'"),["tools", "keyboard"],"Type right bracket"),
     ]))
 
     result_commands.extend(expand_commands([
-        ("set-en-layout", ["M-<bracketleft>"], lazy.spawn("xkb-switch -s 'us(dvorak)'"), ["system"], "Set english dvorak as active layout"),
-        ("set-ru-layout", ["M-<bracketright>"], lazy.spawn("xkb-switch -s 'ru'"), ["system"], "Set russian as active layout"),
+        ("set-en-layout", ["M-<F11>"], lazy.spawn("xkb-switch -s 'us(dvorak)'"), ["system"], "Set english dvorak as active layout"),
+        ("set-ru-layout", ["M-<F12>"], lazy.spawn("xkb-switch -s 'ru'"), ["system"], "Set russian as active layout"),
+
+        ("lower-audio-volume", ["<XF86AudioLowerVolume>", "M-a M-j"], lazy.spawn("amixer -q sset Master 10%-"), ["system"], "Lower audio volume"),
+        ("raise-audio-volume", ["<XF86AudioRaiseVolume>", "M-a M-k"], lazy.spawn("amixer -q sset Master 10%+"), ["system"], "Raise audio volume"),
+        ("mute-audio", ["<XF86AudioMute>", "M-a M-m"], lazy.spawn("amixer set Master 1+ toggle"), ["system"], "Mute/Unmute audio"),
     ]))
 
     for audio_index in range(10):
@@ -60,25 +90,45 @@ def load_commands(command_repo, group_names):
             desc=f"Set audio device with index {audio_index} as default",
         ))
 
-    for group_name in group_names:
+    for ws in workspaces:
+        focus_hotkeys = [f"M-g M-{key}" for key in ws.navigation_keys]
+        move_hotkeys = [f"M-m M-{key}" for key in ws.navigation_keys]
+
+        focus_action = focus_workspace_action(ws)
+        
         result_commands.extend([
             CommandInfo(
-                name=f"focus-{group_name}-ws", 
-                hotkeys=[f"M-g M-{group_name[0]}"],
-                action=lazy.group[group_name].toscreen(), 
+                name=f"focus-{ws.name}-ws", 
+                hotkeys=focus_hotkeys,
+                action=focus_action,
                 tags=["navigation"], 
-                desc=f"Focus {group_name} workspace",
+                desc=f"Focus {ws.name} workspace",
             ),
             CommandInfo(
-                name=f"move-window-to-{group_name}-ws",
-                hotkeys=[f"M-m M-{group_name[0]}"],
-                action=lazy.window.togroup(group_name),
+                name=f"move-window-to-{ws.name}-ws",
+                hotkeys=move_hotkeys,
+                action=lazy.window.togroup(ws.name),
                 tags=["manipulation"],
-                desc=f"Move current window to {group_name} workspace",
+                desc=f"Move current window to {ws.name} workspace",
             ),
         ])
 
     return result_commands
+
+
+def focus_workspace_action(workspace):
+    if not workspace.on_enter_callbacks:
+        return lazy.group[workspace.name].toscreen()
+
+    @lazy.function
+    def _inner(qtile):
+        target_grp = next(grp for grp in qtile.groups if grp.name == workspace.name)
+        target_grp.cmd_toscreen(qtile.screens.index(qtile.current_screen))
+
+        for callback in workspace.on_enter_callbacks:
+            callback(qtile, workspace)
+
+    return _inner
 
 
 @dataclass

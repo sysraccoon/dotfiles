@@ -1,5 +1,8 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 
+alias gpip='PIP_REQUIRE_VIRTUALENV=false pip'
+alias pva='source venv/bin/activate'
+
 #{{{ pyenv
 
 lazy_pyenv_aliases=("pyenv")
@@ -12,11 +15,8 @@ function load_pyenv {
 
     export PYENV_ROOT="${HOME}/.pyenv"
 
-    if [ -d "${PYENV_ROOT}/bin" ]; then
-        export PATH="$PYENV_ROOT/bin:$PATH"
-        eval "$(pyenv init -)"
-        eval "$(pyenv virtualenv-init -)"
-    fi
+    command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
 
     unfunction load_pyenv
 }

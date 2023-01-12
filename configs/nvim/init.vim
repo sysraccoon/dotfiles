@@ -14,7 +14,6 @@ call plug#begin()
 Plug 'joshdick/onedark.vim' " main theme
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " parser generator. Required by neorg
-Plug 'nvim-orgmode/orgmode'
 
 Plug 'nvim-lua/plenary.nvim' " required by telescope and neorg
 Plug 'nvim-telescope/telescope.nvim' " fuzzy finder
@@ -31,6 +30,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocompletion p
 Plug 'zchee/deoplete-jedi' " deoplete python autocompletion
 
 Plug 'jeetsukumaran/vim-pythonsense' " additional text objects and motins for python
+
+Plug 'lambdalisue/suda.vim'
 
 call plug#end()
 "}}}
@@ -93,6 +94,11 @@ set clipboard+=unnamedplus
 " open help in right split
 autocmd! BufEnter * if &ft ==# 'help' | wincmd L | endif
 
+fun! s:cabbrev(lhs, rhs)
+  exe "cnoreabbrev <expr> " . a:lhs .
+    \ " (getcmdtype() ==# ':' && getcmdline() ==# '" . a:lhs .
+    \ "') ? '".a:rhs."' : '".a:lhs."'"
+endfun
 "}}}
 
 "{{{ Custom remaps
@@ -100,7 +106,6 @@ let mapleader = " "
 
 nnoremap <Space> <NOP>
 nnoremap <leader>-r :source $MYVIMRC<cr>
-
 "}}}
 
 "{{{ Telescope Configuration
@@ -127,27 +132,6 @@ nnoremap <leader>as :ShellCheck!<cr>
 let g:deoplete#enable_at_startup = 1
 "}}}
 
-"{{{ Org Mode Configuration
-lua << EOF
-
--- Load custom tree-sitter grammar for org filetype
-require('orgmode').setup_ts_grammar()
-
--- Tree-sitter configuration
-require'nvim-treesitter.configs'.setup {
-  -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
-  highlight = {
-    enable = true,
-    disable = {'org'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
-    additional_vim_regex_highlighting = {'org'}, -- Required since TS highlighter doesn't support all syntax features (conceal)
-  },
-  ensure_installed = {'org'}, -- Or run :TSUpdate org
-}
-
-require('orgmode').setup({
-  org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
-  org_default_notes_file = '~/Dropbox/org/refile.org',
-})
-EOF
+"{{{ Suda.vim Configuration
+call s:cabbrev('W!', 'SudaWrite')
 "}}}
-
