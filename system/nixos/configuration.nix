@@ -7,8 +7,9 @@
       ./i18n.nix
       ./services.nix
       ./packages.nix
-      ./user.nix
       ./network.nix
+      ./virtualization.nix
+      ./user.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
