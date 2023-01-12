@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      <home-manager/nixos>
-    ];
-
   users.users.raccoon = {
     isNormalUser = true;
     description = "raccoon";
@@ -20,9 +15,5 @@
       zsh
       htop
     ];
-  };
-
-  home-manager.users.raccoon = { pkgs, ... }: {
-    home.stateVersion = "22.11";
   };
 }
