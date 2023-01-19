@@ -118,3 +118,5 @@ Window controls will be all wrong without it
  margin-left: 500px;
 }
 
+/* Remove close button*/ .titlebar-buttonbox-container{ visibility: hidden; } 
+
