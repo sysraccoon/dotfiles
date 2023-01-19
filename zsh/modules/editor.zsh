@@ -18,4 +18,7 @@ alias vi='nvim'
 alias e='nvim'
 alias nano='nvim'
 
+alias lnvim="nvim vim -c \"normal '0\""
+alias le='lnvim'
+
 alias edot="nvim \$DOTFILES_DIR +':cd %' +':Telescope find_files'"
