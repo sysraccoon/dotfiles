@@ -16,7 +16,9 @@ $required_packages = (
     "autohotkey1.1",
     # web
     "firefox",
-    "googlechrome"
+    "googlechrome",
+    # record
+    "obs-studio"
 )
 
 $not_required_packages = $(scoop list | where { $_.Name -notin $required_packages } | select -ExpandProperty Name)
