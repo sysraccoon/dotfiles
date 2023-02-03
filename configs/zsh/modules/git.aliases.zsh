@@ -16,5 +16,5 @@ alias gcb='g checkout -b'
 alias gcF='g clean -xdf'
 alias gI='g init'
 alias gC='g clone'
-alias goo='gh browse'
+alias goo='git-open-origin'
 
