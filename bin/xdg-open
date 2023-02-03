@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+if wsl-check; then
     # inside wsl
     nix-shell -p wsl-open --run "wsl-open $@"
 else
