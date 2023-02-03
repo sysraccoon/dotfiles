@@ -10,6 +10,8 @@ export DOTFILES_DIR="$HOME/dotfiles"
 export ZSH_CONFIG_DIR="$HOME/dotfiles/configs/zsh"
 
 MODULES=(
+  "nix"
+  "nix.aliases"
   # applications
   "xorg" # x11 features
 
@@ -42,8 +44,6 @@ MODULES=(
   # aliases and env variables for AOSP project
   "aosp"
   "office.aliases"
-
-  "nix.aliases"
 )
 
 for module in ${MODULES[@]}; do
