@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+    # inside wsl
+    nix-shell -p wsl-open --run "wsl-open $@"
+else
+    # normal linux env
+    nix-shell -p xdg-utils --run "xdg-open $@"
+fi
