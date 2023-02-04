@@ -21,6 +21,8 @@ Numpad7 & Numpad9::^]
 
 ; selection tool
 Numpad5 & Numpad6::v
+; pen tool
+Numpad5 & Numpad4::g
 ; shape tool
 Numpad5 & Numpad3::q
 ; text tool
