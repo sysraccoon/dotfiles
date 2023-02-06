@@ -4,7 +4,10 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-      vim
+    fuse
+    ntfs3g
+
+    vim
   ];
 
   fonts = {

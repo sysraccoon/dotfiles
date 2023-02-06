@@ -14,4 +14,6 @@
   # Nvidia GPU Driver
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
+
+  powerManagement.cpuFreqGovernor = "performance";
 }
