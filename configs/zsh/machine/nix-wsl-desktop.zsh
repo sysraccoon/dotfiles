@@ -10,10 +10,12 @@ export DOTFILES_DIR="$HOME/dotfiles"
 export ZSH_CONFIG_DIR="$HOME/dotfiles/configs/zsh"
 
 MODULES=(
+  # wsl specific
+  "wsl"
+
+  # nix specific
   "nix"
   "nix.aliases"
-  # applications
-  "xorg" # x11 features
 
   # languages
   "rust" # rust features

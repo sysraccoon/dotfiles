@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-gh browse
+gh browse --branch "$(git rev-parse --abbrev-ref HEAD)"

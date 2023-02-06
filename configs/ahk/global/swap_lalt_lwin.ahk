@@ -1,2 +1,2 @@
-﻿LAlt::LWin
+LAlt::LWin
 LWin::LAlt

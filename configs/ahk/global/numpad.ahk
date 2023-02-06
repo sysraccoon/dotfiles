@@ -2,6 +2,8 @@
 SendMode Input
 SetWorkingDir, %A_ScriptDir%
 
+#Include <utils>
+
 ; disable default numpad behaviour
 Numpad1::return
 Numpad2::return
@@ -38,7 +40,15 @@ NumpadDel::
     Send {Escape}
 return
 
-NumpadEnter::Enter
+NumpadEnter::
+    Send {LShift Down}
+    KeyWait, NumpadEnter
+    Send {LShift Up}
+
+    if ( A_PriorKey = "NumpadEnter" && A_TimeSinceThisHotkey < PRESS_SENSITIVE_MS() ) {
+		Send {Enter}
+    }
+return
 
 ; bind all generic actions to Numpad1 & x, where x other numpad key
 ; undo action
@@ -49,6 +59,8 @@ Numpad1 & Numpad6::^y
 Numpad1 & Numpad2::^c
 ; paste action
 Numpad1 & Numpad3::^v
+
+Numpad1 & BackSpace::Del
 
 Numpad1 & NumpadAdd::
     ID := WinActive("A")

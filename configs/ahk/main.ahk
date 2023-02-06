@@ -22,3 +22,6 @@ FileCreateShortcut, %A_ScriptFullPath%, %A_Startup%\dotfiles_ahk.lnk
 
 ; after effects specific modules
 #Include %A_ScriptDir%/after_effects/numpad.ahk
+
+; kdenlive specific modules
+#Include %A_ScriptDir%/kdenlive/numpad.ahk

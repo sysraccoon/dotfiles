@@ -3,10 +3,7 @@ SendMode Input
 SetWorkingDir, %A_ScriptDir%
 
 #Include <lyt>
-
-PRESS_SENSITIVE_MS() {
-	return 300
-}
+#Include <utils>
 
 ~LShift::
 	KeyWait, LShift
