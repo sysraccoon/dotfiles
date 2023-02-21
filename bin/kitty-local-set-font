@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+kitty @ --to "unix:/tmp/kitty_socket-$1" set-font-size $2
+
