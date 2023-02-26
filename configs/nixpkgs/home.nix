@@ -29,6 +29,7 @@
   home.packages = with pkgs; [
     # build
     gcc
+    libgccjit
     rustup
 
     # terminals
@@ -55,6 +56,8 @@
     xkb-switch
     jq
     bashmount
+    nix-index
+    starship
 
     # browsers
     firefox
@@ -69,6 +72,10 @@
     discord
     tdesktop
     libreoffice
+    vscodium
+    jetbrains.pycharm-community
+    obs-studio
+    xsecurelock
 
     # audio
     alsa-tools
@@ -79,10 +86,17 @@
     ubuntu_font_family
     source-code-pro
 
+    # dev
     (python39.withPackages (ps: with ps; [
       pip
+      mitmproxy
     ]))
+
+    nodejs
+    nil
+    coq_8_16
   ];
+
 
   xsession.enable = true;
 
@@ -124,6 +138,7 @@
 
   services.flameshot.enable = true;
 
+  xdg.configFile."mimeapps.list".force = true;
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
@@ -142,9 +157,9 @@
   xdg.configFile.tmux.source = config.lib.file.mkOutOfStoreSymlink ../tmux;
   xdg.configFile.dunst.source = config.lib.file.mkOutOfStoreSymlink ../dunst;
   xdg.configFile.kitty.source = config.lib.file.mkOutOfStoreSymlink ../kitty;
+  xdg.configFile.starship.source = config.lib.file.mkOutOfStoreSymlink ../starship;
 
   xdg.dataFile.fonts.source = config.lib.file.mkOutOfStoreSymlink ../../resources/fonts;
 
   home.file.".gitconfig".source  = config.lib.file.mkOutOfStoreSymlink ../git/gitconfig;
-
 }

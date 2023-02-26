@@ -1,0 +1,31 @@
+add_newline = true
+
+format = """\
+╭$directory$git_branch$fill$nix_shell$python
+╰$character\
+"""
+
+[character]
+format = '$symbol'
+success_symbol = '─% '
+error_symbol = '─[⏹](red) '
+
+[directory]
+format = '─⌠ [$read_only]($read_only_style)[$path]($style) ⌡'
+read_only = ' '
+
+[fill]
+symbol = '─'
+
+[git_branch]
+format = '─⌠ [$symbol$branch]($style) ⌡'
+symbol = ' '
+
+[nix_shell]
+format = ' ⌠ [$symbol$state]($style) ⌡'
+symbol = ' '
+
+[python]
+format = ' ⌠ [$symbol $virtualenv]($style) ⌡'
+symbol = ' '
+
