@@ -8,7 +8,7 @@ format = """\
 [character]
 format = '$symbol'
 success_symbol = '─% '
-error_symbol = '─[⏹](red) '
+error_symbol = '─[%](red) '
 
 [directory]
 format = '─⌠ [$read_only]($read_only_style)[$path]($style) ⌡'
@@ -22,7 +22,7 @@ format = '─⌠ [$symbol$branch]($style) ⌡'
 symbol = ' '
 
 [nix_shell]
-format = ' ⌠ [$symbol$state]($style) ⌡'
+format = ' ⌠ [$symbol$state\($name\)]($style) ⌡'
 symbol = ' '
 
 [python]
