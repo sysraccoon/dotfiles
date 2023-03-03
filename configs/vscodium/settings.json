@@ -1,0 +1,31 @@
+{
+    "window.zoomLevel": 1,
+    "window.menuBarVisibility": "toggle",
+
+    "workbench.activityBar.visible": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.colorTheme": "Atom One Dark",
+
+    "editor.fontFamily": "'Hack', 'monospace', monospace",
+
+    "security.workspace.trust.enabled": false,
+
+    "breadcrumbs.enabled": false,
+
+    "nix.enableLanguageServer": true,
+    "nix.serverPath": "nil",
+    "nix.serverSettings": {
+        "nil": {
+            "diagnostics": {
+                "ignored": ["unused_binding", "unused_with"]
+            },
+            "formatting": {
+                "command": ["nixpkgs-fmt"]
+            }
+          }
+    },
+
+    "vim.useSystemClipboard": true,
+
+    "terminal.external.linuxExec": "kitty",
+}

@@ -1,8 +1,9 @@
-{ config, pkgs, lib, ...}:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
     ./firefox.nix
+    ./vscodium.nix
   ];
 
   home.stateVersion = "22.11";
@@ -58,6 +59,8 @@
     bashmount
     nix-index
     starship
+    direnv
+    nix-direnv
 
     # browsers
     firefox
@@ -72,7 +75,6 @@
     discord
     tdesktop
     libreoffice
-    vscodium
     jetbrains.pycharm-community
     obs-studio
     xsecurelock
@@ -109,6 +111,7 @@
     ]);
   };
 
+
   services.picom = {
     enable = true;
     vSync = true;
@@ -131,8 +134,8 @@
     timeout = 200;
     mapExpression = {
       "Control_L" = "Escape";
-      "Shift_L" = "Super_L|F11";
-      "Shift_R" = "Super_L|F12";
+      "Shift_L" = "Super_L|bracketleft";
+      "Shift_R" = "Super_L|bracketright";
     };
   };
 
