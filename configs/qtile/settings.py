@@ -1,6 +1,6 @@
 # Qtile modules
 from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
@@ -11,6 +11,7 @@ import psutil
 # Force reload all custom modules
 import theme; importlib.reload(theme)
 import commands; importlib.reload(commands)
+import screencast; importlib.reload(screencast)
 
 # Import from custom modules
 from theme import *
@@ -28,6 +29,22 @@ class WorkSpace:
     on_enter_callbacks: List[Callable] = field(default_factory=list)
 
 
+@dataclass
+class ScratchPadItem:
+    name: str
+    cmd: str
+
+    hotkeys: List[str]
+
+    width: float = 0.35
+    height: float = 0.4
+
+    x: float = 0.325
+    y: float = 0.3
+
+    opacity: float = 1.0
+
+
 def load_workspaces():
     return [
         WorkSpace("sys", ["s"]),
@@ -41,7 +58,7 @@ def load_workspaces():
         WorkSpace("web", ["w"], [
             Match(wm_class=["qutebrowser"]),
             Match(wm_class=["firefox"]),
-        ], on_enter_callbacks=[web_workspace_on_enter]),
+        ]),
         WorkSpace("com", ["c"], [
             Match(wm_class=["telegram-desktop"]),
             Match(wm_class=["discord"]),
@@ -62,17 +79,27 @@ def load_workspaces():
         ]
     ]
 
-def web_workspace_on_enter(qtile, ws):
-    import subprocess
-    subprocess.Popen(["start-browser-if-unexist"])
+
+def load_scratchpad_items() -> List[ScratchPadItem]:
+    return [
+        ScratchPadItem("term", "kitty", ["M-d M-t"]),
+    ]
+
+
+def load_scratchpad(scratchpad_items) -> List[ScratchPadItem]:
+    return ScratchPad("scratchpad", [
+        DropDown(item.name, item.cmd, width=item.width, height=item.height, x=item.x, y=item.y, opacity=item.opacity)
+        for item in scratchpad_items
+    ])
+
 
 def load_groups(workspaces: List[WorkSpace]):
     return [Group(ws.name, matches=ws.matches) for ws in workspaces]
 
 
-def load_keys(group_names):
+def load_keys(workspaces, scratchpad_items):
     command_repo = CommandRepository()
-    commands = load_commands(command_repo, group_names)
+    commands = load_commands(command_repo, workspaces, scratchpad_items)
     command_repo.extend(commands)
     return command_repo.build_hotkeys()
 
@@ -87,10 +114,19 @@ def load_mouse():
 
 
 def load_screens():
-    return [
-        Screen(top=top_bar(), bottom=bottom_bar()),
-        Screen(top=top_bar()),
-    ]
+    active_setup = []
+
+    if screencast.is_screencast_mode():
+        active_setup = [
+            Screen(x=0, y=0, width=1920, height=1080),
+            Screen(x=1920, y=0, width=640, height=1080),
+        ]
+    else:
+        active_setup = [
+            Screen(top=top_bar(), bottom=bottom_bar(), x=0, y=0, width=2560, height=1080),
+        ]
+
+    return active_setup
 
 
 def load_extension_defaults():
@@ -182,7 +218,6 @@ def top_bar():
         ])
     except ValueError:
         pass
-
 
     return bar.Bar([
             widget.Spacer(),

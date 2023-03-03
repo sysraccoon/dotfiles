@@ -44,6 +44,13 @@ MODULES=(
   # aliases and env variables for AOSP project
   "aosp"
   "office.aliases"
+
+  # vscodium code helpers
+  "vscodium"
+
+  "direnv"
+
+  "screencast"
 )
 
 for module in ${MODULES[@]}; do

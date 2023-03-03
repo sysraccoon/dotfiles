@@ -6,9 +6,11 @@ from typing import List, Callable, Any
 from libqtile.config import Key, KeyChord, EzConfig
 from libqtile.lazy import lazy
 
+from screencast import set_screencast_mode, is_screencast_mode
+
 from command_exec import rofi_execute_command
 
-def load_commands(command_repo, workspaces):
+def load_commands(command_repo, workspaces, scratchpad_items):
     app_launcher = "rofi -show drun"
     window_selector = "rofi -show window"
     terminal = "kitty"
@@ -41,7 +43,7 @@ def load_commands(command_repo, workspaces):
         ("toggle-fullscreen",   ["M-f"],                 lazy.window.toggle_fullscreen(),      ["manipulation"],      "Toggle fullscreen"),
         ("toggle-floating",     ["M-S-f"],               lazy.window.toggle_floating(),        ["manipulation"],      "Toggle floating"),
         ("next-layout",         ["M-S-<space>"],         lazy.next_layout(),                   ["manipulation"],      "Switch to next layout"),
-        ("kill-window",         ["M-<Tab>"],             lazy.window.kill(),                   ["manipulation"],      "Kill focused window"),
+        ("kill-window",         ["M-S-c"],             lazy.window.kill(),                   ["manipulation"],      "Kill focused window"),
 
         ("run-app-launcher",    ["M-<space>"],           lazy.spawn(app_launcher),             ["application"],       "Run application launcher (rofi)"),
         ("run-terminal",        ["M-<Return>"],          lazy.spawn(terminal),                 ["application"],       "Run terminal (alacritty)"),
@@ -62,6 +64,7 @@ def load_commands(command_repo, workspaces):
         ("adb-unlock",          ["M-a M-u"],             lazy.spawn("/home/raccoon/.local/bin/adb-unlock"),   ["tools", "android"], "Unlock android device through adb"),
 
         ("toggle-plover",       ["M-p"],                 lazy.spawn("plover -s plover_send_command toggle"),        ["tools"],             "Toggle plover (steno mode)"),
+        ("toggle-screencast",   ["M-t M-s"],             toggle_screencast_mode,               ["tools"],             "Toggle screencast mode"),
     ]))
 
     # custom keyboard layout
@@ -73,8 +76,8 @@ def load_commands(command_repo, workspaces):
     ]))
 
     result_commands.extend(expand_commands([
-        ("set-en-layout", ["M-<F11>"], lazy.spawn("xkb-switch -s 'us(dvorak)'"), ["system"], "Set english dvorak as active layout"),
-        ("set-ru-layout", ["M-<F12>"], lazy.spawn("xkb-switch -s 'ru'"), ["system"], "Set russian as active layout"),
+        ("set-en-layout", ["M-<bracketleft>"], lazy.spawn("xkb-switch -s 'us(dvorak)'"), ["system"], "Set english dvorak as active layout"),
+        ("set-ru-layout", ["M-<bracketright>"], lazy.spawn("xkb-switch -s 'ru'"), ["system"], "Set russian as active layout"),
 
         ("lower-audio-volume", ["<XF86AudioLowerVolume>", "M-a M-j"], lazy.spawn("amixer -q sset Master 10%-"), ["system"], "Lower audio volume"),
         ("raise-audio-volume", ["<XF86AudioRaiseVolume>", "M-a M-k"], lazy.spawn("amixer -q sset Master 10%+"), ["system"], "Raise audio volume"),
@@ -113,7 +116,22 @@ def load_commands(command_repo, workspaces):
             ),
         ])
 
+    for scratch_item in scratchpad_items:
+        result_commands.append(CommandInfo(
+            name=f"toggle-{scratch_item.name}-scratch",
+            hotkeys=scratch_item.hotkeys,
+            action=lazy.group["scratchpad"].dropdown_toggle(scratch_item.name),
+            tags=["scratchpad"],
+            desc=f"Toggle {scratch_item.name} scratch item",
+        ))
+
     return result_commands
+
+
+@lazy.function
+def toggle_screencast_mode(qtile):
+    set_screencast_mode(not is_screencast_mode())
+    qtile.cmd_reload_config()
 
 
 def focus_workspace_action(workspace):
