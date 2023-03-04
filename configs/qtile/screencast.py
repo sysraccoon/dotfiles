@@ -21,7 +21,7 @@ def screencast_tweaks():
     else:
         kitty_font = str(KITTY_DEFAULT_FONT_SIZE)
 
-    subprocess.Popen(["kitty-global-set-font", kitty_font])
+    subprocess.Popen(["kitty-global-command", "set-font", kitty_font])
     # subprocess.Popen(["kitty-global-command", "env", f"SCREENCAST_MODE={os.getenv('SCREENCAST_MODE') or '0'}"])
 
 
@@ -32,5 +32,5 @@ def screencast_on_new_window(client):
 
     if client.name.startswith("kitty"):
         pid = client.window.get_net_wm_pid()
-        subprocess.Popen(["kitty-local-set-font", str(pid), str(KITTY_SCREENCAST_FONT_SIZE)])
+        subprocess.Popen(["kitty-local-command", str(pid), "set-font", str(KITTY_SCREENCAST_FONT_SIZE)])
 
