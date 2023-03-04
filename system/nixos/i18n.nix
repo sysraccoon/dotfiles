@@ -7,8 +7,7 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Set preffered console keymap
-  console.keyMap = "dvorak";
+  console.useXkbConfig = true;
 
   services.xserver = {
     layout = "us,ru";

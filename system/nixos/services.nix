@@ -4,12 +4,13 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.windowManager.qtile.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
 
   services.printing.enable = true;
+
+  services.journald.extraConfig = "SystemMaxUse=1G";
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
