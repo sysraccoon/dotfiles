@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+ls /tmp/kitty_socket* | xargs -I '{}' kitty @ --to 'unix:{}' $@
+

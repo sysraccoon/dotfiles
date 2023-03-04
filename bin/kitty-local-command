@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+KITTY_PID=$1
+shift 1
+kitty @ --to "unix:/tmp/kitty_socket-$KITTY_PID" $@
