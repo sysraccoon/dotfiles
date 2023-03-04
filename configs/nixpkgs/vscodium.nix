@@ -54,6 +54,26 @@
         version = "0.4.1422";
         sha256 = "sha256-yaQHiYSCefd7+QlG8PFKL2WCMh+yQrm49dztqhNQD14=";
       }
+      {
+        name = "even-better-toml";
+        publisher = "tamasfe";
+        version = "0.19.0";
+        sha256 = "sha256-MqSQarNThbEf1wHDTf1yA46JMhWJN46b08c7tV6+1nU=";
+      }
+
+      # haskell
+      {
+        name = "haskell";
+        publisher = "haskell";
+        version = "2.2.2";
+        sha256 = "sha256-zWdIVdz+kZg7KZQ7LeBCB4aB9wg8dUbkWfzGlM0Fq7Q=";
+      }
+      {
+        name = "language-haskell";
+        publisher = "justusadam";
+        version = "3.6.0";
+        sha256 = "sha256-rZXRzPmu7IYmyRWANtpJp3wp0r/RwB7eGHEJa7hBvoQ=";
+      }
 
       # nix
       {
