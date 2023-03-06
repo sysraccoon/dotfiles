@@ -14,6 +14,7 @@ let
       "browser.toolbars.bookmarks.visibility" = "never";
       "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
       "dom.textMetrics.fontBoundingBox.enabled" = true;
+      "browser.tabs.tabmanager.enabled" = false;
     } // settings;
     userChrome = builtins.readFile ../firefox/chrome/userChrome.css;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
@@ -32,6 +33,7 @@ in
 
   programs.firefox = {
     enable = true;
+    # package = pkgs.firefox-devedition-bin;
     profiles = {
       main = firefoxProfile {
         id = 0;

@@ -31,7 +31,6 @@
     # build
     gcc
     libgccjit
-    rustup
 
     # terminals
     kitty
@@ -63,7 +62,6 @@
     nix-direnv
 
     # browsers
-    firefox
     qutebrowser
 
     # gui tools
