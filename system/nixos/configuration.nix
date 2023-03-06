@@ -8,7 +8,7 @@
       ./services.nix
       ./packages.nix
       ./network.nix
-      ./virtualization.nix
+      # ./virtualization.nix
       ./user.nix
     ];
 
