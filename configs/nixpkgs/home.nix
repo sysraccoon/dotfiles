@@ -60,6 +60,9 @@
     starship
     direnv
     nix-direnv
+    dtrx
+    avfs
+    zip
 
     # browsers
     qutebrowser
@@ -144,8 +147,6 @@
     enable = true;
     defaultApplications = {
       "application/pdf" = ["org.pwmt.zathura.desktop"];
-      "x-scheme-handler/http" = ["firefox.desktop"];
-      "x-scheme-handler/https" = ["firefox.desktop"];
       "x-scheme-handler/tg" = ["userapp-Telegram Desktop-08XUJ1.desktop"];
     };
   };

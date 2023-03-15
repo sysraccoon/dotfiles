@@ -11,7 +11,6 @@ export ZSH_CONFIG_DIR="$HOME/dotfiles/configs/zsh"
 
 MODULES=(
   "nix"
-  "nix.aliases"
   # applications
   "xorg" # x11 features
 
@@ -40,9 +39,11 @@ MODULES=(
   "general.aliases"
   "git.aliases"
   "network.aliases"
+  "nix.aliases"
 
   # aliases and env variables for AOSP project
   "aosp"
+
   "office.aliases"
 
   # vscodium code helpers

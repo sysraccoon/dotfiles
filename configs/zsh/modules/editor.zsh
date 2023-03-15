@@ -19,3 +19,5 @@ alias e='nvim'
 alias nano='nvim'
 
 alias edot="nvim \$DOTFILES_DIR +':cd %' +':Telescope find_files'"
+
+alias edit='e'
