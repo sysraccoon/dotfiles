@@ -27,5 +27,5 @@
 
     "vim.useSystemClipboard": true,
 
-    "terminal.external.linuxExec": "kitty",
+    "terminal.external.linuxExec": "kitty"
 }
