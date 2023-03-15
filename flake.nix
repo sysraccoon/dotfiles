@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    }; 
   };
 
   outputs = {
@@ -15,6 +19,7 @@
     nixpkgs,
     nixpkgs-stable,
     home-manager,
+    nur,
     ...
   }:
   let
@@ -27,6 +32,10 @@
       inherit system;
       config = { allowUnfree = true; };
     };
+    pkgs-nur = import nur {
+      inherit pkgs;
+      nurpkgs = pkgs;
+    };
   in
   {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -35,8 +44,17 @@
         ./system/nixos/configuration.nix
       ];
       specialArgs = {
-        pkgs = pkgs;
-        pkgs-stable = pkgs-stable;
+        inherit pkgs pkgs-stable;
+      };
+    };
+
+    homeConfigurations.raccoon = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [
+        ./configs/nixpkgs/home.nix
+      ];
+      extraSpecialArgs = {
+        inherit pkgs pkgs-stable pkgs-nur;
       };
     };
   };

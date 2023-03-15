@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-nur, ... }:
 
 let 
   firefoxProfile = { id, name, settings ? {}, default ? false }:
@@ -17,7 +17,7 @@ let
       "browser.tabs.tabmanager.enabled" = false;
     } // settings;
     userChrome = builtins.readFile ../firefox/chrome/userChrome.css;
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    extensions = with pkgs-nur.repos.rycee.firefox-addons; [
       ublock-origin
       vimium
       kristofferhagen-nord-theme
@@ -25,12 +25,6 @@ let
   };
 in
 {
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
-  };
-
   programs.firefox = {
     enable = true;
     # package = pkgs.firefox-devedition-bin;

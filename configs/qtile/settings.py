@@ -205,20 +205,6 @@ def bottom_bar():
 
 
 def top_bar():
-    wifi_widgets = []
-    try:
-        wifi_widgets.extend([
-            widget.TextBox(
-                text="\uf1eb",
-                **theme.icon_font,
-                **theme.primary_colors,
-            ),
-            widget_wifi(),
-            widget_sep_secondary(),
-        ])
-    except ValueError:
-        pass
-
     return bar.Bar([
             widget.Spacer(),
             widget_left_end(),
@@ -237,7 +223,6 @@ def top_bar():
             widget_right_end(),
             widget.Spacer(),
             widget_sep_primary(),
-            *wifi_widgets,
             widget.TextBox(
                 text="\ufa7d", 
                 **theme.icon_font,
@@ -253,29 +238,6 @@ def top_bar():
             ),
         ],
         **theme.panel_bar)
-
-
-def widget_wifi():
-    return widget.Wlan(
-        interface=get_wifi_interface_name(),
-        format="{essid} | {percent:2.0%}",
-        update_interval=10,
-        **theme.primary_colors,
-    )
-    # return widget.Net(
-    #     interface=get_wifi_interface_name(),
-    #     format="{down} ↓↑ {up}",
-    #     update_interval=5,
-    #     **theme.primary_colors,
-    # )
-
-
-def get_wifi_interface_name():
-    for iname in psutil.net_if_addrs().keys():
-        if iname.startswith("wlp"):
-            return iname
-    raise ValueError("WiFi interface not found")
-
 
 def load_floating_layout():
     return layout.Floating(
