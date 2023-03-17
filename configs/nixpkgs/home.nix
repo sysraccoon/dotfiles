@@ -60,9 +60,10 @@
     starship
     direnv
     nix-direnv
-    dtrx
+    # dtrx
     avfs
     zip
+    fd
 
     # browsers
     qutebrowser
@@ -112,6 +113,11 @@
     ]);
   };
 
+  programs.emacs.enable = true;
+  programs.doom-emacs = {
+    enable = true;
+    doomPrivateDir = ../doom-emacs; 
+  };
 
   services.picom = {
     enable = true;
@@ -151,17 +157,17 @@
     };
   };
 
-  xdg.configFile.qtile.source = config.lib.file.mkOutOfStoreSymlink ../qtile;
-  xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink ../nvim;
-  xdg.configFile.alacritty.source = config.lib.file.mkOutOfStoreSymlink ../alacritty;
-  xdg.configFile.qutebrowser.source = config.lib.file.mkOutOfStoreSymlink ../qutebrowser;
-  xdg.configFile.rofi.source = config.lib.file.mkOutOfStoreSymlink ../rofi;
-  xdg.configFile.tmux.source = config.lib.file.mkOutOfStoreSymlink ../tmux;
-  xdg.configFile.dunst.source = config.lib.file.mkOutOfStoreSymlink ../dunst;
-  xdg.configFile.kitty.source = config.lib.file.mkOutOfStoreSymlink ../kitty;
-  xdg.configFile.starship.source = config.lib.file.mkOutOfStoreSymlink ../starship;
+  xdg.configFile.qtile.source = ../qtile;
+  xdg.configFile.nvim.source = ../nvim;
+  xdg.configFile.alacritty.source = ../alacritty;
+  xdg.configFile.qutebrowser.source = ../qutebrowser;
+  xdg.configFile.rofi.source = ../rofi;
+  xdg.configFile.tmux.source = ../tmux;
+  xdg.configFile.dunst.source = ../dunst;
+  xdg.configFile.kitty.source = ../kitty;
+  xdg.configFile.starship.source = ../starship;
 
-  xdg.dataFile.fonts.source = config.lib.file.mkOutOfStoreSymlink ../../resources/fonts;
+  xdg.dataFile.fonts.source = ../../resources/fonts;
 
-  home.file.".gitconfig".source  = config.lib.file.mkOutOfStoreSymlink ../git/gitconfig;
+  home.file.".gitconfig".source  = ../git/gitconfig;
 }

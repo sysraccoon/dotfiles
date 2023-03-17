@@ -12,6 +12,7 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     }; 
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
   };
 
   outputs = {
@@ -20,6 +21,7 @@
     nixpkgs-stable,
     home-manager,
     nur,
+    nix-doom-emacs,
     ...
   }:
   let
@@ -51,6 +53,7 @@
     homeConfigurations.raccoon = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [
+        nix-doom-emacs.hmModule
         ./configs/nixpkgs/home.nix
       ];
       extraSpecialArgs = {

@@ -46,8 +46,9 @@ MODULES=(
 
   "office.aliases"
 
-  # vscodium code helpers
+  # editor helpers
   "vscodium"
+  "emacs"
 
   "direnv"
 

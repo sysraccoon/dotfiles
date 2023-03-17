@@ -4,6 +4,7 @@
   imports =
     [
       ./machine-specific.nix
+      ./kernel.nix
       ./i18n.nix
       ./services.nix
       ./packages.nix

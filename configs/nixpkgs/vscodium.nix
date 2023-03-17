@@ -52,7 +52,7 @@
         name = "rust-analyzer";
         publisher = "rust-lang";
         version = "0.4.1422";
-        sha256 = "sha256-yaQHiYSCefd7+QlG8PFKL2WCMh+yQrm49dztqhNQD14=";
+        sha256 = "sha256-p3Ww/DDG8pqyk0h0FzLrMPa7bzeW5ZJqwr4tS96codk=";
       }
       {
         name = "even-better-toml";
