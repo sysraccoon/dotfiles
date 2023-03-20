@@ -7,6 +7,7 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.windowManager.qtile.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
+  programs.hyprland.enable = true;
 
   services.printing.enable = true;
 

@@ -13,6 +13,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     }; 
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -22,6 +26,7 @@
     home-manager,
     nur,
     nix-doom-emacs,
+    hyprland,
     ...
   }:
   let
@@ -40,24 +45,32 @@
     };
   in
   {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      inherit system;
-      modules = [
-        ./system/nixos/configuration.nix
-      ];
-      specialArgs = {
-        inherit pkgs pkgs-stable;
+    nixosConfigurations = {
+      # home pc host
+      home-pc = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          hyprland.nixosModules.default
+          ./hosts/home-pc/configuration.nix
+        ];
+        specialArgs = {
+          inherit pkgs pkgs-stable;
+        };
       };
     };
 
-    homeConfigurations.raccoon = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [
-        nix-doom-emacs.hmModule
-        ./configs/nixpkgs/home.nix
-      ];
-      extraSpecialArgs = {
-        inherit pkgs pkgs-stable pkgs-nur;
+    homeConfigurations = {
+      # use this profile for personal projects, web surfing etc
+      home = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          nix-doom-emacs.hmModule
+          hyprland.homeManagerModules.default
+          ./profiles/home/configs/nixpkgs/home.nix
+        ];
+        extraSpecialArgs = {
+          inherit pkgs pkgs-stable pkgs-nur;
+        };
       };
     };
   };

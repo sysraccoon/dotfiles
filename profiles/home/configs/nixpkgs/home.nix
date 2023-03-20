@@ -1,9 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, host-profile, ... }:
 
 {
   imports = [
     ./firefox.nix
     ./vscodium.nix
+    ./emacs.nix
   ];
 
   home.stateVersion = "22.11";
@@ -69,17 +70,26 @@
     qutebrowser
 
     # gui tools
-    rofi
-    feh
-    mpv
-    flameshot
+
+    ## general
+    jetbrains.pycharm-community
     zathura
     discord
     tdesktop
     libreoffice
-    jetbrains.pycharm-community
     obs-studio
+    mpv
+
+    ## X11
+    rofi
+    feh
+    flameshot
     xsecurelock
+
+    ## wayland
+    wofi
+    cliphist
+    swaybg
 
     # audio
     alsa-tools
@@ -113,11 +123,19 @@
     ]);
   };
 
-  programs.emacs.enable = true;
-  programs.doom-emacs = {
+  wayland.windowManager.hyprland = {
     enable = true;
-    doomPrivateDir = ../doom-emacs; 
+    xwayland = {
+      enable = true;
+      hidpi = true;
+    };
+    systemdIntegration = true;
+    nvidiaPatches = true;
+    extraConfig = ''
+      source = ${config.xdg.configHome}/hypr/custom.conf
+    '';
   };
+  xdg.configFile."hypr/custom.conf".source = ../hyprland/hyprland.conf;
 
   services.picom = {
     enable = true;
@@ -157,17 +175,21 @@
     };
   };
 
-  xdg.configFile.qtile.source = ../qtile;
-  xdg.configFile.nvim.source = ../nvim;
-  xdg.configFile.alacritty.source = ../alacritty;
-  xdg.configFile.qutebrowser.source = ../qutebrowser;
-  xdg.configFile.rofi.source = ../rofi;
-  xdg.configFile.tmux.source = ../tmux;
-  xdg.configFile.dunst.source = ../dunst;
-  xdg.configFile.kitty.source = ../kitty;
-  xdg.configFile.starship.source = ../starship;
+  xdg.configFile = {
+    qtile.source = ../qtile;
+    nvim.source = ../nvim;
+    alacritty.source = ../alacritty;
+    qutebrowser.source = ../qutebrowser;
+    rofi.source = ../rofi;
+    tmux.source = ../tmux;
+    dunst.source = ../dunst;
+    kitty.source = ../kitty;
+    starship.source = ../starship;
+  };
 
   xdg.dataFile.fonts.source = ../../resources/fonts;
 
   home.file.".gitconfig".source  = ../git/gitconfig;
+  home.file.".zshrc".source = ../zsh/zshrc;
+  home.file.".profile".source = ../shell/profile;
 }
