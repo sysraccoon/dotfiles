@@ -1,0 +1,27 @@
+* Mitmproxy Cheatsheet
+
+** Installation
+
+Installation via pipx preffered way (more options and control):
+
+#+begin_src shell
+pipx install mitmproxy
+#+end_src
+
+** Install addon dependencies
+
+#+begin_src shell
+pipx inject mitmproxy <package-name>
+#+end_src
+
+** NixOS (with home manager)
+
+#+begin_src nix
+home.packages = with pkgs; [
+    (python39.withPackages (ps: with ps; [
+      pip
+      mitmproxy
+      # addons here
+    ]))
+]
+#+end_src
