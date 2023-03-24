@@ -1,10 +1,10 @@
-# LVM Cheatsheet
+* LVM Cheatsheet
 
-## Setup on new machine
+** Setup on new machine
 
 Create physical volume, volume group and logical volumes:
 
-```bash
+#+begin_src shell
 # create new physical volume
 pvcreate /dev/sda1
 # create new volume group
@@ -12,61 +12,60 @@ vgcreate main /dev/sda1
 # create new logical volume
 lvcreate -L 100G main -n root-volume
 lvcreate -L 100G main -n home-volume
-```
+#+end_src
 
 Format new volumes:
 
-```bash
+#+begin_src shell
 mkfs.ext4 /dev/main/root-volume
 mkfs.ext4 /dev/main/home-volume
-```
+#+end_src
 
 Install package via arch-chroot:
 
-```bash
+#+begin_src shell
 pacman -S lvm2
-```
+#+end_src
 
 Add hook to mkinitcpio conifg:
 
-```conf
+#+begin_src shell
 # file /etc/mkinitcpio.conf
 HOOK=(... block lvm2 filesystems ...)
-```
+#+end_src
 
 And run:
 
-```bash
+#+begin_src shell
 mkinitcpio -P
-```
+#+end_src
 
 Add to grub default config:
 
-```conf
+#+begin_src
 # file /etc/default/grub
 GRUB_PRELAD_MODULES="... lvm"
-```
+#+end_src
 
 And run:
 
-```bash
+#+begin_src shell
 grub-mkconfig -o /boot/grub/grub.cfg
-```
+#+end_src
 
+** Basic operations
 
-## Basic operations
+List exists *pv*, *vg*, *lv*:
 
-List exists **pv**, **vg**, **lv**:
-
-```bash
+#+begin_src shell
 pvs # show physical volumes
 vgs # show volume groups
 lvs # show logical volume groups
-```
+#+end_src
 
-Extending exists **lv**
+Extending exists *lv*
 
-```bash
+#+begin_src shell
 # 115G new expected size (lvm skip command if new size less then old)
 lvextend -L 115G main/home-volume
 
@@ -75,5 +74,4 @@ btrfs filesystem resize max /home
 
 # if ext4 used (file system can be mounted)
 resize2fs /dev/main/home-volume
-```
-
+#+end_src
