@@ -196,4 +196,5 @@
   home.file.".gitconfig".source  = ../git/gitconfig;
   home.file.".zshrc".source = ../zsh/zshrc;
   home.file.".profile".source = ../shell/profile;
+  home.file."bin".source = ../../bin;
 }
