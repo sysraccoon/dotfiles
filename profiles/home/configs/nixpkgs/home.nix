@@ -147,7 +147,7 @@
 
   services.random-background = {
     enable = true;
-    imageDirectory = "%h/dotfiles/resources/wallpapers";
+    imageDirectory = builtins.toString ../../resources/wallpapers;
     display = "fill";
   };
 
