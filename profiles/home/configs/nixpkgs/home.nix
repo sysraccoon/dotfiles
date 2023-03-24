@@ -1,6 +1,7 @@
-{ config, pkgs, lib, host-profile, ... }:
+{ config, pkgs, lib, host-profile, overlays, ... }:
 
 {
+
   imports = [
     ./firefox.nix
     ./vscodium.nix
@@ -79,14 +80,15 @@
     libreoffice
     obs-studio
     mpv
+    rofi
 
     ## X11
-    rofi
     feh
     flameshot
     xsecurelock
 
     ## wayland
+    eww-wayland
     wofi
     cliphist
     swaybg
@@ -185,6 +187,8 @@
     dunst.source = ../dunst;
     kitty.source = ../kitty;
     starship.source = ../starship;
+    waybar.source = ../waybar;
+    eww.source = ../eww;
   };
 
   xdg.dataFile.fonts.source = ../../resources/fonts;

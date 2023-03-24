@@ -10,7 +10,7 @@
     };
     nur = {
       url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     }; 
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     hyprland = {
