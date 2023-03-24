@@ -43,25 +43,24 @@ def load_commands(command_repo, workspaces, scratchpad_items):
         ("toggle-fullscreen",   ["M-f"],                 lazy.window.toggle_fullscreen(),      ["manipulation"],      "Toggle fullscreen"),
         ("toggle-floating",     ["M-S-f"],               lazy.window.toggle_floating(),        ["manipulation"],      "Toggle floating"),
         ("next-layout",         ["M-S-<space>"],         lazy.next_layout(),                   ["manipulation"],      "Switch to next layout"),
-        ("kill-window",         ["M-S-c"],             lazy.window.kill(),                   ["manipulation"],      "Kill focused window"),
+        ("kill-window",         ["M-S-c"],               lazy.window.kill(),                   ["manipulation"],      "Kill focused window"),
 
         ("run-app-launcher",    ["M-<space>"],           lazy.spawn(app_launcher),             ["application"],       "Run application launcher (rofi)"),
         ("run-terminal",        ["M-<Return>"],          lazy.spawn(terminal),                 ["application"],       "Run terminal (alacritty)"),
         ("run-qtile-cmd",       ["M-<apostrophe>"],      rofi_execute_command(command_repo),   ["application"],       "Run qtile command"),
         ("make-screenshot",     ["<Print>"],             lazy.spawn("flameshot gui"),          ["application"],       "Make screenshot (flameshot)"),
 
-        ("reload-config",       ["M-<minus> M-r"],       lazy.reload_config(),                 ["system"],            "Reload qtile config"),
-        ("shutdown-qtile",      ["M-<minus> M-S-q"],     lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
-        ("shutdown-system",     ["M-<minus> M-S-s"],     lazy.spawn("shutdown now"),           ["system"],            "Shutdown system"),
-        ("reboot-system",       ["M-<minus> M-S-r"],     lazy.spawn("reboot"),                 ["system"],            "Reboot system"),
-        ("lock-system",         ["M-<minus> M-l"],       lazy.spawn(app_lock),                 ["system"],            "Lock system"),
+        ("reload-config",       ["M-s M-r"],             lazy.reload_config(),                 ["system"],            "Reload qtile config"),
+        ("shutdown-qtile",      ["M-s M-S-q"],           lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
+        ("shutdown-system",     ["M-s M-S-s"],           lazy.spawn("shutdown now"),           ["system"],            "Shutdown system"),
+        ("reboot-system",       ["M-s M-S-r"],           lazy.spawn("reboot"),                 ["system"],            "Reboot system"),
+        ("lock-system",         ["M-s M-l"],             lazy.spawn(app_lock),                 ["system"],            "Lock system"),
 
         ("show-key-name",       ["M-t M-k"],             lazy.spawn("show-key-name"),          ["tools"],             "Display next pressed key name"),
         ("translate-text",      ["M-t M-t"],             lazy.spawn("trans-rofi"),             ["tools"],             "Translate text"),
         ("clip-password",       ["M-t M-p"],             lazy.spawn("pass-rofi"),              ["tools"],             "Get and save password to clipboard"),
         ("open-cheatsheet",     ["M-t M-c"],             lazy.spawn("cheatsheet-rofi"),        ["tools"],             "Open cheatsheet"),
         ("open-email",          ["M-t M-m"],             lazy.spawn("ext-tui neomutt"),        ["tools"],             "Open local mail client"),
-        ("adb-unlock",          ["M-a M-u"],             lazy.spawn("/home/raccoon/.local/bin/adb-unlock"),   ["tools", "android"], "Unlock android device through adb"),
 
         ("toggle-plover",       ["M-p"],                 lazy.spawn("plover -s plover_send_command toggle"),        ["tools"],             "Toggle plover (steno mode)"),
         ("toggle-screencast",   ["M-t M-s"],             toggle_screencast_mode,               ["tools"],             "Toggle screencast mode"),
@@ -93,9 +92,14 @@ def load_commands(command_repo, workspaces, scratchpad_items):
             desc=f"Set audio device with index {audio_index} as default",
         ))
 
+    workspace_shortcut_keys = [str(i) for i in range(10)]
+
     for ws in workspaces:
         focus_hotkeys = [f"M-g M-{key}" for key in ws.navigation_keys]
         move_hotkeys = [f"M-m M-{key}" for key in ws.navigation_keys]
+
+        focus_hotkeys.extend([f"M-{key}" for key in ws.navigation_keys if key in workspace_shortcut_keys])
+        move_hotkeys.extend([f"M-S-{key}" for key in ws.navigation_keys if key in workspace_shortcut_keys])
 
         focus_action = focus_workspace_action(ws)
         

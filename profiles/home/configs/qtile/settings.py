@@ -47,36 +47,15 @@ class ScratchPadItem:
 
 def load_workspaces():
     return [
-        WorkSpace("sys", ["s"]),
-        WorkSpace("ide", ["i"], [
-            Match(wm_class=["jetbrains-pycharm-ce"]),
-            Match(wm_class=["jetbrains-idea-ce"]),
-        ]),
-        WorkSpace("dat", ["d"]),
-        WorkSpace("net", ["n"]),
-        WorkSpace("rev", ["r"]),
-        WorkSpace("web", ["w"], [
-            Match(wm_class=["qutebrowser"]),
-            Match(wm_class=["firefox"]),
-        ]),
-        WorkSpace("com", ["c"], [
+        *[
+            WorkSpace("\uea71" + "\u200b"*i, [str(i)])
+            for i in range(1, 5)
+        ],
+        WorkSpace("\uf075", ["c", "5"], [
             Match(wm_class=["telegram-desktop"]),
             Match(wm_class=["discord"]),
         ]),
-        WorkSpace("vid", ["v"], [
-            Match(wm_class=["mpv"]),
-            Match(wm_class=["kdenlive"]),
-        ]),
-        WorkSpace("brd", ["b"], [
-            Match(wm_class=["obs"]),
-        ]),
-        WorkSpace("plo", ["p"], [
-            Match(wm_class=["plover"]),
-        ]),
-        *[
-            WorkSpace(f"{i}.gen", [str(i)])
-            for i in range(1, 4)
-        ]
+        WorkSpace("\uf013", ["s", "6"]),
     ]
 
 
@@ -123,7 +102,7 @@ def load_screens():
         ]
     else:
         active_setup = [
-            Screen(top=top_bar(), bottom=bottom_bar(), x=0, y=0, width=2560, height=1080),
+            Screen(top=top_bar(), x=0, y=0, width=2560, height=1080),
         ]
 
     return active_setup
@@ -160,25 +139,25 @@ def widget_sep_generic(text: str):
     return widget.TextBox(
         text = text,
         padding = 0,
-        fontsize = ICON_FONT_SIZE,
+        fontsize = 24,
         foreground = COLOR_WIDGET_BACKGROUND_PRIMARY,
     )
 
 
 def widget_sep_primary():
-    return widget_sep_generic("▝")
+    return widget_sep_generic(" ")
 
 
 def widget_sep_secondary():
-    return widget_sep_generic("▘")
+    return widget_sep_generic(" ")
 
 
 def widget_left_end():
-    return widget_sep_generic("▝▞")
+    return widget_sep_generic(" ")
 
 
 def widget_right_end():
-    return widget_sep_generic("▚▘")
+    return widget_sep_generic(" ")
 
 
 def bottom_bar():
@@ -224,7 +203,7 @@ def top_bar():
             widget.Spacer(),
             widget_sep_primary(),
             widget.TextBox(
-                text="\ufa7d", 
+                text="\uf028", 
                 **theme.icon_font,
                 **theme.alternate_colors,
             ),

@@ -42,8 +42,9 @@ def initialize_config(c):
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser("~")
-    subprocess.Popen([home + "/.config/qtile/autostart"])
+    # home = os.path.expanduser("~")
+    # subprocess.Popen([home + "/.config/qtile/autostart"])
+    pass
 
 
 logging.basicConfig(level=logging.DEBUG)
