@@ -15,6 +15,7 @@ let
       "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
       "dom.textMetrics.fontBoundingBox.enabled" = true;
       "browser.tabs.tabmanager.enabled" = false;
+      "browser.download.autohideButton" = false;
     } // settings;
     userChrome = builtins.readFile ../firefox/chrome/userChrome.css;
     extensions = with pkgs-nur.repos.rycee.firefox-addons; [

@@ -15,7 +15,7 @@ Window controls will be all wrong without it
 
 /* Modify these to change relative widths or default height */
 #navigator-toolbox{
-  --uc-navigationbar-width: 195px;
+  --uc-navigationbar-width: 250px;
   --uc-toolbar-height: 40px;
   --uc-urlbar-min-width: 50vw; /* minimum width for opened urlbar */
 }
