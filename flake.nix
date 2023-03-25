@@ -17,6 +17,9 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # templates
+    templates.url = "path:./templates";
   };
 
   outputs = {
@@ -27,6 +30,7 @@
     nur,
     nix-doom-emacs,
     hyprland,
+    templates,
     ...
   }:
   let
@@ -73,5 +77,7 @@
         };
       };
     };
+
+    templates = templates.templates;
   };
 }
