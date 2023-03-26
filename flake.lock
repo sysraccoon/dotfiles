@@ -1,5 +1,20 @@
 {
   "nodes": {
+    "c-template": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-i61lN8zKgLdi+PQx5/5xC97xP2LQBNtBdvW+f0akMF8=",
+        "path": "./c",
+        "type": "path"
+      },
+      "original": {
+        "path": "./c",
+        "type": "path"
+      }
+    },
     "doom-emacs": {
       "flake": false,
       "locked": {
@@ -364,6 +379,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1679705136,
+        "narHash": "sha256-MDlZUR7wJ3PlPtqwwoGQr3euNOe0vdSSteVVOef7tBY=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "8f40f2f90b9c9032d1b824442cfbbe0dbabd0dbd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nose": {
       "flake": false,
       "locked": {
@@ -498,7 +529,8 @@
         "nix-doom-emacs": "nix-doom-emacs",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
-        "nur": "nur"
+        "nur": "nur",
+        "templates": "templates"
       }
     },
     "rotate-text": {
@@ -531,6 +563,21 @@
         "owner": "sensorflo",
         "repo": "sln-mode",
         "type": "github"
+      }
+    },
+    "templates": {
+      "inputs": {
+        "c-template": "c-template"
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-fZCNJhwnvLMAk4H6vGP7K6G843CYpNJKJ41IavIdxnE=",
+        "path": "./templates",
+        "type": "path"
+      },
+      "original": {
+        "path": "./templates",
+        "type": "path"
       }
     },
     "ts-fold": {
