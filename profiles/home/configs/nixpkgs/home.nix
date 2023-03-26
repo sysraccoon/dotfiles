@@ -66,6 +66,8 @@
     avfs
     zip
     fd
+    unzip
+    unrar
 
     # browsers
     qutebrowser
@@ -81,6 +83,7 @@
     obs-studio
     mpv
     rofi
+    dolphin
 
     ## X11
     feh
@@ -174,6 +177,7 @@
     defaultApplications = {
       "application/pdf" = ["org.pwmt.zathura.desktop"];
       "x-scheme-handler/tg" = ["userapp-Telegram Desktop-08XUJ1.desktop"];
+      "inode/directory" = ["org.kde.dolphin.desktop"];
     };
   };
 
