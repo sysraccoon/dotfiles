@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 export CUSTOM_TOOL_DIR="$HOME/store/projects/dev/custom-tools"
 
 export LANG="en_US.UTF-8"
