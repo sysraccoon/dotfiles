@@ -36,4 +36,6 @@
 
   # Optimize cpu usage
   powerManagement.cpuFreqGovernor = "performance";
+
+  hardware.enableRedistributableFirmware = true;
 }
