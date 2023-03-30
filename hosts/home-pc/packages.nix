@@ -6,9 +6,10 @@
   environment.systemPackages = with pkgs; [
     fuse
     ntfs3g
-
     vim
   ];
+
+  programs.zsh.enable = true;
 
   fonts = {
     fonts = with pkgs; [
