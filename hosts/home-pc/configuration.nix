@@ -3,6 +3,7 @@
 {
   imports =
     [
+      ./nix.nix
       ./machine-specific.nix
       ./kernel.nix
       ./i18n.nix
@@ -13,6 +14,5 @@
       ./user.nix
     ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "22.11";
 }
