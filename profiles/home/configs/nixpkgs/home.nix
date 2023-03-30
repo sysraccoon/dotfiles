@@ -83,7 +83,7 @@
     obs-studio
     mpv
     rofi
-    dolphin
+    cinnamon.nemo
 
     ## X11
     feh
