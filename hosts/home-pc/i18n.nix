@@ -24,6 +24,8 @@
       kochi-substitute
       source-code-pro
       ttf_bitstream_vera
+      baekmuk-ttf
+      nanum
     ];
     fontconfig.enable = true;
   };
@@ -32,14 +34,17 @@
     monospace = [
       "DejaVu Sans Mono"
       "IPAGothic"
+      "NanumGothic"
     ];
     sansSerif = [
       "DejaVu Sans"
       "IPAPGothic"
+      "NanumGothic"
     ];
     serif = [
       "DejaVu Serif"
       "IPAPMincho"
+      "NanumGothic"
     ];
   };
 }
