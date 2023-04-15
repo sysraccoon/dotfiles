@@ -40,10 +40,13 @@ def load_commands(command_repo, workspaces, scratchpad_items):
         ("grow-window-left",    ["M-C-h"],               lazy.layout.grow_left(),              ["manipulation"],      "Grow window left"),
         ("grow-window-right",   ["M-C-l"],               lazy.layout.grow_right(),             ["manipulation"],      "Grow window right"),
 
-        ("toggle-fullscreen",   ["M-f"],                 lazy.window.toggle_fullscreen(),      ["manipulation"],      "Toggle fullscreen"),
-        ("toggle-floating",     ["M-S-f"],               lazy.window.toggle_floating(),        ["manipulation"],      "Toggle floating"),
+        ("toggle-fullscreen",   ["M-S-f"],               lazy.window.toggle_fullscreen(),      ["manipulation"],      "Toggle fullscreen"),
         ("next-layout",         ["M-S-<space>"],         lazy.next_layout(),                   ["manipulation"],      "Switch to next layout"),
         ("kill-window",         ["M-S-c"],               lazy.window.kill(),                   ["manipulation"],      "Kill focused window"),
+
+        ("toggle-floating",     ["M-f M-f"],             lazy.window.toggle_floating(),        ["manipulation"],      "Toggle floating"),
+        ("float-cycle-forward", ["M-f M-n"],             float_cycle_forward,                  ["manipulation"],      "Float window cycle forward"),
+        ("float-cycle-backward",["M-f M-p"],             float_cycle_backward,                 ["manipulation"],      "Float window cycle backward"),
 
         ("run-app-launcher",    ["M-<space>"],           lazy.spawn(app_launcher),             ["application"],       "Run application launcher (rofi)"),
         ("run-terminal",        ["M-<Return>"],          lazy.spawn(terminal),                 ["application"],       "Run terminal (alacritty)"),
@@ -130,6 +133,38 @@ def load_commands(command_repo, workspaces, scratchpad_items):
         ))
 
     return result_commands
+
+
+floating_window_index = 0
+
+def float_cycle(qtile, forward: bool):
+    global floating_window_index
+    floating_windows = []
+    for window in qtile.current_group.windows:
+        if window.floating:
+            floating_windows.append(window)
+    if not floating_windows:
+        return
+    floating_window_index = min(floating_window_index, len(floating_windows) -1)
+    if forward:
+        floating_window_index += 1
+    else:
+        floating_window_index += 1
+    if floating_window_index >= len(floating_windows):
+        floating_window_index = 0
+    if floating_window_index < 0:
+        floating_window_index = len(floating_windows) - 1
+    win = floating_windows[floating_window_index]
+    win.cmd_bring_to_front()
+    win.cmd_focus()
+
+@lazy.function
+def float_cycle_backward(qtile):
+    float_cycle(qtile, False)
+
+@lazy.function
+def float_cycle_forward(qtile):
+    float_cycle(qtile, True)
 
 
 @lazy.function

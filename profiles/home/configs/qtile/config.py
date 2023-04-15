@@ -46,6 +46,12 @@ def autostart():
     # subprocess.Popen([home + "/.config/qtile/autostart"])
     pass
 
+@hook.subscribe.client_focus
+def float_always_bring_to_front(_):
+    from libqtile import qtile
+    for window in qtile.current_group.windows:
+        if window.floating:
+            window.cmd_bring_to_front()
 
 logging.basicConfig(level=logging.DEBUG)
 
