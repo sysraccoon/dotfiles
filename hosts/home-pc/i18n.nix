@@ -14,4 +14,32 @@
     xkbVariant = "dvorak,";
     xkbOptions = "grp:alt_shift_toggle,ctrl:nocaps,altwin:swap_lalt_lwin,terminate:ctrl_alt_bksp";
   };
+
+  fonts = {
+    fonts = with pkgs; [
+      (nerdfonts.override { fonts = [ "Ubuntu" ]; })
+      carlito
+      dejavu_fonts
+      ipafont
+      kochi-substitute
+      source-code-pro
+      ttf_bitstream_vera
+    ];
+    fontconfig.enable = true;
+  };
+
+  fonts.fontconfig.defaultFonts = {
+    monospace = [
+      "DejaVu Sans Mono"
+      "IPAGothic"
+    ];
+    sansSerif = [
+      "DejaVu Sans"
+      "IPAPGothic"
+    ];
+    serif = [
+      "DejaVu Serif"
+      "IPAPMincho"
+    ];
+  };
 }

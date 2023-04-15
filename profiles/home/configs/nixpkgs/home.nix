@@ -108,7 +108,7 @@
     # dev
     (python39.withPackages (ps: with ps; [
       pip
-      mitmproxy
+      # mitmproxy
     ]))
 
     nodejs

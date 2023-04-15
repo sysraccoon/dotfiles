@@ -48,7 +48,7 @@ class ScratchPadItem:
 def load_workspaces():
     return [
         *[
-            WorkSpace("\uea71" + "\u200b"*i, [str(i)])
+            WorkSpace("\u26ac" + "\u200b"*i, [str(i)])
             for i in range(1, 5)
         ],
         WorkSpace("\uf075", ["c", "5"], [
