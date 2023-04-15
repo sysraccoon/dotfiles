@@ -30,12 +30,13 @@
     services.NetworkManager-wait-online.wantedBy = pkgs.lib.mkForce []; # Normally ["network-online.target"]
   };
 
-  # Nvidia GPU Driver
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
-
   # Optimize cpu usage
   powerManagement.cpuFreqGovernor = "performance";
 
   hardware.enableRedistributableFirmware = true;
+
+  # Nvidia GPU Driver
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl.enable = true;
+  hardware.nvidia.powerManagement.enable = true;
 }
