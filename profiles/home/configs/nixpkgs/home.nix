@@ -41,10 +41,12 @@
 
     # cli tools
     zsh
+    ion
     git
     gh
     curl
     tmux
+    screen
     tldr
     zoxide
     xclip
@@ -68,6 +70,7 @@
     fd
     unzip
     unrar
+    exa
 
     # browsers
     qutebrowser
@@ -108,8 +111,16 @@
     # dev
     (python39.withPackages (ps: with ps; [
       pip
-      # mitmproxy
     ]))
+
+    gnumake
+    mitmproxy
+
+    jetbrains.idea-community
+
+    radare2
+    jadx
+    imhex
 
     nodejs
     nil
@@ -193,6 +204,7 @@
     starship.source = ../starship;
     waybar.source = ../waybar;
     eww.source = ../eww;
+    radare2.source = ../radare2;
   };
 
   xdg.dataFile.fonts.source = ../../resources/fonts;

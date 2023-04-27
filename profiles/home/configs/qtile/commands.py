@@ -15,58 +15,62 @@ def load_commands(command_repo, workspaces, scratchpad_items):
     window_selector = "rofi -show window"
     terminal = "kitty"
     app_lock = "xsecurelock"
+    plover = "plover -s plover_send_command toggle"
 
     result_commands = []
 
     result_commands.extend(expand_commands([
         # command name          hotkeys                  action                                tags                   description
-        ("toggle-workspace",    ["M-<period>"],          lazy.screen.toggle_group(),           ["navigation"],        "Toggle workspace"),
-        ("next-screen",         ["M-<comma>"],           lazy.next_screen(),                   ["navigation"],        "Focus next screen"),
+        ("toggle-workspace",     ["M-<period>"],          lazy.screen.toggle_group(),           ["navigation"],        "Toggle workspace"),
+        ("next-screen",          ["M-<comma>"],           lazy.next_screen(),                   ["navigation"],        "Focus next screen"),
 
-        ("focus-left-window",   ["M-h"],                 lazy.layout.left(),                   ["navigation"],        "Focus left window"),
-        ("focus-right-window",  ["M-l"],                 lazy.layout.right(),                  ["navigation"],        "Focus right window"),
-        ("focus-down-window",   ["M-j"],                 lazy.layout.down(),                   ["navigation"],        "Focus down window"),
-        ("focus-up-window",     ["M-k"],                 lazy.layout.up(),                     ["navigation"],        "Focus up window"),
+        ("focus-left-window",    ["M-h"],                 lazy.layout.left(),                   ["navigation"],        "Focus left window"),
+        ("focus-right-window",   ["M-l"],                 lazy.layout.right(),                  ["navigation"],        "Focus right window"),
+        ("focus-down-window",    ["M-j"],                 lazy.layout.down(),                   ["navigation"],        "Focus down window"),
+        ("focus-up-window",      ["M-k"],                 lazy.layout.up(),                     ["navigation"],        "Focus up window"),
 
-        ("focus-window-by-name",["M-w M-<space>"],       lazy.spawn(window_selector),          ["navigation"],        "Focus window by name"),
+        ("focus-window-by-name", ["M-w M-<space>"],       lazy.spawn(window_selector),          ["navigation"],        "Focus window by name"),
 
-        ("move-window-left",    ["M-S-h"],               lazy.layout.shuffle_left(),           ["manipulation"],      "Move window left"),
-        ("move-window-right",   ["M-S-l"],               lazy.layout.shuffle_right(),          ["manipulation"],      "Move window right"),
-        ("move-window-down",    ["M-S-j"],               lazy.layout.shuffle_down(),           ["manipulation"],      "Move window down"),
-        ("move-window-up",      ["M-S-k"],               lazy.layout.shuffle_up(),             ["manipulation"],      "Move window up"),
+        ("move-window-left",     ["M-S-h"],               lazy.layout.shuffle_left(),           ["manipulation"],      "Move window left"),
+        ("move-window-right",    ["M-S-l"],               lazy.layout.shuffle_right(),          ["manipulation"],      "Move window right"),
+        ("move-window-down",     ["M-S-j"],               lazy.layout.shuffle_down(),           ["manipulation"],      "Move window down"),
+        ("move-window-up",       ["M-S-k"],               lazy.layout.shuffle_up(),             ["manipulation"],      "Move window up"),
 
-        ("grow-window-down",    ["M-C-j"],               lazy.layout.grow_down(),              ["manipulation"],      "Grow window down"),
-        ("grow-window-up",      ["M-C-k"],               lazy.layout.grow_up(),                ["manipulation"],      "Grow window up"),
-        ("grow-window-left",    ["M-C-h"],               lazy.layout.grow_left(),              ["manipulation"],      "Grow window left"),
-        ("grow-window-right",   ["M-C-l"],               lazy.layout.grow_right(),             ["manipulation"],      "Grow window right"),
+        ("grow-window-down",     ["M-C-j"],               lazy.layout.grow_down(),              ["manipulation"],      "Grow window down"),
+        ("grow-window-up",       ["M-C-k"],               lazy.layout.grow_up(),                ["manipulation"],      "Grow window up"),
+        ("grow-window-left",     ["M-C-h"],               lazy.layout.grow_left(),              ["manipulation"],      "Grow window left"),
+        ("grow-window-right",    ["M-C-l"],               lazy.layout.grow_right(),             ["manipulation"],      "Grow window right"),
 
-        ("toggle-fullscreen",   ["M-S-f"],               lazy.window.toggle_fullscreen(),      ["manipulation"],      "Toggle fullscreen"),
-        ("next-layout",         ["M-S-<space>"],         lazy.next_layout(),                   ["manipulation"],      "Switch to next layout"),
-        ("kill-window",         ["M-S-c"],               lazy.window.kill(),                   ["manipulation"],      "Kill focused window"),
+        ("toggle-fullscreen",    ["M-S-f"],               lazy.window.toggle_fullscreen(),      ["manipulation"],      "Toggle fullscreen"),
+        ("next-layout",          ["M-S-<space>"],         lazy.next_layout(),                   ["manipulation"],      "Switch to next layout"),
+        ("kill-window",          ["M-S-c"],               lazy.window.kill(),                   ["manipulation"],      "Kill focused window"),
 
-        ("toggle-floating",     ["M-f M-f"],             lazy.window.toggle_floating(),        ["manipulation"],      "Toggle floating"),
-        ("float-cycle-forward", ["M-f M-n"],             float_cycle_forward,                  ["manipulation"],      "Float window cycle forward"),
-        ("float-cycle-backward",["M-f M-p"],             float_cycle_backward,                 ["manipulation"],      "Float window cycle backward"),
+        ("toggle-floating",      ["M-f M-f"],             lazy.window.toggle_floating(),        ["manipulation"],      "Toggle floating"),
+        ("float-cycle-forward",  ["M-f M-n"],             float_cycle_forward,                  ["manipulation"],      "Float window cycle forward"),
+        ("float-cycle-backward", ["M-f M-p"],             float_cycle_backward,                 ["manipulation"],      "Float window cycle backward"),
 
-        ("run-app-launcher",    ["M-<space>"],           lazy.spawn(app_launcher),             ["application"],       "Run application launcher (rofi)"),
-        ("run-terminal",        ["M-<Return>"],          lazy.spawn(terminal),                 ["application"],       "Run terminal (alacritty)"),
-        ("run-qtile-cmd",       ["M-<apostrophe>"],      rofi_execute_command(command_repo),   ["application"],       "Run qtile command"),
-        ("make-screenshot",     ["<Print>"],             lazy.spawn("flameshot gui"),          ["application"],       "Make screenshot (flameshot)"),
+        ("run-app-launcher",     ["M-<space>"],           lazy.spawn(app_launcher),             ["application"],       "Run application launcher (rofi)"),
+        ("run-terminal",         ["M-<Return>"],          lazy.spawn(terminal),                 ["application"],       "Run terminal (alacritty)"),
+        ("run-qtile-cmd",        ["M-<apostrophe>"],      rofi_execute_command(command_repo),   ["application"],       "Run qtile command"),
+        ("make-screenshot",      ["<Print>"],             lazy.spawn("flameshot gui"),          ["application"],       "Make screenshot (flameshot)"),
 
-        ("reload-config",       ["M-s M-r"],             lazy.reload_config(),                 ["system"],            "Reload qtile config"),
-        ("shutdown-qtile",      ["M-s M-S-q"],           lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
-        ("shutdown-system",     ["M-s M-S-s"],           lazy.spawn("shutdown now"),           ["system"],            "Shutdown system"),
-        ("reboot-system",       ["M-s M-S-r"],           lazy.spawn("reboot"),                 ["system"],            "Reboot system"),
-        ("lock-system",         ["M-s M-l"],             lazy.spawn(app_lock),                 ["system"],            "Lock system"),
+        ("reload-config",        ["M-s M-r"],             lazy.reload_config(),                 ["system"],            "Reload qtile config"),
+        ("shutdown-qtile",       ["M-s M-S-q"],           lazy.shutdown(),                      ["system"],            "Shutdown qtile"),
+        ("shutdown-system",      ["M-s M-S-s"],           lazy.spawn("shutdown now"),           ["system"],            "Shutdown system"),
+        ("reboot-system",        ["M-s M-S-r"],           lazy.spawn("reboot"),                 ["system"],            "Reboot system"),
+        ("lock-system",          ["M-s M-l"],             lazy.spawn(app_lock),                 ["system"],            "Lock system"),
 
-        ("show-key-name",       ["M-t M-k"],             lazy.spawn("show-key-name"),          ["tools"],             "Display next pressed key name"),
-        ("translate-text",      ["M-t M-t"],             lazy.spawn("trans-rofi"),             ["tools"],             "Translate text"),
-        ("clip-password",       ["M-t M-p"],             lazy.spawn("pass-rofi"),              ["tools"],             "Get and save password to clipboard"),
-        ("open-cheatsheet",     ["M-t M-c"],             lazy.spawn("cheatsheet-rofi"),        ["tools"],             "Open cheatsheet"),
-        ("open-email",          ["M-t M-m"],             lazy.spawn("ext-tui neomutt"),        ["tools"],             "Open local mail client"),
+        ("show-key-name",        ["M-t M-k"],             lazy.spawn("show-key-name"),          ["tools"],             "Display next pressed key name"),
+        ("translate-text",       ["M-t M-t"],             lazy.spawn("trans-rofi"),             ["tools"],             "Translate text"),
+        ("clip-password",        ["M-t M-p"],             lazy.spawn("pass-rofi"),              ["tools"],             "Get and save password to clipboard"),
+        ("open-cheatsheet",      ["M-t M-c"],             lazy.spawn("cheatsheet-rofi"),        ["tools"],             "Open cheatsheet"),
+        ("open-email",           ["M-t M-m"],             lazy.spawn("ext-tui neomutt"),        ["tools"],             "Open local mail client"),
+ 
+        ("toggle-plover",        ["M-p"],                 lazy.spawn(plover),                   ["tools"],             "Toggle plover (steno mode)"),
+        ("toggle-screencast",    ["M-t M-s"],             toggle_screencast_mode,               ["tools"],             "Toggle screencast mode"),
 
-        ("toggle-plover",       ["M-p"],                 lazy.spawn("plover -s plover_send_command toggle"),        ["tools"],             "Toggle plover (steno mode)"),
-        ("toggle-screencast",   ["M-t M-s"],             toggle_screencast_mode,               ["tools"],             "Toggle screencast mode"),
+        ("manual-nixos-options",   ["M-S-<slash> M-S-o"],           lazy.spawn("xdg-open 'https://search.nixos.org/options?channel=unstable'"), ["help"], "Open nixos search options site"),
+        ("manual-nixos-packages",  ["M-S-<slash> M-S-p"],           lazy.spawn("xdg-open 'https://search.nixos.org/packages?channel=unstable'"), ["help"], "Open nixos search packages site"),
     ]))
 
     # custom keyboard layout

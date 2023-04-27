@@ -1,7 +1,7 @@
 add_newline = true
 
 format = """\
-╭$directory$git_branch$fill$nix_shell$python
+╭$directory$git_branch$fill$nix_shell$python$shell
 ╰$character\
 """
 
@@ -28,4 +28,11 @@ symbol = ' '
 [python]
 format = ' ⌠ [$symbol $virtualenv]($style) ⌡'
 symbol = ' '
+
+[shell]
+zsh_indicator = ''
+ion_indicator = ' ⌠ [ion]($style) ⌡'
+format = '$indicator'
+disabled = false
+style = 'fg:blue'
 

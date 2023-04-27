@@ -1,11 +1,13 @@
 
-alias ls='ls --color=auto'
+alias ls='exa'
 alias l='ls'
 alias sl='ls'
 alias s='ls'
 
 alias ll='ls -lh'
 alias lla='ls -lah'
+
+alias tree='exa --tree'
 
 alias info='info --vi-keys'
 

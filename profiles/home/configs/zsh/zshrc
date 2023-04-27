@@ -53,6 +53,8 @@ MODULES=(
   "direnv"
 
   "screencast"
+
+  "radare.aliases"
 )
 
 for module in ${MODULES[@]}; do
