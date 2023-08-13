@@ -105,6 +105,10 @@ def load_screens():
             Screen(top=top_bar(), x=0, y=0, width=2560, height=1080),
         ]
 
+    active_setup = [
+        Screen(top=top_bar(), x=0, y=0, width=1920, height=1080),
+    ]
+
     return active_setup
 
 

@@ -15,7 +15,7 @@ Window controls will be all wrong without it
 
 /* Modify these to change relative widths or default height */
 #navigator-toolbox{
-  --uc-navigationbar-width: 250px;
+  --uc-navigationbar-width: 300px;
   --uc-toolbar-height: 40px;
   --uc-urlbar-min-width: 50vw; /* minimum width for opened urlbar */
 }
@@ -105,6 +105,12 @@ Window controls will be all wrong without it
 
 /* 1px margin on touch density causes tabs to be too high */
 .tab-close-button{ margin-top: 0 !important }
+
+#urlbar-container {
+  position: absolute !important;
+  min-width: 0 !important;
+  width: var(--uc-navigationbar-width,0) !important;
+}
 
 #urlbar {
     z-index: -100 !important;

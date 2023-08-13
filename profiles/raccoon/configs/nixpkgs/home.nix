@@ -3,6 +3,7 @@
 {
 
   imports = [
+    ./hyprland.nix
     ./firefox.nix
     ./vscodium.nix
     ./emacs.nix
@@ -64,6 +65,8 @@
     starship
     direnv
     nix-direnv
+    pandoc
+    texlive.combined.scheme-full
     # dtrx
     avfs
     zip
@@ -71,6 +74,9 @@
     unzip
     unrar
     exa
+    xdragon
+    poppler_utils
+    btop
 
     # browsers
     qutebrowser
@@ -87,6 +93,7 @@
     mpv
     rofi
     cinnamon.nemo
+    calibre
 
     ## X11
     feh
@@ -107,10 +114,15 @@
     # fonts
     ubuntu_font_family
     source-code-pro
+    babelstone-han
+    noto-fonts-emoji
+    symbola
+    nanum
 
     # dev
     (python39.withPackages (ps: with ps; [
       pip
+      pandocfilters
     ]))
 
     gnumake
@@ -139,20 +151,6 @@
     ]);
   };
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland = {
-      enable = true;
-      hidpi = true;
-    };
-    systemdIntegration = true;
-    nvidiaPatches = true;
-    extraConfig = ''
-      source = ${config.xdg.configHome}/hypr/custom.conf
-    '';
-  };
-  xdg.configFile."hypr/custom.conf".source = ../hyprland/hyprland.conf;
-
   services.picom = {
     enable = true;
     vSync = true;
@@ -168,6 +166,10 @@
   services.unclutter = {
     enable = true;
     timeout = 10;
+  };
+
+  services.dunst = {
+    enable = true;
   };
 
   services.xcape = {
@@ -205,6 +207,7 @@
     waybar.source = ../waybar;
     eww.source = ../eww;
     radare2.source = ../radare2;
+    btop.source = ../btop;
   };
 
   xdg.dataFile.fonts.source = ../../resources/fonts;

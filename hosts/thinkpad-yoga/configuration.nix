@@ -9,5 +9,5 @@
     ];
 
   system.stateVersion = "22.11";
-  networking.hostName = "home-pc";
+  networking.hostName = "thinkpad-yoga";
 }

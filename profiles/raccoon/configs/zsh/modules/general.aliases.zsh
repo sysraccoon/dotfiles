@@ -24,6 +24,8 @@ alias me='chmod +x'
 alias co='curl -O'
 alias r='ranger-zoxide'
 
+alias htop='btop'
+
 alias zsh-up='reset && source ~/.zshrc'
 alias psgrep='ps aux | grep'
 
@@ -36,8 +38,7 @@ fi
 
 if [ $+commands[zoxide] -eq 1 ]; then
   eval "$(zoxide init zsh)";
-  alias cd='z';
-  alias cdd='cd $(zoxide query -l | fzf)';
+  alias cdd='zi';
 fi
 
 if [ $+commands[bat] -eq 1 ]; then
