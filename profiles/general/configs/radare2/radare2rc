@@ -1,1 +1,1 @@
-e asm.syntax=att;
+e asm.syntax=intel;
