@@ -34,6 +34,7 @@
     cinnamon.nemo
     calibre
     qutebrowser
+    tor-browser-bundle-bin
 
     # dev/re
     jetbrains.pycharm-community

@@ -11,6 +11,7 @@
   networking.firewall.allowedUDPPorts = [];
 
   # Disable IPv6
-  networking.enableIPv6 = false;
-  boot.kernelParams = ["ipv6.disable=1"];
+  # networking.enableIPv6 = false;
+  # boot.kernelParams = ["ipv6.disable=1"];
+  networking.enableIPv6 = true;
 }
