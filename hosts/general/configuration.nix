@@ -10,5 +10,6 @@
       ./packages.nix
       ./network.nix
       ./user.nix
+      ./virtualization.nix
     ];
 }

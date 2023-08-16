@@ -1,0 +1,6 @@
+@theme "nord.rasi"
+
+listview {
+    lines: 0;
+    margin: 0px;
+}

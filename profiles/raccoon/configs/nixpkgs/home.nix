@@ -3,6 +3,7 @@
 {
 
   imports = [
+    ./screencast.nix
     ./hyprland.nix
     ./firefox.nix
     ./vscodium.nix
@@ -62,9 +63,11 @@
     jq
     bashmount
     nix-index
+    nix-template
     starship
     direnv
     nix-direnv
+    nix-direnv-flakes
     pandoc
     texlive.combined.scheme-full
     # dtrx
@@ -77,6 +80,12 @@
     xdragon
     poppler_utils
     btop
+    file
+    bat
+    translate-shell
+    du-dust
+    vagrant
+    qemu
 
     # browsers
     qutebrowser
@@ -127,12 +136,17 @@
 
     gnumake
     mitmproxy
+    gdb
 
     jetbrains.idea-community
 
+    ghidra
     radare2
+    pwntools
+    hyx
     jadx
     imhex
+    unicorn
 
     nodejs
     nil
@@ -141,6 +155,11 @@
 
 
   xsession.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
   programs.neovim = {
     enable = true;
@@ -154,7 +173,13 @@
   services.picom = {
     enable = true;
     vSync = true;
-    backend = "glx";
+    backend = "xr_glx_hybrid";
+    settings = {
+      glx-no-stencil = true;
+      glx-no-rebind-pixmap = true;
+      unredir-if-possible = true;
+      xrender-sync-fence = true;
+    };
   };
 
   services.random-background = {

@@ -1,44 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  # Basic QEMU-KVM setup
-  boot.kernelModules = [
-    "kvm-amd"
-    "vfio-pci"
-  ];
+  virtualisation.lxd.enable = true;
 
-  boot.blacklistedKernelModules = [
-    "nouveau"
-  ];
+  users.users.raccoon = {
+    extraGroups = [ "lxd" "qemu-libvirtd" "libvirtd" ];
+  };
+
+  boot.extraModprobeConfig = "options kvm_intel nested=1";
+  boot.kernelModules = [ "kvm-intel" ];
 
   virtualisation.libvirtd.enable = true;
-
-  users.users.raccoon.extraGroups = [
-    "libvirtd"
-  ];
-
-  programs.dconf.enable = true;
-  environment.systemPackages = with pkgs; [
-    qemu
-    qemu_kvm
-    virt-manager
-  ];
-
-  # Basic VirtualBox setup
-
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-  users.extraGroups.vboxusers.members = [ "raccoon" ];
-
-  # Networking
-
-  networking.dhcpcd.denyInterfaces = [
-    "br0@*"
-  ];
-  networking.interfaces.br0.useDHCP = false;
-  networking.bridges = {
-    "br0" = {
-      interfaces = [ "enp5s0" ];
-    };
-  };
 }

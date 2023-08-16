@@ -42,7 +42,7 @@ if [ $+commands[zoxide] -eq 1 ]; then
 fi
 
 if [ $+commands[bat] -eq 1 ]; then
-  alias cat='bat';
+  alias cat='bat --plain';
 fi
 
 alias sudo='sudo ' # autocompletion hack
