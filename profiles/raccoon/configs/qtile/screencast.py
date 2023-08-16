@@ -22,7 +22,6 @@ def screencast_tweaks():
         kitty_font = str(KITTY_DEFAULT_FONT_SIZE)
 
     subprocess.Popen(["kitty-global-command", "set-font", kitty_font])
-    # subprocess.Popen(["kitty-global-command", "env", f"SCREENCAST_MODE={os.getenv('SCREENCAST_MODE') or '0'}"])
 
 
 @hook.subscribe.client_managed

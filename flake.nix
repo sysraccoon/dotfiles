@@ -18,6 +18,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nh = {
+      url = "github:viperML/nh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # templates
     templates.url = "path:./templates";
   };
@@ -30,6 +35,7 @@
     nur,
     nix-doom-emacs,
     hyprland,
+    nh,
     templates,
     ...
   }:
@@ -57,6 +63,14 @@
           modules = [
             hyprland.nixosModules.default
             base-config-path
+            nh.nixosModules.default
+            {
+              nh = {
+                enable = true;
+                clean.enable = true;
+                clean.extraArgs = "--keep-since 4d --keep 3";
+              };
+            }
           ];
           specialArgs = {
             inherit pkgs pkgs-stable;
@@ -67,19 +81,23 @@
       thinkpad-yoga = generate-nixos-config { base-config-path = ./hosts/thinkpad-yoga/configuration.nix; };
     };
 
-    homeConfigurations = {
-      # use this profile for personal projects, web surfing etc
-      raccoon = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          nix-doom-emacs.hmModule
-          hyprland.homeManagerModules.default
-          ./profiles/raccoon/configs/nixpkgs/home.nix
-        ];
-        extraSpecialArgs = {
-          inherit pkgs pkgs-stable pkgs-nur;
+    homeConfigurations = 
+    let
+      generate-home-config = { base-config-path, ... }:
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            nix-doom-emacs.hmModule
+            hyprland.homeManagerModules.default
+            ./profiles/raccoon/configs/nixpkgs/home.nix
+          ];
+          extraSpecialArgs = {
+            inherit pkgs pkgs-stable pkgs-nur;
+          };
         };
-      };
+    in {
+      raccoon = generate-home-config { base-config-path = ./profiles/raccoon/configs/nixpkgs/home.nix; };
+      gopher = generate-home-config { base-config-path = ./profiles/gopher/configs/nixpkgs/home.nix; };
     };
 
     templates = templates.templates;
