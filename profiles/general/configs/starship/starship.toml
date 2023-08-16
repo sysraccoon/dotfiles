@@ -1,9 +1,13 @@
 add_newline = true
 
 format = """\
-╭$directory$git_branch$fill$nix_shell$python$shell
+╭$username$directory$git_branch$fill$nix_shell$python$shell
 ╰$character\
 """
+
+[username]
+format = '─⌠ [$user]($style) ⌡'
+show_always = true
 
 [character]
 format = '$symbol'
