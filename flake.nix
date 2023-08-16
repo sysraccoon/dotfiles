@@ -89,7 +89,7 @@
           modules = [
             nix-doom-emacs.hmModule
             hyprland.homeManagerModules.default
-            ./profiles/raccoon/configs/nixpkgs/home.nix
+            base-config-path
           ];
           extraSpecialArgs = {
             inherit pkgs pkgs-stable pkgs-nur;
