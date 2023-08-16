@@ -18,11 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nh = {
-      url = "github:viperML/nh";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # templates
     templates.url = "path:./templates";
   };
@@ -35,7 +30,6 @@
     nur,
     nix-doom-emacs,
     hyprland,
-    nh,
     templates,
     ...
   }:
@@ -63,14 +57,6 @@
           modules = [
             hyprland.nixosModules.default
             base-config-path
-            nh.nixosModules.default
-            {
-              nh = {
-                enable = true;
-                clean.enable = true;
-                clean.extraArgs = "--keep-since 4d --keep 3";
-              };
-            }
           ];
           specialArgs = {
             inherit pkgs pkgs-stable;
