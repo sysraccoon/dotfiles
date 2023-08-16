@@ -19,6 +19,9 @@
   home.packages = with pkgs; [
     # cli
     xdragon
+    vagrant
+    qemu
+    texlive.combined.scheme-full
 
     ## general
     zathura

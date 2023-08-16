@@ -53,7 +53,6 @@
     nix-direnv
     nix-direnv-flakes
     pandoc
-    texlive.combined.scheme-full
     # dtrx
     avfs
     zip
@@ -67,8 +66,6 @@
     bat
     translate-shell
     du-dust
-    vagrant
-    qemu
 
     # dev
     (python39.withPackages (ps: with ps; [
