@@ -7,7 +7,8 @@
 # }
 
 export DOTFILES_DIR="$HOME/dotfiles"
-export ZSH_CONFIG_DIR="$HOME/dotfiles/profiles/raccoon/configs/zsh"
+export ZSH_CONFIG_DIR="$HOME/dotfiles/profiles/general/configs/zsh"
+
 
 MODULES=(
   "nix"
