@@ -53,7 +53,7 @@
     nix-direnv
     nix-direnv-flakes
     pandoc
-    # dtrx
+    dtrx
     avfs
     zip
     fd
@@ -66,11 +66,13 @@
     bat
     translate-shell
     du-dust
+    parallel
 
     # dev
     (python39.withPackages (ps: with ps; [
       pip
     ]))
+    openjdk17
 
     gnumake
     mitmproxy
