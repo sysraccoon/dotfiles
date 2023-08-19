@@ -2,7 +2,7 @@
 
 {
   programs.doom-emacs = {
-    enable = true;
+    enable = false;
     doomPrivateDir = ../doom-emacs;
   };
 }
