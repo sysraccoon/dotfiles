@@ -19,9 +19,14 @@
   home.packages = with pkgs; [
     # cli
     xdragon
+    texlive.combined.scheme-full
+    ibus
+
+    # VM
     vagrant
     qemu
-    texlive.combined.scheme-full
+    virt-manager
+    wineWowPackages.stable
 
     ## general
     zathura
@@ -35,6 +40,8 @@
     calibre
     qutebrowser
     tor-browser-bundle-bin
+    rtorrent
+    gnome-solanum
 
     # dev/re
     jetbrains.pycharm-community
@@ -61,14 +68,6 @@
     alsa-tools
     alsa-utils
     pamixer
-
-    # fonts
-    ubuntu_font_family
-    source-code-pro
-    babelstone-han
-    noto-fonts-emoji
-    symbola
-    nanum
   ];
 
   xsession.enable = true;
