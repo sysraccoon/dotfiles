@@ -8,6 +8,7 @@
     ./firefox.nix
     ./vscodium.nix
     ./emacs.nix
+    ./gnome.nix
   ];
 
   home.stateVersion = "22.11";
