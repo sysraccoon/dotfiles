@@ -5,7 +5,11 @@
   time.timeZone = "Europe/Minsk";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_GB.UTF-8";
+  i18n.extraLocaleSettings = {
+    LANGUAGE = "en_GB.UTF-8";
+    LC_ALL = "en_GB.UTF-8";
+  };
 
   console.useXkbConfig = true;
 
@@ -26,6 +30,12 @@
       ttf_bitstream_vera
       baekmuk-ttf
       nanum
+      hack-font
+      ubuntu_font_family
+      source-code-pro
+      babelstone-han
+      noto-fonts-emoji
+      symbola
     ];
     fontconfig.enable = true;
   };

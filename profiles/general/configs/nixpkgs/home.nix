@@ -67,9 +67,14 @@
     translate-shell
     du-dust
     parallel
+    gettext
+    j2cli
+    strace
+    pciutils
+    libinput
 
     # dev
-    (python39.withPackages (ps: with ps; [
+    (python310.withPackages (ps: with ps; [
       pip
     ]))
     openjdk17
