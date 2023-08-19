@@ -30,10 +30,22 @@
   hardware.enableRedistributableFirmware = true;
 
   # Intel GPU Driver
-  services.xserver.videoDrivers = [ "intel" ];
-  services.xserver.deviceSection = ''
-    Option "DRI" "2"
-    Option "TearFree" "true"
-  '';
-  hardware.opengl.enable = true;
+  services.xserver = {
+    videoDrivers = [ "intel" ];
+    deviceSection = ''
+      Option "DRI" "3"
+      Option "TearFree" "true"
+    '';
+  };
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    extraPackages = with pkgs; [
+      intel-compute-runtime
+      intel-media-driver
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
 }
