@@ -11,5 +11,6 @@
       ./network.nix
       ./user.nix
       ./virtualization.nix
+      ./gaming.nix
     ];
 }
