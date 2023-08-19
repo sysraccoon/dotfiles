@@ -4,7 +4,6 @@
 
   imports = [
     ../../../general/configs/nixpkgs/home.nix
-    ./screencast.nix
     ./hyprland.nix
     ./firefox.nix
     ./vscodium.nix
