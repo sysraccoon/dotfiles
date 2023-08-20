@@ -121,7 +121,6 @@
     };
   };
 
-
   xdg.dataFile.fonts.source = ../../resources/fonts;
 
   xdg.configFile = {
@@ -134,4 +133,6 @@
     waybar.source = ../waybar;
     eww.source = ../eww;
   };
+
+  fonts.fontconfig.enable = true;
 }
