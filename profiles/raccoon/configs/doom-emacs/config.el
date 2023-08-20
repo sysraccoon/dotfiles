@@ -90,3 +90,17 @@
     (progn
       (browse-url (parse-url url))
       (message "opening repo %s" url))))
+
+(map! :after magit :map magit-mode-map
+      "M-o" #'magit-open-repo)
+
+(defun vterm-send-double-esc ()
+  "Send double esc to vterm"
+  (interactive)
+  (progn
+    (vterm-send-escape)
+    (vterm-send-escape)))
+
+(map! :after vterm :map vterm-mode-map
+      "M-ESC M-ESC" #'vterm-send-double-esc
+      "M-c" (lambda () (interactive) (vterm-send "C-c")))
