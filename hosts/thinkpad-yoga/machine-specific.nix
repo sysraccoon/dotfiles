@@ -4,6 +4,7 @@
   boot.kernelModules = [
     "dm-mirror"
     "dm-snapshot"
+    "i915"
   ];
 
   # Bootloader.
@@ -30,6 +31,9 @@
   hardware.enableRedistributableFirmware = true;
 
   # Intel GPU Driver
+  environment.variables = {
+      VDPAU_DRIVER = "va_gl";
+  };
   services.xserver = {
     videoDrivers = [ "intel" ];
     deviceSection = ''
