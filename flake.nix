@@ -12,7 +12,6 @@
       url = "github:nix-community/NUR";
       # inputs.nixpkgs.follows = "nixpkgs";
     }; 
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +27,6 @@
     nixpkgs-stable,
     home-manager,
     nur,
-    nix-doom-emacs,
     hyprland,
     templates,
     ...
@@ -73,7 +71,6 @@
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            nix-doom-emacs.hmModule
             hyprland.homeManagerModules.default
             base-config-path
           ];
