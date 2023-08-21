@@ -16,6 +16,7 @@
     imagemagick
     zstd
 
+
     # Module dependencies
     (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
     editorconfig-core-c
@@ -24,6 +25,10 @@
     beancount
     fava
 
+    # org-roam
+    graphviz
+
+    ## Fonts
     emacs-all-the-icons-fonts
   ];
 }

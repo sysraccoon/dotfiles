@@ -102,5 +102,54 @@
     (vterm-send-escape)))
 
 (map! :after vterm :map vterm-mode-map
-      "M-ESC M-ESC" #'vterm-send-double-esc
+      ;; "M-ESC M-ESC" #'vterm-send-double-esc
       "M-c" (lambda () (interactive) (vterm-send "C-c")))
+
+(use-package! org-appear
+        :after org
+        :hook (org-mode . org-appear-mode)
+        :config
+        (progn
+          (setq org-appear-autoemphasis t)
+          (setq org-appear-autolinks t)))
+
+(use-package! org-fragtog
+  :after org
+  :hook (org-mode . org-fragtog-mode))
+
+(after! org
+  (progn
+    (setq org-link-descriptive t)
+    (setq org-hide-emphasis-markers t)
+
+    ;; (make-directory "~/store/notes" :parents)
+    ;; (setq org-roam-directory (file-truename "~/store/notes"))
+    ;; (org-roam-db-autosync-mode)
+    ))
+
+(use-package! org-roam
+  :after org
+  :custom
+  (org-roam-directory (file-truename "~/store/notes"))
+  :config
+  (org-roam-db-autosync-mode))
+
+(map! "S-C-c" #'clipboard-kill-ring-save)
+(map! "S-C-v" #'clipboard-yank)
+
+(setq avy-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n ?s))
+
+(use-package! websocket
+    :after org-roam)
+
+(use-package! org-roam-ui
+    :after org-roam ;; or :after org
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
