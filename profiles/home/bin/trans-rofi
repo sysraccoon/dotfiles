@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-set -eu
-
-rofi -show trans -modes "trans:rofi-translate-mod"
-

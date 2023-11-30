@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-22.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-23.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,7 +12,6 @@
       url = "github:nix-community/NUR";
       # inputs.nixpkgs.follows = "nixpkgs";
     }; 
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +27,6 @@
     nixpkgs-stable,
     home-manager,
     nur,
-    nix-doom-emacs,
     hyprland,
     templates,
     ...
@@ -49,33 +47,40 @@
     };
   in
   {
-    nixosConfigurations = {
-      # home pc host
-      home-pc = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [
-          hyprland.nixosModules.default
-          ./hosts/home-pc/configuration.nix
-        ];
-        specialArgs = {
-          inherit pkgs pkgs-stable;
+    nixosConfigurations = 
+    let
+      generate-nixos-config = { base-config-path, ... }:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            hyprland.nixosModules.default
+            base-config-path
+          ];
+          specialArgs = {
+            inherit pkgs pkgs-stable;
+          };
         };
-      };
+    in {
+      home-pc = generate-nixos-config { base-config-path = ./hosts/home-pc/configuration.nix; };
+      thinkpad-yoga = generate-nixos-config { base-config-path = ./hosts/thinkpad-yoga/configuration.nix; };
     };
 
-    homeConfigurations = {
-      # use this profile for personal projects, web surfing etc
-      home = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          nix-doom-emacs.hmModule
-          hyprland.homeManagerModules.default
-          ./profiles/home/configs/nixpkgs/home.nix
-        ];
-        extraSpecialArgs = {
-          inherit pkgs pkgs-stable pkgs-nur;
+    homeConfigurations = 
+    let
+      generate-home-config = { base-config-path, ... }:
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            hyprland.homeManagerModules.default
+            base-config-path
+          ];
+          extraSpecialArgs = {
+            inherit pkgs pkgs-stable pkgs-nur;
+          };
         };
-      };
+    in {
+      raccoon = generate-home-config { base-config-path = ./profiles/raccoon/configs/nixpkgs/home.nix; };
+      gopher = generate-home-config { base-config-path = ./profiles/gopher/configs/nixpkgs/home.nix; };
     };
 
     templates = templates.templates;

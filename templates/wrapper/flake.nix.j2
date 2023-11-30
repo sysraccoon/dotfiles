@@ -1,0 +1,35 @@
+{
+  description = "Wrapped {{ env("APP_NAME") }} program";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+  };
+
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  }:
+  let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs { inherit system; };
+  in
+  {
+    packages.${system} = {
+      {{ env("APP_NAME") }} = pkgs.stdenv.mkDerivation rec {
+        name = "{{ env("APP_NAME") }}";
+        buildInputs = with pkgs; [ autoPatchelfHook makeWrapper glib ];
+        src = ./.;
+        buildPhase = ":";
+        installPhase = ''
+          mkdir -p $out/bin
+          mv {{ env("APP_NAME") }} $out/bin/{{ env("APP_NAME") }}
+        '';
+        postFixup = ''
+          wrapProgram $out/bin/{{ env("APP_NAME") }}
+        '';
+      };
+      default = self.packages.${system}.{{ env("APP_NAME") }};
+    };
+  };
+}

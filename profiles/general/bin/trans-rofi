@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -eu
+
+rofi \
+    -config $XDG_CONFIG_HOME/rofi/prompt.rasi \
+    -show trans \
+    -modes "trans:rofi-translate-mod"
+

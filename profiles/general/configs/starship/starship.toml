@@ -1,0 +1,42 @@
+add_newline = true
+
+format = """\
+╭$username$directory$git_branch$fill$nix_shell$python$shell
+╰$character\
+"""
+
+[username]
+format = '─⌠ [$user]($style) ⌡'
+show_always = true
+
+[character]
+format = '$symbol'
+success_symbol = '─% '
+error_symbol = '─[%](red) '
+
+[directory]
+format = '─⌠ [$read_only]($read_only_style)[$path]($style) ⌡'
+read_only = ' '
+
+[fill]
+symbol = '─'
+
+[git_branch]
+format = '─⌠ [$symbol$branch]($style) ⌡'
+symbol = ' '
+
+[nix_shell]
+format = ' ⌠ [$symbol$state\($name\)]($style) ⌡'
+symbol = ' '
+
+[python]
+format = ' ⌠ [$symbol $virtualenv]($style) ⌡'
+symbol = ' '
+
+[shell]
+zsh_indicator = ''
+ion_indicator = ' ⌠ [ion]($style) ⌡'
+format = '$indicator'
+disabled = false
+style = 'fg:blue'
+
