@@ -8,7 +8,7 @@
     layout = "us,ru";
     variant = "dvorak,";
     options = [
-      "grp:alt_shift_toggle"
+      "grp:shifts_toggle"
       "ctrl:nocaps"
       "altwin:swap_lalt_lwin"
       "terminate:ctrl_alt_bksp"

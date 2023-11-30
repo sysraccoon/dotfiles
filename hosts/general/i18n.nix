@@ -16,7 +16,7 @@
   services.xserver = {
     layout = "us,ru";
     xkbVariant = "dvorak,";
-    xkbOptions = "grp:alt_shift_toggle,ctrl:nocaps,altwin:swap_lalt_lwin,terminate:ctrl_alt_bksp";
+    xkbOptions = "grp:shifts_toggle,ctrl:nocaps,altwin:swap_lalt_lwin,terminate:ctrl_alt_bksp";
   };
 
   fonts = {
