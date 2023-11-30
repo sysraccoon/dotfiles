@@ -159,12 +159,6 @@
     backend = "glx";
   };
 
-  services.random-background = {
-    enable = true;
-    imageDirectory = builtins.toString ../../resources/wallpapers;
-    display = "fill";
-  };
-
   services.unclutter = {
     enable = true;
     timeout = 10;
@@ -213,4 +207,5 @@
   home.file.".zshrc".source = ../zsh/zshrc;
   home.file.".profile".source = ../shell/profile;
   home.file."bin".source = ../../bin;
+  home.file.".background-image".source = ../../resources/wallpapers/default.jpg;
 }
