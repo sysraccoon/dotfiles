@@ -13,14 +13,14 @@
 
   console.useXkbConfig = true;
 
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us,ru";
-    xkbVariant = "dvorak,";
-    xkbOptions = "grp:shifts_toggle,ctrl:nocaps,altwin:swap_lalt_lwin,terminate:ctrl_alt_bksp";
+    variant = "dvorak,";
+    options = "grp:shifts_toggle,ctrl:nocaps,altwin:swap_lalt_lwin,terminate:ctrl_alt_bksp";
   };
 
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       (nerdfonts.override { fonts = [ "Ubuntu" ]; })
       carlito
       dejavu_fonts

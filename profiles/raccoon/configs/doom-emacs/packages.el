@@ -13,6 +13,8 @@
 (package! org-roam-ui)
 (package! org-appear)
 (package! org-fragtog)
+(package! org-ql)
+(package! dashboard)
 (package! websocket)
 
 ;; To install a package directly from a remote git repo, you must specify a

@@ -7,8 +7,12 @@
 
   # firewall configuration
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [];
-  networking.firewall.allowedUDPPorts = [];
+  networking.firewall.allowedTCPPorts = [
+    8384 22000 # syncthing
+  ];
+  networking.firewall.allowedUDPPorts = [
+    22000 21027 # syncthing
+  ];
 
   # Disable IPv6
   # networking.enableIPv6 = false;

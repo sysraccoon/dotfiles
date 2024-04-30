@@ -8,7 +8,7 @@
     ./firefox.nix
     ./vscodium.nix
     ./emacs.nix
-    ./gnome.nix
+    ./plasma.nix
   ];
 
   home.stateVersion = "22.11";
@@ -21,6 +21,8 @@
     xdragon
     texlive.combined.scheme-full
     ibus
+    ffmpeg
+    openvpn
 
     # VM
     vagrant
@@ -35,18 +37,94 @@
     libreoffice
     obs-studio
     mpv
-    rofi
+    rofi-wayland
     cinnamon.nemo
     calibre
     qutebrowser
     tor-browser-bundle-bin
     rtorrent
     gnome-solanum
+    qbittorrent
+    pavucontrol
+    emote
+    gparted
+
+    # knowledge management
+    obsidian
+    logseq
+    zotero
 
     # dev/re
     jetbrains.pycharm-community
     jetbrains.idea-community
     ghidra
+    frida-tools
+
+    # pentesting
+    thc-hydra
+    sherlock
+    nmap
+    wpscan
+    wireshark
+    ettercap
+    snort
+    sqlmap
+    wifite2
+    metasploit
+    cewl
+    aircrack-ng
+    crunch
+    netcat
+    hashcat
+    gobuster
+    dirb
+    burpsuite
+    hping
+    nikto
+    theharvester
+    responder
+    john
+    netdiscover
+    tcpdump
+    steghide
+    macchanger
+    amass
+    yersinia
+    whatweb
+    dnsenum
+    bettercap
+    airgeddon
+    subfinder
+    ffuf
+    dnsrecon
+    crackmapexec
+    wapiti
+    parsero
+    nuclei
+    lynis
+    driftnet
+    binwalk
+    yara
+    wafw00f
+    socat
+    masscan
+    fping
+    foremost
+    fierce
+    fcrackzip
+    enum4linux-ng
+    dsniff
+    cryptsetup
+    chisel
+    trufflehog
+    kismet
+    httrack
+    havoc
+    evil-winrm
+    trivy
+    social-engineer-toolkit
+    naabu
+    medusa
 
     # terminals
     kitty
@@ -56,13 +134,15 @@
     ## X11
     feh
     flameshot
+    peek
     xsecurelock
 
     ## wayland
-    eww-wayland
+    eww
     wofi
     cliphist
     swaybg
+    wlr-randr
 
     # audio
     alsa-tools
@@ -98,8 +178,8 @@
     timeout = 200;
     mapExpression = {
       "Control_L" = "Escape";
-      "Shift_L" = "Super_L|bracketleft";
-      "Shift_R" = "Super_L|bracketright";
+      # "Shift_L" = "Super_L|bracketleft";
+      # "Shift_R" = "Super_L|bracketright";
     };
   };
 
@@ -128,13 +208,5 @@
     eww.source = ../eww;
   };
 
-  fonts.fontconfig.enable = true;
-
-  xdg.dataFile.fonts.source = ../../resources/fonts;
-
-  home.file.".gitconfig".source  = ../git/gitconfig;
-  home.file.".zshrc".source = ../zsh/zshrc;
-  home.file.".profile".source = ../shell/profile;
-  home.file."bin".source = ../../bin;
   home.file.".background-image".source = ../../resources/wallpapers/default.jpg;
 }

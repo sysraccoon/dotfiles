@@ -127,6 +127,17 @@
     ;; (org-roam-db-autosync-mode)
     ))
 
+(use-package! org-agenda
+  :ensure t
+  :init
+  (setq
+   org-agenda-files (list "~/store/notes/daily")
+   org-agenda-custom-commands
+        '(("d" "Daily schedule"
+           ((agenda ""
+                    ((org-agenda-span 'day)
+                    (org-agenda-use-time-grid nil))))))))
+
 (use-package! org-roam
   :after org
   :custom
@@ -153,3 +164,18 @@
           org-roam-ui-follow t
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
+
+(use-package! dashboard
+  :ensure t
+  :init
+  (setq dashboard-banner-logo-title "Welcome to Doom Emacs"
+        dashboard-startup-banner nil
+        dashboard-set-init-info nil
+        dashboard-set-footer nil
+        dashboard-center-content t
+        dashboard-agenda-release-buffers t
+        dashboard-week-agenda t
+        dashboard-items '((projects . 5)
+                          (agenda . 10)))
+  :config
+  (dashboard-setup-startup-hook))

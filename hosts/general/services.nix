@@ -4,10 +4,11 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # services.xserver.displayManager = {
-  #   sddm.enable = true;
-  #   defaultSession = "none+qtile";
-  # };
+  services.xserver.displayManager = {
+    gdm.enable = true;
+    # sddm.enable = true;
+  };
+  services.displayManager.defaultSession = "hyprland";
 
   services.xserver.windowManager.awesome = {
     enable = true;
@@ -17,15 +18,30 @@
   };
 
   services.xserver.windowManager.qtile.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager = {
+    xterm.enable = false;
+    xfce.enable = true;
+  };
+  services.dbus.packages = [ pkgs.libsForQt5.kglobalaccel ];
+  environment.systemPackages = with pkgs; [
+    nordic
+    zafiro-icons
+    plasma5Packages.bismuth
 
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+    waybar
+    hyprpaper
+
+  ];
+
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
   programs.dconf.enable = true;
 
   programs.hyprland.enable = true;
 
-  services.printing.enable = true;
+  # enable cups and open 631 tcp port
+  # services.printing.enable = true;
 
   services.journald.extraConfig = "SystemMaxUse=1G";
 
@@ -37,5 +53,12 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+  };
+
+  services.syncthing = {
+    enable = true;
+    user = "raccoon";
+    configDir = "/home/raccoon/.config/syncthing";
+    dataDir = "/home/raccoon/.config/syncthing/db";
   };
 }

@@ -7,8 +7,6 @@
     fuse
     ntfs3g
     vim
-
-    libsForQt5.bismuth
   ];
 
   programs.zsh.enable = true;

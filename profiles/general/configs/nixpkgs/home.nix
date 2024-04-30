@@ -59,8 +59,8 @@
     fd
     unzip
     unrar
-    exa
     poppler_utils
+    eza
     btop
     file
     bat
@@ -72,6 +72,8 @@
     strace
     pciutils
     libinput
+    gawk
+    exfatprogs
 
     # dev
     (python310.withPackages (ps: with ps; [

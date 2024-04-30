@@ -20,7 +20,6 @@
     grub.enable = true;
     grub.efiSupport = true;
     grub.configurationLimit = 10;
-    grub.version = 2;
     grub.device = "nodev";
     grub.useOSProber = true;
   };
