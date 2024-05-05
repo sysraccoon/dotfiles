@@ -9,6 +9,7 @@
     ./vscodium.nix
     ./emacs.nix
     ./plasma.nix
+    # ./desktop.nix
   ];
 
   home.stateVersion = "22.11";
@@ -23,12 +24,17 @@
     ibus
     ffmpeg
     openvpn
+    fping
+    nmap
+    psmisc
 
     # VM
     vagrant
     qemu
     virt-manager
     wineWowPackages.stable
+    spice
+    virtio-win
 
     ## general
     zathura
@@ -36,6 +42,7 @@
     tdesktop
     libreoffice
     obs-studio
+    gnome.gnome-sound-recorder
     mpv
     rofi-wayland
     cinnamon.nemo
@@ -48,6 +55,7 @@
     pavucontrol
     emote
     gparted
+    google-chrome
 
     # knowledge management
     obsidian
@@ -59,72 +67,13 @@
     jetbrains.idea-community
     ghidra
     frida-tools
-
-    # pentesting
-    thc-hydra
-    sherlock
-    nmap
-    wpscan
+    android-tools
+    android-studio
+    apktool
+    lldb_18
+    gdbgui
+    iaito
     wireshark
-    ettercap
-    snort
-    sqlmap
-    wifite2
-    metasploit
-    cewl
-    aircrack-ng
-    crunch
-    netcat
-    hashcat
-    gobuster
-    dirb
-    burpsuite
-    hping
-    nikto
-    theharvester
-    responder
-    john
-    netdiscover
-    tcpdump
-    steghide
-    macchanger
-    amass
-    yersinia
-    whatweb
-    dnsenum
-    bettercap
-    airgeddon
-    subfinder
-    ffuf
-    dnsrecon
-    crackmapexec
-    wapiti
-    parsero
-    nuclei
-    lynis
-    driftnet
-    binwalk
-    yara
-    wafw00f
-    socat
-    masscan
-    fping
-    foremost
-    fierce
-    fcrackzip
-    enum4linux-ng
-    dsniff
-    cryptsetup
-    chisel
-    trufflehog
-    kismet
-    httrack
-    havoc
-    evil-winrm
-    trivy
-    social-engineer-toolkit
-    naabu
-    medusa
 
     # terminals
     kitty
@@ -143,12 +92,23 @@
     cliphist
     swaybg
     wlr-randr
+    grim
+    slurp
+    wl-clipboard
+    hyprpaper
+    hyprlock
+    wlogout
 
     # audio
     alsa-tools
     alsa-utils
     pamixer
   ];
+
+  home.sessionVariables = {
+    GDK_BACKEND = "wayland";
+    MOZ_ENABLE_WAYLAND = 1;
+  };
 
   xsession.enable = true;
 
@@ -206,7 +166,12 @@
     kitty.source = ../kitty;
     waybar.source = ../waybar;
     eww.source = ../eww;
+    anyrun.source = ../anyrun;
+    wlogout.source = ../wlogout;
+
+    "hypr/hyprpaper.conf".source = ../hypr/hyprpaper.conf;
+    "hypr/hyprlock.conf".source = ../hypr/hyprlock.conf;
   };
 
-  home.file.".background-image".source = ../../resources/wallpapers/default.jpg;
+  home.file."wallpaper.jpg".source = ../../resources/wallpapers/default.jpg;
 }

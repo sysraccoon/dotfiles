@@ -16,7 +16,7 @@ let
       "dom.textMetrics.fontBoundingBox.enabled" = true;
       "browser.tabs.tabmanager.enabled" = false;
       "browser.download.autohideButton" = false;
-      "layout.css.devPixelsPerPx" = 1.0;
+      "layout.css.devPixelsPerPx" = -1.0;
     } // settings;
     userChrome = builtins.readFile ../firefox/chrome/userChrome.css;
     extensions = with pkgs-nur.repos.rycee.firefox-addons; [

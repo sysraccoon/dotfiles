@@ -12,22 +12,30 @@
       url = "github:nix-community/NUR";
       # inputs.nixpkgs.follows = "nixpkgs";
     }; 
+
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hy3 = {
+      url = "github:outfoxxed/hy3"; # where {version} is the hyprland release version
+      # or "github:outfoxxed/hy3" to follow the development branch.
+      # (you may encounter issues if you dont do the same for hyprland)
+      inputs.hyprland.follows = "hyprland";
     };
 
     # templates
     templates.url = "path:./templates";
   };
 
-  outputs = {
+  outputs = inputs @ {
     self,
     nixpkgs,
     nixpkgs-stable,
     home-manager,
     nur,
     hyprland,
+    hy3,
     templates,
     ...
   }:
@@ -57,7 +65,7 @@
             base-config-path
           ];
           specialArgs = {
-            inherit pkgs pkgs-stable;
+            inherit pkgs pkgs-stable inputs;
           };
         };
     in {
@@ -75,10 +83,10 @@
             base-config-path
           ];
           extraSpecialArgs = {
-            inherit pkgs pkgs-stable pkgs-nur;
+            inherit pkgs pkgs-stable pkgs-nur inputs system;
           };
         };
-    in {
+    in rec {
       raccoon = generate-home-config { base-config-path = ./profiles/raccoon/configs/nixpkgs/home.nix; };
       gopher = generate-home-config { base-config-path = ./profiles/gopher/configs/nixpkgs/home.nix; };
     };

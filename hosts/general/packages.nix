@@ -10,4 +10,5 @@
   ];
 
   programs.zsh.enable = true;
+  programs.wireshark.enable = true;
 }

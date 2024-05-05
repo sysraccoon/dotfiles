@@ -36,6 +36,7 @@
       babelstone-han
       noto-fonts-emoji
       symbola
+      material-symbols
     ];
     fontconfig.enable = true;
   };

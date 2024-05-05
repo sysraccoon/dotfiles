@@ -3,7 +3,7 @@
 {
   users.users.raccoon = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "wireshark" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
       home-manager
@@ -12,6 +12,7 @@
       gh
       zsh
       htop
+      wireshark
     ];
   };
 }

@@ -5,7 +5,8 @@
   services.xserver.enable = true;
 
   services.xserver.displayManager = {
-    gdm.enable = true;
+    sddm.enable = true;
+    sddm.wayland.enable = true;
     # sddm.enable = true;
   };
   services.displayManager.defaultSession = "hyprland";
@@ -18,7 +19,7 @@
   };
 
   services.xserver.windowManager.qtile.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.desktopManager.plasma6.enable = true;
   services.xserver.desktopManager = {
     xterm.enable = false;
     xfce.enable = true;

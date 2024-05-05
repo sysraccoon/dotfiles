@@ -1,11 +1,11 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 20,
+    "height": 30,
     "spacing": 4,
     "modules-left": ["wlr/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "backlight", "keyboard-state", "sway/language", "battery", "battery#bat2", "clock", "tray"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["pulseaudio", "network", "backlight", "keyboard-state", "sway/language", "battery", "battery#bat2", "clock", "tray"],
     "wlr/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -29,6 +29,13 @@
             "locked": "",
             "unlocked": ""
         }
+    },
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "all-outputs": false,
+        "persistent-workspaces": {
+                "*": 5
+            }
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
