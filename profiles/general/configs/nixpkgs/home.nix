@@ -1,4 +1,4 @@
-{ config, pkgs, lib, host-profile, overlays, ... }:
+{ config, pkgs, lib, host-profile, overlays, impurity, ... }:
 
 {
 
@@ -112,15 +112,15 @@
   };
 
   xdg.configFile = {
-    nvim.source = ../nvim;
-    tmux.source = ../tmux;
-    starship.source = ../starship;
-    radare2.source = ../radare2;
-    btop.source = ../btop;
+    nvim.source = impurity.link ../nvim;
+    tmux.source = impurity.link ../tmux;
+    starship.source = impurity.link ../starship;
+    radare2.source = impurity.link ../radare2;
+    btop.source = impurity.link ../btop;
   };
 
-  home.file.".gitconfig".source  = ../git/gitconfig;
-  home.file.".zshrc".source = ../zsh/zshrc;
-  home.file.".profile".source = ../shell/profile;
-  home.file."bin".source = ../../bin;
+  home.file.".gitconfig".source  = impurity.link ../git/gitconfig;
+  home.file.".zshrc".source = impurity.link ../zsh/zshrc;
+  home.file.".profile".source = impurity.link ../shell/profile;
+  home.file."bin".source = impurity.link ../../bin;
 }

@@ -3,20 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-
     nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-23.05";
+    nur.url = "github:nix-community/NUR"; 
+    hyprland.url =  "github:hyprwm/Hyprland?ref=v0.40.0";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nur = {
-      url = "github:nix-community/NUR";
-    }; 
-
-    hyprland = {
-      url = "github:hyprwm/Hyprland?ref=v0.40.0";
     };
 
     hy3 = {
@@ -79,6 +72,11 @@
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
+            {
+              imports = [ ./lib/impurity.nix ];
+              impurity.configRoot = self;
+            }
+            
             hyprland.homeManagerModules.default
             profile-entry
           ];
@@ -86,7 +84,7 @@
             inherit pkgs pkgs-stable pkgs-nur inputs ctx;
           };
         };
-    in {
+    in rec {
       raccoon = generate-home-config {
         profile-entry = ./profiles/raccoon/configs/nixpkgs/home.nix;
         profile-dir-path = ./profiles/raccoon;
@@ -98,6 +96,10 @@
         profile-dir-path = ./profiles/gopher;
         username = "gopher";
         inherit system;
+      };
+
+      raccoon-impure = raccoon.extendModules {
+        modules = [ {impurity.enable = true; } ];
       };
     };
 

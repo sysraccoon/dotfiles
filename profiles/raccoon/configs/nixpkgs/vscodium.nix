@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, impurity, ... }:
 
 {
   programs.vscode = {
@@ -97,6 +97,6 @@
     ];
   };
 
-  xdg.configFile."VSCodium/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink ../vscodium/settings.json;
-  xdg.configFile."VSCodium/User/keybindings.json".source = config.lib.file.mkOutOfStoreSymlink ../vscodium/keybindings.json;
+  xdg.configFile."VSCodium/User/settings.json".source = impurity.link ../vscodium/settings.json;
+  xdg.configFile."VSCodium/User/keybindings.json".source = impurity.link ../vscodium/keybindings.json;
 }

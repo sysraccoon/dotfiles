@@ -1,4 +1,4 @@
-{ config, pkgs, lib, host-profile, overlays, ctx, ... }:
+{ config, pkgs, lib, host-profile, overlays, ctx, impurity, ... }:
 
 {
 
@@ -155,23 +155,24 @@
     };
   };
 
-  xdg.dataFile.fonts.source = ../../resources/fonts;
+  xdg.dataFile.fonts.source = impurity.link ../../resources/fonts;
 
   xdg.configFile = {
-    qtile.source = ../qtile;
-    alacritty.source = ../alacritty;
-    qutebrowser.source = ../qutebrowser;
-    rofi.source = ../rofi;
-    dunst.source = ../dunst;
-    kitty.source = ../kitty;
-    waybar.source = ../waybar;
-    eww.source = ../eww;
-    anyrun.source = ../anyrun;
-    wlogout.source = ../wlogout;
+    qtile.source = impurity.link ../qtile;
+    alacritty.source = impurity.link ../alacritty;
+    qutebrowser.source = impurity.link ../qutebrowser;
+    rofi.source = impurity.link ../rofi;
+    kitty.source = impurity.link ../kitty;
+    waybar.source = impurity.link ../waybar;
+    eww.source = impurity.link ../eww;
+    anyrun.source = impurity.link ../anyrun;
+    wlogout.source = impurity.link ../wlogout;
 
-    "hypr/hyprpaper.conf".source = ../hypr/hyprpaper.conf;
-    "hypr/hyprlock.conf".source = ../hypr/hyprlock.conf;
+    "hypr/hyprpaper.conf".source = impurity.link ../hypr/hyprpaper.conf;
+    "hypr/hyprlock.conf".source = impurity.link ../hypr/hyprlock.conf;
+
+    "dunst/dunstrc".source = impurity.link ../dunst/dunstrc;
   };
 
-  home.file.".background-image".source = ../../resources/wallpapers/default.jpg;
+  home.file.".background-image".source = impurity.link ../../resources/wallpapers/default.jpg;
 }

@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, host-profile, overlays, ctx, ... }:
+{ config, pkgs, inputs, lib, host-profile, overlays, ctx, impurity, ... }:
 
 {
   wayland.windowManager.hyprland = {
@@ -8,9 +8,8 @@
       inputs.hy3.packages.${ctx.system}.default
     ];
 
-    extraConfig = let impureSymlink = config.lib.file.mkOutOfStoreSymlink; in
-    ''
-          source = ${impureSymlink ../hypr/hyprland.conf}
+    extraConfig = ''
+          source = ${impurity.link ../hypr/hyprland.conf}
     '';
   };
 
