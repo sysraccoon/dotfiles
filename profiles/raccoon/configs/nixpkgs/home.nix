@@ -1,4 +1,4 @@
-{ config, pkgs, lib, host-profile, overlays, ... }:
+{ config, pkgs, lib, host-profile, overlays, ctx, ... }:
 
 {
 
@@ -14,8 +14,8 @@
 
   home.stateVersion = "22.11";
 
-  home.username = "raccoon";
-  home.homeDirectory = "/home/raccoon";
+  home.username = ctx.username;
+  home.homeDirectory = "/home/${ctx.username}";
 
   home.packages = with pkgs; [
     # cli
@@ -173,5 +173,5 @@
     "hypr/hyprlock.conf".source = ../hypr/hyprlock.conf;
   };
 
-  home.file."wallpaper.jpg".source = ../../resources/wallpapers/default.jpg;
+  home.file.".background-image".source = ../../resources/wallpapers/default.jpg;
 }

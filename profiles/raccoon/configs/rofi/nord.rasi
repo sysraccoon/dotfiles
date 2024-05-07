@@ -1,46 +1,49 @@
 * {
-    nord0: #2e3440;
-    nord1: #3b4252;
-    nord2: #434c5e;
-    nord3: #4c566a;
-    nord4: #d8dee9;
-    nord5: #e5e9f0;
-    nord6: #eceff4;
-    nord7: #8fbcbb;
-    nord8: #88c0d0;
-    nord9: #81a1c1;
-    nord10: #5e81ac;
-    nord11: #bf616a;
-    nord12: #d08770;
-    nord13: #ebcb8b;
-    nord14: #a3be8c;
-    nord15: #b48ead;
+    color0: #1A1C23;
+    color1: #1C1E26;
+    color2: #232530;
+    color3: #2E303E;
+    color4: #d8dee9;
+    color5: #e5e9f0;
+    color6: #eceff4;
+    color7: #09F7A0;
+    color8: #27D796;
+    color9: #21BFC2;
+    color10: #B877DB;
+    color11: #25B2BC;
+    color12: #E95678;
+    color13: #F09383;
+    color14: #FAB795;
+    color15: #FAC29A;
 
     spacing: 2;
-    background-color: var(nord1);
+    background-color: var(color1);
 
-    background: var(nord1);
-    foreground: var(nord4);
+    background: var(color1);
+    background-alternative: var(color3);
+    foreground: var(color4);
+
+    window-border: var(color3);
 
     normal-background: var(background);
     normal-foreground: var(foreground);
     alternate-normal-background: var(background);
     alternate-normal-foreground: var(foreground);
-    selected-normal-background: var(nord8);
+    selected-normal-background: var(color8);
     selected-normal-foreground: var(background);
 
     active-background: var(background);
-    active-foreground: var(nord10);
+    active-foreground: var(color10);
     alternate-active-background: var(background);
-    alternate-active-foreground: var(nord10);
-    selected-active-background: var(nord10);
+    alternate-active-foreground: var(color10);
+    selected-active-background: var(color10);
     selected-active-foreground: var(background);
 
     urgent-background: var(background);
-    urgent-foreground: var(nord11);
+    urgent-foreground: var(color11);
     alternate-urgent-background: var(background);
-    alternate-urgent-foreground: var(nord11);
-    selected-urgent-background: var(nord11);
+    alternate-urgent-foreground: var(color11);
+    selected-urgent-background: var(color11);
     selected-urgent-foreground: var(background);
 }
 element {
@@ -99,7 +102,9 @@ element-icon {
 }
 window {
     padding: 0;
-    border: 0;
+    border-radius: 8px;
+    border: 2px;
+    border-color: var(window-border);
     background-color: var(background);
 }
 mainbox {
@@ -122,7 +127,7 @@ scrollbar {
     padding: 0;
     handle-width: 14px;
     border: 0;
-    handle-color: var(nord3);
+    handle-color: var(background-alternative);
 }
 button {
     spacing: 0;
@@ -138,12 +143,13 @@ inputbar {
     margin: 7px;
     spacing: 0;
     text-color: var(normal-foreground);
-    background-color: var(nord3);
+    background-color: var(background-alternative);
     children: [ entry ];
+    border-radius: 5px;
 }
 entry {
     spacing: 0;
     cursor: text;
     text-color: var(normal-foreground);
-    background-color: var(nord3);
+    background-color: var(background-alternative);
 }

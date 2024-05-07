@@ -11,9 +11,11 @@ endif
 "{{{ Plugins
 call plug#begin()
 
-Plug 'joshdick/onedark.vim' " main theme
+Plug 'lunarvim/horizon.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " parser generator. Required by neorg
+
+Plug 'norcalli/nvim-colorizer.lua' " color highlighter
 
 Plug 'nvim-lua/plenary.nvim' " required by telescope and neorg
 Plug 'nvim-telescope/telescope.nvim' " fuzzy finder
@@ -86,7 +88,14 @@ set termguicolors
 
 " code highlighting
 syntax on
-colorscheme onedark
+colorscheme horizon
+
+" transparent background
+highlight Normal guibg=none
+highlight NonText guibg=none
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+highlight TelescopeNormal guibg=none
 
 " use system clipboard
 set clipboard+=unnamedplus
@@ -134,4 +143,8 @@ let g:deoplete#enable_at_startup = 1
 
 "{{{ Suda.vim Configuration
 call s:cabbrev('W!', 'SudaWrite')
+"}}}
+
+"{{{ Colorizer Configuration
+lua require 'colorizer'.setup({'*'}, { names=false; RRGGBBAA=true; rgb_fn=true; })
 "}}}

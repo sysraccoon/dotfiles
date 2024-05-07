@@ -18,6 +18,12 @@
         version = "2.3.0";
         sha256 = "sha256-8GGv4L4poTYjdkDwZxgNYajuEmIB5XF1mhJMxO2Ho84=";
       }
+      {
+        name = "horizon-theme-vscode";
+        publisher = "jolaleye";
+        version = "2.0.2";
+        sha256 = "sha256-bPpcPudftgDXNm60HL1d6vkzDEmi0CqS7Mj2b2CqCLI=";
+      }
 
       # python
       {

@@ -1,23 +1,25 @@
-/* Polar Night */
-@define-color nord0 #2e3440;
-@define-color nord1 #3b4252;
-@define-color nord2 #434c5e;
-@define-color nord3 #4c566a;
-/* Snow storm */
-@define-color nord4 #d8dee9;
-@define-color nord5 #e5e9f0;
-@define-color nord6 #eceff4;
-/* Frost */
-@define-color nord7 #8fbcbb;
-@define-color nord8 #88c0d0;
-@define-color nord9 #81a1c1;
-@define-color nord10 #5e81ac;
-/* Aurora */
-@define-color nord11 #bf616a;
-@define-color nord12 #d08770;
-@define-color nord13 #ebcb8b;
-@define-color nord14 #a3be8c;
-@define-color nord15 #b48ead;
+@define-color bg #1C1E26;
+@define-color fg #BABABA;
+
+@define-color color0  #161610;
+@define-color color1  #1A1C23;
+@define-color color2  #1C1E26;
+@define-color color3  #232530;
+@define-color color4  #2E303E;
+@define-color color5  #6C6F93;
+@define-color color6  #E9436F;
+@define-color color7  #E95379;
+@define-color color8  #F43E5C;
+@define-color color9  #09F7A0;
+@define-color color10 #27D796;
+@define-color color11 #21BFC2;
+@define-color color12 #FAB28E;
+@define-color color13 #B877DB;
+@define-color color14 #25B2BC;
+@define-color color15 #E95678;
+@define-color color16 #F09383;
+@define-color color17 #FAB795;
+@define-color color18 #FAC29A;
 
 * {
     /* `otf-font-awesome` is required to be installed for icons */
@@ -33,37 +35,62 @@ window {
 }
 
 /*
-* Left part
+* Center part
 */
-#mode {
-    color: @nord0;
-    background-color: @nord13;
-    margin-left: 8px;
-    padding: 0px 6px;
+
+
+#workspaces {
+    background-color: transparent;
 }
 
 #workspaces button {
-    margin-left: 8px;
-    background-color: @nord3;
-    padding: 0px 4px;
-    color: @nord6;
-    margin-top: 0;
+    all: initial;
+    padding: 7px;
+    margin: 6px 3px;
+    border-radius: 999px;
+    background-color: @bg;
+    color: @fg;
+    box-shadow: inset 1px 1px @color5;
+
+    transition-property: box-shadow, background-color;
+    transition-duration: 0.6s;
+    transition-timing-function: ease-in-out;
+
 }
 
-#workspaces button.focused {
-    color: @nord0;
-    background-color: @nord8;
+#workspaces button label {
+    font-size: 0;
+    padding: 5px;
+    background-color: @color5;
+    border-radius: 999px;
+
+    transition-property: background-color;
+    transition-duration: 0.6s;
+    transition-timing-function: ease-in-out;
 }
 
-#window {
-    margin-left: 10px;
-    color: @nord6;
-    font-weight: bold;
-    padding: 0px 5px;
+#workspaces button.visible {
+    box-shadow: inset -1px -1px @color14;
+}
+
+#workspaces button.visible label {
+    background-color: @color14;
+}
+
+#workspaces button.active {
+    box-shadow: inset -1px -1px @color9;
+}
+
+#workspaces button.active label {
+    background-color: @color9;
+}
+
+#workspaces button:hover {
+    background-color: @color4;
 }
 
 /*
-* Right part
+* Left/Right part
 */
 #pulseaudio,
 #network,
@@ -74,54 +101,10 @@ window {
 #battery,
 #clock,
 #tray {
-    background-color: @nord2;
     padding: 0px 8px;
-    color: @nord6;
+    color: @fg;
+    border-radius: 999px;
+    background-color: @bg;
+    box-shadow: inset 1px 1px @color5;
 }
 
-#backlight,
-#language,
-#battery,
-#clock,
-#tray {
-    margin-right: 8px;
-}
-
-#pulseaudio.muted {
-    background-color: @nord13;
-    color: @nord3;
-}
-
-#pulseaudio, #backlight {
-    background-color: @nord10;
-}
-
-#network, #cpu, #memory, #battery {
-    background-color: @nord3;
-}
-
-#tray {
-    background-color: @nord1;
-}
-
-#network.disabled, 
-#network.disconnected {
-    background-color: @nord13;
-    color: @nord0; 
-}
-
-#battery.warning {
-    background-color: @nord13;
-    color: @nord0; 
-}
-
-#battery.critical {
-    background-color: @nord11;
-    color: @nord0; 
-}
-
-#tray menu {
-    background-color: @nord2;
-    color: @nord4;
-    padding: 10px 5px;
-}

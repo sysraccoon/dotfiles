@@ -20,6 +20,7 @@ read_only = ' '
 
 [fill]
 symbol = '─'
+style = 'fg:gray'
 
 [git_branch]
 format = '─⌠ [$symbol$branch]($style) ⌡'

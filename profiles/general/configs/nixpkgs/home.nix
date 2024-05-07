@@ -77,7 +77,7 @@
 
     # dev
     (python310.withPackages (ps: with ps; [
-      pip
+      # pip
     ]))
     openjdk17
 

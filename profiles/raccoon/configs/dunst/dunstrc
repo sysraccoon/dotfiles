@@ -1,18 +1,64 @@
+# User's dunst configuration. Mechanical artistic.
+# https://github.com/owl4ce/dotfiles
+
 [global]
-    frame_color = "#2e3440"
-    separator_color = auto
+follow = mouse
+# width = (100, 100)
+height = 222
+origin = top-right
+offset = 15x15
 
-[nord_low]
-    msg_urgency = low
-    background = "#4c566a"
-    foreground = "#d8dee9"
+progress_bar_height = 5
+progress_bar_min_width = 0
+progress_bar_max_width = 444
+progress_bar_frame_width = 0
 
-[nord_normal]
-    msg_urgency = normal
-    background = "#5e81ac"
-    foreground = "#eceff4"
-    
-[nord_critical]
-    msg_urgency = critical
-    background = "#bf616a"
-    foreground = "#eceff4"
+transparency = 3
+horizontal_padding = 11
+frame_width = 2
+frame_color = "#4c566a"
+gap_size = 8
+separator_color = "#404859"
+idle_threshold = 120
+
+font = "Roboto 10"
+
+format = "<span size='x-large' font_desc='Cantarell,Roboto 10' weight='bold' foreground='#BABABA'>%s</span>\n%b"
+
+show_age_threshold = 60
+icon_position = left
+min_icon_size = 48
+max_icon_size = 80
+
+sticky_history = false
+
+browser = "firefox"
+
+mouse_left_click = close_current
+mouse_middle_click = context_all
+mouse_right_click = close_all
+
+alignment = center
+markup = full
+always_run_script = true
+
+corner_radius = 8
+
+[urgency_low]
+timeout = 3
+background = "#1C1E26"
+foreground = "#f9f9f9"
+highlight = "#f48ee8"
+
+[urgency_normal]
+timeout = 6
+background = "#1C1E26"
+foreground = "#f9f9f9"
+highlight = "#f48ee8"
+
+[urgency_critical]
+timeout = 0
+background = "#1C1E26"
+foreground = "#f9f9f9"
+highlight = "#f48ee8"
+

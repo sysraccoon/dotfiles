@@ -3,24 +3,24 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+
     nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-23.05";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nur = {
       url = "github:nix-community/NUR";
-      # inputs.nixpkgs.follows = "nixpkgs";
     }; 
 
     hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:hyprwm/Hyprland?ref=v0.40.0";
     };
+
     hy3 = {
-      url = "github:outfoxxed/hy3"; # where {version} is the hyprland release version
-      # or "github:outfoxxed/hy3" to follow the development branch.
-      # (you may encounter issues if you dont do the same for hyprland)
+      url = "github:outfoxxed/hy3";
       inputs.hyprland.follows = "hyprland";
     };
 
@@ -55,7 +55,7 @@
     };
   in
   {
-    nixosConfigurations = 
+    nixosConfigurations =
     let
       generate-nixos-config = { base-config-path, ... }:
         nixpkgs.lib.nixosSystem {
@@ -75,20 +75,30 @@
 
     homeConfigurations = 
     let
-      generate-home-config = { base-config-path, ... }:
+      generate-home-config = ctx @ { profile-entry, profile-dir-path, username, system, ... }:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
             hyprland.homeManagerModules.default
-            base-config-path
+            profile-entry
           ];
           extraSpecialArgs = {
-            inherit pkgs pkgs-stable pkgs-nur inputs system;
+            inherit pkgs pkgs-stable pkgs-nur inputs ctx;
           };
         };
-    in rec {
-      raccoon = generate-home-config { base-config-path = ./profiles/raccoon/configs/nixpkgs/home.nix; };
-      gopher = generate-home-config { base-config-path = ./profiles/gopher/configs/nixpkgs/home.nix; };
+    in {
+      raccoon = generate-home-config {
+        profile-entry = ./profiles/raccoon/configs/nixpkgs/home.nix;
+        profile-dir-path = ./profiles/raccoon;
+        username = "raccoon";
+        inherit system;
+      };
+      gopher = generate-home-config {
+        profile-entry = ./profiles/gopher/configs/nixpkgs/home.nix;
+        profile-dir-path = ./profiles/gopher;
+        username = "gopher";
+        inherit system;
+      };
     };
 
     templates = templates.templates;
