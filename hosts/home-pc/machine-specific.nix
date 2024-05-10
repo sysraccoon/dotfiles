@@ -35,7 +35,7 @@
   hardware.enableRedistributableFirmware = true;
 
   # Nvidia GPU Driver
-  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
+  hardware.nvidia.open = true;
   hardware.nvidia.powerManagement.enable = true;
 }
