@@ -35,7 +35,10 @@
   hardware.enableRedistributableFirmware = true;
 
   # Nvidia GPU Driver
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  services.xserver.videoDrivers = [ "nvidia" ]; 
   hardware.opengl.enable = true;
-  hardware.nvidia.open = true;
+  # hardware.nvidia.open = true;
+  hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.powerManagement.enable = true;
 }

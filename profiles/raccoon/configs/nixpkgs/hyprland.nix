@@ -3,7 +3,7 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    xwayland.enable = false;
+    xwayland.enable = true;
     plugins = [
       inputs.hy3.packages.${ctx.system}.default
     ];

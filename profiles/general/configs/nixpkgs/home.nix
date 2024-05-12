@@ -74,6 +74,7 @@
     libinput
     gawk
     exfatprogs
+    openssl
 
     # dev
     (python310.withPackages (ps: with ps; [

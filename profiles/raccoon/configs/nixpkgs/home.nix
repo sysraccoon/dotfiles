@@ -1,4 +1,4 @@
-{ config, pkgs, lib, host-profile, overlays, ctx, impurity, ... }:
+{ config, pkgs, lib, host-profile, overlays, ctx, impurity, inputs, ... }:
 
 {
 
@@ -9,6 +9,7 @@
     ./vscodium.nix
     ./emacs.nix
     ./plasma.nix
+
     # ./desktop.nix
   ];
 
@@ -19,6 +20,7 @@
 
   home.packages = with pkgs; [
     # cli
+    argbash
     xdragon
     texlive.combined.scheme-full
     ibus
@@ -27,6 +29,8 @@
     fping
     nmap
     psmisc
+    inputs.nix-alien.packages.${ctx.system}.nix-alien
+    scrcpy
 
     # VM
     vagrant
@@ -35,6 +39,7 @@
     wineWowPackages.stable
     spice
     virtio-win
+    jetbrains-toolbox
 
     ## general
     zathura
@@ -56,6 +61,7 @@
     emote
     gparted
     google-chrome
+    asciinema
 
     # knowledge management
     obsidian
@@ -67,13 +73,16 @@
     jetbrains.idea-community
     ghidra
     frida-tools
-    android-tools
-    android-studio
-    apktool
     lldb_18
     gdbgui
     iaito
     wireshark
+    twine
+
+    # android
+    android-tools
+    apktool
+    inputs.adb-install-cert.packages.${ctx.system}.adb-install-cert
 
     # terminals
     kitty
@@ -85,6 +94,7 @@
     flameshot
     peek
     xsecurelock
+    xcur2png
 
     ## wayland
     eww
@@ -97,7 +107,9 @@
     wl-clipboard
     hyprpaper
     hyprlock
+    hyprcursor
     wlogout
+    wlprop
 
     # audio
     alsa-tools
@@ -175,4 +187,9 @@
   };
 
   home.file.".background-image".source = impurity.link ../../resources/wallpapers/default.jpg;
+
+  home.file.".icons/McMojava-X-cursors".source = ../../resources/icons/McMojava-X-cursors;
+  home.file.".icons/McMojava-hypr-cursors".source = ../../resources/icons/McMojava-hypr-cursors;
+
+
 }

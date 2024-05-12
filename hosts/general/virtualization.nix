@@ -4,7 +4,7 @@
   virtualisation.lxd.enable = true;
 
   users.users.raccoon = {
-    extraGroups = [ "lxd" "qemu-libvirtd" "libvirtd" ];
+    extraGroups = [ "kvm" "lxd" "qemu-libvirtd" "libvirtd" ];
   };
 
   boot.extraModprobeConfig = "options kvm_intel nested=1";
