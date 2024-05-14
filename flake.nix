@@ -130,7 +130,7 @@
             buildTools = "30.0.3";
             emulator = "31.3.14";
           };
-          platforms = [ "34" ];
+          platforms = [ "27" "29" "34" ];
           abis = [ "x86_64" ];
           systemImageTypes = [ "default" "google_apis" ];
         };
@@ -179,6 +179,7 @@
           export ANDROID_AVD_HOME="$HOME/.android/avd"
           export QT_QPA_PLATFORM="wayland;xcb"
         '';
+        runScript = "zsh";
       }).env;
   };
 

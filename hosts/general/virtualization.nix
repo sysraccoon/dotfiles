@@ -1,10 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  virtualisation.lxd.enable = true;
-
   users.users.raccoon = {
-    extraGroups = [ "kvm" "lxd" "qemu-libvirtd" "libvirtd" ];
+    extraGroups = [ "docker" "kvm" "qemu-libvirtd" "libvirtd" ];
   };
 
   boot.extraModprobeConfig = "options kvm_intel nested=1";
@@ -26,5 +24,8 @@
       };
     };
     spiceUSBRedirection.enable = true;
+    docker.enable = true;
+    docker.storageDriver = "btrfs";
+    docker.enableNvidia = true;
   };
 }

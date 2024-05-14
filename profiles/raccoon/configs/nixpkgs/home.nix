@@ -78,6 +78,7 @@
     iaito
     wireshark
     twine
+    burpsuite
 
     # android
     android-tools
