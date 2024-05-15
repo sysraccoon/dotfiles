@@ -11,28 +11,16 @@
   };
   services.displayManager.defaultSession = "hyprland";
 
-  services.xserver.windowManager.awesome = {
-    enable = true;
-    luaModules = with pkgs.luaPackages; [
-      luarocks
-    ];
-  };
-
-  services.xserver.windowManager.qtile.enable = true;
-  services.desktopManager.plasma6.enable = true;
   services.xserver.desktopManager = {
     xterm.enable = false;
     xfce.enable = true;
   };
-  services.dbus.packages = [ pkgs.libsForQt5.kglobalaccel ];
-  environment.systemPackages = with pkgs; [
-    nordic
-    zafiro-icons
-    plasma5Packages.bismuth
 
+  services.dbus.packages = [ pkgs.libsForQt5.kglobalaccel ];
+
+  environment.systemPackages = with pkgs; [
     waybar
     hyprpaper
-
   ];
 
   # services.xserver.displayManager.gdm.enable = true;
