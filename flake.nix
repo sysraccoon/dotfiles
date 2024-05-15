@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-23.05";
     nur.url = "github:nix-community/NUR"; 
     hyprland.url =  "github:hyprwm/Hyprland?ref=v0.40.0";
     nix-alien.url = "github:thiagokokada/nix-alien";
@@ -18,11 +17,6 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    android-nixpkgs = {
-      url = "github:tadfisher/android-nixpkgs/stable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     adb-install-cert = {
       url = "git+ssh://git@github.com/sysraccoon/adb-install-cert";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,13 +29,11 @@
   outputs = inputs @ {
     self,
     nixpkgs,
-    nixpkgs-stable,
     home-manager,
     nur,
     hyprland,
     hy3,
     templates,
-    android-nixpkgs,
     ...
   }:
   let
@@ -52,10 +44,6 @@
         android_sdk.accept_license = true;
         allowUnfree = true;
       };
-    };
-    pkgs-stable = import nixpkgs-stable {
-      inherit system;
-      config = { allowUnfree = true; };
     };
     pkgs-nur = import nur {
       inherit pkgs;
@@ -73,7 +61,7 @@
             base-config-path
           ];
           specialArgs = {
-            inherit pkgs pkgs-stable inputs;
+            inherit pkgs inputs;
           };
         };
     in {
@@ -92,12 +80,11 @@
               impurity.configRoot = self;
             }
 
-            android-nixpkgs.hmModule
             hyprland.homeManagerModules.default
             profile-entry
           ];
           extraSpecialArgs = {
-            inherit pkgs pkgs-stable pkgs-nur inputs ctx;
+            inherit pkgs pkgs-nur inputs ctx;
           };
         };
     in rec {
