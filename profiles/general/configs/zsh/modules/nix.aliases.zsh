@@ -7,3 +7,4 @@ alias hm-up='(export IMPURITY_PATH="${HOME}/dotfiles"; home-manager switch --imp
 alias hm-up-pure='home-manager switch'
 alias na='nix-alien'
 alias nix-sp='nix-shell --run zsh -p'
+alias zipalign='na ~/Android/Sdk/build-tools/34.0.0/zipalign'

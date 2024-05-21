@@ -36,6 +36,11 @@
 
   hardware.opengl.enable = true;
 
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  hardware.opengl.extraPackages = with pkgs; [
+    amdvlk
+  ];
+
   services.udev.extraRules = ''
     # Google Pixel 5
     SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", MODE="0660", GROUP="plugdev"

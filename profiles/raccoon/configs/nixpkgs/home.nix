@@ -31,6 +31,7 @@
     psmisc
     inputs.nix-alien.packages.${ctx.system}.nix-alien
     scrcpy
+    apksigner
 
     # VM
     vagrant
@@ -81,6 +82,7 @@
     burpsuite
 
     # android
+    android-studio
     android-tools
     apktool
     inputs.adb-install-cert.packages.${ctx.system}.adb-install-cert
@@ -116,6 +118,9 @@
     alsa-tools
     alsa-utils
     pamixer
+
+    # games
+    osu-lazer-bin
   ];
 
   home.sessionVariables = {
