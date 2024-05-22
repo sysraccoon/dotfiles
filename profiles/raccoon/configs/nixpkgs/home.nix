@@ -155,7 +155,6 @@
   xdg.dataFile.fonts.source = impurity.link ../../resources/fonts;
 
   xdg.configFile = {
-    qtile.source = impurity.link ../qtile;
     qutebrowser.source = impurity.link ../qutebrowser;
     "dunst/dunstrc".source = impurity.link ../dunst/dunstrc;
   };

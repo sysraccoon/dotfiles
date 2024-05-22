@@ -102,7 +102,7 @@ def load_screens():
         ]
     else:
         active_setup = [
-            Screen(top=top_bar(), x=0, y=0, width=2560, height=1080),
+            Screen(top=top_bar(), x=0, y=0, width=3840, height=2160),
         ]
 
     return active_setup
