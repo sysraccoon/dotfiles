@@ -103,17 +103,10 @@
     nix-direnv.enable = true;
   };
 
-  programs.neovim = {
-    enable = true;
-    withPython3 = true;
-    extraPython3Packages = (ps: with ps; [
-      jedi
-      pynvim
-    ]);
-  };
+  sys.home.editors.nvim.enable = true;
+  sys.home.editors.vscodium.enable = true;
 
   xdg.configFile = {
-    nvim.source = impurity.link ../nvim;
     tmux.source = impurity.link ../tmux;
     starship.source = impurity.link ../starship;
     radare2.source = impurity.link ../radare2;

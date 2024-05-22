@@ -1,14 +1,11 @@
-{ config, pkgs, lib, host-profile, overlays, ctx, impurity, inputs, ... }:
+{ config, pkgs, lib, ctx, inputs, bundles, impurity, ... }:
 
 {
 
   imports = [
+    bundles.general.homeManagerModules.default
     ../../../general/configs/nixpkgs/home.nix
-    ./hyprland.nix
-    ./firefox.nix
-    ./vscodium.nix
     ./emacs.nix
-    # ./desktop.nix
   ];
 
   home.stateVersion = "22.11";
@@ -48,7 +45,6 @@
     obs-studio
     gnome.gnome-sound-recorder
     mpv
-    rofi-wayland
     cinnamon.nemo
     calibre
     qutebrowser
@@ -97,33 +93,19 @@
     xsecurelock
     xcur2png
 
-    ## wayland
-    eww
-    wofi
-    cliphist
-    swaybg
-    wlr-randr
-    grim
-    slurp
-    wl-clipboard
-    hyprpaper
-    hyprlock
-    hyprcursor
-    wlogout
-    wlprop
-
     # audio
     alsa-tools
     alsa-utils
     pamixer
   ];
 
-  home.sessionVariables = {
-    GDK_BACKEND = "wayland";
-    MOZ_ENABLE_WAYLAND = 1;
+  sys.home.browsers.firefox.enable = true;
+  sys.home.desktops.hyprland-desktop = {
+    enable = true;
+    extraConfig = ''
+      source = ${impurity.link ../hypr/hyprland-overrides.conf}
+    '';
   };
-
-  xsession.enable = true;
 
   services.picom = {
     enable = true;
@@ -174,15 +156,7 @@
     qtile.source = impurity.link ../qtile;
     alacritty.source = impurity.link ../alacritty;
     qutebrowser.source = impurity.link ../qutebrowser;
-    rofi.source = impurity.link ../rofi;
     kitty.source = impurity.link ../kitty;
-    waybar.source = impurity.link ../waybar;
-    eww.source = impurity.link ../eww;
-    anyrun.source = impurity.link ../anyrun;
-    wlogout.source = impurity.link ../wlogout;
-
-    "hypr/hyprpaper.conf".source = impurity.link ../hypr/hyprpaper.conf;
-    "hypr/hyprlock.conf".source = impurity.link ../hypr/hyprlock.conf;
 
     "dunst/dunstrc".source = impurity.link ../dunst/dunstrc;
   };
@@ -191,6 +165,4 @@
 
   home.file.".icons/McMojava-X-cursors".source = ../../resources/icons/McMojava-X-cursors;
   home.file.".icons/McMojava-hypr-cursors".source = ../../resources/icons/McMojava-hypr-cursors;
-
-
 }

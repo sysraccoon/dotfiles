@@ -433,8 +433,7 @@
         "hyprland": "hyprland",
         "nix-alien": "nix-alien",
         "nixpkgs": "nixpkgs_4",
-        "nur": "nur",
-        "templates": "templates"
+        "nur": "nur"
       }
     },
     "systems": {
@@ -494,20 +493,6 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
-      }
-    },
-    "templates": {
-      "locked": {
-        "lastModified": 1712660171,
-        "narHash": "sha256-VEBWAf0RRoTu5zCQgivoEHW0kUJEbGndp9jaz4XWa4k=",
-        "owner": "NixOS",
-        "repo": "templates",
-        "rev": "c57ac1ea60ef97bdce2f13e12b849f0ca5eaffe9",
-        "type": "github"
-      },
-      "original": {
-        "id": "templates",
-        "type": "indirect"
       }
     },
     "treefmt-nix": {

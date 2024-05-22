@@ -7,8 +7,6 @@
     "security.workspace.trust.enabled": false,
 
     "breadcrumbs.enabled": false,
-
-    "nix.enableLanguageServer": true,
     "nix.serverPath": "nil",
     "nix.serverSettings": {
         "nil": {

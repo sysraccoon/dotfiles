@@ -1,0 +1,3 @@
+{
+  general = import ./general.nix;
+}

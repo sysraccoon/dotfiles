@@ -1,6 +1,7 @@
 { config, lib, pkgs, pkgs-nur, impurity, ... }:
 
-let 
+let
+  cfg = config.sys.home.browsers.firefox;
   firefoxProfile = { id, name, settings ? {}, default ? false }:
   {
     id = id;
@@ -19,7 +20,7 @@ let
       "layout.css.devPixelsPerPx" = -1.0;
     } // settings;
     userChrome = ''
-      @import url("${impurity.link ../firefox/chrome/userChrome.css}")
+      @import url("${impurity.link ./userChrome.css}")
     '';
     extensions = with pkgs-nur.repos.rycee.firefox-addons; [
       ublock-origin
@@ -27,30 +28,38 @@ let
       kristofferhagen-nord-theme
     ];
   };
-in
-{
-  programs.firefox = {
-    enable = true;
-    profiles = {
-      main = firefoxProfile {
-        id = 0;
-        name = "main";
-        default = true;
-      };
-      screencast = firefoxProfile {
-        id = 1;
-        name = "screencast";
-        settings = {
-          "layout.css.devPixelsPerPx" = 1.5;
-        };
-      };
+in {
+
+  options = {
+    sys.home.browsers.firefox = {
+      enable = lib.mkEnableOption "custom firefox setup";
     };
   };
 
-  xdg.mimeApps = {
-    defaultApplications = {
-      "x-scheme-handler/http" = ["firefox.desktop"];
-      "x-scheme-handler/https" = ["firefox.desktop"];
+  config = lib.mkIf cfg.enable {
+    programs.firefox = {
+      enable = true;
+      profiles = {
+        main = firefoxProfile {
+          id = 0;
+          name = "main";
+          default = true;
+        };
+        screencast = firefoxProfile {
+          id = 1;
+          name = "screencast";
+          settings = {
+            "layout.css.devPixelsPerPx" = 1.5;
+          };
+        };
+      };
+    };
+
+    xdg.mimeApps = {
+      defaultApplications = {
+        "x-scheme-handler/http" = ["firefox.desktop"];
+        "x-scheme-handler/https" = ["firefox.desktop"];
+      };
     };
   };
 }

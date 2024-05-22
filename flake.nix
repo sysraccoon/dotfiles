@@ -27,10 +27,6 @@
     self,
     nixpkgs,
     home-manager,
-    nur,
-    hyprland,
-    hy3,
-    templates,
     ...
   }:
   let
@@ -42,10 +38,12 @@
         allowUnfree = true;
       };
     };
-    pkgs-nur = import nur {
+    pkgs-nur = import inputs.nur {
       inherit pkgs;
       nurpkgs = pkgs;
     };
+
+    bundles = import ./bundles;
   in
   {
     nixosConfigurations =
@@ -54,11 +52,10 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            hyprland.nixosModules.default
             base-config-path
           ];
           specialArgs = {
-            inherit pkgs inputs;
+            inherit pkgs inputs bundles;
           };
         };
     in {
@@ -66,24 +63,19 @@
       thinkpad-yoga = generate-nixos-config { base-config-path = ./hosts/thinkpad-yoga/configuration.nix; };
     };
 
-    homeManagerModules = import ./modules/home-manager // import ./modules/common;
-
     homeConfigurations = 
     let
       generate-home-config = ctx @ { profile-entry, profile-dir-path, username, system, ... }:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            self.homeManagerModules.impurity
-            {
-              impurity.configRoot = self;
-            }
-
-            hyprland.homeManagerModules.default
             profile-entry
+            {
+                impurity.configRoot = self;
+            }
           ];
           extraSpecialArgs = {
-            inherit pkgs pkgs-nur inputs ctx;
+            inherit pkgs pkgs-nur inputs ctx bundles;
           };
         };
     in rec {

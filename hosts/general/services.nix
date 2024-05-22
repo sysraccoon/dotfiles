@@ -9,28 +9,15 @@
     sddm.wayland.enable = true;
     # sddm.enable = true;
   };
-  services.displayManager.defaultSession = "hyprland";
 
   services.xserver.desktopManager = {
     xterm.enable = false;
     xfce.enable = true;
   };
 
-  services.dbus.packages = [ pkgs.libsForQt5.kglobalaccel ];
-
-  environment.systemPackages = with pkgs; [
-    waybar
-    hyprpaper
-  ];
-
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
   programs.dconf.enable = true;
-
-  programs.hyprland.enable = true;
-
-  # enable cups and open 631 tcp port
-  # services.printing.enable = true;
 
   services.journald.extraConfig = "SystemMaxUse=1G";
 
