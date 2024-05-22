@@ -12,6 +12,7 @@ in {
     ];
 
     sys.nixos.i18n.enable = lib.mkDefault true;
+    sys.nixos.nix.enable = lib.mkDefault true;
   };
 
   homeManagerModules.default = {
@@ -21,6 +22,4 @@ in {
       combined.homeManagerModules.default
     ];
   };
-
-
 }

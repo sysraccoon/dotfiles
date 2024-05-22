@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, bundles, ... }:
 
 {
   imports =
     [
+      bundles.general.nixosModules.default
       ../general/configuration.nix
       ./hardware-configuration.nix
       ./machine-specific.nix

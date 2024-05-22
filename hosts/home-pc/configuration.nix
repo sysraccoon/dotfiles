@@ -16,5 +16,4 @@
     enable = true;
     isDefaultDesktop = true;
   };
-
 }

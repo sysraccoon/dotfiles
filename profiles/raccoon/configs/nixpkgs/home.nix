@@ -25,7 +25,6 @@
     nmap
     psmisc
     inputs.nix-alien.packages.${ctx.system}.nix-alien
-    scrcpy
     apksigner
 
     # VM
@@ -76,6 +75,7 @@
     burpsuite
 
     # android
+    scrcpy
     android-studio
     android-tools
     apktool
@@ -83,7 +83,6 @@
 
     # terminals
     kitty
-    alacritty
     xterm
 
     ## X11
@@ -106,6 +105,9 @@
       source = ${impurity.link ../hypr/hyprland-overrides.conf}
     '';
   };
+
+  sys.home.terminals.alacritty.enable = true;
+  sys.home.terminals.kitty.enable = true;
 
   services.picom = {
     enable = true;
@@ -154,10 +156,7 @@
 
   xdg.configFile = {
     qtile.source = impurity.link ../qtile;
-    alacritty.source = impurity.link ../alacritty;
     qutebrowser.source = impurity.link ../qutebrowser;
-    kitty.source = impurity.link ../kitty;
-
     "dunst/dunstrc".source = impurity.link ../dunst/dunstrc;
   };
 

@@ -3,7 +3,6 @@
 {
   imports =
     [
-      ./nix.nix
       ./kernel.nix
       ./services.nix
       ./packages.nix
