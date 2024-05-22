@@ -49,28 +49,4 @@
   users.groups.plugdev = {
     members = [ "raccoon" ];
   };
-
-  services.nix-serve = {
-    enable = true;
-    secretKeyFile = "/var/cache-private-key.pem";
-  };
-
-  services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    virtualHosts = {
-      # ... existing hosts config etc. ...
-      "nix-cache.sysraccoon-local.net" = {
-        locations."/".proxyPass = "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
-      };
-    };
-  };
-
-  networking.extraHosts = ''
-    192.168.31.190 nix-cache.sysraccoon-local.net
-  '';
-
-  networking.firewall.allowedTCPPorts = [
-    80
-  ];
 }
