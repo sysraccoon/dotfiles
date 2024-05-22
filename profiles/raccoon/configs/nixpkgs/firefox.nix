@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-nur, ... }:
+{ config, lib, pkgs, pkgs-nur, impurity, ... }:
 
 let 
   firefoxProfile = { id, name, settings ? {}, default ? false }:
@@ -18,7 +18,9 @@ let
       "browser.download.autohideButton" = false;
       "layout.css.devPixelsPerPx" = -1.0;
     } // settings;
-    userChrome = builtins.readFile ../firefox/chrome/userChrome.css;
+    userChrome = ''
+      @import url("${impurity.link ../firefox/chrome/userChrome.css}")
+    '';
     extensions = with pkgs-nur.repos.rycee.firefox-addons; [
       ublock-origin
       vimium

@@ -1,0 +1,3 @@
+{
+  impurity = ./impurity.nix;
+}

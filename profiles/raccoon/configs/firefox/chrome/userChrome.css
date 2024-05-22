@@ -20,28 +20,25 @@ Window controls will be all wrong without it
   --uc-urlbar-min-width: 50vw; /* minimum width for opened urlbar */
 }
 
-#scrollbutton-up,
-#scrollbutton-down{ border-block-width: 2px !important; }
-
 /* Override for other densities */
 :root[uidensity="compact"] #navigator-toolbox{ --uc-toolbar-height: 34px;}
 :root[uidensity="touch"] #navigator-toolbox{ --uc-toolbar-height: 44px; }
+
+#scrollbutton-up,
+#scrollbutton-down{ border-block-width: 2px !important; }
 
 #identity-icon-box,
 #tracking-protection-icon-container {
     display: none !important;
 }
 
-
-:root[uidensity="compact"] #urlbar-container{
+#urlbar-input-container {
   --urlbar-container-height: var(--uc-toolbar-height) !important;
-  padding-block: 0 !important;
-}
-:root[uidensity="compact"] #urlbar{
-  --urlbar-toolbar-height: var(--uc-toolbar-height) !important;
 }
 
-#urlbar-container{ min-width:unset !important }
+#urlbar-container {
+  min-width:unset !important 
+}
 
 :root[tabsintitlebar] #toolbar-menubar{
   height: calc(var(--uc-toolbar-height) - 5px) !important;

@@ -21,21 +21,6 @@
         "url": "ssh://git@github.com/sysraccoon/adb-install-cert"
       }
     },
-    "c-template": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_5"
-      },
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-zCiKvFQVjRWdfT6/VRLqgt2qZaF8nR8fuTIslOIxcAo=",
-        "path": "./c",
-        "type": "path"
-      },
-      "original": {
-        "path": "./c",
-        "type": "path"
-      }
-    },
     "flake-compat": {
       "locked": {
         "lastModified": 1696426674,
@@ -403,22 +388,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
-      "locked": {
-        "lastModified": 1679705136,
-        "narHash": "sha256-MDlZUR7wJ3PlPtqwwoGQr3euNOe0vdSSteVVOef7tBY=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "8f40f2f90b9c9032d1b824442cfbbe0dbabd0dbd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nur": {
       "locked": {
         "lastModified": 1716300064,
@@ -528,18 +497,17 @@
       }
     },
     "templates": {
-      "inputs": {
-        "c-template": "c-template"
-      },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-EUnBCeaRwf53NS9wQshaFH7DZTINBFHiyDZ0TvFN0OY=",
-        "path": "./templates",
-        "type": "path"
+        "lastModified": 1712660171,
+        "narHash": "sha256-VEBWAf0RRoTu5zCQgivoEHW0kUJEbGndp9jaz4XWa4k=",
+        "owner": "NixOS",
+        "repo": "templates",
+        "rev": "c57ac1ea60ef97bdce2f13e12b849f0ca5eaffe9",
+        "type": "github"
       },
       "original": {
-        "path": "./templates",
-        "type": "path"
+        "id": "templates",
+        "type": "indirect"
       }
     },
     "treefmt-nix": {

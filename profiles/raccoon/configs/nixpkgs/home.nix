@@ -8,8 +8,6 @@
     ./firefox.nix
     ./vscodium.nix
     ./emacs.nix
-    ./plasma.nix
-
     # ./desktop.nix
   ];
 
@@ -118,9 +116,6 @@
     alsa-tools
     alsa-utils
     pamixer
-
-    # games
-    osu-lazer-bin
   ];
 
   home.sessionVariables = {
