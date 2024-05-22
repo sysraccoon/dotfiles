@@ -46,7 +46,6 @@
     mpv
     cinnamon.nemo
     calibre
-    qutebrowser
     tor-browser-bundle-bin
     rtorrent
     gnome-solanum
@@ -59,8 +58,6 @@
 
     # knowledge management
     obsidian
-    logseq
-    zotero
 
     # dev/re
     jetbrains.pycharm-community
@@ -82,7 +79,6 @@
     inputs.adb-install-cert.packages.${ctx.system}.adb-install-cert
 
     # terminals
-    kitty
     xterm
 
     ## X11
@@ -99,6 +95,7 @@
   ];
 
   sys.home.browsers.firefox.enable = true;
+
   sys.home.desktops.hyprland-desktop = {
     enable = true;
     extraConfig = ''
@@ -155,7 +152,6 @@
   xdg.dataFile.fonts.source = impurity.link ../../resources/fonts;
 
   xdg.configFile = {
-    qutebrowser.source = impurity.link ../qutebrowser;
     "dunst/dunstrc".source = impurity.link ../dunst/dunstrc;
   };
 

@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
