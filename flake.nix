@@ -17,6 +17,8 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
     adb-install-cert = {
       url = "git+ssh://git@github.com/sysraccoon/adb-install-cert";
       inputs.nixpkgs.follows = "nixpkgs";
