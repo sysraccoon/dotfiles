@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 command -v bat >/dev/null 2>&1 && {
-  cat $1 | col -bx | bat -l man -p
+  cat $1 | less
+  # cat $1 | col -bx | bat -l man -p
 } || {
   cat $1 | less
 }

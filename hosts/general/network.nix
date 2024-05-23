@@ -9,9 +9,11 @@
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
     8384 22000 # syncthing
+    8080 # mitmproxy
   ];
   networking.firewall.allowedUDPPorts = [
     22000 21027 # syncthing
+    8080 # mitmproxy
   ];
 
   # Disable IPv6

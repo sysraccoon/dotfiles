@@ -25,7 +25,7 @@
     nmap
     psmisc
     inputs.nix-alien.packages.${ctx.system}.nix-alien
-    apksigner
+    usbutils
 
     # VM
     vagrant
@@ -77,6 +77,7 @@
     android-tools
     apktool
     inputs.adb-install-cert.packages.${ctx.system}.adb-install-cert
+    apksigner
 
     # terminals
     xterm
