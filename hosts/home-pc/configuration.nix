@@ -1,8 +1,6 @@
 { config, pkgs, bundles, ... }:
 
-let
-  username = "raccoon";
-in {
+{
   imports =
     [
       bundles.general.nixosModules.default

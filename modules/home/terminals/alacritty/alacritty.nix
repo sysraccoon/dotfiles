@@ -12,7 +12,7 @@ in {
     ];
 
     xdg.configFile = {
-      "alacritty/alacritty.yaml".source = impurity.link ./alacritty.yaml;
+      "alacritty/alacritty.yml".source = impurity.link ./alacritty.yml;
     };
   };
 }

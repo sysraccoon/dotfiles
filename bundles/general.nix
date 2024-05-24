@@ -11,6 +11,12 @@ in {
       combined.nixosModules.default
     ];
 
+    sys.nixos.mainUser = {
+      inherit username;
+      enable = lib.mkDefault true;
+      isSuperUser = lib.mkDefault true;
+    };
+
     sys.nixos.i18n.enable = lib.mkDefault true;
     sys.nixos.nix.enable = lib.mkDefault true;
 

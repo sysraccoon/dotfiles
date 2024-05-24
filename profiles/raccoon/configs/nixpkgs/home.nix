@@ -14,6 +14,11 @@
   home.homeDirectory = "/home/${ctx.username}";
 
   home.packages = with pkgs; [
+    # nix specific
+    inputs.nix-alien.packages.${ctx.system}.nix-alien
+    nvd
+    nh
+
     # cli
     argbash
     xdragon
@@ -24,7 +29,6 @@
     fping
     nmap
     psmisc
-    inputs.nix-alien.packages.${ctx.system}.nix-alien
     usbutils
 
     # VM
