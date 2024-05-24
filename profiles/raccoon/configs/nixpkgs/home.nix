@@ -67,7 +67,6 @@
     lldb_18
     gdbgui
     iaito
-    wireshark
     twine
     burpsuite
 

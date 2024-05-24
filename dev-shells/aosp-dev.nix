@@ -25,6 +25,13 @@ let
         flex
         lzop
         python3
+
+        gcc
+
+        libgcc
+        glibc.dev
+        openssl_3_0.dev
+        freetype
       ];
     multiPkgs = pkgs: with pkgs;
       [ zlib

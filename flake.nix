@@ -50,19 +50,24 @@
   {
     nixosConfigurations =
     let
-      generate-nixos-config = { base-config-path, ... }:
+      generate-nixos-config = { base-config-path, username, ... }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             base-config-path
           ];
           specialArgs = {
-            inherit pkgs inputs bundles;
+            inherit pkgs inputs bundles username;
           };
         };
     in {
-      home-pc = generate-nixos-config { base-config-path = ./hosts/home-pc/configuration.nix; };
-      thinkpad-yoga = generate-nixos-config { base-config-path = ./hosts/thinkpad-yoga/configuration.nix; };
+      home-pc = generate-nixos-config {
+        base-config-path = ./hosts/home-pc/configuration.nix;
+        username = "raccoon";
+      };
+      thinkpad-yoga = generate-nixos-config {
+        base-config-path = ./hosts/thinkpad-yoga/configuration.nix;
+      };
     };
 
     homeConfigurations = 

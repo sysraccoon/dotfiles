@@ -30,11 +30,4 @@
     pulse.enable = true;
     wireplumber.enable = true;
   };
-
-  services.syncthing = {
-    enable = true;
-    user = "raccoon";
-    configDir = "/home/raccoon/.config/syncthing";
-    dataDir = "/home/raccoon/.config/syncthing/db";
-  };
 }

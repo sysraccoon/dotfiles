@@ -1,6 +1,8 @@
 { config, pkgs, bundles, ... }:
 
-{
+let
+  username = "raccoon";
+in {
   imports =
     [
       bundles.general.nixosModules.default
@@ -15,5 +17,10 @@
   sys.nixos.desktops.hyprland-desktop = {
     enable = true;
     isDefaultDesktop = true;
+  };
+
+  sys.nixos.programs = {
+    syncthing.enable = true;
+    wireshark.enable = true;
   };
 }

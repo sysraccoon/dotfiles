@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.sys.nixos.syncthing;
+  cfg = config.sys.nixos.programs.syncthing;
 in {
-  options.sys.nixos.syncthing = {
+  options.sys.nixos.programs.syncthing = {
     enable = lib.mkEnableOption "toggle custom syncthing setup";
     user = lib.mkOption {
       type = lib.types.str;

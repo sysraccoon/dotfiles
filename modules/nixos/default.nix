@@ -1,13 +1,15 @@
 rec {
   default = {
     imports = [
+      programs.default
       i18n
+      network
       nix
-      syncthing
     ];
   };
 
+  programs = import ./programs;
   i18n = import ./i18n.nix;
   nix = import ./nix.nix;
-  syncthing = import ./syncthing.nix;
+  network = import ./network.nix;
 }
