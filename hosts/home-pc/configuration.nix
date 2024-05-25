@@ -20,5 +20,6 @@
   sys.nixos.programs = {
     syncthing.enable = true;
     wireshark.enable = true;
+    caps2esc.enable = true;
   };
 }

@@ -33,12 +33,15 @@
   }:
   let
     system = "x86_64-linux";
+    overlays = import ./overlays;
     pkgs = import nixpkgs {
       inherit system;
       config = { 
         android_sdk.accept_license = true;
         allowUnfree = true;
       };
+
+      overlays = overlays.nixpkgs-overlays;
     };
     pkgs-nur = import inputs.nur {
       inherit pkgs;
