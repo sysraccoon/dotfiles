@@ -58,6 +58,7 @@
         alejandra.enable = true;
         nil.enable = true;
         deadnix.enable = true;
+        detect-private-keys.enable = true;
       };
     };
 
