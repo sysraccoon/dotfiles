@@ -83,6 +83,18 @@
         home.activation.fix-hyprland-runtime-dir = lib.hm.dag.entryAfter ["writeBoundary"] ''
           run ln -sf $XDG_RUNTIME_DIR/hypr /tmp/hypr 
         '';
+
+        dconf.settings = {
+          "org/gnome/desktop/interface" = {
+            cursor-theme = "McMojava-X-cursors";
+            cursor-size = 24;
+          };
+        };
+
+        xdg.dataFile."icons/McMojava-X-cursors".source = ../resources/icons/McMojava-X-cursors;
+        xdg.dataFile."icons/McMojava-hypr-cursors".source = ../resources/icons/McMojava-hypr-cursors;
+
+        home.file.".background-image".source = impurity.link ../resources/wallpapers/default.jpg;
       };
     };
 }

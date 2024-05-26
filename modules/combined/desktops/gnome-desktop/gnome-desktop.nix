@@ -29,7 +29,7 @@
       cfg = config.sys.home.desktops.gnome-desktop;
     in {
       options.sys.home.desktops.gnome-desktop = {
-        enable = lib.mkEnableOption "enable custom hyprland setup";
+        enable = lib.mkEnableOption "enable custom gnome setup";
         extraConfig = lib.mkOption {
           type = lib.types.str;
           default = "";

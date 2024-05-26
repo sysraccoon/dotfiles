@@ -16,8 +16,7 @@
   home.packages = with pkgs; [
     # nix specific
     inputs.nix-alien.packages.${ctx.system}.nix-alien
-    nvd
-    nh
+    manix
 
     # cli
     argbash
@@ -158,9 +157,4 @@
   xdg.configFile = {
     "dunst/dunstrc".source = impurity.link ../dunst/dunstrc;
   };
-
-  home.file.".background-image".source = impurity.link ../../resources/wallpapers/default.jpg;
-
-  home.file.".icons/McMojava-X-cursors".source = ../../resources/icons/McMojava-X-cursors;
-  home.file.".icons/McMojava-hypr-cursors".source = ../../resources/icons/McMojava-hypr-cursors;
 }
