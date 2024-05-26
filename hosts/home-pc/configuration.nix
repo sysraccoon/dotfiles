@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  bundles,
-  ...
-}: {
+{bundles, ...}: {
   imports = [
     bundles.general.nixosModules.default
     ../general/configuration.nix

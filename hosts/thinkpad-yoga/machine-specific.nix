@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   boot.kernelModules = [
     "dm-mirror"
     "dm-snapshot"

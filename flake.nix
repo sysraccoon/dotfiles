@@ -57,6 +57,7 @@
       hooks = {
         alejandra.enable = true;
         nil.enable = true;
+        deadnix.enable = true;
       };
     };
 
@@ -87,13 +88,7 @@
     };
 
     homeConfigurations = let
-      generate-home-config = ctx @ {
-        profile-entry,
-        profile-dir-path,
-        username,
-        system,
-        ...
-      }:
+      generate-home-config = ctx @ {profile-entry, ...}:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [

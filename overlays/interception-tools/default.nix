@@ -13,7 +13,7 @@
 # In current implementation udevmon call execvpe with "sh -c"
 # but don't pass PATH to envs.
 {
-  overlay = final: prev: {
+  overlay = _: prev: {
     interception-tools = prev.interception-tools.overrideAttrs (oldAttrs: rec {
       patches = let
         oldPatches = oldAttrs.patches or [];

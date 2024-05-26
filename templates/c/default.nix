@@ -2,8 +2,6 @@
   lib,
   llvmPackages_11,
   cmake,
-  spdlog,
-  abseil-cpp,
 }:
 llvmPackages_11.stdenv.mkDerivation rec {
   pname = "c-template";

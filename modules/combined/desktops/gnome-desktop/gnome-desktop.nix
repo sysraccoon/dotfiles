@@ -1,9 +1,7 @@
 {
   nixosModules.default = {
     config,
-    pkgs,
     lib,
-    inputs,
     ...
   }: let
     cfg = config.sys.nixos.desktops.gnome-desktop;
@@ -31,8 +29,6 @@
     config,
     pkgs,
     lib,
-    impurity,
-    inputs,
     ...
   }: let
     cfg = config.sys.home.desktops.gnome-desktop;

@@ -1,11 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  host-profile,
-  overlays,
-  ...
-}: {
+{...}: {
   imports = [
     ../../../general/configs/nixpkgs/home.nix
   ];

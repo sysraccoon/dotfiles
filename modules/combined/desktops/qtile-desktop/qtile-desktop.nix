@@ -1,9 +1,7 @@
 {
   nixosModules.default = {
     config,
-    pkgs,
     lib,
-    inputs,
     ...
   }: let
     cfg = config.sys.nixos.desktops.qtile-desktop;
@@ -29,10 +27,8 @@
 
   homeManagerModules.default = {
     config,
-    pkgs,
     lib,
     impurity,
-    inputs,
     ...
   }: let
     cfg = config.sys.home.desktops.qtile-desktop;

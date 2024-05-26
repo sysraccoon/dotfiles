@@ -1,7 +1,6 @@
 {
   nixosModules.default = {
     config,
-    pkgs,
     lib,
     inputs,
     ...

@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     binutils
     ((emacsPackagesFor emacsNativeComp).emacsWithPackages

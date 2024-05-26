@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
   ctx,
   inputs,
   bundles,
