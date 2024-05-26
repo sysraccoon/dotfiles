@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   android = {
     versions = {
       tools = "26.1.1";
@@ -7,15 +6,15 @@ let
       buildTools = "30.0.3";
       emulator = "31.3.14";
     };
-    platforms = [ "27" "29" "34" ];
-    abis = [ "x86_64" ];
-    systemImageTypes = [ "default" "google_apis" ];
+    platforms = ["27" "29" "34"];
+    abis = ["x86_64"];
+    systemImageTypes = ["default" "google_apis"];
   };
   androidEnv = pkgs.androidenv;
   androidComposition = androidEnv.composeAndroidPackages {
     toolsVersion = android.versions.tools;
     platformToolsVersion = android.versions.platformTools;
-    buildToolsVersions = [ android.versions.buildTools ];
+    buildToolsVersions = [android.versions.buildTools];
 
     includeSystemImages = true;
     platformVersions = android.platforms;
@@ -39,22 +38,23 @@ let
   };
   androidSdk = androidComposition.androidsdk;
 in
-(pkgs.buildFHSUserEnv
-{
-  name = "android-re";
-  targetPkgs = pkgs: (with pkgs;
-    [
-      android-studio
-      androidSdk
-    ]
-  );
-  profile = ''
-    export JAVA_HOME=$(readlink -e $(type -p javac) | sed  -e 's/\/bin\/javac//g')
-    export ANDROID_HOME="${androidSdk}/libexec/android-sdk"
-    export ANDROID_SDK_ROOT="${androidSdk}/libexec/android-sdk"
-    export ANDROID_USER_HOME="$HOME/.android"
-    export ANDROID_AVD_HOME="$HOME/.android/avd"
-    export QT_QPA_PLATFORM="wayland;xcb"
-  '';
-  runScript = "zsh";
-}).env
+  (pkgs.buildFHSUserEnv
+    {
+      name = "android-re";
+      targetPkgs = pkgs: (
+        with pkgs; [
+          android-studio
+          androidSdk
+        ]
+      );
+      profile = ''
+        export JAVA_HOME=$(readlink -e $(type -p javac) | sed  -e 's/\/bin\/javac//g')
+        export ANDROID_HOME="${androidSdk}/libexec/android-sdk"
+        export ANDROID_SDK_ROOT="${androidSdk}/libexec/android-sdk"
+        export ANDROID_USER_HOME="$HOME/.android"
+        export ANDROID_AVD_HOME="$HOME/.android/avd"
+        export QT_QPA_PLATFORM="wayland;xcb"
+      '';
+      runScript = "zsh";
+    })
+  .env

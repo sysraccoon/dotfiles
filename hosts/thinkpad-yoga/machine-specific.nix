@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   boot.kernelModules = [
     "dm-mirror"
     "dm-snapshot"
@@ -32,10 +34,10 @@
 
   # Intel GPU Driver
   environment.variables = {
-      VDPAU_DRIVER = "va_gl";
+    VDPAU_DRIVER = "va_gl";
   };
   services.xserver = {
-    videoDrivers = [ "intel" ];
+    videoDrivers = ["intel"];
     deviceSection = ''
       Option "DRI" "3"
       Option "TearFree" "true"

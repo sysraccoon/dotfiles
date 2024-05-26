@@ -1,7 +1,12 @@
-{ config, pkgs, lib, host-profile, overlays, impurity, ... }:
-
 {
-
+  config,
+  pkgs,
+  lib,
+  host-profile,
+  overlays,
+  impurity,
+  ...
+}: {
   home.stateVersion = "22.11";
 
   home.keyboard = {
@@ -77,9 +82,10 @@
     openssl
 
     # dev
-    (python310.withPackages (ps: with ps; [
-      # pip
-    ]))
+    (python310.withPackages (ps:
+      with ps; [
+        # pip
+      ]))
     openjdk17
 
     gnumake
@@ -113,7 +119,7 @@
     btop.source = impurity.link ../btop;
   };
 
-  home.file.".gitconfig".source  = impurity.link ../git/gitconfig;
+  home.file.".gitconfig".source = impurity.link ../git/gitconfig;
   home.file.".zshrc".source = impurity.link ../zsh/zshrc;
   home.file.".profile".source = impurity.link ../shell/profile;
   home.file."bin".source = impurity.link ../../bin;

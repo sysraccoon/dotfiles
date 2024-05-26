@@ -1,7 +1,13 @@
-{ config, pkgs, lib, ctx, inputs, bundles, impurity, ... }:
-
 {
-
+  config,
+  pkgs,
+  lib,
+  ctx,
+  inputs,
+  bundles,
+  impurity,
+  ...
+}: {
   imports = [
     bundles.general.homeManagerModules.default
     ../../../general/configs/nixpkgs/home.nix
@@ -17,6 +23,7 @@
     # nix specific
     inputs.nix-alien.packages.${ctx.system}.nix-alien
     manix
+    nixpkgs-fmt
 
     # cli
     argbash

@@ -1,5 +1,10 @@
-{ config, lib, pkgs, impurity, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  impurity,
+  ...
+}: let
   cfg = config.sys.home.tools.rofi;
 in {
   options.sys.home.tools.rofi = {
@@ -43,7 +48,7 @@ in {
       '';
     in ''
       /* @theme reset all previusly initialized style parameters */
-      @theme "${pkgs.writeText "complete-theme.rasi" theme}" 
+      @theme "${pkgs.writeText "complete-theme.rasi" theme}"
     '';
 
     # Don't like how look's default stylix rofi customization

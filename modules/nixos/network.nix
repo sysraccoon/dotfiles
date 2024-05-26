@@ -1,5 +1,8 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.sys.nixos.network;
 in {
   options.sys.nixos.network = {

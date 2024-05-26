@@ -1,9 +1,9 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   fhs = pkgs.buildFHSUserEnv {
     name = "aosp-dev";
-    targetPkgs = pkgs: with pkgs;
-      [ git
+    targetPkgs = pkgs:
+      with pkgs; [
+        git
         gitRepo
         gnupg
         curl
@@ -33,8 +33,9 @@ let
         openssl_3_0.dev
         freetype
       ];
-    multiPkgs = pkgs: with pkgs;
-      [ zlib
+    multiPkgs = pkgs:
+      with pkgs; [
+        zlib
         ncurses5
       ];
     runScript = "zsh";
@@ -45,4 +46,5 @@ let
       export LD_LIBRARY_PATH=/usr/lib:/usr/lib32
     '';
   };
-in fhs.env
+in
+  fhs.env

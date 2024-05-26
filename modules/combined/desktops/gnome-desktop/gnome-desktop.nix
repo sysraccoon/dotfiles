@@ -1,42 +1,52 @@
 {
-  nixosModules.default =
-    { config, pkgs, lib, inputs, ... }:
-    let
-      cfg = config.sys.nixos.desktops.gnome-desktop;
-    in {
-      options.sys.nixos.desktops.gnome-desktop = {
-        enable = lib.mkEnableOption "enable custom gnome setup";
-        isDefaultDesktop = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = "set gnome as default in display manager";
-        };
-      };
-
-      config = lib.mkIf cfg.enable {
-        services.xserver.enable = true;
-        services.xserver.desktopManager.gnome.enable = true;
-
-        services.displayManager = lib.mkIf cfg.isDefaultDesktop {
-          defaultSession = "gnome";
-        };
+  nixosModules.default = {
+    config,
+    pkgs,
+    lib,
+    inputs,
+    ...
+  }: let
+    cfg = config.sys.nixos.desktops.gnome-desktop;
+  in {
+    options.sys.nixos.desktops.gnome-desktop = {
+      enable = lib.mkEnableOption "enable custom gnome setup";
+      isDefaultDesktop = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "set gnome as default in display manager";
       };
     };
 
-  homeManagerModules.default =
-    { config, pkgs, lib, impurity, inputs, ... }: 
-    let
-      cfg = config.sys.home.desktops.gnome-desktop;
-    in {
-      options.sys.home.desktops.gnome-desktop = {
-        enable = lib.mkEnableOption "enable custom gnome setup";
-        extraConfig = lib.mkOption {
-          type = lib.types.str;
-          default = "";
-        };
-      };
+    config = lib.mkIf cfg.enable {
+      services.xserver.enable = true;
+      services.xserver.desktopManager.gnome.enable = true;
 
-      config = lib.mkIf cfg.enable 
+      services.displayManager = lib.mkIf cfg.isDefaultDesktop {
+        defaultSession = "gnome";
+      };
+    };
+  };
+
+  homeManagerModules.default = {
+    config,
+    pkgs,
+    lib,
+    impurity,
+    inputs,
+    ...
+  }: let
+    cfg = config.sys.home.desktops.gnome-desktop;
+  in {
+    options.sys.home.desktops.gnome-desktop = {
+      enable = lib.mkEnableOption "enable custom gnome setup";
+      extraConfig = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+      };
+    };
+
+    config =
+      lib.mkIf cfg.enable
       {
         dconf.settings = let
           u32 = lib.hm.gvariant.mkUint32;
@@ -99,5 +109,5 @@
           gtk-title-bar
         ];
       };
-    };
+  };
 }

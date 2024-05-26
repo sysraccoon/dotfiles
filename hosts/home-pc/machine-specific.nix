@@ -1,9 +1,13 @@
-{ config, lib, pkgs, inputs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
   ];
 
   boot.kernelModules = [
@@ -36,7 +40,7 @@
 
   hardware.opengl.enable = true;
 
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.initrd.kernelModules = ["amdgpu"];
   hardware.opengl.extraPackages = with pkgs; [
     amdvlk
   ];
@@ -49,6 +53,6 @@
   '';
 
   users.groups.plugdev = {
-    members = [ "raccoon" ];
+    members = [config.sys.nixos.mainUser.username];
   };
 }

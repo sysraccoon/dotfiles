@@ -1,5 +1,10 @@
-{ config, lib, pkgs, impurity, ... }:
-let 
+{
+  config,
+  lib,
+  pkgs,
+  impurity,
+  ...
+}: let
   cfg = config.sys.home.terminals.alacritty;
 in {
   options.sys.home.terminals.alacritty = {

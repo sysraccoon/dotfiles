@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   dconf.settings = let
     u32 = lib.hm.gvariant.mkUint32;
   in {

@@ -12,15 +12,20 @@
 # > sh: line 1: uinput: command not found
 # In current implementation udevmon call execvpe with "sh -c"
 # but don't pass PATH to envs.
-
 {
-  overlay = (final: prev: {
+  overlay = final: prev: {
     interception-tools = prev.interception-tools.overrideAttrs (oldAttrs: rec {
-      patches =
-        let oldPatches = oldAttrs.patches or [];
-        in (if oldPatches == null then [] else oldPatches) ++ [
+      patches = let
+        oldPatches = oldAttrs.patches or [];
+      in
+        (
+          if oldPatches == null
+          then []
+          else oldPatches
+        )
+        ++ [
           ./udevmon-path-fix.patch
         ];
     });
-  });
+  };
 }

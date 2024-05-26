@@ -1,5 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
-let 
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: let
   cfg = config.sys.home.stylix;
 in {
   imports = [

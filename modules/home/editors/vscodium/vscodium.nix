@@ -1,13 +1,18 @@
-{ lib, pkgs, config, impurity, inputs, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  impurity,
+  inputs,
+  ...
+}: let
   cfg = config.sys.home.editors.vscodium;
   nix-vscode-extensions = inputs.nix-vscode-extensions;
   extensions = nix-vscode-extensions.extensions.${pkgs.system};
 in {
-
   options = {
     sys.home.editors.vscodium = {
-        enable = lib.mkEnableOption "custom vscodium setup";
+      enable = lib.mkEnableOption "custom vscodium setup";
     };
   };
 

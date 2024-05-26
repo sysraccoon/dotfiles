@@ -3,8 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nur.url = "github:nix-community/NUR"; 
-    hyprland.url =  "github:hyprwm/Hyprland?ref=v0.40.0";
+    nur.url = "github:nix-community/NUR";
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.40.0";
     nix-alien.url = "github:thiagokokada/nix-alien";
 
     home-manager = {
@@ -24,6 +24,8 @@
       url = "git+ssh://git@github.com/sysraccoon/adb-install-cert";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
   };
 
   outputs = inputs @ {
@@ -31,13 +33,12 @@
     nixpkgs,
     home-manager,
     ...
-  }:
-  let
+  }: let
     system = "x86_64-linux";
     overlays = import ./overlays;
     pkgs = import nixpkgs {
       inherit system;
-      config = { 
+      config = {
         android_sdk.accept_license = true;
         allowUnfree = true;
       };
@@ -50,11 +51,20 @@
     };
 
     bundles = import ./bundles;
-  in
-  {
-    nixosConfigurations =
-    let
-      generate-nixos-config = { base-config-path, username, ... }:
+  in {
+    checks.${system}.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+      src = ./.;
+      hooks = {
+        alejandra.enable = true;
+      };
+    };
+
+    nixosConfigurations = let
+      generate-nixos-config = {
+        base-config-path,
+        username,
+        ...
+      }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
@@ -71,22 +81,28 @@
       };
       thinkpad-yoga = generate-nixos-config {
         base-config-path = ./hosts/thinkpad-yoga/configuration.nix;
+        username = "gopher";
       };
     };
 
-    homeConfigurations = 
-    let
-      generate-home-config = ctx @ { profile-entry, profile-dir-path, username, system, ... }:
+    homeConfigurations = let
+      generate-home-config = ctx @ {
+        profile-entry,
+        profile-dir-path,
+        username,
+        system,
+        ...
+      }:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
             profile-entry
             {
-                impurity.configRoot = self;
+              impurity.configRoot = self;
 
-                # HM currently 24.05, nixpkgs 24.11
-                # TODO delete this after HM change version to 24.11
-                home.enableNixpkgsReleaseCheck = false;
+              # HM currently 24.05, nixpkgs 24.11
+              # TODO delete this after HM change version to 24.11
+              home.enableNixpkgsReleaseCheck = false;
             }
           ];
           extraSpecialArgs = {
@@ -108,11 +124,11 @@
       };
 
       raccoon-impure = raccoon.extendModules {
-        modules = [ {impurity.enable = true; } ];
+        modules = [{impurity.enable = true;}];
       };
     };
 
-    templates = import ./templates;
-    devShells = import ./dev-shells { inherit pkgs; };
+    # templates = import ./templates;
+    devShells = import ./dev-shells {inherit self pkgs;};
   };
 }

@@ -1,10 +1,14 @@
-let 
+let
   core = import ../modules/core;
   combined = import ../modules/combined;
   home = import ../modules/home;
   nixos = import ../modules/nixos;
 in {
-  nixosModules.default = { lib, username, ... }: {
+  nixosModules.default = {
+    lib,
+    username,
+    ...
+  }: {
     imports = [
       core.nixosModules.default
       nixos.default
@@ -22,14 +26,14 @@ in {
 
     sys.nixos.network = {
       enable = lib.mkDefault true;
-      networkUsers = lib.mkDefault [ username ];
+      networkUsers = lib.mkDefault [username];
     };
 
-    sys.nixos.programs.wireshark.wiresharkUsers = lib.mkDefault [ username ];
+    sys.nixos.programs.wireshark.wiresharkUsers = lib.mkDefault [username];
     sys.nixos.programs.syncthing.user = lib.mkDefault username;
   };
 
-  homeManagerModules.default = { lib, ... }: {
+  homeManagerModules.default = {lib, ...}: {
     imports = [
       core.homeManagerModules.default
       home.default

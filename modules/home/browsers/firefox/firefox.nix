@@ -1,24 +1,35 @@
-{ config, lib, pkgs, pkgs-nur, impurity, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  pkgs-nur,
+  impurity,
+  ...
+}: let
   cfg = config.sys.home.browsers.firefox;
-  firefoxProfile = { id, name, settings ? {}, default ? false }:
-  {
+  firefoxProfile = {
+    id,
+    name,
+    settings ? {},
+    default ? false,
+  }: {
     id = id;
     name = name;
     isDefault = default;
-    settings = {
-      "app.update.auto" = false;
-      "signon.rememberSignons" = false;
-      "browser.startup.homepage" = "about:blank";
-      "browser.newtabpage.enabled" = false;
-      "browser.toolbars.bookmarks.visibility" = "never";
-      "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-      "dom.textMetrics.fontBoundingBox.enabled" = true;
-      "browser.tabs.tabmanager.enabled" = false;
-      "browser.download.autohideButton" = false;
-      "layout.css.devPixelsPerPx" = -1.0;
-    } // settings;
+    settings =
+      {
+        "app.update.auto" = false;
+        "signon.rememberSignons" = false;
+        "browser.startup.homepage" = "about:blank";
+        "browser.newtabpage.enabled" = false;
+        "browser.toolbars.bookmarks.visibility" = "never";
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "dom.textMetrics.fontBoundingBox.enabled" = true;
+        "browser.tabs.tabmanager.enabled" = false;
+        "browser.download.autohideButton" = false;
+        "layout.css.devPixelsPerPx" = -1.0;
+      }
+      // settings;
     userChrome = ''
       @import url("${impurity.link ./userChrome.css}")
     '';
@@ -28,7 +39,6 @@ let
     ];
   };
 in {
-
   options = {
     sys.home.browsers.firefox = {
       enable = lib.mkEnableOption "custom firefox setup";
@@ -63,7 +73,7 @@ in {
 
     stylix.targets.firefox = {
       enable = true;
-      profileNames = [ "main" ];
+      profileNames = ["main"];
     };
   };
 }

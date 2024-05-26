@@ -1,11 +1,14 @@
-{ lib, config, impurity, ... }:
-let
+{
+  lib,
+  config,
+  impurity,
+  ...
+}: let
   cfg = config.sys.home.editors.nvim;
 in {
-
   options = {
     sys.home.editors.nvim = {
-        enable = lib.mkEnableOption "custom neovim setup";
+      enable = lib.mkEnableOption "custom neovim setup";
     };
   };
 
@@ -13,13 +16,14 @@ in {
     programs.neovim = {
       enable = true;
       withPython3 = true;
-      extraPython3Packages = (ps: with ps; [
-        jedi
-        pynvim
-      ]);
+      extraPython3Packages = ps:
+        with ps; [
+          jedi
+          pynvim
+        ];
       extraLuaConfig = ''
 
-         vim.cmd('source ${impurity.link ./custom.vim}')
+        vim.cmd('source ${impurity.link ./custom.vim}')
       '';
     };
 

@@ -1,15 +1,17 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.sys.nixos.i18n;
 in {
-
   options.sys.nixos.i18n = {
     enable = lib.mkEnableOption "enable internationalization preset";
     fontPackages = lib.mkOption {
       type = lib.types.listOf lib.types.package;
       default = with pkgs; [
-        (nerdfonts.override { fonts = [ "Ubuntu" ]; })
+        (nerdfonts.override {fonts = ["Ubuntu"];})
         carlito
         dejavu_fonts
         ipafont
@@ -72,4 +74,3 @@ in {
     };
   };
 }
-

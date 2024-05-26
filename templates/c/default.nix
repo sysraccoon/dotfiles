@@ -3,15 +3,14 @@
   llvmPackages_11,
   cmake,
   spdlog,
-  abseil-cpp
+  abseil-cpp,
 }:
-
 llvmPackages_11.stdenv.mkDerivation rec {
   pname = "c-template";
   version = "0.1.0";
 
   src = ./.;
-  nativeBuildInputs = [ cmake ];
+  nativeBuildInputs = [cmake];
 
   meta = with lib; {
     description = ''
@@ -19,6 +18,6 @@ llvmPackages_11.stdenv.mkDerivation rec {
     '';
     license = licenses.mit;
     platforms = with platforms; linux ++ darwin;
-    maintainers = [ maintainers.sysraccoon ];
+    maintainers = [maintainers.sysraccoon];
   };
 }

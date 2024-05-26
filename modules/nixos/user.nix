@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.sys.nixos.mainUser;
 in {
   options.sys.nixos.mainUser = {
@@ -19,7 +22,7 @@ in {
   config = lib.mkIf cfg.enable {
     users.users.${cfg.username} = {
       isNormalUser = true;
-      extraGroups = lib.mkIf cfg.isSuperUser [ "wheel" ];
+      extraGroups = lib.mkIf cfg.isSuperUser ["wheel"];
       shell = pkgs.zsh;
       packages = with pkgs; [
         home-manager

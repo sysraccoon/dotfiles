@@ -1,12 +1,14 @@
-{ config, pkgs, ... }:
-
 {
-  users.users.raccoon = {
-    extraGroups = [ "docker" "kvm" "qemu-libvirtd" "libvirtd" ];
+  config,
+  pkgs,
+  ...
+}: {
+  users.users.${config.sys.nixos.mainUser.username} = {
+    extraGroups = ["docker" "kvm" "qemu-libvirtd" "libvirtd"];
   };
 
   boot.extraModprobeConfig = "options kvm_intel nested=1";
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = ["kvm-intel"];
 
   virtualisation = {
     libvirtd = {
@@ -14,7 +16,7 @@
       qemu = {
         swtpm.enable = true;
         ovmf.enable = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
+        ovmf.packages = [pkgs.OVMFFull.fd];
       };
     };
     spiceUSBRedirection.enable = true;

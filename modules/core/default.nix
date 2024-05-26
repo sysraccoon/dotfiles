@@ -2,7 +2,6 @@ rec {
   nixosModules.default = {
     imports = [
       nixosModules.impurity
-
     ];
   };
 

@@ -1,10 +1,13 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   home.packages = with pkgs; [
     binutils
     ((emacsPackagesFor emacsNativeComp).emacsWithPackages
-        (epkgs: [ epkgs.vterm ]))
+      (epkgs: [epkgs.vterm]))
 
     # DOOM dependencies
     git
@@ -17,7 +20,7 @@
     zstd
 
     # Module dependencies
-    (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+    (aspellWithDicts (ds: with ds; [en en-computers en-science]))
     editorconfig-core-c
     sqlite
     texlive.combined.scheme-full
