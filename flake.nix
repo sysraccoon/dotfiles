@@ -56,6 +56,7 @@
       src = ./.;
       hooks = {
         alejandra.enable = true;
+        nil.enable = true;
       };
     };
 
