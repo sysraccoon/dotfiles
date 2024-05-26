@@ -17,6 +17,7 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    stylix.url = "github:danth/stylix";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     adb-install-cert = {
@@ -82,6 +83,10 @@
             profile-entry
             {
                 impurity.configRoot = self;
+
+                # HM currently 24.05, nixpkgs 24.11
+                # TODO delete this after HM change version to 24.11
+                home.enableNixpkgsReleaseCheck = false;
             }
           ];
           extraSpecialArgs = {

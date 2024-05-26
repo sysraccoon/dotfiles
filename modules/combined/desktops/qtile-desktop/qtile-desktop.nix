@@ -36,6 +36,39 @@
         xdg.configFile = {
           qtile.source = impurity.link ./.;
         };
+
+        services.picom = {
+          enable = true;
+          vSync = true;
+          backend = "xr_glx_hybrid";
+          settings = {
+            glx-no-stencil = true;
+            glx-no-rebind-pixmap = true;
+            unredir-if-possible = true;
+            xrender-sync-fence = true;
+          };
+        };
+
+        services.unclutter = {
+          enable = true;
+          timeout = 10;
+        };
+
+        services.dunst = {
+          enable = true;
+        };
+
+        services.xcape = {
+          enable = true;
+          timeout = 200;
+          mapExpression = {
+            "Control_L" = "Escape";
+            # "Shift_L" = "Super_L|bracketleft";
+            # "Shift_R" = "Super_L|bracketright";
+          };
+        };
+
+        services.flameshot.enable = true;
       };
     };
 }

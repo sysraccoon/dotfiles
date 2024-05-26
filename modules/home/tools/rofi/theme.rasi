@@ -1,26 +1,14 @@
+/*
+This theme rely on external color palette
+See ./rofi.nix for more details
+*/
+
 * {
-    color0: #1A1C23;
-    color1: #1C1E26;
-    color2: #232530;
-    color3: #2E303E;
-    color4: #d8dee9;
-    color5: #e5e9f0;
-    color6: #eceff4;
-    color7: #09F7A0;
-    color8: #27D796;
-    color9: #21BFC2;
-    color10: #B877DB;
-    color11: #25B2BC;
-    color12: #E95678;
-    color13: #F09383;
-    color14: #FAB795;
-    color15: #FAC29A;
-
     spacing: 2;
-    background-color: var(color1);
+    background-color: var(color0);
 
-    background: var(color1);
-    background-alternative: var(color3);
+    background: var(color0);
+    background-alternative: var(color2);
     foreground: var(color4);
 
     window-border: var(color3);
@@ -29,7 +17,7 @@
     normal-foreground: var(foreground);
     alternate-normal-background: var(background);
     alternate-normal-foreground: var(foreground);
-    selected-normal-background: var(color8);
+    selected-normal-background: var(color15);
     selected-normal-foreground: var(background);
 
     active-background: var(background);

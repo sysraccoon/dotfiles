@@ -20,6 +20,8 @@ in {
           # general
           vscodevim.vim
           akamud.vscode-theme-onedark
+          naumovs.color-highlight
+
           # for some reason, this theme don't available from vscode marketplace
           extensions.open-vsx.jolaleye.horizon-theme-vscode
 
@@ -45,6 +47,8 @@ in {
         ];
       };
     };
+
+    # stylix.targets.vscode.enable = true;
 
     xdg.configFile."VSCodium/User/settings.json".source = impurity.link ./settings.json;
     xdg.configFile."VSCodium/User/keybindings.json".source = impurity.link ./keybindings.json;

@@ -88,7 +88,7 @@ set termguicolors
 
 " code highlighting
 syntax on
-colorscheme horizon
+" colorscheme horizon
 
 " transparent background
 highlight Normal guibg=none

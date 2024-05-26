@@ -11,8 +11,16 @@ in {
       kitty
     ];
 
-    xdg.configFile = {
-      "kitty/kitty.conf".source = impurity.link ./kitty.conf;
+    programs.kitty = {
+      enable = true;
+      extraConfig = ''
+
+        include ${impurity.link ./kitty.conf}
+
+      '';
     };
+
+    stylix.targets.kitty.enable = true;
+    stylix.targets.kitty.variant256Colors = true;
   };
 }

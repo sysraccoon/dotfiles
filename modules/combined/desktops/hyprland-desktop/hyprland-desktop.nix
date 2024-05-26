@@ -57,9 +57,10 @@
           '';
         };
 
+        gtk.enable = true;
+
         home.packages = with pkgs; [
           # wayland specific apps
-          rofi-wayland
           cliphist
           swaybg
           wlr-randr
@@ -73,7 +74,6 @@
 
         xdg.configFile = {
           "hypr/hyprland-modules".source = impurity.link ./hyprland-modules;
-          rofi.source = impurity.link ./rofi;
           waybar.source = impurity.link ./waybar;
           wlogout.source = impurity.link ./wlogout;
         };
@@ -84,17 +84,11 @@
           run ln -sf $XDG_RUNTIME_DIR/hypr /tmp/hypr 
         '';
 
-        dconf.settings = {
-          "org/gnome/desktop/interface" = {
-            cursor-theme = "McMojava-X-cursors";
-            cursor-size = 24;
-          };
-        };
-
-        xdg.dataFile."icons/McMojava-X-cursors".source = ../resources/icons/McMojava-X-cursors;
-        xdg.dataFile."icons/McMojava-hypr-cursors".source = ../resources/icons/McMojava-hypr-cursors;
-
         home.file.".background-image".source = impurity.link ../resources/wallpapers/default.jpg;
+
+        stylix.targets.hyprland.enable = true;
+
+        sys.home.tools.rofi.enable = lib.mkDefault true;
       };
     };
 }

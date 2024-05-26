@@ -25,7 +25,6 @@ let
     extensions = with pkgs-nur.repos.rycee.firefox-addons; [
       ublock-origin
       vimium
-      kristofferhagen-nord-theme
     ];
   };
 in {
@@ -60,6 +59,11 @@ in {
         "x-scheme-handler/http" = ["firefox.desktop"];
         "x-scheme-handler/https" = ["firefox.desktop"];
       };
+    };
+
+    stylix.targets.firefox = {
+      enable = true;
+      profileNames = [ "main" ];
     };
   };
 }

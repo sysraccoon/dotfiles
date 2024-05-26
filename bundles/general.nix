@@ -1,12 +1,12 @@
 let 
+  core = import ../modules/core;
   combined = import ../modules/combined;
-  common = import ../modules/common;
   home = import ../modules/home;
   nixos = import ../modules/nixos;
 in {
   nixosModules.default = { lib, username, ... }: {
     imports = [
-      common.default
+      core.nixosModules.default
       nixos.default
       combined.nixosModules.default
     ];
@@ -29,11 +29,13 @@ in {
     sys.nixos.programs.syncthing.user = lib.mkDefault username;
   };
 
-  homeManagerModules.default = {
+  homeManagerModules.default = { lib, ... }: {
     imports = [
-      common.default
+      core.homeManagerModules.default
       home.default
       combined.homeManagerModules.default
     ];
+
+    sys.home.stylix.enable = lib.mkDefault true;
   };
 }

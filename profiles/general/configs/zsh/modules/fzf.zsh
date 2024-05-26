@@ -7,13 +7,6 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --pointer="➤"
     --marker="⊕"'
 
-# horizon theme
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-    --color=fg:#bababa,bg:#1c1e26,hl:#3fc6de
-    --color=fg+:#bababa,bg+:#1c1e26,hl+:#26bbd9
-    --color=info:#3fdaa4,prompt:#3fdaa4,pointer:#e95678
-    --color=marker:#b48dac,spinner:#29d398,header:#fab795'
-
 FZF_SHARE_DIR="/usr/share/fzf"
 if [ -d $FZF_SHARE_DIR ]; then
   source $FZF_SHARE_DIR"/key-bindings.zsh"

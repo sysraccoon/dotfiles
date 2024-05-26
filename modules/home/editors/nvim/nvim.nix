@@ -17,8 +17,14 @@ in {
         jedi
         pynvim
       ]);
+      extraLuaConfig = ''
+
+         vim.cmd('source ${impurity.link ./custom.vim}')
+      '';
     };
 
-    xdg.configFile.nvim.source = impurity.link ./.;
+    xdg.configFile."nvim/UltiSnips".source = impurity.link ./UltiSnips;
+
+    stylix.targets.vim.enable = true;
   };
 }
