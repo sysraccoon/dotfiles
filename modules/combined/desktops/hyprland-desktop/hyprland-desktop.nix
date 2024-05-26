@@ -76,12 +76,10 @@
         wl-clipboard
         wlogout
         wlprop
-        waybar
       ];
 
       xdg.configFile = {
         "hypr/hyprland-modules".source = impurity.link ./hyprland-modules;
-        waybar.source = impurity.link ./waybar;
         wlogout.source = impurity.link ./wlogout;
       };
 
@@ -96,6 +94,7 @@
       stylix.targets.hyprland.enable = true;
 
       sys.home.tools.rofi.enable = lib.mkDefault true;
+      sys.home.tools.waybar.enable = lib.mkDefault true;
     };
   };
 }

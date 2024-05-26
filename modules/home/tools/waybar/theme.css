@@ -1,25 +1,11 @@
-@define-color bg #1C1E26;
-@define-color fg #BABABA;
+/*
+This theme rely on external color palette
+See ./waybar.nix for more details
+*/
 
-@define-color color0  #161610;
-@define-color color1  #1A1C23;
-@define-color color2  #1C1E26;
-@define-color color3  #232530;
-@define-color color4  #2E303E;
-@define-color color5  #6C6F93;
-@define-color color6  #E9436F;
-@define-color color7  #E95379;
-@define-color color8  #F43E5C;
-@define-color color9  #09F7A0;
-@define-color color10 #27D796;
-@define-color color11 #21BFC2;
-@define-color color12 #FAB28E;
-@define-color color13 #B877DB;
-@define-color color14 #25B2BC;
-@define-color color15 #E95678;
-@define-color color16 #F09383;
-@define-color color17 #FAB795;
-@define-color color18 #FAC29A;
+
+@define-color bg @color0;
+@define-color fg @color6;
 
 * {
     /* `otf-font-awesome` is required to be installed for icons */

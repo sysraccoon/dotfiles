@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# I don't use "pkill -SIGUSR1 waybar" because my custom systemd path
+# automatically show waybar after conifg/theme changes (this accaptable)
+# and any "home-manager switch" execution (not accaptable if waybar don't changed,
+# but I not found clean solution for this, only variants "reload always on
+# hm-switch/reload never on hm-switch")
+
+# For more information about my custom hot-reload implementation see:
+# $FLAKE/modules/home/tools/waybar/waybar.nix
+
+# Also this solution allow manually restart waybar via keybinding if something went wrong
+
+if pgrep waybar; then
+    pkill waybar;
+else
+    waybar;
+fi
