@@ -6,6 +6,7 @@ rec {
       network
       nix
       user
+      virtualization
     ];
   };
 
@@ -14,4 +15,5 @@ rec {
   network = import ./network.nix;
   nix = import ./nix.nix;
   user = import ./user.nix;
+  virtualization = import ./virtualization.nix;
 }

@@ -24,4 +24,6 @@
     wireshark.enable = true;
     caps2esc.enable = true;
   };
+
+  sys.nixos.virtualization.enable = true;
 }

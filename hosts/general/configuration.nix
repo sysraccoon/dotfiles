@@ -7,6 +7,5 @@
     ./kernel.nix
     ./services.nix
     ./packages.nix
-    ./virtualization.nix
   ];
 }

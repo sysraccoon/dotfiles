@@ -29,6 +29,8 @@ in {
       networkUsers = lib.mkDefault [username];
     };
 
+    sys.nixos.virtualization.virtualizationUsers = lib.mkDefault [username];
+
     sys.nixos.programs.wireshark.wiresharkUsers = lib.mkDefault [username];
     sys.nixos.programs.syncthing.user = lib.mkDefault username;
   };
