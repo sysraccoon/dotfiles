@@ -14,11 +14,10 @@
     "dm-snapshot"
   ];
 
-  # Bootloader.
+  # Bootloader
   boot.loader = {
-    # systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
-    efi.efiSysMountPoint = "/boot/efi";
+    efi.efiSysMountPoint = "/boot";
 
     grub.enable = true;
     grub.efiSupport = true;

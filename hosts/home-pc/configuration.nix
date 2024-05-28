@@ -4,6 +4,7 @@
     ../general/configuration.nix
     ./hardware-configuration.nix
     ./machine-specific.nix
+    ./impermanence.nix
   ];
 
   system.stateVersion = "22.11";
@@ -20,5 +21,5 @@
     caps2esc.enable = true;
   };
 
-  sys.nixos.virtualization.enable = true;
+  # sys.nixos.virtualization.enable = true;
 }

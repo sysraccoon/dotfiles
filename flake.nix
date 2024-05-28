@@ -26,6 +26,8 @@
     };
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs = inputs @ {
