@@ -25,7 +25,9 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/D8D3-14A6";
+    # Use this command to set label to vfat efi partition:
+    # sudo dosfslabel /dev/disk/by-uuid/AAAA-AAAA "efi-boot"
+    device = "/dev/disk/by-label/efi-boot";
     fsType = "vfat";
     options = ["fmask=0022" "dmask=0022"];
   };
