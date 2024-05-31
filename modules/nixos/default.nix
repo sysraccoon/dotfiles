@@ -7,6 +7,7 @@ rec {
       nix
       user
       virtualization
+      recurva
     ];
   };
 
@@ -16,4 +17,5 @@ rec {
   nix = import ./nix.nix;
   user = import ./user.nix;
   virtualization = import ./virtualization.nix;
+  recurva = import ./recurva/recurva.nix;
 }
