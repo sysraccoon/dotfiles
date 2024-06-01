@@ -2,13 +2,13 @@
   android = {
     versions = {
       tools = "26.1.1";
-      platformTools = "33.0.3";
-      buildTools = "30.0.3";
-      emulator = "31.3.14";
+      platformTools = "35.0.1";
+      buildTools = "34.0.0";
+      emulator = "34.2.11";
     };
-    platforms = ["27" "29" "34"];
+    platforms = ["27" "34"];
     abis = ["x86_64"];
-    systemImageTypes = ["default" "google_apis"];
+    systemImageTypes = ["default"];
   };
   androidEnv = pkgs.androidenv;
   androidComposition = androidEnv.composeAndroidPackages {
@@ -24,7 +24,7 @@
     emulatorVersion = android.versions.emulator;
     systemImageTypes = android.systemImageTypes;
 
-    useGoogleAPIs = true;
+    useGoogleAPIs = false;
 
     extraLicenses = [
       "android-sdk-preview-license"
@@ -53,7 +53,8 @@ in
         export ANDROID_SDK_ROOT="${androidSdk}/libexec/android-sdk"
         export ANDROID_USER_HOME="$HOME/.android"
         export ANDROID_AVD_HOME="$HOME/.android/avd"
-        export QT_QPA_PLATFORM="wayland;xcb"
+        export QT_QPA_PLATFORM="xcb"
+        export LD_LIBRARY_PATH="${pkgs.libglvnd}/lib"
       '';
       runScript = "zsh";
     })
