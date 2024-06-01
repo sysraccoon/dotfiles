@@ -26,6 +26,8 @@
         "dom.textMetrics.fontBoundingBox.enabled" = true;
         "browser.tabs.tabmanager.enabled" = false;
         "browser.download.autohideButton" = false;
+        "identity.fxaccounts.toolbar.enabled" = false;
+        "extensions.pocket.enabled" = false;
         "layout.css.devPixelsPerPx" = -1.0;
       }
       // settings;
