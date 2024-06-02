@@ -5,6 +5,7 @@
     # sddm.enable = true;
   };
 
+  services.xserver.enable = true;
   services.xserver.desktopManager = {
     xterm.enable = false;
     xfce.enable = true;
@@ -24,5 +25,9 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
+  };
+
+  services.geoclue2 = {
+    enable = true;
   };
 }

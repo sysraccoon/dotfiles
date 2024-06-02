@@ -42,7 +42,6 @@
     wineWowPackages.stable
     spice
     virtio-win
-    jetbrains-toolbox
 
     ## general
     zathura
@@ -68,6 +67,7 @@
     obsidian
 
     # dev/re
+    jetbrains-toolbox
     jetbrains.pycharm-community
     jetbrains.idea-community
     ghidra
@@ -128,5 +128,12 @@
 
   xdg.configFile = {
     "dunst/dunstrc".source = impurity.link ../dunst/dunstrc;
+  };
+
+  services.gammastep = {
+    enable = true;
+    provider = "geoclue2";
+    duskTime = "18:35-20:15";
+    dawnTime = "6:00-7:45";
   };
 }
