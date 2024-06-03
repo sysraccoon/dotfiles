@@ -21,5 +21,6 @@
     caps2esc.enable = true;
   };
 
-  # sys.nixos.virtualization.enable = true;
+  sys.nixos.virtualization.enable = true;
+  sys.nixos.layouts.recurva.enable = true;
 }

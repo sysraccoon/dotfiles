@@ -38,7 +38,7 @@ in {
         };
       };
       spiceUSBRedirection.enable = true;
-      docker.enable = true;
+      # docker.enable = true;
       docker.storageDriver = "btrfs";
     };
   };

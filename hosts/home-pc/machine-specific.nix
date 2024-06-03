@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: {
@@ -26,22 +25,31 @@
     grub.useOSProber = true;
   };
 
-  systemd = {
-    targets.network-online.wantedBy = pkgs.lib.mkForce []; # Normally ["multi-user.target"]
-    services.NetworkManager-wait-online.wantedBy = pkgs.lib.mkForce []; # Normally ["network-online.target"]
-  };
+  # systemd = {
+  #   targets.network-online.wantedBy = pkgs.lib.mkForce []; # Normally ["multi-user.target"]
+  #   services.NetworkManager-wait-online.wantedBy = pkgs.lib.mkForce []; # Normally ["network-online.target"]
+  # };
 
   # Optimize cpu usage
   powerManagement.cpuFreqGovernor = "performance";
 
   hardware.enableRedistributableFirmware = true;
 
-  hardware.opengl.enable = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      vulkan-loader
+      vulkan-validation-layers
+      vulkan-extension-layer
+    ];
+  };
 
-  boot.initrd.kernelModules = ["amdgpu"];
-  hardware.opengl.extraPackages = with pkgs; [
-    amdvlk
-  ];
+  # boot.initrd.kernelModules = ["amdgpu"];
+  # hardware.opengl.extraPackages = with pkgs; [
+  #   amdvlk
+  # ];
 
   services.fwupd.enable = true;
 
