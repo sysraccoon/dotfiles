@@ -45,8 +45,8 @@ in {
     console.useXkbConfig = true;
 
     services.xserver.xkb = {
-      layout = "us,ru";
-      variant = "dvorak,";
+      layout = "recurva,ru";
+      variant = ",";
       options = "grp:shifts_toggle,ctrl:nocaps,altwin:swap_lalt_lwin,terminate:ctrl_alt_bksp";
     };
 

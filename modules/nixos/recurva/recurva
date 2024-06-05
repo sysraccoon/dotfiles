@@ -27,6 +27,8 @@ xkb_symbols "basic" {
    key <AD08>     {[      u,  U     ]};
    key <AD09>     {[      o,  O     ]};
    key <AD10>     {[      y,  Y     ]};
+   key <AD11>     {[      bracketleft,  braceleft     ]};
+   key <AD12>     {[      bracketright,  braceright     ]};
 
    key <AC01>     {[      s,  S     ]};
    key <AC02>     {[      n,  N     ]};
@@ -38,7 +40,7 @@ xkb_symbols "basic" {
    key <AC08>     {[      e,  E     ]};
    key <AC09>     {[      a,  A     ]};
    key <AC10>     {[      i,  I     ]};
-   key <AC11>	  {[	  slash, question  ]};
+   key <AC11>	   {[	  slash, question  ]};
 
    key <AB01>     {[      z,  Z     ]};
    key <AB02>     {[      x,  X     ]};
