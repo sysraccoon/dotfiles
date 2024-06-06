@@ -42,14 +42,6 @@ in {
       LC_ALL = "en_GB.UTF-8";
     };
 
-    console.useXkbConfig = true;
-
-    services.xserver.xkb = {
-      layout = "recurva,ru";
-      variant = ",";
-      options = "grp:shifts_toggle,ctrl:nocaps,altwin:swap_lalt_lwin,terminate:ctrl_alt_bksp";
-    };
-
     fonts = {
       packages = cfg.fontPackages;
       fontconfig.enable = true;

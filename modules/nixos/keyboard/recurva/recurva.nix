@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.sys.nixos.layouts.recurva;
+  cfg = config.sys.nixos.keyboard.recurva;
 in {
-  options.sys.nixos.layouts.recurva = {
+  options.sys.nixos.keyboard.recurva = {
     enable = lib.mkEnableOption "enable recurva layout";
   };
 

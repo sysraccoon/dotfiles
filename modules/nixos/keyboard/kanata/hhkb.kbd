@@ -1,0 +1,68 @@
+#| ---------------------------------------------------------------
+
+(deflayer name
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _   _
+  _    _    _    _    _    _    _    _    _    _    _    _    _      _
+  _    _    _    _    _    _    _    _    _    _    _    _          _
+  _    _    _    _    _    _    _    _    _    _    _    _
+       _    _              _              _    _
+)
+
+ --------------------------------------------------------------- |#
+
+(defsrc
+  esc  1    2    3    4    5    6    7    8    9    0    -    =    \ grv
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    bspc
+  lctl a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+      lmet lalt           spc            ralt rmet 
+)
+
+(defvar
+  tap-timeout 100
+  hold-timeout 200
+  chord-timeout 25
+  tap-dance-timeout 200
+  tt $tap-timeout
+  ht $hold-timeout
+  ct $chord-timeout
+  tdt $tap-dance-timeout
+)
+
+(defalias
+  nav (layer-while-held navigation)
+  lctl (tap-hold $tt $ht esc lctl)
+  a (tap-hold-release $tt $ht a lalt)
+  s (tap-hold-release $tt $ht s lmet)
+
+  h (tap-dance $tdt (h C-bspc (macro h h h)))
+  d (tap-hold-release $tt $ht d lsft)
+  f (tap-hold-release $tt $ht f lctl)
+  j (tap-hold-release $tt $ht j rctl) 
+  k (tap-hold-release $tt $ht k rsft)
+  l (tap-hold-release $tt $ht l rmet)
+
+  ; (tap-hold-release $tt $ht ; ralt)
+  spc (tap-hold $tt $ht spc @nav)
+)
+
+(deflayer qwerty
+  esc  1    2    3    4    5    6    7    8    9    0    -    =    \ grv
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    bspc
+  @lctl @a    @s   @d  @f    g    @h   @j    @k    @l    @;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+      lmet lalt           @spc            ralt rmet 
+)
+
+(defalias
+  prev_tab C-S-tab
+  next_tab C-tab
+)
+
+(deflayer navigation
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _   _
+  _    _    _  @prev_tab @next_tab  _    _    pgup  up  pgdn    _    _    _      _
+  _    _    _    _    _    _           left  C-left down C-rght rght    _          _
+  _    _    _    _    _    _            home    _    _  end    _    _
+       _    _              _              _    _
+)

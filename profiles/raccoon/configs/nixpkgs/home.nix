@@ -62,6 +62,7 @@
     gparted
     google-chrome
     asciinema
+    chromium
 
     # knowledge management
     obsidian

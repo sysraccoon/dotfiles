@@ -23,3 +23,5 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_BY_COPY
 setopt HIST_IGNORE_DUPS
 
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word

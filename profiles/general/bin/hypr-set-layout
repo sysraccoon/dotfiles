@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+hyprctl -j devices | jq -r ".keyboards.[] | select(.main).name" | xargs -I DEV hyprctl switchxkblayout DEV $@

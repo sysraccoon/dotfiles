@@ -18,9 +18,8 @@
   sys.nixos.programs = {
     syncthing.enable = true;
     wireshark.enable = true;
-    caps2esc.enable = true;
+    # caps2esc.enable = true;
   };
 
   sys.nixos.virtualization.enable = true;
-  sys.nixos.layouts.recurva.enable = true;
 }

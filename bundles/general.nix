@@ -23,6 +23,7 @@ in {
 
     sys.nixos.i18n.enable = lib.mkDefault true;
     sys.nixos.nix.enable = lib.mkDefault true;
+    sys.nixos.keyboard.enable = lib.mkDefault true;
 
     sys.nixos.network = {
       enable = lib.mkDefault true;

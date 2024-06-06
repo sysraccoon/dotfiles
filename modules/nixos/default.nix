@@ -7,7 +7,7 @@ rec {
       nix
       user
       virtualization
-      recurva
+      keyboard
     ];
   };
 
@@ -17,5 +17,5 @@ rec {
   nix = import ./nix.nix;
   user = import ./user.nix;
   virtualization = import ./virtualization.nix;
-  recurva = import ./recurva/recurva.nix;
+  keyboard = import ./keyboard;
 }
