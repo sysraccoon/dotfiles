@@ -30,6 +30,7 @@
         "extensions.pocket.enabled" = false;
         "layout.css.devPixelsPerPx" = -1.0;
         "ui.key.menuAccessKeyFocuses" = false;
+        "ui.key.menuAccessKey" = -1;
       }
       // settings;
     userChrome = ''
