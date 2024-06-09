@@ -35,7 +35,6 @@
   a (tap-hold-release $tt $ht a lalt)
   s (tap-hold-release $tt $ht s lmet)
 
-  h (tap-dance $tdt (h C-bspc (macro h h h)))
   d (tap-hold-release $tt $ht d lsft)
   f (tap-hold-release $tt $ht f lctl)
   j (tap-hold-release $tt $ht j rctl) 
@@ -49,7 +48,7 @@
 (deflayer qwerty
   esc  1    2    3    4    5    6    7    8    9    0    -    =    \ grv
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    bspc
-  @lctl @a    @s   @d  @f    g    @h   @j    @k    @l    @;    '    ret
+  @lctl @a  @s   @d  @f    g    h   @j    @k    @l    @;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
       lmet lalt           @spc            ralt rmet 
 )
