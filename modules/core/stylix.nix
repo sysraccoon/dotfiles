@@ -19,7 +19,6 @@ in {
     stylix.autoEnable = false;
     stylix.polarity = "dark";
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-dark.yaml";
-    # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-dark.yaml";
 
     stylix.cursor = {
       package = pkgs.bibata-cursors;
@@ -47,6 +46,11 @@ in {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
       };
+    };
+
+    # manual enabled stylix submodules that don't present in my other modules
+    stylix.targets = {
+      gtk.enable = true;
     };
   };
 }
