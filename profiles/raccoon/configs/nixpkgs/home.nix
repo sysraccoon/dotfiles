@@ -48,7 +48,6 @@
     discord
     tdesktop
     libreoffice
-    obs-studio
     gnome.gnome-sound-recorder
     mpv
     cinnamon.nemo
@@ -62,10 +61,10 @@
     gparted
     google-chrome
     asciinema
-    chromium
 
     # knowledge management
     obsidian
+    logseq
 
     # dev/re
     jetbrains-toolbox
@@ -103,7 +102,15 @@
     pamixer
   ];
 
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      droidcam-obs
+    ];
+  };
+
   sys.home.browsers.firefox.enable = true;
+  sys.home.browsers.chromium.enable = true;
 
   sys.home.desktops.hyprland-desktop = {
     enable = true;

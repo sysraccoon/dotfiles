@@ -11,6 +11,7 @@
   boot.kernelModules = [
     "dm-mirror"
     "dm-snapshot"
+    "v4l2loopback"
   ];
 
   # Bootloader
@@ -40,16 +41,21 @@
     driSupport = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
+      amdvlk
       vulkan-loader
       vulkan-validation-layers
       vulkan-extension-layer
     ];
   };
 
-  # boot.initrd.kernelModules = ["amdgpu"];
-  # hardware.opengl.extraPackages = with pkgs; [
-  #   amdvlk
-  # ];
+  boot.initrd.kernelModules = ["amdgpu"];
+
+  # droid cam setup
+  boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
+  programs.adb.enable = true; # enable android proper data tethering
+  users.groups.video = {
+    members = [config.sys.nixos.mainUser.username];
+  };
 
   services.fwupd.enable = true;
 
