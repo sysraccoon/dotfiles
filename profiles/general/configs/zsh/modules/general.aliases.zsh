@@ -18,6 +18,7 @@ alias copyit='cb-set'
 alias cp-path='pwd | cb-set'
 
 alias unzip='7za x'
+alias untargz='tar -xvzf'
 alias cl='clear'
 alias md='mkdir'
 alias me='chmod +x'

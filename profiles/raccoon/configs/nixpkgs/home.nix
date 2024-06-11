@@ -77,6 +77,7 @@
     iaito
     twine
     burpsuite
+    obs-studio
 
     # android
     scrcpy
@@ -100,14 +101,17 @@
     alsa-tools
     alsa-utils
     pamixer
+    audacity
+    zam-plugins
   ];
 
-  programs.obs-studio = {
-    enable = true;
-    plugins = with pkgs.obs-studio-plugins; [
-      droidcam-obs
-    ];
-  };
+  # programs.obs-studio = {
+  #   enable = true;
+  #   package = pkgs.obs-studio;
+  #   plugins = with pkgs.obs-studio-plugins; [
+  #     droidcam-obs
+  #   ];
+  # };
 
   sys.home.browsers.firefox.enable = true;
   sys.home.browsers.chromium.enable = true;
@@ -115,7 +119,7 @@
   sys.home.desktops.hyprland-desktop = {
     enable = true;
     extraConfig = ''
-      source = ${impurity.link ../hypr/hyprland-overrides.conf}
+      source = ${impurity.link ../hypr/hyprland.conf}
     '';
   };
 

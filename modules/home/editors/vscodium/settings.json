@@ -2,7 +2,7 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.colorTheme": "Horizon",
 
-    "editor.fontFamily": "'Hack', 'monospace', monospace",
+    "editor.fontFamily": "'Source Code Pro', 'monospace', monospace",
 
     "security.workspace.trust.enabled": false,
 
@@ -24,7 +24,6 @@
     "vim.useSystemClipboard": true,
 
     "terminal.external.linuxExec": "kitty",
-    "window.menuBarVisibility": "toggle",
     "editor.fontSize": 13,
     "window.commandCenter": false,
     "workbench.layoutControl.enabled": false,
@@ -36,4 +35,10 @@
         "<C-b>": false
     },
     "explorer.confirmDragAndDrop": false,
+    "files.autoSave": "onFocusChange",
+    "window.menuBarVisibility": "hidden",
+    "window.customTitleBarVisibility": "auto",
+    "editor.unicodeHighlight.allowedLocales": {
+        "ru": true
+    },
 }

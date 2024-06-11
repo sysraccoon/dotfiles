@@ -25,6 +25,28 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
+    extraConfig.pipewire = {
+      "10-null-sink" = {
+        "context.objects" = [
+          {
+            "factory" = "adapter";
+            "args" = {
+              "factory.name" = "support.null-audio-sink";
+              "node.name" = "virtual-obs-sink";
+              "media.class" = "Audio/Duplex";
+              "audio.position" = "[ FL FR ]";
+              "monitor.channel-volumes" = true;
+              "monitor.passthrough" = true;
+              "adapter.auto-port-config" = {
+                "mode" = "dsp";
+                "monitor" = "true";
+                "position" = "preserve";
+              };
+            };
+          }
+        ];
+      };
+    };
   };
 
   services.geoclue2 = {
