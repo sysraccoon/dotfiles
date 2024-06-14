@@ -77,7 +77,6 @@
     iaito
     twine
     burpsuite
-    obs-studio
 
     # android
     scrcpy
@@ -105,13 +104,14 @@
     zam-plugins
   ];
 
-  # programs.obs-studio = {
-  #   enable = true;
-  #   package = pkgs.obs-studio;
-  #   plugins = with pkgs.obs-studio-plugins; [
-  #     droidcam-obs
-  #   ];
-  # };
+  programs.obs-studio = {
+    enable = true;
+    package = pkgs.obs-studio;
+    plugins = with pkgs.obs-studio-plugins; [
+      droidcam-obs
+      wlrobs
+    ];
+  };
 
   sys.home.browsers.firefox.enable = true;
   sys.home.browsers.chromium.enable = true;
