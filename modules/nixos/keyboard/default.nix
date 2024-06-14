@@ -21,8 +21,8 @@ in {
     console.useXkbConfig = true;
 
     services.xserver.xkb = {
-      layout = "recurva,ru";
-      variant = ",";
+      layout = "us,recurva,ru";
+      variant = "dvorak,,";
       options = "grp:shifts_toggle,ctrl:nocaps,altwin:swap_lalt_lwin,terminate:ctrl_alt_bksp,compose:ralt";
     };
   };
