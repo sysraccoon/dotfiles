@@ -18,6 +18,7 @@ in {
         "--force-device-scale-factor=1.5"
         "--ozone-platform-hint=auto"
         "--ozone-platform=wayland"
+        "--enable-wayland-ime"
       ];
       extensions = [
         # vimium

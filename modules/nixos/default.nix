@@ -7,7 +7,6 @@ rec {
       nix
       user
       virtualization
-      keyboard
     ];
   };
 
@@ -17,5 +16,4 @@ rec {
   nix = import ./nix.nix;
   user = import ./user.nix;
   virtualization = import ./virtualization.nix;
-  keyboard = import ./keyboard;
 }

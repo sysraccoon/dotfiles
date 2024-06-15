@@ -50,6 +50,7 @@
     libreoffice
     gnome.gnome-sound-recorder
     mpv
+    vlc
     cinnamon.nemo
     calibre
     tor-browser-bundle-bin

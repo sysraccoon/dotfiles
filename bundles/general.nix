@@ -44,5 +44,6 @@ in {
     ];
 
     sys.home.stylix.enable = lib.mkDefault true;
+    sys.home.keyboard.enable = lib.mkDefault true;
   };
 }
