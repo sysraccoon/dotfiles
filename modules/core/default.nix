@@ -9,6 +9,7 @@ rec {
     imports = [
       homeManagerModules.impurity
       homeManagerModules.stylix
+      homeManagerModules.sysUtils
     ];
   };
 
@@ -16,4 +17,5 @@ rec {
 
   homeManagerModules.impurity = import ./impurity.nix;
   homeManagerModules.stylix = import ./stylix.nix;
+  homeManagerModules.sysUtils = import ./sys-utils.nix;
 }

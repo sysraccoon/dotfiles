@@ -4,6 +4,7 @@
   config,
   impurity,
   inputs,
+  sysUtils,
   ...
 }: let
   cfg = config.sys.home.editors.vscodium;
@@ -52,6 +53,21 @@ in {
         ];
       };
     };
+
+    home.packages = [
+      (sysUtils.patchDesktop {
+        pkg = pkgs.vscodium;
+        appName = "codium";
+        from = [
+          "Exec=codium %F"
+          "Exec=codium --new-window %F"
+        ];
+        to = [
+          "Exec=codium --enable-wayland-ime %F"
+          "Exec=codium --new-window --enable-wayland-ime %F"
+        ];
+      })
+    ];
 
     # stylix.targets.vscode.enable = true;
 

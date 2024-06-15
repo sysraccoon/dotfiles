@@ -4,6 +4,7 @@
   inputs,
   bundles,
   impurity,
+  sysUtils,
   ...
 }: {
   imports = [
@@ -65,6 +66,17 @@
 
     # knowledge management
     obsidian
+    (sysUtils.patchDesktop {
+      pkg = obsidian;
+      appName = "obsidian";
+      from = [
+        "Exec=obsidian %u"
+      ];
+      to = [
+        "Exec=obsidian --enable-wayland-ime %u"
+      ];
+    })
+
     logseq
 
     # dev/re
