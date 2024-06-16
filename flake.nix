@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.40.0";
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.39.1";
     nix-alien.url = "github:thiagokokada/nix-alien";
 
     home-manager = {
@@ -13,7 +13,7 @@
     };
 
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.40.0";
+      url = "github:outfoxxed/hy3?ref=hl0.39.1";
       inputs.hyprland.follows = "hyprland";
     };
 
