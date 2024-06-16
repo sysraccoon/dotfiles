@@ -22,9 +22,9 @@
       console.useXkbConfig = true;
 
       services.xserver.xkb = {
-        layout = "us,recurva,ru,cn";
+        layout = "us,recurva,ru";
         variant = "dvorak,,";
-        options = "grp:shifts_toggle,ctrl:nocaps,altwin:swap_lalt_lwin,terminate:ctrl_alt_bksp,compose:ralt";
+        options = "terminate:ctrl_alt_bksp";
       };
     };
   };

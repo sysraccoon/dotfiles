@@ -67,4 +67,6 @@
   users.groups.plugdev = {
     members = [config.sys.nixos.mainUser.username];
   };
+
+  services.desktopManager.plasma6.enable = true;
 }

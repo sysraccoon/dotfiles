@@ -6,13 +6,15 @@
         "position": "top",
         "height": 26,
         "spacing": 4,
-        "modules-left": ["tray"],
+        "modules-left": ["hyprland/language", "tray"],
         "modules-center": ["hyprland/workspaces"],
-        "modules-right": ["pulseaudio", "network", "hyprland/language", "backlight", "battery", "battery#bat2", "clock"],
+        "modules-right": ["pulseaudio", "network", "backlight", "battery", "battery#bat2", "clock"],
 
         "hyprland/language": {
-            "format-en": "EN",
+            "format": "{}",
+            "format-en-dvorak": "EN:DV",
             "format-ru": "RU",
+            "format-": "EN:RV",
         },
 
         "hyprland/workspaces": {

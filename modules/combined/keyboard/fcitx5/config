@@ -1,4 +1,6 @@
 [Hotkey]
+# Trigger Input Method
+TriggerKeys=
 # Enumerate when press trigger key repeatedly
 EnumerateWithTriggerKeys=False
 # Temporally switch between first and current Input Method
@@ -19,9 +21,6 @@ ActivateKeys=
 DeactivateKeys=
 # Toggle embedded preedit
 TogglePreedit=
-
-[Hotkey/TriggerKeys]
-0=Control+Shift+Super+J
 
 [Hotkey/PrevPage]
 0=Up

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -eu
+
+LAYOUT=$1
+if [[ "$LAYOUT" == "rime" ]]; then
+    fcitx5-remote -s rime;
+    ~/bin/hypr-set-layout 0;
+else
+    fcitx5-remote -s keyboard-us;
+    # fcitx5-remote -e;
+    ~/bin/hypr-set-layout "$LAYOUT";
+fi
