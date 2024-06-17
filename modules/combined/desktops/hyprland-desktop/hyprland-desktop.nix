@@ -51,7 +51,14 @@
     };
 
     config = lib.mkIf cfg.enable {
-      wayland.windowManager.hyprland = {
+      wayland.windowManager.hyprland = let
+        stylixColors = config.lib.stylix.colors;
+        colorOverrides = pkgs.writeText "color-overrides.conf" ''
+          plugin:hy3:tabs {
+            col.active = 0xaa${stylixColors.base09}
+          }
+        '';
+      in {
         enable = true;
         xwayland.enable = true;
         plugins = [
@@ -60,6 +67,7 @@
 
         extraConfig = ''
           source = ${impurity.link ./hyprland.conf}
+          source = ${colorOverrides}
           ${cfg.extraConfig}
         '';
       };

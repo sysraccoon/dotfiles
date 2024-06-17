@@ -24,9 +24,13 @@ in {
         ubuntu_font_family
         source-code-pro
         babelstone-han
-        noto-fonts-emoji
         symbola
         material-symbols
+        noto-fonts
+        noto-fonts-emoji
+        noto-fonts-extra
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
       ];
     };
   };
