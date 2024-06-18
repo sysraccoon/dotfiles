@@ -155,10 +155,10 @@
     "dunst/dunstrc".source = impurity.link ../dunst/dunstrc;
   };
 
-  services.gammastep = {
-    enable = true;
-    provider = "geoclue2";
-    duskTime = "18:35-20:15";
-    dawnTime = "6:00-7:45";
-  };
+  # services.gammastep = {
+  #   enable = true;
+  #   provider = "geoclue2";
+  #   duskTime = "18:35-20:15";
+  #   dawnTime = "6:00-7:45";
+  # };
 }

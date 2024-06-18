@@ -22,13 +22,12 @@ in {
           pynvim
         ];
       extraLuaConfig = ''
-
-        vim.cmd('source ${impurity.link ./custom.vim}')
+        vim.cmd('source ${impurity.link ./custom.lua}')
       '';
     };
 
     xdg.configFile."nvim/UltiSnips".source = impurity.link ./UltiSnips;
 
-    stylix.targets.vim.enable = true;
+    stylix.targets.vim.enable = false;
   };
 }

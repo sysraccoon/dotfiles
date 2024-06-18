@@ -60,7 +60,7 @@
 
 (deflayer navigation
   _    _    _    _    _    _    _    _    _    _    _    _    _    _   _
-  _    _    _  @prev_tab @next_tab  _    _    pgup  up  pgdn    _    _    _      _
+  _    _    _  @prev_tab @next_tab  _    _    pgdn  up  pgup    _    _    _      _
   _    _    _    _    _    _           left  C-left down C-rght rght    _          _
   _    _    _    _    _    _            home    _    _  end    _    _
        _    _              _              _    _
