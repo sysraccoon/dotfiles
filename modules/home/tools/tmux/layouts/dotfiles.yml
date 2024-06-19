@@ -6,6 +6,7 @@ windows:
       layout: main-horizontal
       panes:
         - editor:
+          - tmux resize-pane -Z
           - nvim +":Telescope find_files"
         - 
 

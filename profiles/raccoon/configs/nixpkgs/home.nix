@@ -26,7 +26,6 @@
 
     # cli
     argbash
-    xdragon
     texlive.combined.scheme-full
     ibus
     ffmpeg
@@ -45,7 +44,6 @@
     virtio-win
 
     ## general
-    zathura
     discord
     tdesktop
     libreoffice
@@ -63,20 +61,9 @@
     gparted
     google-chrome
     asciinema
+    feh
 
     # knowledge management
-    obsidian
-    (sysUtils.patchDesktop {
-      pkg = obsidian;
-      appName = "obsidian";
-      from = [
-        "Exec=obsidian %u"
-      ];
-      to = [
-        "Exec=obsidian --enable-wayland-ime %u"
-      ];
-    })
-
     logseq
 
     # dev/re
@@ -101,13 +88,6 @@
 
     # terminals
     xterm
-
-    ## X11
-    feh
-    flameshot
-    peek
-    xsecurelock
-    xcur2png
 
     # audio
     alsa-tools
@@ -138,14 +118,13 @@
 
   sys.home.terminals.alacritty.enable = true;
   sys.home.terminals.kitty.enable = true;
+  sys.home.tools.obsidian.enable = true;
 
   xdg.configFile."mimeapps.list".force = true;
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "application/pdf" = ["org.pwmt.zathura.desktop"];
       "x-scheme-handler/tg" = ["userapp-Telegram Desktop-08XUJ1.desktop"];
-      "inode/directory" = ["org.kde.dolphin.desktop"];
     };
   };
 
@@ -154,11 +133,4 @@
   xdg.configFile = {
     "dunst/dunstrc".source = impurity.link ../dunst/dunstrc;
   };
-
-  # services.gammastep = {
-  #   enable = true;
-  #   provider = "geoclue2";
-  #   duskTime = "18:35-20:15";
-  #   dawnTime = "6:00-7:45";
-  # };
 }

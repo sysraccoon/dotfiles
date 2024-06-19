@@ -30,6 +30,20 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter", -- Enable incremental parser and syntax highlighter
     build = ":TSUpdate",
+    config = function()
+      local configs = require("nvim-treesitter.configs")
+
+      configs.setup({
+          ensure_installed = {
+            "c", "lua", "vim",
+            "vimdoc", "query",
+            "javascript", "html",
+          },
+          sync_install = false,
+          highlight = { enable = true },
+          indent = { enable = true },  
+        })
+    end,
   },
   { 
     "norcalli/nvim-colorizer.lua", -- Just show me this colors
@@ -44,5 +58,18 @@ require("lazy").setup({
   },
   "itspriddle/vim-shellcheck", -- ShellCheck wrapper, allow to analyze shell scripts
   "sheerun/vim-polyglot", -- Language packs
+  {
+    "stevearc/oil.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+
+    config = function()
+      require("oil").setup {
+        view_options = {
+          show_hidden = true,
+        },
+      }
+      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+    end,
+  },
 })
 

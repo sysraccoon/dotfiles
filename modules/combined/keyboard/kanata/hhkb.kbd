@@ -80,6 +80,7 @@
   t-right C-p
 
   t-detach (macro $tmux-leader h)
+  t-zoom (macro $tmux-leader /)
 
   t-splt-v (macro $tmux-leader S-q)
   t-splt-h (macro $tmux-leader S-5)
@@ -98,7 +99,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _   _
   _    _    @t-new-w  @t-prev-w @t-next-w  _    _    @t-splt-v  @t-up  @t-splt-h    _    _    _      _
   _    _    _    _    _    _           @t-detach @t-left  @t-down @t-right _   _          _
-  @tmux-mov    _    _    _    _    @t-kill-p            _    _    _  _    _    _
+  @tmux-mov    _    _    _    _    @t-kill-p            _    _    _  _    @t-zoom    _
        _    _              _              _    _
 )
 

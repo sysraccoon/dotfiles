@@ -76,6 +76,7 @@
     gawk
     exfatprogs
     openssl
+    tokei
 
     # dev
     (python310.withPackages (ps:
@@ -108,6 +109,7 @@
   sys.home.editors.nvim.enable = true;
   sys.home.editors.vscodium.enable = true;
   sys.home.tools.tmux.enable = true;
+  sys.home.tools.zathura.enable = true;
 
   xdg.configFile = {
     starship.source = impurity.link ../starship;

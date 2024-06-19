@@ -21,7 +21,12 @@ in {
 
     home.packages = with pkgs; [
       tmuxinator
+      tpm # tpm packed by myself, see $DOTFILES_DIR/packages/tpm.nix
     ];
+
+    home.file = {
+      ".tmux/plugins/tpm".source = "${pkgs.tpm}/share/tpm";
+    };
 
     xdg.configFile = {
       "tmuxinator/dotfiles.yml".source = impurity.link ./layouts/dotfiles.yml;

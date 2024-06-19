@@ -125,7 +125,7 @@
       gopher-impure = generate-impure-version gopher;
     };
 
-    # templates = import ./templates;
+    templates = import ./templates;
     devShells = import ./dev-shells {inherit self pkgs;};
   };
 }
