@@ -18,7 +18,7 @@ in {
   config = lib.mkIf cfg.enable {
     stylix.autoEnable = false;
     stylix.polarity = "dark";
-    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-dark.yaml";
+    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
     stylix.cursor = {
       package = pkgs.bibata-cursors;

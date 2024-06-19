@@ -59,7 +59,6 @@
       hooks = {
         alejandra.enable = true;
         nil.enable = true;
-        deadnix.enable = true;
         detect-private-keys.enable = true;
       };
     };
@@ -98,15 +97,15 @@
             profile-entry
             {
               impurity.configRoot = self;
-
-              # HM currently 24.05, nixpkgs 24.11
-              # TODO delete this after HM change version to 24.11
-              home.enableNixpkgsReleaseCheck = false;
             }
           ];
           extraSpecialArgs = {
             inherit pkgs pkgs-nur inputs ctx bundles;
           };
+        };
+      generate-impure-version = pure-config:
+        pure-config.extendModules {
+          modules = [{impurity.enable = true;}];
         };
     in rec {
       raccoon = generate-home-config {
@@ -115,16 +114,15 @@
         username = "raccoon";
         inherit system;
       };
+      raccoon-impure = generate-impure-version raccoon;
+
       gopher = generate-home-config {
         profile-entry = ./profiles/gopher/configs/nixpkgs/home.nix;
         profile-dir-path = ./profiles/gopher;
         username = "gopher";
         inherit system;
       };
-
-      raccoon-impure = raccoon.extendModules {
-        modules = [{impurity.enable = true;}];
-      };
+      gopher-impure = generate-impure-version gopher;
     };
 
     # templates = import ./templates;

@@ -1,0 +1,35 @@
+snippet sys-home-module
+  {
+    config,
+    pkgs,
+    lib,
+    impurity,
+    ...
+  }: let
+    cfg = config.sys.home.$1;
+  in {
+    options.sys.home.$1 = {
+      enable = lib.mkEnableOption "toggle custom $1 setup";
+    };
+
+    config = lib.mkIf cfg.enable {
+      $0
+    };
+  }
+
+snippet sys-nixos-module
+  {
+    config,
+    lib,
+    ...
+  }: let
+    cfg = config.sys.nixos.$1;
+  in {
+    options.sys.nixos.$1 = {
+      enable = lib.mkEnableOption "toggle custom $1 setup";
+    };
+
+    config = lib.mkIf cfg.enable {
+      $0
+    };
+  }

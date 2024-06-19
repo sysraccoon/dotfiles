@@ -33,7 +33,6 @@
     git
     gh
     curl
-    tmux
     screen
     tldr
     zoxide
@@ -108,9 +107,9 @@
 
   sys.home.editors.nvim.enable = true;
   sys.home.editors.vscodium.enable = true;
+  sys.home.tools.tmux.enable = true;
 
   xdg.configFile = {
-    tmux.source = impurity.link ../tmux;
     starship.source = impurity.link ../starship;
     radare2.source = impurity.link ../radare2;
     btop.source = impurity.link ../btop;

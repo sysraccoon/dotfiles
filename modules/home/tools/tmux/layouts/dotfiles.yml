@@ -1,0 +1,11 @@
+name: dotfiles
+root: ~/dotfiles
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - editor:
+          - nvim +":Telescope find_files"
+        - 
+

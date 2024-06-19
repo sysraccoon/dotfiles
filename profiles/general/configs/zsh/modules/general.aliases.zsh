@@ -52,12 +52,11 @@ if [ $+commands[doas] -eq 1 ]; then
   alias sudo='doas '
 fi
 
-alias reload-screen='xrandr --output HDMI2 --off; xrandr --output HDMI2 --right-of eDP1 --auto; ~/.launchers/polybar.sh'
-alias screencast-mode='xrandr --output HDMI-A-0 --mode 1920x1080 && reloadscreen'
-alias screen-normal-mode='xrandr --output HDMI-A-0 --mode 2560x1080 && reloadscreen'
-
 alias unpack='dtrx'
 alias pack-zip='zip'
 alias pack-tar-gz='tar -czvf'
 alias open='xdg-open'
+
+alias cddot='cd $DOTFILES_DIR'
+alias cdnotes='cd $NOTES_DIR'
 

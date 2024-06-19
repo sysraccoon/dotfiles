@@ -13,13 +13,12 @@ mkdir -p "$STAT_DIR/nvim"
 
 export EDITOR
 alias nvim='nvim -w $STAT_DIR/nvim/$(date "+%Y-%m-%d:%H-%M-%S")'
-alias vim='nvim'
-alias vi='nvim'
-alias e='nvim'
-alias nano='nvim'
+alias vim='$EDITOR'
+alias vi='$EDITOR'
+alias edit='$EDITOR'
+alias nano='$EDITOR'
+alias e='edit'
 
-alias edot="nvim \$DOTFILES_DIR +':cd %' +':Telescope find_files'"
-alias enote="nvim \$NOTES_DIR +':cd %' +':ObsidianSearch'"
-alias ehm="nvim \$DOTFILES_DIR/profiles/\$USER/configs/nixpkgs +':cd %' +':Telescope find_files'"
+alias edot="tmuxinator dotfiles"
+alias enotes="tmuxinator notes"
 
-alias edit='e'

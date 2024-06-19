@@ -41,4 +41,7 @@
     "editor.unicodeHighlight.allowedLocales": {
         "ru": true
     },
+    "vim.textwidth": 124,
+    "editor.wordWrapColumn": 124,
+    "editor.wordWrap": "on",
 }

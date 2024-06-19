@@ -29,7 +29,7 @@ MODULES=(
   # terminal
   "term-hotkeys" # enhance terminal hotkeys
   "widgets"
-  # "tmux"
+  "tmux"
 
   # tools
   "fzf" # fuzzy finder

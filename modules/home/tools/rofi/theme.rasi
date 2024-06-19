@@ -9,7 +9,7 @@ See ./rofi.nix for more details
 
     background: var(color0);
     background-alternative: var(color2);
-    foreground: var(color4);
+    foreground: var(color5);
 
     window-border: var(color3);
 
