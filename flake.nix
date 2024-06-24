@@ -75,7 +75,7 @@
             base-config-path
           ];
           specialArgs = {
-            inherit pkgs inputs bundles username;
+            inherit pkgs pkgs-nur inputs bundles username;
           };
         };
     in {
@@ -86,6 +86,10 @@
       thinkpad-yoga = generate-nixos-config {
         base-config-path = ./hosts/thinkpad-yoga/configuration.nix;
         username = "gopher";
+      };
+      live-cd = generate-nixos-config {
+        base-config-path = ./hosts/live-cd/configuration.nix;
+        username = "nixos";
       };
     };
 
@@ -101,6 +105,7 @@
           ];
           extraSpecialArgs = {
             inherit pkgs pkgs-nur inputs ctx bundles;
+            isStandaloneHome = true;
           };
         };
       generate-impure-version = pure-config:
@@ -110,7 +115,6 @@
     in rec {
       raccoon = generate-home-config {
         profile-entry = ./profiles/raccoon/configs/nixpkgs/home.nix;
-        profile-dir-path = ./profiles/raccoon;
         username = "raccoon";
         inherit system;
       };
@@ -118,7 +122,6 @@
 
       gopher = generate-home-config {
         profile-entry = ./profiles/gopher/configs/nixpkgs/home.nix;
-        profile-dir-path = ./profiles/gopher;
         username = "gopher";
         inherit system;
       };

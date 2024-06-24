@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: let
   cfg = config.sys.nixos.virtualization;
@@ -27,6 +28,8 @@ in {
 
     boot.extraModprobeConfig = "options kvm_intel nested=1";
     boot.kernelModules = ["kvm-intel"];
+
+    programs.virt-manager.enable = true;
 
     virtualisation = {
       libvirtd = {

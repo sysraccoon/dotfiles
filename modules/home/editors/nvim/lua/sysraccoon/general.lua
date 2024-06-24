@@ -45,7 +45,7 @@ vim.opt.sidescroll = 10
 -- enable true color support
 vim.opt.termguicolors = true
 
--- conceal syntax
+-- additional visibility options
 vim.opt.conceallevel = 2
 
 -- use system clipboard

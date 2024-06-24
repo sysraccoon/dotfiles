@@ -1,6 +1,7 @@
 {
   nixosModules.default = {
     config,
+    pkgs,
     lib,
     inputs,
     ...
@@ -21,7 +22,10 @@
     };
 
     config = lib.mkIf cfg.enable {
-      programs.hyprland.enable = true;
+      programs.hyprland = {
+        enable = true;
+        package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      };
       services.displayManager = lib.mkIf cfg.isDefaultDesktop {
         defaultSession = "hyprland";
       };
@@ -34,11 +38,12 @@
     lib,
     impurity,
     inputs,
+    isStandaloneHome,
     ...
   }: let
     cfg = config.sys.home.desktops.hyprland-desktop;
   in {
-    imports = [
+    imports = lib.optionals isStandaloneHome [
       inputs.hyprland.homeManagerModules.default
     ];
 

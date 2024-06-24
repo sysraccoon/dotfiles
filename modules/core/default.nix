@@ -2,6 +2,7 @@ rec {
   nixosModules.default = {
     imports = [
       nixosModules.impurity
+      nixosModules.stylix
     ];
   };
 
@@ -14,8 +15,9 @@ rec {
   };
 
   nixosModules.impurity = import ./impurity.nix;
+  nixosModules.stylix = (import ./stylix.nix).nixosModules.default;
 
   homeManagerModules.impurity = import ./impurity.nix;
-  homeManagerModules.stylix = import ./stylix.nix;
+  homeManagerModules.stylix = (import ./stylix.nix).homeManagerModules.default;
   homeManagerModules.sysUtils = import ./sys-utils.nix;
 }

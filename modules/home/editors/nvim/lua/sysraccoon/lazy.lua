@@ -71,5 +71,18 @@ require("lazy").setup({
       vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
     end,
   },
+  {
+    "preservim/vim-pencil",
+    init = function()
+      vim.cmd[[
+        augroup pencil
+          autocmd!
+          autocmd FileType markdown,mkd call pencil#init()
+        augroup END
+      ]]
+      vim.g["pencil#conceallevel"] = 2
+      vim.g["pencil#wrapModeDefault"] = "soft"
+    end,
+  },
 })
 

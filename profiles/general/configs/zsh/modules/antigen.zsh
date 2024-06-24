@@ -1,4 +1,4 @@
-ANTIGEN_DIR="$ZSH_CONFIG_DIR/antigen"
+ANTIGEN_DIR="$XDG_DATA_HOME/antigen"
 mkdir -p $ANTIGEN_DIR;
 
 if ! [ -f "$ANTIGEN_DIR/antigen.zsh" ]; then

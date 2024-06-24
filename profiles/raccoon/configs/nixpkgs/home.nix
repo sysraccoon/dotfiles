@@ -1,12 +1,16 @@
 {
   pkgs,
-  ctx,
   inputs,
   bundles,
   impurity,
   sysUtils,
   ...
-}: {
+}: let
+  ctx = {
+    system = "x86_64-linux";
+    username = "raccoon";
+  };
+in {
   imports = [
     bundles.general.homeManagerModules.default
     ../../../general/configs/nixpkgs/home.nix
@@ -38,7 +42,6 @@
     # VM
     vagrant
     qemu
-    virt-manager
     wineWowPackages.stable
     spice
     virtio-win

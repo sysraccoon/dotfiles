@@ -14,6 +14,8 @@
       "/var/log"
       # Some information about users and groups stored here
       "/var/lib/nixos"
+      # Save microvm.nix setup
+      "/var/lib/microvms"
       # Keep wifi connection information
       "/var/lib/NetworkManager"
       "/etc/NetworkManager/system-connections"
