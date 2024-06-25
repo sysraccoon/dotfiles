@@ -93,9 +93,6 @@
           inherit pkgs;
           modules = [
             profile-entry
-            {
-              impurity.configRoot = self;
-            }
           ];
           extraSpecialArgs = {
             inherit pkgs pkgs-nur inputs ctx bundles;
@@ -104,7 +101,12 @@
         };
       generate-impure-version = pure-config:
         pure-config.extendModules {
-          modules = [{impurity.enable = true;}];
+          modules = [
+            {
+              impurity.enable = true;
+              impurity.configRoot = self;
+            }
+          ];
         };
     in rec {
       raccoon = generate-home-config {
