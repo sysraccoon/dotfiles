@@ -8,10 +8,6 @@
   }: let
     cfg = config.sys.nixos.desktops.hyprland-desktop;
   in {
-    imports = [
-      inputs.hyprland.nixosModules.default
-    ];
-
     options.sys.nixos.desktops.hyprland-desktop = {
       enable = lib.mkEnableOption "enable custom hyprland setup";
       isDefaultDesktop = lib.mkOption {
@@ -24,7 +20,6 @@
     config = lib.mkIf cfg.enable {
       programs.hyprland = {
         enable = true;
-        package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       };
       services.displayManager = lib.mkIf cfg.isDefaultDesktop {
         defaultSession = "hyprland";
@@ -43,10 +38,6 @@
   }: let
     cfg = config.sys.home.desktops.hyprland-desktop;
   in {
-    imports = lib.optionals isStandaloneHome [
-      inputs.hyprland.homeManagerModules.default
-    ];
-
     options.sys.home.desktops.hyprland-desktop = {
       enable = lib.mkEnableOption "enable custom hyprland setup";
       extraConfig = lib.mkOption {
@@ -67,7 +58,7 @@
         enable = true;
         xwayland.enable = true;
         plugins = [
-          inputs.hy3.packages.${pkgs.system}.default
+          pkgs.hyprlandPlugins.hy3
         ];
 
         extraConfig = ''

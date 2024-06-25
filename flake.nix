@@ -4,17 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.39.1";
     nix-alien.url = "github:thiagokokada/nix-alien";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.39.1";
-      inputs.hyprland.follows = "hyprland";
     };
 
     stylix.url = "github:danth/stylix";
@@ -87,9 +81,9 @@
         base-config-path = ./hosts/thinkpad-yoga/configuration.nix;
         username = "gopher";
       };
-      live-cd = generate-nixos-config {
-        base-config-path = ./hosts/live-cd/configuration.nix;
-        username = "nixos";
+      live-image = generate-nixos-config {
+        base-config-path = ./hosts/live-image/configuration.nix;
+        username = "capybara";
       };
     };
 

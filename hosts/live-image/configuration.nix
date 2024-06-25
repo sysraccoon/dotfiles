@@ -17,7 +17,7 @@ in {
   ];
 
   system.stateVersion = "22.11";
-  networking.hostName = "live-cd";
+  networking.hostName = "live-image";
 
   sys.nixos.desktops.hyprland-desktop = {
     enable = true;
@@ -61,4 +61,10 @@ in {
 
   sys.nixos.network.enable = false;
   hardware.pulseaudio.enable = lib.mkForce false;
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
 }
