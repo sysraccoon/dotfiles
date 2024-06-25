@@ -1,7 +1,5 @@
 [
     {
-        "output": "DP-1",
-
         "layer": "top",
         "position": "top",
         "height": 26,
@@ -77,27 +75,6 @@
                 "default": ["", "", ""]
             },
             "on-click": "pavucontrol"
-        },
-    },
-    {
-        "output": "HDMI-A-1",
-
-        "layer": "top",
-        "position": "top",
-        "height": 26,
-        "spacing": 4,
-        "modules-left": [],
-        "modules-center": ["hyprland/workspaces"],
-        "modules-right": [],
-
-
-        "hyprland/workspaces": {
-            "format": "{id}",
-            "all-outputs": false,
-            "persistent-workspaces": {
-                "DP-1": [1,2,3,4],
-                "HDMI-A-1": [5,6,7],
-            }
         },
     },
 

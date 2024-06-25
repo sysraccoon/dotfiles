@@ -1,0 +1,103 @@
+[
+  {
+      "output": "DP-1",
+
+      "layer": "top",
+      "position": "top",
+      "height": 26,
+      "spacing": 4,
+      "modules-left": ["hyprland/language", "tray"],
+      "modules-center": ["hyprland/workspaces"],
+      "modules-right": ["pulseaudio", "network", "backlight", "battery", "battery#bat2", "clock"],
+
+      "hyprland/language": {
+          "format": "{}",
+          "format-en-dvorak": "EN:DV",
+          "format-ru": "RU",
+          "format-": "EN:RV",
+      },
+
+      "hyprland/workspaces": {
+          "format": "{id}",
+          "all-outputs": false,
+          "persistent-workspaces": {
+                  "DP-1": [1,2,3,4],
+                  "HDMI-A-1": [5,6,7],
+              }
+      },
+      "tray": {
+          "spacing": 10
+      },
+      "clock": {
+          "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+          "format-alt": "{:%Y-%m-%d}"
+      },
+      "backlight": {
+          "format": "{percent}% {icon}",
+          "format-icons": ["", "", "", "", "", "", "", "", ""]
+      },
+      "battery": {
+          "states": {
+              // "good": 95,
+              "warning": 30,
+              "critical": 15
+          },
+          "format": "{capacity}% {icon}",
+          "format-charging": "{capacity}% ",
+          "format-plugged": "{capacity}% ",
+          "format-alt": "{time} {icon}",
+          "format-icons": ["", "", "", "", ""]
+      },
+      "battery#bat2": {
+          "bat": "BAT2"
+      },
+      "network": {
+          "format-wifi": "",
+          "format-ethernet": "{ipaddr}/{cidr} ",
+          "tooltip-format": "{essid} ({signalStrength}%) | {ifname} | {gwaddr}",
+          "format-linked": "{ifname} (No IP) ",
+          "format-disconnected": "⚠",
+          "format-alt": "{ifname}: {ipaddr}/{cidr}"
+      },
+      "pulseaudio": {
+          // "scroll-step": 1, // %, can be a float
+          "format": "{volume}% {icon} {format_source}",
+          "format-bluetooth": "{volume}% {icon} {format_source}",
+          "format-bluetooth-muted": " {icon} {format_source}",
+          "format-muted": " {format_source}",
+          "format-source": "{volume}% ",
+          "format-source-muted": "",
+          "format-icons": {
+              "headphone": "",
+              "hands-free": "",
+              "headset": "",
+              "phone": "",
+              "portable": "",
+              "car": "",
+              "default": ["", "", ""]
+          },
+          "on-click": "pavucontrol"
+      },
+  },
+  {
+      "output": "HDMI-A-1",
+
+      "layer": "top",
+      "position": "top",
+      "height": 26,
+      "spacing": 4,
+      "modules-left": [],
+      "modules-center": ["hyprland/workspaces"],
+      "modules-right": [],
+
+
+      "hyprland/workspaces": {
+          "format": "{id}",
+          "all-outputs": false,
+          "persistent-workspaces": {
+              "DP-1": [1,2,3,4],
+              "HDMI-A-1": [5,6,7],
+          }
+      },
+  },
+]

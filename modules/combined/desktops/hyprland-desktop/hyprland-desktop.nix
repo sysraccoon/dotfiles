@@ -58,7 +58,7 @@
         enable = true;
         xwayland.enable = true;
         plugins = [
-          pkgs.hyprlandPlugins.hy3
+          pkgs.hy3-0-41-1
         ];
 
         extraConfig = ''

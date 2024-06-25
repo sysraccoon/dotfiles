@@ -62,9 +62,8 @@ in {
   sys.nixos.network.enable = false;
   hardware.pulseaudio.enable = lib.mkForce false;
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 }

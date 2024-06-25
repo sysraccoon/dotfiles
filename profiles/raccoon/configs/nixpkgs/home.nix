@@ -4,13 +4,9 @@
   bundles,
   impurity,
   sysUtils,
+  ctx,
   ...
-}: let
-  ctx = {
-    system = "x86_64-linux";
-    username = "raccoon";
-  };
-in {
+}: {
   imports = [
     bundles.general.homeManagerModules.default
     ../../../general/configs/nixpkgs/home.nix
@@ -66,9 +62,6 @@ in {
     asciinema
     feh
 
-    # knowledge management
-    logseq
-
     # dev/re
     jetbrains-toolbox
     jetbrains.pycharm-community
@@ -118,6 +111,7 @@ in {
       source = ${impurity.link ../hypr/hyprland.conf}
     '';
   };
+  sys.home.tools.waybar.config = ../waybar/config;
 
   sys.home.terminals.alacritty.enable = true;
   sys.home.terminals.kitty.enable = true;

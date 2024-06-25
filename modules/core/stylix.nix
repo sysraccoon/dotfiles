@@ -1,4 +1,6 @@
-{
+let
+  wallpaper = ../../modules/combined/desktops/resources/wallpapers/default.jpg;
+in {
   nixosModules.default = {
     config,
     lib,
@@ -6,7 +8,6 @@
     ...
   }: let
     cfg = config.sys.nixos.stylix;
-    wallpaper = ../../modules/combined/desktops/resources/wallpapers/default.jpg;
   in {
     imports = [
       inputs.stylix.nixosModules.stylix
@@ -50,6 +51,7 @@
       stylix.autoEnable = false;
       stylix.polarity = "dark";
       stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+      stylix.image = wallpaper;
 
       stylix.cursor = {
         package = pkgs.bibata-cursors;

@@ -9,12 +9,17 @@
 in {
   options.sys.home.tools.waybar = {
     enable = lib.mkEnableOption "toggle custom waybar setup";
+    config = lib.mkOption {
+      type = lib.types.path;
+      default = ./config;
+      description = "set custom config";
+    };
   };
 
   config = lib.mkIf cfg.enable {
     programs.waybar.enable = true;
 
-    xdg.configFile."waybar/config".source = impurity.link ./config;
+    xdg.configFile."waybar/config".source = impurity.link cfg.config;
     xdg.configFile."waybar/theme.css".source = impurity.link ./theme.css;
 
     xdg.configFile."waybar/style.css".text = let
