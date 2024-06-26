@@ -15,7 +15,7 @@
     grub.efiSupport = true;
     grub.configurationLimit = 10;
     grub.device = "nodev";
-    grub.useOSProber = true;
+    grub.useOSProber = false;
   };
 
   systemd = {

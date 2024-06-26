@@ -13,12 +13,13 @@ in {
     services.kanata = {
       enable = true;
       keyboards = {
-        hhkb = {
-          devices = [
-            "/dev/input/by-id/usb-Topre_Corporation_HHKB_Professional-event-kbd"
-          ];
-          config = builtins.readFile ./hhkb.kbd;
-        };
+        default.config = builtins.readFile ./default.kbd;
+        # hhkb = {
+        #   devices = [
+        #     "/dev/input/by-id/usb-Topre_Corporation_HHKB_Professional-event-kbd"
+        #   ];
+        #   config = builtins.readFile ./hhkb.kbd;
+        # };
       };
     };
   };

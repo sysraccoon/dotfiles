@@ -16,6 +16,8 @@
       "/var/lib/nixos"
       # Save microvm.nix setup
       "/var/lib/microvms"
+      # Save virt-manager setup
+      "/var/lib/libvirt"
       # Keep wifi connection information
       "/var/lib/NetworkManager"
       "/etc/NetworkManager/system-connections"

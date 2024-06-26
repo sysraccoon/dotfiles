@@ -5,12 +5,18 @@
   pkgs-nur,
   inputs,
   bundles,
+  options,
   ...
 }: let
   username = config.sys.nixos.mainUser.username;
 in {
-  imports = [
-    "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-base.nix"
+  imports = let
+    nixpkgsModules = "${inputs.nixpkgs}/nixos/modules";
+  in [
+    "${nixpkgsModules}/installer/cd-dvd/iso-image.nix"
+    "${nixpkgsModules}/profiles/base.nix"
+    "${nixpkgsModules}/profiles/all-hardware.nix"
+
     inputs.home-manager.nixosModules.home-manager
     bundles.general.nixosModules.default
     ../general/configuration.nix
@@ -19,18 +25,27 @@ in {
   system.stateVersion = "22.11";
   networking.hostName = "live-image";
 
-  sys.nixos.desktops.hyprland-desktop = {
-    enable = true;
-    isDefaultDesktop = true;
-  };
+  # Adds terminus_font for people with HiDPI displays
+  console.packages = options.console.packages.default ++ [pkgs.terminus_font];
+  # ISO naming.
+  isoImage.isoName = "${config.isoImage.isoBaseName}-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}.iso";
+  # EFI booting
+  isoImage.makeEfiBootable = true;
+  # USB booting
+  isoImage.makeUsbBootable = true;
+  # Add Memtest86+ to the CD.
+  boot.loader.grub.memtest86.enable = true;
 
+  users.users.${username}.password = username;
   programs.zsh.enable = true;
-
-  users.users.${username}.password = "livepass";
 
   system.userActivationScripts.activateHomeManager.text = ''
     ${config.home-manager.users.${username}.home.activationPackage}/activate
   '';
+
+  specialisation.hi-dpi.configuration = {
+    console.font = "ter-132b";
+  };
 
   home-manager = {
     useGlobalPkgs = true;
@@ -53,13 +68,16 @@ in {
 
       sys.home.browsers.firefox.enable = true;
       sys.home.terminals.kitty.enable = true;
-      sys.home.desktops.hyprland-desktop = {
-        enable = true;
-      };
+      sys.home.desktops.hyprland-desktop.enable = true;
     };
   };
 
-  sys.nixos.network.enable = false;
+  sys.nixos.desktops.hyprland-desktop = {
+    enable = true;
+    isDefaultDesktop = true;
+  };
+
+  sys.nixos.network.enable = true;
   hardware.pulseaudio.enable = lib.mkForce false;
 
   hardware.graphics = {
