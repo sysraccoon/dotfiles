@@ -27,16 +27,16 @@ format = '─⌠ [$symbol$branch]($style) ⌡'
 symbol = ' '
 
 [nix_shell]
-format = ' ⌠ [$symbol$state\($name\)]($style) ⌡'
+format = '─⌠ [$symbol$state]($style) ⌡'
 symbol = ' '
 
 [python]
-format = ' ⌠ [$symbol $virtualenv]($style) ⌡'
+format = '─⌠ [$symbol $virtualenv]($style) ⌡'
 symbol = ' '
 
 [shell]
 zsh_indicator = ''
-ion_indicator = ' ⌠ [ion]($style) ⌡'
+ion_indicator = '─⌠ [ion]($style) ⌡'
 format = '$indicator'
 disabled = false
 style = 'fg:blue'

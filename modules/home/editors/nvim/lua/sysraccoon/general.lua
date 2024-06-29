@@ -27,7 +27,7 @@ vim.opt.mmp = 10240
 -- comment options
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
-    vim.opt.formatoptions = vim.opt.formatoptions - { "c","r","o" }
+    vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
   end,
 })
 
@@ -49,7 +49,7 @@ vim.opt.termguicolors = true
 vim.opt.conceallevel = 2
 
 -- use system clipboard
-vim.opt.clipboard:append { "unnamedplus" }
+vim.opt.clipboard:append({ "unnamedplus" })
 
 -- custom remaps
 vim.g.mapleader = " "
