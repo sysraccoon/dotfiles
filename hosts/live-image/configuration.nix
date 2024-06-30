@@ -39,10 +39,6 @@ in {
   users.users.${username}.password = username;
   programs.zsh.enable = true;
 
-  system.userActivationScripts.activateHomeManager.text = ''
-    ${config.home-manager.users.${username}.home.activationPackage}/activate
-  '';
-
   specialisation.hi-dpi.configuration = {
     console.font = "ter-132b";
   };

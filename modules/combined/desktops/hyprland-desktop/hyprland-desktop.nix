@@ -87,12 +87,6 @@
         wlogout.source = impurity.link ./wlogout;
       };
 
-      # hotfix breaking change of hyprland v0.40.0
-      # see release page: https://github.com/hyprwm/Hyprland/releases/tag/v0.40.0
-      home.activation.fix-hyprland-runtime-dir = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        run ln -sf $XDG_RUNTIME_DIR/hypr /tmp/hypr
-      '';
-
       home.file.".background-image".source = impurity.link ../resources/wallpapers/default.jpg;
 
       stylix.targets.hyprland.enable = true;
