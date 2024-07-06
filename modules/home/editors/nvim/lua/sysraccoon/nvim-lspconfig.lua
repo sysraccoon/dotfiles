@@ -25,6 +25,7 @@ return {
         map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
         map("<leader>rr", vim.lsp.buf.rename, "[R]efactoring [R]ename")
         map("K", vim.lsp.buf.hover, "Hover Documentation")
+        map("<leader>qf", vim.lsp.buf.code_action, "[Q]uick [F]ix")
 
         vim.api.nvim_create_autocmd("LspDetach", {
           group = vim.api.nvim_create_augroup("sysraccoon-lsp-detach", { clear = true }),
@@ -39,6 +40,7 @@ return {
     capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
     local servers = {
+      tsserver = {},
       lua_ls = {
         settings = {
           Lua = {

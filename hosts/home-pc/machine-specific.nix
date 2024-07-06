@@ -61,6 +61,9 @@
   services.udev.extraRules = ''
     # Google Pixel 5
     SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", MODE="0660", GROUP="plugdev"
+
+    # Vial
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{serial}=="*vial:f64c2b3c*", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
   '';
 
   users.groups.plugdev = {

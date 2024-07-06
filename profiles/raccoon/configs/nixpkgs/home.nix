@@ -61,6 +61,9 @@
     google-chrome
     asciinema
     feh
+    unetbootin
+    vial
+    qmk
 
     # dev/re
     jetbrains-toolbox
