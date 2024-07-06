@@ -19,6 +19,4 @@
   };
 
   sys.nixos.virtualization.enable = true;
-
-  sys.nixos.keyboard.kanata.enable = lib.mkForce false;
 }
