@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -xeuo pipefail
 
 if ! check-dependencies \
   adb ip route adb-set-proxy adb-reset-proxy ; then
@@ -34,7 +34,7 @@ function cleanup {
 }
 
 function default-network-device {
-  route | grep '^default' | grep -o '[^ ]*$';
+  route | grep '^default' | grep -o '[^ ]*$' | head -n 1;
 }
 
 function get-local-ip {

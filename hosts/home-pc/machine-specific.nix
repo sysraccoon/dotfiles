@@ -69,4 +69,8 @@
   users.groups.plugdev = {
     members = [config.sys.nixos.mainUser.username];
   };
+
+  networking.firewall = {
+    allowedTCPPorts = [8080];
+  };
 }

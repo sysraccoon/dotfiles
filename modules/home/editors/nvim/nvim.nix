@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   impurity,
   ...
@@ -18,9 +19,13 @@ in {
       withPython3 = true;
       extraPython3Packages = ps:
         with ps; [
-          jedi
           pynvim
         ];
+
+      extraPackages = with pkgs; [
+        python312Packages.jedi-language-server
+      ];
+
       extraLuaConfig = ''
         require("sysraccoon")
       '';

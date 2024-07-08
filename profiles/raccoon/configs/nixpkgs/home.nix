@@ -44,6 +44,7 @@
 
     ## general
     discord
+    webcord
     tdesktop
     libreoffice
     gnome.gnome-sound-recorder
@@ -66,7 +67,6 @@
     qmk
 
     # dev/re
-    jetbrains-toolbox
     jetbrains.pycharm-community
     jetbrains.idea-community
     ghidra
