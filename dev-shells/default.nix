@@ -8,6 +8,7 @@ in {
   "${system}" = {
     android-emu = import ./android-emu.nix {inherit pkgs;};
     android-re = import ./android-re.nix {inherit pkgs;};
+    python-venv = import ./python-venv.nix {inherit pkgs;};
     aosp-dev = import ./aosp-dev.nix {inherit pkgs;};
     default = pkgs.mkShell {
       inherit (self.checks.${system}.pre-commit-check) shellHook;
