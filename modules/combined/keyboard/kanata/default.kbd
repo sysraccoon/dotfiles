@@ -51,6 +51,8 @@ just copy paste if need new layer
   ; (tap-hold-release $tt $ht ; ralt)
   spc (tap-hold $tt $ht spc @nav)
   lalt (layer-while-held tmux)
+
+  tty-toggles (layer-while-held tty-toggles)
 )
 
 #|---------------------------------------------------------------+
@@ -68,6 +70,8 @@ just copy paste if need new layer
 )
 
 (deflayermap (navigation)
+  lalt @tty-toggles
+
   e C-S-tab ;; previous tab
   r C-tab ;; next tab
 
@@ -84,6 +88,19 @@ just copy paste if need new layer
   
   n home
   . end
+
+  1 f1
+  2 f2
+  3 f3
+  4 f4
+  5 f5
+  6 f6
+  7 f7
+  8 f8
+  9 f9
+  0 f10
+  - f11
+  = f12
 )
 
 #|---------------------------------------------------------------+
@@ -95,6 +112,8 @@ just copy paste if need new layer
 )
 
 (deflayermap (tmux)
+  spc @tty-toggles
+
   w (macro $tmux-leader i) ;; create new window
   e (macro $tmux-leader C-r) ;; focus previous window
   r (macro $tmux-leader C-l) ;; focus next window
@@ -122,3 +141,23 @@ just copy paste if need new layer
   r (macro $tmux-leader C-S-l) ;; move window right
 )
 
+
+#|---------------------------------------------------------------+
+ |                         TTY TOGGLES                           |
+ +---------------------------------------------------------------|#
+
+(deflayermap (navigation)
+)
+
+(deflayermap (tmux)
+)
+
+(deflayermap (tty-toggles)
+  1 C-A-f1
+  2 C-A-f2
+  3 C-A-f3
+  4 C-A-f4
+  5 C-A-f5
+  6 C-A-f6
+  7 C-A-f7
+)
