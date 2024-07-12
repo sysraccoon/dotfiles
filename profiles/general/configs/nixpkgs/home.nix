@@ -31,6 +31,7 @@
     zsh
     ion
     git
+    git-lfs
     gh
     curl
     screen
