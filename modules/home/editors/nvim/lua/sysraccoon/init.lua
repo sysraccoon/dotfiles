@@ -518,11 +518,7 @@ require("lazy").setup({
     opts = {
       toc_list = {
         markers = "-",
-        item_formatter = function(item, fmtstr)
-          local default_formatter = require("mtoc.config").defaults.toc_list.item_formatter
-          item.link = item.name:gsub(" ", "+")
-          return default_formatter(item, fmtstr)
-        end,
+        item_format_string = "${indent}${marker} [${name}](<#${name}>)",
       },
 
       fences = {

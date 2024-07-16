@@ -4,28 +4,28 @@
 
 <!-- toc-start -->
 
-- [Nix home-manager module](#Nix+home-manager+module)
-- [Lua configuration](#Lua+configuration)
-  - [General](#General)
-  - [Lazy](#Lazy)
-  - [Colorscheme](#Colorscheme)
-  - [Fuzzy Finder](#Fuzzy+Finder)
-  - [LSP](#LSP)
-  - [Treesitter](#Treesitter)
-  - [Auto Completion](#Auto+Completion)
-  - [Snippets](#Snippets)
-  - [Auto Formatting](#Auto+Formatting)
-  - [Folding](#Folding)
-  - [File Explorer](#File+Explorer)
-  - [Quick Navigation](#Quick+Navigation)
-  - [Buffer Navigation](#Buffer+Navigation)
-  - [Language Specific](#Language+Specific)
-    - [Markdown](#Markdown)
-    - [Lua](#Lua)
-  - [Miscellaneous](#Miscellaneous)
-    - [Colorizer](#Colorizer)
-    - [Save files as Root](#Save+files+as+Root)
-    - [Tmux integration](#Tmux+integration)
+- [Nix home-manager module](<#Nix home-manager module>)
+- [Lua configuration](<#Lua configuration>)
+  - [General](<#General>)
+  - [Lazy](<#Lazy>)
+  - [Colorscheme](<#Colorscheme>)
+  - [Fuzzy Finder](<#Fuzzy Finder>)
+  - [LSP](<#LSP>)
+  - [Treesitter](<#Treesitter>)
+  - [Auto Completion](<#Auto Completion>)
+  - [Snippets](<#Snippets>)
+  - [Auto Formatting](<#Auto Formatting>)
+  - [Folding](<#Folding>)
+  - [File Explorer](<#File Explorer>)
+  - [Quick Navigation](<#Quick Navigation>)
+  - [Buffer Navigation](<#Buffer Navigation>)
+  - [Language Specific](<#Language Specific>)
+    - [Markdown](<#Markdown>)
+    - [Lua](<#Lua>)
+  - [Miscellaneous](<#Miscellaneous>)
+    - [Colorizer](<#Colorizer>)
+    - [Save files as Root](<#Save files as Root>)
+    - [Tmux integration](<#Tmux integration>)
 
 <!-- toc-end -->
 
@@ -804,11 +804,7 @@ Auto generate table of contents (TOC). Use command `:Mtoc` to generate TOC.
   opts = {
     toc_list = {
       markers = "-",
-      item_formatter = function(item, fmtstr)
-        local default_formatter = require("mtoc.config").defaults.toc_list.item_formatter
-        item.link = item.name:gsub(" ", "+")
-        return default_formatter(item, fmtstr)
-      end,
+      item_format_string = "${indent}${marker} [${name}](<#${name}>)",
     },
 
     fences = {
