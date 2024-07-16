@@ -19,3 +19,5 @@ switch-nixos nixos-config=hostname:
 build-live-image:
   nix build .#nixosConfigurations.live-image.config.system.build.isoImage
 
+tangle:
+  entangled watch

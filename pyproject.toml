@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "dotfiles"
+version = "0.0.0"
+description = ""
+authors = ["sysraccoon <sysraccoon@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+entangled-cli = "^2.0.5"
+poetry = "^1.8.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

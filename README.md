@@ -1,14 +1,14 @@
-## General
+# sys.raccoon literate dotfiles
 
-## Setup
+[![Entangled badge](https://img.shields.io/badge/entangled-Use%20the%20source!-%2300aeff)](https://entangled.github.io/)
 
-```sh
-# clone repository
-git clone git@github.com:sysraccoon/dotfiles.git ~/dotfiles
-# add symlinks
-sudo ln -sT ~/dotfiles /etc/nixos # nixos system configuration
-ln -sT ~/dotfiles/ ~/.config/home-manager/ # home-manager configuration
-# apply configurations
-sudo nixos-rebuild switch
-home-manager switch
-```
+This repository is an experiment. It describes my configs using markdown.
+
+This is similar to how people describe their dotfiles using emacs org-mode and
+[org-babel-tangle](https://orgmode.org/manual/Extracting-Source-Code.html), but unlike them, it uses
+markdown with [entangled](https://entangled.github.io/).
+
+## Index
+
+- [NeoVim Configuration](notes/nvim.md)
+

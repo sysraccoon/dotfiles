@@ -6,6 +6,8 @@
     nur.url = "github:nix-community/NUR";
     nix-alien.url = "github:thiagokokada/nix-alien";
 
+    poetry2nix.url = "github:nix-community/poetry2nix";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -125,6 +127,6 @@
     };
 
     templates = import ./templates;
-    devShells = import ./dev-shells {inherit self pkgs;};
+    devShells = import ./dev-shells {inherit self pkgs inputs;};
   };
 }

@@ -8,5 +8,9 @@ windows:
         - editor:
           - tmux resize-pane -Z
           - nvim +":Telescope find_files"
-        - 
+        - # shell
+  - tangle-watch:
+      layout: main-horizontal
+      panes:
+        - just tangle
 

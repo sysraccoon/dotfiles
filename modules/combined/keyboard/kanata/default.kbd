@@ -146,12 +146,6 @@ just copy paste if need new layer
  |                         TTY TOGGLES                           |
  +---------------------------------------------------------------|#
 
-(deflayermap (navigation)
-)
-
-(deflayermap (tmux)
-)
-
 (deflayermap (tty-toggles)
   1 C-A-f1
   2 C-A-f2

@@ -98,7 +98,6 @@
     unicorn
 
     nodejs
-    nil
     coq_8_16
   ];
 
