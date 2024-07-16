@@ -515,7 +515,7 @@ watchdog = "^3.0.0"
 type = "git"
 url = "https://github.com/sysraccoon/entangled.py.git"
 reference = "HEAD"
-resolved_reference = "b070b857fbb3a2cbbb54e5b9389936d0b4f6b973"
+resolved_reference = "fe0baad29d2593d752edb782de8514d0cd58f114"
 
 [[package]]
 name = "fastjsonschema"
