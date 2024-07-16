@@ -28,7 +28,6 @@
     libgccjit
 
     # cli tools
-    zsh
     ion
     git
     git-lfs
@@ -51,9 +50,6 @@
     nix-index
     nix-template
     starship
-    direnv
-    nix-direnv
-    nix-direnv-flakes
     pandoc
     dtrx
     avfs
@@ -62,10 +58,7 @@
     unzip
     unrar
     poppler_utils
-    eza
-    btop
     file
-    bat
     translate-shell
     du-dust
     parallel
@@ -101,24 +94,17 @@
     coq_8_16
   ];
 
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
   sys.home.editors.nvim.enable = true;
   sys.home.editors.vscodium.enable = true;
   sys.home.tools.tmux.enable = true;
   sys.home.tools.zathura.enable = true;
 
   xdg.configFile = {
-    starship.source = impurity.link ../starship;
     radare2.source = impurity.link ../radare2;
     btop.source = impurity.link ../btop;
   };
 
   home.file.".gitconfig".source = impurity.link ../git/gitconfig;
-  home.file.".zshrc".source = impurity.link ../zsh/zshrc;
   home.file.".profile".source = impurity.link ../shell/profile;
   home.file."bin".source = impurity.link ../../bin;
 }

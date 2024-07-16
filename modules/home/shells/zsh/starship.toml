@@ -1,3 +1,4 @@
+# ~/~ begin <<notes/zsh.md#modules/home/shells/zsh/starship.toml>>[init]
 add_newline = true
 
 format = """\
@@ -40,4 +41,4 @@ ion_indicator = '─⌠ [ion]($style) ⌡'
 format = '$indicator'
 disabled = false
 style = 'fg:blue'
-
+# ~/~ end

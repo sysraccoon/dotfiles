@@ -45,5 +45,6 @@ in {
 
     sys.home.stylix.enable = lib.mkDefault true;
     sys.home.keyboard.enable = lib.mkDefault true;
+    sys.home.shells.zsh.enable = lib.mkDefault true;
   };
 }

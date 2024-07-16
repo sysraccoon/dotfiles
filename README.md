@@ -11,4 +11,4 @@ markdown with [entangled](https://entangled.github.io/).
 ## Index
 
 - [NeoVim Configuration](notes/nvim.md)
-
+- [ZSH Configuration](notes/zsh.md)

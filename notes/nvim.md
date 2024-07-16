@@ -5,13 +5,14 @@
 <!-- toc-start -->
 
 - [Nix home-manager module](<#Nix home-manager module>)
+- [ZSH configuration](<#ZSH configuration>)
 - [Lua configuration](<#Lua configuration>)
-  - [General](<#General>)
+  - [General](#General)
   - [Plugin Manager {lazy}](<#Plugin Manager {lazy}>)
   - [Colorscheme {catppuccin}](<#Colorscheme {catppuccin}>)
   - [Fuzzy Finder {telescope.nvim}](<#Fuzzy Finder {telescope.nvim}>)
-  - [LSP](<#LSP>)
-  - [Treesitter](<#Treesitter>)
+  - [LSP](#LSP)
+  - [Treesitter](#Treesitter)
   - [Auto Completion {nvim-cmp}](<#Auto Completion {nvim-cmp}>)
   - [Snippets {luasnip}](<#Snippets {luasnip}>)
   - [Auto Formatting {conform.nvim}](<#Auto Formatting {conform.nvim}>)
@@ -20,10 +21,10 @@
   - [Quick Navigation {hop.nvim}](<#Quick Navigation {hop.nvim}>)
   - [Buffer Navigation {harpoon}](<#Buffer Navigation {harpoon}>)
   - [Language Specific](<#Language Specific>)
-    - [Markdown](<#Markdown>)
-    - [Lua](<#Lua>)
-  - [Miscellaneous](<#Miscellaneous>)
-    - [Colorizer](<#Colorizer>)
+    - [Markdown](#Markdown)
+    - [Lua](#Lua)
+  - [Miscellaneous](#Miscellaneous)
+    - [Colorizer](#Colorizer)
     - [Save files as Root](<#Save files as Root>)
     - [Tmux integration](<#Tmux integration>)
 
@@ -121,6 +122,36 @@ I don't like stylix variant of highlighting for neovim. See [[#Colorscheme {catp
 
 ```nix {.nix #nvim-nix-config}
 stylix.targets.vim.enable = false;
+```
+
+## ZSH configuration
+
+Set neovim as my main editor in zsh. Full configuration of zsh in [separate file](./zsh.md)
+
+```bash {.bash file=modules/home/shells/zsh/zsh/nvim.zsh}
+if [ $+commands[nvim] -eq 1 ]; then
+    EDITOR=nvim;
+elif [ $+commands[vim] -eq 1 ]; then
+    EDITOR=vim;
+elif [ $+commands[vi] -eq 1 ]; then
+    EDITOR=vi;
+else
+  echo "Warning: editor not found"
+fi
+
+export STAT_DIR=$HOME'/.stats'
+mkdir -p "$STAT_DIR/nvim"
+
+export EDITOR
+alias nvim='nvim -w $STAT_DIR/nvim/$(date "+%Y-%m-%d:%H-%M-%S")'
+alias vim='$EDITOR'
+alias vi='$EDITOR'
+alias edit='$EDITOR'
+alias nano='$EDITOR'
+alias e='edit'
+
+alias edot="tmuxinator dotfiles"
+alias enotes="tmuxinator notes"
 ```
 
 ## Lua configuration
@@ -329,7 +360,6 @@ have good integration with other plugins.
     { mode = "n", "<leader>ff", "<cmd>Telescope find_files no_ignore=true<cr>" },
     { mode = "n", "<leader>fg", "<cmd>Telescope live_grep<cr>" },
     { mode = "n", "<leader>fb", "<cmd>Telescope buffers<cr>" },
-    { mode = "n", "<leader>fs", "<cmd>Telescope lsp_document_symbols previewer=false<cr>" },
   },
 },
 ```
@@ -388,6 +418,8 @@ map("gd", require("telescope.builtin").lsp_definitions, "goto definition")
 map("gD", vim.lsp.buf.declaration, "goto declaration")
 map("gr", require("telescope.builtin").lsp_references, "goto references")
 map("gI", require("telescope.builtin").lsp_implementations, "goto implementation")
+map("gs", require("telescope.builtin").lsp_document_symbols, "goto symbols")
+map("gS", require("telescope.builtin").lsp_workspace_symbols, "goto workspace symbols")
 map("<leader>rr", vim.lsp.buf.rename, "refactoring rename")
 map("K", vim.lsp.buf.hover, "hover documentation")
 map("<leader>qf", vim.lsp.buf.code_action, "quick fix")

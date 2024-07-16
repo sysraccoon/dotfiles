@@ -1,3 +1,4 @@
+# ~/~ begin <<notes/nvim.md#modules/home/shells/zsh/zsh/nvim.zsh>>[init]
 if [ $+commands[nvim] -eq 1 ]; then
     EDITOR=nvim;
 elif [ $+commands[vim] -eq 1 ]; then
@@ -21,4 +22,4 @@ alias e='edit'
 
 alias edot="tmuxinator dotfiles"
 alias enotes="tmuxinator notes"
-
+# ~/~ end

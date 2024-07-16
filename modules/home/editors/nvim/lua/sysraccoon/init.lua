@@ -119,7 +119,6 @@ require("lazy").setup({
       { mode = "n", "<leader>ff", "<cmd>Telescope find_files no_ignore=true<cr>" },
       { mode = "n", "<leader>fg", "<cmd>Telescope live_grep<cr>" },
       { mode = "n", "<leader>fb", "<cmd>Telescope buffers<cr>" },
-      { mode = "n", "<leader>fs", "<cmd>Telescope lsp_document_symbols previewer=false<cr>" },
     },
   },
   -- ~/~ end
@@ -159,6 +158,8 @@ require("lazy").setup({
           map("gD", vim.lsp.buf.declaration, "goto declaration")
           map("gr", require("telescope.builtin").lsp_references, "goto references")
           map("gI", require("telescope.builtin").lsp_implementations, "goto implementation")
+          map("gs", require("telescope.builtin").lsp_document_symbols, "goto symbols")
+          map("gS", require("telescope.builtin").lsp_workspace_symbols, "goto workspace symbols")
           map("<leader>rr", vim.lsp.buf.rename, "refactoring rename")
           map("K", vim.lsp.buf.hover, "hover documentation")
           map("<leader>qf", vim.lsp.buf.code_action, "quick fix")
