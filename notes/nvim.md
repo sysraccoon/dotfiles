@@ -6,12 +6,12 @@
 
 - [Nix home-manager module](<#Nix home-manager module>)
 - [Lua configuration](<#Lua configuration>)
-  - [General](#General)
+  - [General](<#General>)
   - [Plugin Manager {lazy}](<#Plugin Manager {lazy}>)
   - [Colorscheme {catppuccin}](<#Colorscheme {catppuccin}>)
   - [Fuzzy Finder {telescope.nvim}](<#Fuzzy Finder {telescope.nvim}>)
-  - [LSP](#LSP)
-  - [Treesitter](#Treesitter)
+  - [LSP](<#LSP>)
+  - [Treesitter](<#Treesitter>)
   - [Auto Completion {nvim-cmp}](<#Auto Completion {nvim-cmp}>)
   - [Snippets {luasnip}](<#Snippets {luasnip}>)
   - [Auto Formatting {conform.nvim}](<#Auto Formatting {conform.nvim}>)
@@ -20,10 +20,10 @@
   - [Quick Navigation {hop.nvim}](<#Quick Navigation {hop.nvim}>)
   - [Buffer Navigation {harpoon}](<#Buffer Navigation {harpoon}>)
   - [Language Specific](<#Language Specific>)
-    - [Markdown](#Markdown)
-    - [Lua](#Lua)
-  - [Miscellaneous](#Miscellaneous)
-    - [Colorizer](#Colorizer)
+    - [Markdown](<#Markdown>)
+    - [Lua](<#Lua>)
+  - [Miscellaneous](<#Miscellaneous>)
+    - [Colorizer](<#Colorizer>)
     - [Save files as Root](<#Save files as Root>)
     - [Tmux integration](<#Tmux integration>)
 
@@ -34,7 +34,7 @@
 My custom module provide all stuff related to neovim, which is not possible (or too difficult)
 configure in lua config
 
-```{.nix #nvim-nix file=modules/home/editors/nvim/nvim.nix}
+```nix {.nix #nvim-nix file=modules/home/editors/nvim/nvim.nix}
 {
   lib,
   pkgs,
@@ -59,7 +59,7 @@ in {
 To configure neovim packages I rely on exists `programs.neovim` that provided by home-manager.
 First, enable it
 
-```{.nix #nvim-nix-config}
+```nix {.nix #nvim-nix-config}
 programs.neovim = {
   enable = true;
 
@@ -71,7 +71,7 @@ programs.neovim = {
 Next, include python with pynvim to neovim env. It would available inside editor, but not outside
 (this allow no pollute $PATH with dev specific stuff)
 
-```{.nix #nvim-nix-python}
+```nix {.nix #nvim-nix-python}
 withPython3 = true;
 extraPython3Packages = ps:
   with ps; [
@@ -82,7 +82,7 @@ extraPython3Packages = ps:
 Different LSP and formatters require corresponded packages installed. Let's configure it with
 extraPackages (this also allow no pollute $PATH, outside editor).
 
-```{.nix #nvim-nix-extra-packages}
+```nix {.nix #nvim-nix-extra-packages}
 extraPackages = with pkgs; [
   # python language server (installed as separate package,
   # because extraPython3Packages not provide bin/ folder to editor $PATH variable)
@@ -106,7 +106,7 @@ result, instead of waiting after each launch of `home-manager switch`.
 - Lua configuration more precisely described in [[#Lua configuration]]
 - Snippets folder contains snipmate-like snippets (see [[#Snippets {luasnip}]])
 
-```{.nix #nvim-nix-config}
+```nix {.nix #nvim-nix-config}
 programs.neovim.extraLuaConfig = ''
   require("sysraccoon")
 '';
@@ -119,7 +119,7 @@ xdg.configFile = {
 
 I don't like stylix variant of highlighting for neovim. See [[#Colorscheme {catppuccin}]] section.
 
-```{.nix #nvim-nix-config}
+```nix {.nix #nvim-nix-config}
 stylix.targets.vim.enable = false;
 ```
 
@@ -129,7 +129,7 @@ If you search good resource to create neovim configuration from scratch, I can r
 project [kickstarter.nvim](https://github.com/nvim-lua/kickstart.nvim) and
 [TJ kickstarter overview on youtube](https://www.youtube.com/watch?v=m8C0Cq9Uv9o).
 
-```{.lua file=modules/home/editors/nvim/lua/sysraccoon/init.lua}
+```lua {.lua file=modules/home/editors/nvim/lua/sysraccoon/init.lua}
 <<nvim-lua-general>>
 <<nvim-lua-plugins>>
 ```
@@ -142,14 +142,14 @@ I use relative numbering in conjunction with macros. Numbering allows you to qui
 number of repetitions that need to be done to apply changes to all relevant rows at once. I don't
 use it for navigation, because hop.nvim is much more powerful for such kind of things:
 
-```{.lua #nvim-lua-general}
+```lua {.lua #nvim-lua-general}
 vim.opt.number = true
 vim.opt.relativenumber = true
 ```
 
 Use 2 spaces by default for filetypes that don't configured for specific indentantion style:
 
-```{.lua #nvim-lua-general}
+```lua {.lua #nvim-lua-general}
 vim.opt.autoindent = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -160,20 +160,20 @@ vim.opt.smarttab = true
 
 Yes, mouse support inside neovim. Have questions?
 
-```{.lua #nvim-lua-general}
+```lua {.lua #nvim-lua-general}
 vim.opt.mouse = "a"
 ```
 
 Just use utf-8 encoding by default. It's best option for most cases:
 
-```{.lua #nvim-lua-general}
+```lua {.lua #nvim-lua-general}
 vim.opt.enc = "utf-8"
 vim.opt.fenc = "utf-8"
 ```
 
 Disable emoji. Why do you need such things in your editor?
 
-```{.lua #nvim-lua-general}
+```lua {.lua #nvim-lua-general}
 vim.opt.emo = false
 ```
 
@@ -185,7 +185,7 @@ Configure search options
 - `hlsearch` disable highlight after you complete typing search string.
 - `mmp` maximum amount of memory (in Kbyte) to use for pattern matching.
 
-```{.lua #nvim-lua-general}
+```lua {.lua #nvim-lua-general}
 vim.opt.smartcase = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = false
@@ -194,7 +194,7 @@ vim.opt.mmp = 10240
 
 Disable comment continuation:
 
-```{.lua #nvim-lua-general}
+```lua {.lua #nvim-lua-general}
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
@@ -204,7 +204,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 Just disable some noise stuff
 
-```{.lua #nvim-lua-general}
+```lua {.lua #nvim-lua-general}
 vim.opt.swapfile = false -- disable .swp files
 vim.opt.backup = false -- disable backup
 vim.opt.errorbells = false -- disable sound on errors
@@ -212,7 +212,7 @@ vim.opt.errorbells = false -- disable sound on errors
 
 Set scroll speed
 
-```{.lua #nvim-lua-general}
+```lua {.lua #nvim-lua-general}
 vim.opt.scrolloff = 10
 vim.opt.scrolljump = 10
 vim.opt.sidescroll = 10
@@ -220,20 +220,20 @@ vim.opt.sidescroll = 10
 
 Enable true color support
 
-```{.lua #nvim-lua-general}
+```lua {.lua #nvim-lua-general}
 vim.opt.termguicolors = true
 ```
 
 Use system clipboard by default
 
-```{.lua #nvim-lua-general}
+```lua {.lua #nvim-lua-general}
 vim.opt.clipboard:append({ "unnamedplus" })
 ```
 
 Provide highlighting when you yanking text. This snippet originally copied from kickstarter.nvim
 config.
 
-```{.lua #nvim-lua-general}
+```lua {.lua #nvim-lua-general}
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("sysraccoon-highlight-yank", { clear = true }),
@@ -245,7 +245,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 Basic keybindings:
 
-```{.lua #nvim-lua-general}
+```lua {.lua #nvim-lua-general}
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>", "<NOP>", { noremap = true, silent = true })
 vim.keymap.set("n", "j", "gj", { noremap = true, silent = true })
@@ -268,7 +268,7 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
 I use [lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager to manage all plugins.
 
-```{.lua #nvim-lua-plugins}
+```lua {.lua #nvim-lua-plugins}
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -291,7 +291,7 @@ require("lazy").setup({
 
 Currently I use [catpuccin](https://catppuccin.com/) for all my stuff. I also use this:
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 
 {
   "catppuccin/nvim",
@@ -307,7 +307,7 @@ Currently I use [catpuccin](https://catppuccin.com/) for all my stuff. I also us
 
 Apply darker version of CodeBlock background, see [[#Markdown]] for more details.
 
-```{.lua #nvim-lua-color-tweaks}
+```lua {.lua #nvim-lua-color-tweaks}
 vim.cmd([[highlight CodeBlock guibg=#181825]])
 ```
 
@@ -317,7 +317,7 @@ vim.cmd([[highlight CodeBlock guibg=#181825]])
 It allow you search files by nameand content, switch between buffers and much much more. It also
 have good integration with other plugins.
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
   "nvim-telescope/telescope.nvim",
   branch = "0.1.x",
@@ -338,7 +338,7 @@ have good integration with other plugins.
 
 Short video that explain LSP [LSP Explained by TJ](https://youtu.be/LaS32vctfOY)
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
 
   "neovim/nvim-lspconfig",
@@ -361,7 +361,7 @@ Short video that explain LSP [LSP Explained by TJ](https://youtu.be/LaS32vctfOY)
 
 Configure autocmds that apply keybindings, when any LSP loaded and clear references after unloading
 
-```{.lua #nvim-lua-lsp-config}
+```lua {.lua #nvim-lua-lsp-config}
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("sysraccoon-lsp-attach", { clear = true }),
   callback = function(event)
@@ -379,7 +379,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 Configure LSP specific keybindings
 
-```{.lua #nvim-lua-lsp-keybindings}
+```lua {.lua #nvim-lua-lsp-keybindings}
 local map = function(keys, func, desc)
   vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 end
@@ -398,7 +398,7 @@ Servers used for specific languages are described in the relevant sections:
 - [[#Markdown]]
 - [[#Lua]]
 
-```{.lua #nvim-lua-lsp-config}
+```lua {.lua #nvim-lua-lsp-config}
 local servers = {
   <<nvim-lua-lsp-markdown>>
   <<nvim-lua-lsp-lua>>
@@ -411,7 +411,7 @@ local servers = {
 [Mason](https://github.com/williamboman/mason.nvim) is package manager that allow install and manage
 LSP servers, linters, and formatters.
 
-```{.lua #nvim-lua-lsp-config}
+```lua {.lua #nvim-lua-lsp-config}
 require("mason").setup()
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -440,7 +440,7 @@ require("mason-lspconfig").setup({
 It can build syntax tree for a source file. If you want more information, watch this video:
 [tree-sitter explained](https://www.youtube.com/watch?v=09-9LltqWLY)
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
@@ -472,7 +472,7 @@ It can build syntax tree for a source file. If you want more information, watch 
 Provided by [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) plugin. It also used by snippet engines
 (see [snippet section](#snippets-luasnip))
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
   "hrsh7th/nvim-cmp",
   dependencies = {
@@ -545,7 +545,7 @@ Use [LuaSnip](https://github.com/L3MON4D3/LuaSnip) for snippets. It support diff
 (vscode-like, snipmate-like, lua), for more information see
 [LuaSnip Loaders](https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#loaders):
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
   "L3MON4D3/LuaSnip",
   build = (function()
@@ -581,7 +581,7 @@ Formatters used for specific language, described in proper section:
 - [[#Markdown]]
 - [[#Lua]]
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
   "stevearc/conform.nvim",
   keys = {
@@ -612,14 +612,14 @@ Formatters used for specific language, described in proper section:
 [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) provide good folding configuration out of the
 box.
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
   "kevinhwang91/nvim-ufo",
   dependencies = {
     "kevinhwang91/promise-async",
   },
   config = function()
-    vim.o.foldcolumn = "1"
+    vim.o.foldcolumn = "0"
     vim.o.foldlevel = 99
     vim.o.foldlevelstart = 99
     vim.o.foldenable = true
@@ -639,7 +639,7 @@ box.
 
 Disable <C-l> and <C-h> keymaps, because it conflicts with [[#Tmux integration]] keybindings.
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
   "stevearc/oil.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -666,7 +666,7 @@ by typing several characters.
 
 I redefine opts.keys, because use `dvorak` keyboard layout.
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
   "smoka7/hop.nvim",
   version = "*",
@@ -685,7 +685,7 @@ I redefine opts.keys, because use `dvorak` keyboard layout.
 [harpoon](https://github.com/ThePrimeagen/harpoon/tree/harpoon2) allows you to set a mark to an open
 buffer so that you can quickly switch to it. This is analogue of pinning tabs in other text editors
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
@@ -782,7 +782,7 @@ buffer so that you can quickly switch to it. This is analogue of pinning tabs in
 Change code block highlight and headers style. Code block color value defined in
 [[#Colorscheme {catppuccin}]] section.
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
   "lukas-reineke/headlines.nvim",
   dependencies = "nvim-treesitter/nvim-treesitter",
@@ -797,7 +797,7 @@ Change code block highlight and headers style. Code block color value defined in
 
 Auto generate table of contents (TOC). Use command `:Mtoc` to generate TOC.
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
   "hedyhli/markdown-toc.nvim",
   ft = "markdown",
@@ -819,14 +819,14 @@ Auto generate table of contents (TOC). Use command `:Mtoc` to generate TOC.
 My setup use [marksman](https://github.com/artempyanykh/marksman) language server. See [[#LSP]]
 section for more information about LSP configuration.
 
-```{.lua #nvim-lua-lsp-markdown}
+```lua {.lua #nvim-lua-lsp-markdown}
 marksman = {},
 ```
 
 [prettierd](https://github.com/fsouza/prettierd) is used as a formatter. See
 [[#Auto Formatting {conform.nvim}]] section for more information.
 
-```{.lua #nvim-lua-formatter-markdown}
+```lua {.lua #nvim-lua-formatter-markdown}
 markdown = { { "prettierd" } },
 ```
 
@@ -835,7 +835,7 @@ markdown = { { "prettierd" } },
 [lua-ls](https://github.com/luals/lua-language-server) used as language server. See [[#LSP]] section
 for more information about LSP configuration.
 
-```{.lua #nvim-lua-lsp-lua}
+```lua {.lua #nvim-lua-lsp-lua}
 lua_ls = {
   settings = {
     Lua = {
@@ -853,7 +853,7 @@ lua_ls = {
 [stylua](https://github.com/JohnnyMorganz/StyLua) used as lua formatter. See
 [[#Auto Formatting {conform.nvim}]] section for more information.
 
-```{.lua #nvim-lua-formatter-lua}
+```lua {.lua #nvim-lua-formatter-lua}
 lua = { "stylua" },
 ```
 
@@ -863,7 +863,7 @@ lua = { "stylua" },
 
 Display actual colors for specified color codes:
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
   "norcalli/nvim-colorizer.lua", -- Just show me this colors
   lazy = false,
@@ -882,7 +882,7 @@ Display actual colors for specified color codes:
 Sometimes it happens that you open a config that is read-only. To avoid restarting neovim, you can
 use vim-suda, which allows you to save the buffer with super user rights
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
   "lambdalisue/suda.vim", -- Allow perform sudo commands inside vim (useful when edit RO file and want save changes)
   keys = {
@@ -895,7 +895,7 @@ use vim-suda, which allows you to save the buffer with super user rights
 
 Add seamless navigation between tmux panes and neovim windows
 
-```{.lua #nvim-lua-lazy-plugins}
+```lua {.lua #nvim-lua-lazy-plugins}
 {
   "christoomey/vim-tmux-navigator",
   cmd = {

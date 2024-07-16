@@ -492,26 +492,30 @@ packaging = ">=20.9"
 
 [[package]]
 name = "entangled-cli"
-version = "2.0.5"
+version = "2.0.6"
 description = "Literate Programming toolbox"
 optional = false
-python-versions = "<4.0,>=3.11"
-files = [
-    {file = "entangled_cli-2.0.5-py3-none-any.whl", hash = "sha256:a2dc40b4f80b586ead6c451c15d2c0ce32d489689cb386f1f63e8fe4d20ed944"},
-    {file = "entangled_cli-2.0.5.tar.gz", hash = "sha256:b19d03f05302d069f06a6b7f1cc5bf345353151b2772e00169826ee6523740b0"},
-]
+python-versions = "^3.11"
+files = []
+develop = false
 
 [package.dependencies]
-argh = ">=0.30,<0.31"
-brei = ">=0.2.3,<0.3.0"
-copier = ">=9,<10"
-filelock = ">=3.12.0,<4.0.0"
-mawk = ">=0.1.4,<0.2.0"
-pexpect = ">=4.9.0,<5.0.0"
-rich = ">=13.3.5,<14.0.0"
-rich-argparse = ">=1.4.0,<2.0.0"
-tomlkit = ">=0.12.1,<0.13.0"
-watchdog = ">=3.0.0,<4.0.0"
+argh = "^0.30"
+brei = "^0.2.3"
+copier = "^9"
+filelock = "^3.12.0"
+mawk = "^0.1.4"
+pexpect = "^4.9.0"
+rich = "^13.3.5"
+rich-argparse = "^1.4.0"
+tomlkit = "^0.12.1"
+watchdog = "^3.0.0"
+
+[package.source]
+type = "git"
+url = "https://github.com/sysraccoon/entangled.py.git"
+reference = "HEAD"
+resolved_reference = "b070b857fbb3a2cbbb54e5b9389936d0b4f6b973"
 
 [[package]]
 name = "fastjsonschema"
@@ -1724,4 +1728,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "1176456a273e7eab8e4d95d02c634b71701cd453ad6792b4deb6a2915de943e4"
+content-hash = "817c219ccf4240eaf0242f6be393b7476f147cb5b703fa9a1b8a0a6938d9acbf"
