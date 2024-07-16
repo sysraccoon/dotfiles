@@ -119,6 +119,7 @@ require("lazy").setup({
       { mode = "n", "<leader>ff", "<cmd>Telescope find_files no_ignore=true<cr>" },
       { mode = "n", "<leader>fg", "<cmd>Telescope live_grep<cr>" },
       { mode = "n", "<leader>fb", "<cmd>Telescope buffers<cr>" },
+      { mode = "n", "<leader>fs", "<cmd>Telescope lsp_document_symbols previewer=false<cr>" },
     },
   },
   -- ~/~ end
@@ -571,3 +572,4 @@ require("lazy").setup({
 })
 -- ~/~ end
 -- ~/~ end
+

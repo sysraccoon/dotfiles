@@ -1,29 +1,29 @@
 # NeoVim configuration
 
-## Table of Contents
+## Table of Contents {TOC}
 
 <!-- toc-start -->
 
 - [Nix home-manager module](<#Nix home-manager module>)
 - [Lua configuration](<#Lua configuration>)
-  - [General](<#General>)
-  - [Lazy](<#Lazy>)
-  - [Colorscheme](<#Colorscheme>)
-  - [Fuzzy Finder](<#Fuzzy Finder>)
-  - [LSP](<#LSP>)
-  - [Treesitter](<#Treesitter>)
-  - [Auto Completion](<#Auto Completion>)
-  - [Snippets](<#Snippets>)
-  - [Auto Formatting](<#Auto Formatting>)
-  - [Folding](<#Folding>)
-  - [File Explorer](<#File Explorer>)
-  - [Quick Navigation](<#Quick Navigation>)
-  - [Buffer Navigation](<#Buffer Navigation>)
+  - [General](#General)
+  - [Plugin Manager {lazy}](<#Plugin Manager {lazy}>)
+  - [Colorscheme {catppuccin}](<#Colorscheme {catppuccin}>)
+  - [Fuzzy Finder {telescope.nvim}](<#Fuzzy Finder {telescope.nvim}>)
+  - [LSP](#LSP)
+  - [Treesitter](#Treesitter)
+  - [Auto Completion {nvim-cmp}](<#Auto Completion {nvim-cmp}>)
+  - [Snippets {luasnip}](<#Snippets {luasnip}>)
+  - [Auto Formatting {conform.nvim}](<#Auto Formatting {conform.nvim}>)
+  - [Folding {nvim-ufo}](<#Folding {nvim-ufo}>)
+  - [File Explorer {oil.nvim}](<#File Explorer {oil.nvim}>)
+  - [Quick Navigation {hop.nvim}](<#Quick Navigation {hop.nvim}>)
+  - [Buffer Navigation {harpoon}](<#Buffer Navigation {harpoon}>)
   - [Language Specific](<#Language Specific>)
-    - [Markdown](<#Markdown>)
-    - [Lua](<#Lua>)
-  - [Miscellaneous](<#Miscellaneous>)
-    - [Colorizer](<#Colorizer>)
+    - [Markdown](#Markdown)
+    - [Lua](#Lua)
+  - [Miscellaneous](#Miscellaneous)
+    - [Colorizer](#Colorizer)
     - [Save files as Root](<#Save files as Root>)
     - [Tmux integration](<#Tmux integration>)
 
@@ -104,7 +104,7 @@ by nix language itself. This also provides better responsiveness, due to instant
 result, instead of waiting after each launch of `home-manager switch`.
 
 - Lua configuration more precisely described in [[#Lua configuration]]
-- Snippets folder contains snipmate-like snippets (see [[#Snippets]])
+- Snippets folder contains snipmate-like snippets (see [[#Snippets {luasnip}]])
 
 ```{.nix #nvim-nix-config}
 programs.neovim.extraLuaConfig = ''
@@ -117,7 +117,7 @@ xdg.configFile = {
 };
 ```
 
-I don't like stylix variant of highlighting for neovim. See [[#Colorscheme]] section.
+I don't like stylix variant of highlighting for neovim. See [[#Colorscheme {catppuccin}]] section.
 
 ```{.nix #nvim-nix-config}
 stylix.targets.vim.enable = false;
@@ -264,7 +264,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 ```
 
-### Lazy
+### Plugin Manager {lazy}
 
 I use [lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager to manage all plugins.
 
@@ -287,7 +287,7 @@ require("lazy").setup({
 })
 ```
 
-### Colorscheme
+### Colorscheme {catppuccin}
 
 Currently I use [catpuccin](https://catppuccin.com/) for all my stuff. I also use this:
 
@@ -311,7 +311,7 @@ Apply darker version of CodeBlock background, see [[#Markdown]] for more details
 vim.cmd([[highlight CodeBlock guibg=#181825]])
 ```
 
-### Fuzzy Finder
+### Fuzzy Finder {telescope.nvim}
 
 [Telescope](https://github.com/nvim-telescope/telescope.nvim) is powerfull fuzzy finder for neovim.
 It allow you search files by nameand content, switch between buffers and much much more. It also
@@ -329,6 +329,7 @@ have good integration with other plugins.
     { mode = "n", "<leader>ff", "<cmd>Telescope find_files no_ignore=true<cr>" },
     { mode = "n", "<leader>fg", "<cmd>Telescope live_grep<cr>" },
     { mode = "n", "<leader>fb", "<cmd>Telescope buffers<cr>" },
+    { mode = "n", "<leader>fs", "<cmd>Telescope lsp_document_symbols previewer=false<cr>" },
   },
 },
 ```
@@ -466,10 +467,10 @@ It can build syntax tree for a source file. If you want more information, watch 
 },
 ```
 
-### Auto Completion
+### Auto Completion {nvim-cmp}
 
 Provided by [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) plugin. It also used by snippet engines
-(see [snippet section](#snippets))
+(see [snippet section](#snippets-luasnip))
 
 ```{.lua #nvim-lua-lazy-plugins}
 {
@@ -538,7 +539,7 @@ Provided by [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) plugin. It also used
 },
 ```
 
-### Snippets
+### Snippets {luasnip}
 
 Use [LuaSnip](https://github.com/L3MON4D3/LuaSnip) for snippets. It support different formats
 (vscode-like, snipmate-like, lua), for more information see
@@ -567,7 +568,7 @@ Use [LuaSnip](https://github.com/L3MON4D3/LuaSnip) for snippets. It support diff
 },
 ```
 
-### Auto Formatting
+### Auto Formatting {conform.nvim}
 
 Manually formatting code is quite boring. Instead, I rely on automatic solutions that are triggered
 when the buffer is saved.
@@ -606,7 +607,7 @@ Formatters used for specific language, described in proper section:
 },
 ```
 
-### Folding
+### Folding {nvim-ufo}
 
 [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) provide good folding configuration out of the
 box.
@@ -632,7 +633,7 @@ box.
 },
 ```
 
-### File Explorer
+### File Explorer {oil.nvim}
 
 [oil.nvim](https://github.com/stevearc/oil.nvim) allow edit filesystem like a normal neovim buffer.
 
@@ -658,10 +659,10 @@ Disable <C-l> and <C-h> keymaps, because it conflicts with [[#Tmux integration]]
 },
 ```
 
-### Quick Navigation
+### Quick Navigation {hop.nvim}
 
-[hop.nvim](https://github.com/hadronized/hop.nvim) allow me jump to any part of code on the screen,
-just by typing several characters.
+[hop.nvim](https://github.com/smoka7/hop.nvim) allow me jump to any part of code on the screen, just
+by typing several characters.
 
 I redefine opts.keys, because use `dvorak` keyboard layout.
 
@@ -679,7 +680,7 @@ I redefine opts.keys, because use `dvorak` keyboard layout.
 },
 ```
 
-### Buffer Navigation
+### Buffer Navigation {harpoon}
 
 [harpoon](https://github.com/ThePrimeagen/harpoon/tree/harpoon2) allows you to set a mark to an open
 buffer so that you can quickly switch to it. This is analogue of pinning tabs in other text editors
@@ -778,8 +779,8 @@ buffer so that you can quickly switch to it. This is analogue of pinning tabs in
 
 #### Markdown
 
-Change code block highlight and headers style. Code block color value defined in [[#Colorscheme]]
-section.
+Change code block highlight and headers style. Code block color value defined in
+[[#Colorscheme {catppuccin}]] section.
 
 ```{.lua #nvim-lua-lazy-plugins}
 {
@@ -822,8 +823,8 @@ section for more information about LSP configuration.
 marksman = {},
 ```
 
-[prettierd](https://github.com/fsouza/prettierd) is used as a formatter. See [[#Auto Formatting]]
-section for more information.
+[prettierd](https://github.com/fsouza/prettierd) is used as a formatter. See
+[[#Auto Formatting {conform.nvim}]] section for more information.
 
 ```{.lua #nvim-lua-formatter-markdown}
 markdown = { { "prettierd" } },
@@ -849,8 +850,8 @@ lua_ls = {
 },
 ```
 
-[stylua](https://github.com/JohnnyMorganz/StyLua) used as lua formatter. See [[#Auto Formatting]]
-section for more information.
+[stylua](https://github.com/JohnnyMorganz/StyLua) used as lua formatter. See
+[[#Auto Formatting {conform.nvim}]] section for more information.
 
 ```{.lua #nvim-lua-formatter-lua}
 lua = { "stylua" },
