@@ -288,7 +288,7 @@ Use emacs style keybindings
 bindkey -e
 ```
 
-Copy current command to clipboard by pressing <alt-y> or `esc y`.
+Copy current command to clipboard by pressing `alt-y` or `esc y`.
 
 ```bash {.bash #zshrc-body}
 function __yank-current-buffer {
@@ -298,7 +298,7 @@ zle -N __yank-current-buffer
 bindkey "\ey" __yank-current-buffer
 ```
 
-Show full path to current command by pressing <alt-s> or `esc s`.
+Show full path to current command by pressing `alt-s` or `esc s`.
 
 ```bash {.bash #zshrc-body}
 function __show-command-source {
@@ -309,14 +309,14 @@ bindkey "\es" __show-command-source
 bindkey -M vicmd "\es" __show-command-source
 ```
 
-Handle ctrl-left and ctrl-right as backward-word and forward-word respectively.
+Handle `ctrl-left` and `ctrl-right` as `backward-word` and `forward-word` respectively.
 
 ```bash {.bash #zshrc-body}
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 ```
 
-Swap <ctrl-f> and <alt-f> logic (same for <ctrl-b> and <alt-b>)
+Swap `ctrl-f` and `alt-f` logic (same for `ctrl-b` and `alt-b`)
 
 ```bash {.bash #zshrc-body}
 bindkey '^f' forward-word
