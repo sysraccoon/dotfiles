@@ -51,6 +51,9 @@ vim.opt.termguicolors = true
 vim.opt.clipboard:append({ "unnamedplus" })
 -- ~/~ end
 -- ~/~ begin <<notes/nvim.md#nvim-lua-general>>[11]
+vim.opt.splitright = true
+-- ~/~ end
+-- ~/~ begin <<notes/nvim.md#nvim-lua-general>>[12]
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("sysraccoon-highlight-yank", { clear = true }),
@@ -59,7 +62,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 -- ~/~ end
--- ~/~ begin <<notes/nvim.md#nvim-lua-general>>[12]
+-- ~/~ begin <<notes/nvim.md#nvim-lua-general>>[13]
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>", "<NOP>", { noremap = true, silent = true })
 vim.keymap.set("n", "j", "gj", { noremap = true, silent = true })
@@ -386,6 +389,9 @@ require("lazy").setup({
     config = function()
       require("oil").setup({
         default_file_explorer = true,
+        columns = {
+          "icon",
+        },
         view_options = {
           show_hidden = true,
         },
@@ -454,6 +460,13 @@ require("lazy").setup({
         "<leader>hu",
         function()
           require("harpoon"):list():select(1)
+        end,
+      },
+      {
+        mode = "n",
+        "<leader>hm",
+        function()
+          require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
         end,
       },
       {

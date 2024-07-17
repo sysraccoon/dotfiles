@@ -7,12 +7,12 @@
 - [Nix home-manager module](<#Nix home-manager module>)
 - [ZSH configuration](<#ZSH configuration>)
 - [Lua configuration](<#Lua configuration>)
-  - [General](#General)
+  - [General](<#General>)
   - [Plugin Manager {lazy}](<#Plugin Manager {lazy}>)
   - [Colorscheme {catppuccin}](<#Colorscheme {catppuccin}>)
   - [Fuzzy Finder {telescope.nvim}](<#Fuzzy Finder {telescope.nvim}>)
-  - [LSP](#LSP)
-  - [Treesitter](#Treesitter)
+  - [LSP](<#LSP>)
+  - [Treesitter](<#Treesitter>)
   - [Auto Completion {nvim-cmp}](<#Auto Completion {nvim-cmp}>)
   - [Snippets {luasnip}](<#Snippets {luasnip}>)
   - [Auto Formatting {conform.nvim}](<#Auto Formatting {conform.nvim}>)
@@ -21,10 +21,10 @@
   - [Quick Navigation {hop.nvim}](<#Quick Navigation {hop.nvim}>)
   - [Buffer Navigation {harpoon}](<#Buffer Navigation {harpoon}>)
   - [Language Specific](<#Language Specific>)
-    - [Markdown](#Markdown)
-    - [Lua](#Lua)
-  - [Miscellaneous](#Miscellaneous)
-    - [Colorizer](#Colorizer)
+    - [Markdown](<#Markdown>)
+    - [Lua](<#Lua>)
+  - [Miscellaneous](<#Miscellaneous>)
+    - [Colorizer](<#Colorizer>)
     - [Save files as Root](<#Save files as Root>)
     - [Tmux integration](<#Tmux integration>)
 
@@ -98,11 +98,11 @@ extraPackages = with pkgs; [
 ];
 ```
 
-Prefer to put configurations in separate files and symlink by using impurity (out of store symlink),
-instead of rely on `/nix/store` symlinks. This allow me work with configuration like on any other
-system. Use same documentation and guides, and don't rely on additional abstraction layers provided
-by nix language itself. This also provides better responsiveness, due to instant display of the
-result, instead of waiting after each launch of `home-manager switch`.
+I don't rely on nix way of configuring tools. Instead home-manager used to manage all dependencies
+and replace imperative commands (such as systemd services run, or some sort of init commands).
+
+All configuration stored in separate files and after that symlinked to proper directory. See
+[impurity.nix](https://github.com/outfoxxed/impurity.nix) for more detail.
 
 - Lua configuration more precisely described in [[#Lua configuration]]
 - Snippets folder contains snipmate-like snippets (see [[#Snippets {luasnip}]])
@@ -169,9 +169,9 @@ project [kickstarter.nvim](https://github.com/nvim-lua/kickstart.nvim) and
 
 This section provide configuration, related to neovim itself, and don't rely on plugins.
 
-I use relative numbering in conjunction with macros. Numbering allows you to quickly estimate the
-number of repetitions that need to be done to apply changes to all relevant rows at once. I don't
-use it for navigation, because hop.nvim is much more powerful for such kind of things:
+I often use relative numbering in conjunction with macros to quickly estimate the number of
+repetitions required to apply changes to all relevant rows at once. However, I don't rely on it for
+navigation, as hop.nvim is much more powerful and versatile for such tasks.
 
 ```lua {.lua #nvim-lua-general}
 vim.opt.number = true
@@ -259,6 +259,12 @@ Use system clipboard by default
 
 ```lua {.lua #nvim-lua-general}
 vim.opt.clipboard:append({ "unnamedplus" })
+```
+
+Split window to right (by default to left)
+
+```lua {.lua #nvim-lua-general}
+vim.opt.splitright = true
 ```
 
 Provide highlighting when you yanking text. This snippet originally copied from kickstarter.nvim
@@ -678,6 +684,9 @@ Disable <C-l> and <C-h> keymaps, because it conflicts with [[#Tmux integration]]
   config = function()
     require("oil").setup({
       default_file_explorer = true,
+      columns = {
+        "icon",
+      },
       view_options = {
         show_hidden = true,
       },
@@ -760,6 +769,13 @@ buffer so that you can quickly switch to it. This is analogue of pinning tabs in
       "<leader>hu",
       function()
         require("harpoon"):list():select(1)
+      end,
+    },
+    {
+      mode = "n",
+      "<leader>hm",
+      function()
+        require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
       end,
     },
     {
