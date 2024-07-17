@@ -5,19 +5,19 @@
 <!-- toc-start -->
 
 - [Nix home-manager module](<#Nix home-manager module>)
-- [.zshrc](#.zshrc)
+- [.zshrc](<#.zshrc>)
   - [Handle non Interactive](<#Handle non Interactive>)
   - [Home Manager](<#Home Manager>)
-  - [Plugins](#Plugins)
-  - [General](#General)
+  - [Plugins](<#Plugins>)
+  - [General](<#General>)
   - [Prompt {starship}](<#Prompt {starship}>)
   - [Fuzzy Finder {fzf}](<#Fuzzy Finder {fzf}>)
     - [Fuzzy Auto Completion {fzf-tab}](<#Fuzzy Auto Completion {fzf-tab}>)
   - [Editor {neovim}](<#Editor {neovim}>)
-  - [Keybindings](#Keybindings)
+  - [Keybindings](<#Keybindings>)
   - [Folder Specific Environment {direnv}](<#Folder Specific Environment {direnv}>)
   - [Syntax Highlighting {zsh-syntax-highlighitng}](<#Syntax Highlighting {zsh-syntax-highlighitng}>)
-  - [Aliases](#Aliases)
+  - [Aliases](<#Aliases>)
     - [GNU utils replacement](<#GNU utils replacement>)
     - [Git aliases](<#Git aliases>)
     - [Nix Aliases](<#Nix Aliases>)
@@ -53,10 +53,16 @@ in {
       <<zsh-packages>>
     ];
 
+    home.sessionPath = [
+      "$HOME/.local/bin"
+      "$HOME/bin"
+    ];
+
+    xdg.enable = true;
     xdg.configFile."starship/starship.toml".source = impurity.link ./starship.toml;
     xdg.configFile."zsh".source = impurity.link ./zsh;
     home.file.".zshrc".source = pkgs.writeText ".zshrc" ''
-      source "''${XDG_CONFIG_DIR:-$HOME/.config}/zsh/config.zsh"
+      source "${config.xdg.configHome}/zsh/config.zsh"
     '';
   };
 }
@@ -64,7 +70,7 @@ in {
 
 ## .zshrc
 
-This section produce [config.zsh](modules/home/shells/zsh/zsh/config.zsh)
+This section produce [config.zsh](../modules/home/shells/zsh/zsh/config.zsh)
 
 ```bash {.bash file=modules/home/shells/zsh/zsh/config.zsh}
 <<zshrc-body>>
@@ -174,7 +180,7 @@ starship
 And add initialization to zshrc.
 
 ```bash {.bash #zshrc-body}
-export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml"
+export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship/starship.toml"
 eval "$(starship init zsh)"
 ```
 
@@ -271,7 +277,7 @@ Settings related to neovim are in a separate file. See
 [neovim configuration](<./nvim.md#zsh configuration>)
 
 ```bash {.bash #zshrc-body}
-source "${XDG_CONFIG_DIR:-$HOME/.config}/zsh/nvim.zsh"
+source "${XDG_CONFIG_HOME}/zsh/nvim.zsh"
 ```
 
 ### Keybindings
@@ -525,5 +531,5 @@ alias zsh-up='reset && source ~/.zshrc'
 alias ssh='TERM=xterm-256color ssh'
 alias open='xdg-open'
 alias ra='radare2 -A'
-alias tmux-up="tmux source ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
+alias tmux-up="tmux source ${XDG_CONFIG_HOME}/tmux/tmux.conf"
 ```

@@ -41,10 +41,16 @@ in {
       # ~/~ end
     ];
 
+    home.sessionPath = [
+      "$HOME/.local/bin"
+      "$HOME/bin"
+    ];
+
+    xdg.enable = true;
     xdg.configFile."starship/starship.toml".source = impurity.link ./starship.toml;
     xdg.configFile."zsh".source = impurity.link ./zsh;
     home.file.".zshrc".source = pkgs.writeText ".zshrc" ''
-      source "''${XDG_CONFIG_DIR:-$HOME/.config}/zsh/config.zsh"
+      source "${config.xdg.configHome}/zsh/config.zsh"
     '';
   };
 }

@@ -57,7 +57,7 @@ setopt HIST_IGNORE_DUPS
 alias sudo='sudo '
 # ~/~ end
 # ~/~ begin <<notes/zsh.md#zshrc-body>>[8]
-export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml"
+export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship/starship.toml"
 eval "$(starship init zsh)"
 # ~/~ end
 # ~/~ begin <<notes/zsh.md#zshrc-body>>[9]
@@ -84,7 +84,7 @@ fi
 source "$ZSH_PLUGIN_DIR/fzf-tab/fzf-tab.zsh"
 # ~/~ end
 # ~/~ begin <<notes/zsh.md#zshrc-body>>[11]
-source "${XDG_CONFIG_DIR:-$HOME/.config}/zsh/nvim.zsh"
+source "${XDG_CONFIG_HOME}/zsh/nvim.zsh"
 # ~/~ end
 # ~/~ begin <<notes/zsh.md#zshrc-body>>[12]
 bindkey -e
@@ -253,6 +253,6 @@ alias zsh-up='reset && source ~/.zshrc'
 alias ssh='TERM=xterm-256color ssh'
 alias open='xdg-open'
 alias ra='radare2 -A'
-alias tmux-up="tmux source ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
+alias tmux-up="tmux source ${XDG_CONFIG_HOME}/tmux/tmux.conf"
 # ~/~ end
 # ~/~ end
