@@ -1,19 +1,5 @@
-#| ---------------------------------------------------------------
-
-DEFLAYER TEMPLATE
-just copy paste if need new layer
-
-(deflayer name
-  _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _     _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _     _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _                          _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _                    _          _    _    _    _
-  _    _    _              _              _    _    _    _               _    _    _     _    _   
-)
-
- --------------------------------------------------------------- |#
-
+;; ~/~ begin <<notes/keyboard.md#modules/combined/keyboard/kanata/default.kbd>>[init]
+;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[init]
 (defsrc
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  kp*  kp-
@@ -22,45 +8,44 @@ just copy paste if need new layer
   lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
   lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght  kp0  kp.
 )
-
+;; ~/~ end
+;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[1]
 (defvar
   tap-timeout 100
   hold-timeout 200
-  chord-timeout 100
-  tap-dance-timeout 200
 
-  ;; abbrivations
   tt $tap-timeout
   ht $hold-timeout
-  ct $chord-timeout
-  tdt $tap-dance-timeout
 )
-
+;; ~/~ end
+;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[2]
 (defalias
   nav (layer-while-held navigation)
+  tty (layer-while-held tty)
+  tmux (layer-while-held tmux)
+  tmux-movement (layer-while-held tmux-movement)
+)
+;; ~/~ end
+;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[3]
+(defalias
   lctl (tap-hold $tt $ht esc lctl)
   a (tap-hold-release $tt $ht a lalt)
   s (tap-hold-release $tt $ht s lmet)
 
   d (tap-hold-release $tt $ht d lsft)
   f (tap-hold-release $tt $ht f lctl)
-  j (tap-hold-release $tt $ht j rctl) 
+  j (tap-hold-release $tt $ht j rctl)
   k (tap-hold-release $tt $ht k rsft)
   l (tap-hold-release $tt $ht l rmet)
 
   ; (tap-hold-release $tt $ht ; ralt)
+
   spc (tap-hold $tt $ht spc @nav)
-  lalt (layer-while-held tmux)
-
-  tty-toggles (layer-while-held tty-toggles)
+  lalt @tmux
 )
-
-#|---------------------------------------------------------------+
- |                      GENERAL LAYERS                           |
- +---------------------------------------------------------------|#
-
-;; NOTE: do not add layers before default
-(deflayer default
+;; ~/~ end
+;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[4]
+(deflayer base
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  kp*  kp-
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn  kp7  kp8  kp9  kp+
@@ -68,9 +53,10 @@ just copy paste if need new layer
   lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
   @lctl lmet @lalt           @spc            ralt rmet cmp  rctl            left down rght  kp0  kp.
 )
-
+;; ~/~ end
+;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[5]
 (deflayermap (navigation)
-  lalt @tty-toggles
+  lalt @tty
 
   e C-S-tab ;; previous tab
   r C-tab ;; next tab
@@ -85,7 +71,7 @@ just copy paste if need new layer
 
   h C-left
   ; C-rght
-  
+
   n home
   . end
 
@@ -102,17 +88,15 @@ just copy paste if need new layer
   - f11
   = f12
 )
-
-#|---------------------------------------------------------------+
- |                  TMUX SPECIFIC LAYERS                         |
- +---------------------------------------------------------------|#
-
+;; ~/~ end
+;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[6]
 (defvar
   tmux-leader C-spc
 )
 
 (deflayermap (tmux)
-  spc @tty-toggles
+  spc @tty
+  lsft @tmux-movement
 
   w (macro $tmux-leader i) ;; create new window
   e (macro $tmux-leader C-r) ;; focus previous window
@@ -128,11 +112,11 @@ just copy paste if need new layer
   k C-c ;; tmux-vim-navigation down
   l C-p ;; tmux-vim-navigation right
 
-  lsft (layer-while-held tmux-movement) ;; temporary switch to tmux-movement layer
   b (macro $tmux-leader b) ;; kill pane
   / (macro $tmux-leader /) ;; zoom pane
 )
-
+;; ~/~ end
+;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[7]
 (deflayermap (tmux-movement)
   j (macro $tmux-leader S--) ;; move pane left
   l (macro $tmux-leader S-=) ;; move pane right
@@ -140,13 +124,9 @@ just copy paste if need new layer
   e (macro $tmux-leader C-S-r) ;; move window left
   r (macro $tmux-leader C-S-l) ;; move window right
 )
-
-
-#|---------------------------------------------------------------+
- |                         TTY TOGGLES                           |
- +---------------------------------------------------------------|#
-
-(deflayermap (tty-toggles)
+;; ~/~ end
+;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[8]
+(deflayermap (tty)
   1 C-A-f1
   2 C-A-f2
   3 C-A-f3
@@ -155,3 +135,5 @@ just copy paste if need new layer
   6 C-A-f6
   7 C-A-f7
 )
+;; ~/~ end
+;; ~/~ end
