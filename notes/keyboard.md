@@ -7,6 +7,7 @@
 - [Spec](#Spec)
 - [Programmable Layers {kanata}](<#Programmable Layers {kanata}>)
   - [Introduction](#Introduction)
+  - [Legend](#Legend)
   - [General](#General)
   - [Base Layer {@base}](<#Base Layer {@base}>)
   - [Navigation Layer {@navigation}](<#Navigation Layer {@navigation}>)
@@ -38,6 +39,10 @@ found here: [default.kbd](../modules/combined/keyboard/kanata/default.kbd)
 ```{.kbd file=modules/combined/keyboard/kanata/default.kbd}
 <<kanata-config-body>>
 ```
+
+### Legend
+
+![layout-legend](../assets/keyboard-layouts/layout-legend.png)
 
 ### General
 
