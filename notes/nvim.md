@@ -7,12 +7,12 @@
 - [Nix home-manager module](<#Nix home-manager module>)
 - [ZSH configuration](<#ZSH configuration>)
 - [Lua configuration](<#Lua configuration>)
-  - [General](<#General>)
+  - [General](#General)
   - [Plugin Manager {lazy}](<#Plugin Manager {lazy}>)
   - [Colorscheme {catppuccin}](<#Colorscheme {catppuccin}>)
   - [Fuzzy Finder {telescope.nvim}](<#Fuzzy Finder {telescope.nvim}>)
-  - [LSP](<#LSP>)
-  - [Treesitter](<#Treesitter>)
+  - [LSP](#LSP)
+  - [Treesitter](#Treesitter)
   - [Auto Completion {nvim-cmp}](<#Auto Completion {nvim-cmp}>)
   - [Snippets {luasnip}](<#Snippets {luasnip}>)
   - [Auto Formatting {conform.nvim}](<#Auto Formatting {conform.nvim}>)
@@ -21,10 +21,10 @@
   - [Quick Navigation {hop.nvim}](<#Quick Navigation {hop.nvim}>)
   - [Buffer Navigation {harpoon}](<#Buffer Navigation {harpoon}>)
   - [Language Specific](<#Language Specific>)
-    - [Markdown](<#Markdown>)
-    - [Lua](<#Lua>)
-  - [Miscellaneous](<#Miscellaneous>)
-    - [Colorizer](<#Colorizer>)
+    - [Markdown](#Markdown)
+    - [Lua](#Lua)
+  - [Miscellaneous](#Miscellaneous)
+    - [Colorizer](#Colorizer)
     - [Save files as Root](<#Save files as Root>)
     - [Tmux integration](<#Tmux integration>)
 
@@ -675,7 +675,7 @@ box.
 
 [oil.nvim](https://github.com/stevearc/oil.nvim) allow edit filesystem like a normal neovim buffer.
 
-Disable <C-l> and <C-h> keymaps, because it conflicts with [[#Tmux integration]] keybindings.
+Disable `C-l` and `C-h` keymaps, because it conflicts with [[#Tmux integration]] keybindings.
 
 ```lua {.lua #nvim-lua-lazy-plugins}
 {
@@ -705,7 +705,8 @@ Disable <C-l> and <C-h> keymaps, because it conflicts with [[#Tmux integration]]
 [hop.nvim](https://github.com/smoka7/hop.nvim) allow me jump to any part of code on the screen, just
 by typing several characters.
 
-I redefine opts.keys, because use `dvorak` keyboard layout.
+`opts.keys` redefined because `dvorak` keyboard layout used. See [keyboard setup](./keyboard.md) for
+more information.
 
 ```lua {.lua #nvim-lua-lazy-plugins}
 {

@@ -1,0 +1,136 @@
+[
+  {
+    "backcolor": "#dce0e8",
+    "css": "@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');\n* {\n    font-family: 'Source Code Pro';\n    font-weight: bold;\n    font-size: 10px;\n}"
+  },
+  [
+    {
+      "c": "#eff1f5",
+      "t": "#4c4f69"
+    },
+    "Esc",
+    "!\n1",
+    "@\n2",
+    "#\n3",
+    "$\n4",
+    "%\n5",
+    "^\n6",
+    "&\n7",
+    "*\n8",
+    "(\n9",
+    ")\n0",
+    "{\n[",
+    "}\n]",
+    "|\n\\",
+    "~\n`"
+  ],
+  [
+    {
+      "w": 1.5
+    },
+    "Tab",
+    "\"\n'",
+    "<\n,",
+    ">\n.",
+    "P",
+    "Y",
+    "F",
+    "G",
+    "C",
+    "R",
+    "L",
+    "?\n/",
+    "+\n=",
+    {
+      "w": 1.5
+    },
+    "Backspace"
+  ],
+  [
+    {
+      "c": "#7287fd",
+      "t": "#ccd0da",
+      "w": 1.75
+    },
+    "Esc\n\n\nLControl",
+    "A\n\n\nLAlt",
+    "O\n\n\nLMeta",
+    "E\n\n\nLShift",
+    {
+      "n": true
+    },
+    "U\n\n\nLCtrl",
+    {
+      "c": "#eff1f5",
+      "t": "#4c4f69"
+    },
+    "I",
+    "D",
+    {
+      "c": "#7287fd",
+      "t": "#ccd0da",
+      "n": true
+    },
+    "H\n\n\nRCtrl",
+    "T\n\n\nRShift",
+    "N\n\n\nRMeta",
+    "S\n\n\nRAlt",
+    {
+      "c": "#eff1f5",
+      "t": "#4c4f69"
+    },
+    "_\n-",
+    {
+      "w": 2.25
+    },
+    "Enter"
+  ],
+  [
+    {
+      "w": 2.25
+    },
+    "LShift",
+    ":\n;",
+    "Q",
+    "J",
+    "K",
+    "X",
+    "B",
+    "M",
+    "W",
+    "V",
+    "Z",
+    {
+      "w": 1.75
+    },
+    "RShift",
+    "Fn"
+  ],
+  [
+    {
+      "x": 1.25,
+      "w": 1.25
+    },
+    "LMeta",
+    {
+      "c": "#7287fd",
+      "t": "#ccd0da",
+      "w": 1.25
+    },
+    "\n\n\n@tmux",
+    {
+      "w": 6.25
+    },
+    "\n\n\n@navigation",
+    {
+      "c": "#eff1f5",
+      "t": "#4c4f69",
+      "w": 1.25
+    },
+    "RAlt",
+    {
+      "w": 1.25
+    },
+    "RMeta"
+  ]
+]

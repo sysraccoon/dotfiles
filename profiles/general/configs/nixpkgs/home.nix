@@ -43,7 +43,6 @@
     fzf
     htop
     openssh
-    ranger
     xkb-switch
     jq
     bashmount
@@ -98,6 +97,14 @@
   sys.home.editors.vscodium.enable = true;
   sys.home.tools.tmux.enable = true;
   sys.home.tools.zathura.enable = true;
+
+  programs.ranger = {
+    enable = true;
+    extraConfig = ''
+      set preview_images true
+      set preview_images_method kitty
+    '';
+  };
 
   xdg.configFile = {
     radare2.source = impurity.link ../radare2;

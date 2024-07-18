@@ -1,0 +1,166 @@
+[
+  {
+    "backcolor": "#dce0e8",
+    "css": "@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');\n* {\n    font-family: 'Source Code Pro';\n    font-weight: bold;\n    font-size: 10px;\n}"
+  },
+  [
+    {
+      "c": "#eff1f5",
+      "t": "#4c4f69",
+      "a": 7
+    },
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  [
+    {
+      "w": 1.5
+    },
+    "",
+    "",
+    {
+      "a": 4
+    },
+    "tmux-new-window",
+    "tmux-prev-window",
+    "tmux-next-window",
+    {
+      "a": 7
+    },
+    "",
+    "",
+    {
+      "a": 4
+    },
+    "tmux-split-vert",
+    "tmux-up-pane",
+    "tmux-split-horiz",
+    {
+      "a": 7
+    },
+    "",
+    "",
+    "",
+    {
+      "w": 1.5
+    },
+    ""
+  ],
+  [
+    {
+      "w": 1.75
+    },
+    "",
+    "",
+    "",
+    "",
+    {
+      "n": true
+    },
+    "",
+    "",
+    {
+      "a": 4
+    },
+    "tmux-detach-session",
+    {
+      "t": "#4c4f69\n\n\n#8839ef",
+      "n": true
+    },
+    "tmux-left-pane",
+    "tmux-down-pane",
+    "tmux-right-pane",
+    {
+      "t": "#4c4f69",
+      "a": 7
+    },
+    "",
+    "",
+    {
+      "w": 2.25
+    },
+    ""
+  ],
+  [
+    {
+      "c": "#7287fd",
+      "t": "#ccd0da",
+      "a": 4,
+      "w": 2.25
+    },
+    "\n\n\n@tmux-movement",
+    {
+      "c": "#eff1f5",
+      "t": "#4c4f69",
+      "a": 7
+    },
+    "",
+    "",
+    "",
+    "",
+    {
+      "a": 4
+    },
+    "tmux-close-pane",
+    {
+      "a": 7
+    },
+    "",
+    "",
+    "",
+    "",
+    {
+      "a": 4
+    },
+    "tmux-toggle-zoom",
+    {
+      "a": 7,
+      "w": 1.75
+    },
+    "",
+    ""
+  ],
+  [
+    {
+      "x": 1.25,
+      "w": 1.25
+    },
+    "",
+    {
+      "c": "#9ca0b0",
+      "w": 1.25
+    },
+    "",
+    {
+      "c": "#7287fd",
+      "t": "#ccd0da",
+      "a": 4,
+      "w": 6.25
+    },
+    "\n\n\n@tty",
+    {
+      "c": "#eff1f5",
+      "t": "#4c4f69",
+      "a": 7,
+      "w": 1.25
+    },
+    "",
+    {
+      "w": 1.25
+    },
+    ""
+  ]
+]

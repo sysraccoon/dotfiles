@@ -398,6 +398,7 @@ if [ $+commands[exa] -eq 1 ]; then
 fi
 
 alias l='ls'
+alias s='ls'
 alias ll='ls -lh'
 alias lla='ls -lah'
 

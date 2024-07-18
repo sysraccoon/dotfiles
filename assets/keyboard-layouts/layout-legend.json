@@ -1,0 +1,78 @@
+[
+  {
+    "backcolor": "#dce0e8",
+    "css": "@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');\n* {\n    font-family: 'Source Code Pro';\n    font-weight: bold;\n    font-size: 10px;\n}\n\n.legend-text {\n    font-weight: bold;\n    font-size: 18px;\n    margin-bottom: 2px;\n}\n.legend-subtext {\n    font-weight: normal;\n    font-size: 12px;\n    line-height: 1em;\n}\n"
+  },
+  [
+    {
+      "c": "#eff1f5",
+      "t": "#4c4f69"
+    },
+    "@\n2",
+    {
+      "x": 1,
+      "t": "#181825",
+      "a": 6,
+      "w": 3,
+      "d": true
+    },
+    "<p class=\"legend-text\">Normal Key</p><br/><p class=\"legend-subtext\">tap for <b>2</b><br/> with shift for <b>@</b></p>"
+  ],
+  [
+    {
+      "y": 0.25,
+      "c": "#7287fd",
+      "t": "#ccd0da",
+      "a": 4,
+      "w": 1.75
+    },
+    "Esc\n\n\nLControl",
+    {
+      "x": 0.25,
+      "c": "#eff1f5",
+      "t": "#181825",
+      "a": 6,
+      "w": 3,
+      "d": true
+    },
+    "<p class=\"legend-text\">Tap-Hold</p><br/><p class=\"legend-subtext\">tap for <b>Escape</b><br/> hold for <b>LControl</b></p>"
+  ],
+  [
+    {
+      "y": 0.25,
+      "c": "#7287fd",
+      "t": "#ccd0da",
+      "a": 4,
+      "w": 1.75
+    },
+    "\n\n\n@navigation",
+    {
+      "x": 0.25,
+      "c": "#eff1f5",
+      "t": "#181825",
+      "a": 6,
+      "w": 4,
+      "d": true
+    },
+    "<p class=\"legend-text\">Layer while held</p><br/><p class=\"legend-subtext\">while held, the <b>@navigation</b> layer is used</b></p>"
+  ],
+  [
+    {
+      "y": 0.25,
+      "c": "#9ca0b0",
+      "t": "#4c4f69",
+      "a": 7,
+      "w": 1.75
+    },
+    "",
+    {
+      "x": 0.25,
+      "c": "#eff1f5",
+      "t": "#181825",
+      "a": 6,
+      "w": 4,
+      "d": true
+    },
+    "<p class=\"legend-text\">Pressed</p><br/><p class=\"legend-subtext\">The key is held down to be on the current layer</b></p>"
+  ]
+]

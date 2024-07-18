@@ -10,5 +10,6 @@ markdown with [entangled](https://entangled.github.io/).
 
 ## Index
 
+- [Keyboards, Layouts, Hotkeys](notes/keyboard.md)
 - [NeoVim Configuration](notes/nvim.md)
 - [ZSH Configuration](notes/zsh.md)
