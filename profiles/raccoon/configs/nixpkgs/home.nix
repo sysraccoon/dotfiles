@@ -65,6 +65,7 @@
     unetbootin
     vial
     qmk
+    pomodoro-gtk
 
     # dev/re
     jetbrains.pycharm-community
@@ -125,6 +126,7 @@
     enable = true;
     defaultApplications = {
       "x-scheme-handler/tg" = ["userapp-Telegram Desktop-08XUJ1.desktop"];
+      "inode/directory" = ["thunar.desktop"];
     };
   };
 
