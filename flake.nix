@@ -6,6 +6,11 @@
     nur.url = "github:nix-community/NUR";
     nix-alien.url = "github:thiagokokada/nix-alien";
 
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     poetry2nix.url = "github:nix-community/poetry2nix";
 
     home-manager = {
@@ -87,6 +92,10 @@
         base-config-path = ./hosts/live-image/configuration.nix;
         username = "capybara";
       };
+      home-pc-wsl = generate-nixos-config {
+        base-config-path = ./hosts/home-pc-wsl/configuration.nix;
+        username = "beaver";
+      };
     };
 
     homeConfigurations = let
@@ -124,6 +133,13 @@
         inherit system;
       };
       gopher-impure = generate-impure-version gopher;
+
+      beaver = generate-home-config {
+        profile-entry = ./profiles/beaver/configs/nixpkgs/home.nix;
+        username = "beaver";
+        inherit system;
+      };
+      beaver-impure = generate-impure-version beaver;
     };
 
     templates = import ./templates;
