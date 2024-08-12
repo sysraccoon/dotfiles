@@ -4,11 +4,11 @@
 
 <!-- toc-start -->
 
-- [Spec](#Spec)
+- [Spec](<#Spec>)
 - [Programmable Layers {kanata}](<#Programmable Layers {kanata}>)
-  - [Introduction](#Introduction)
-  - [Legend](#Legend)
-  - [General](#General)
+  - [Introduction](<#Introduction>)
+  - [Legend](<#Legend>)
+  - [General](<#General>)
   - [Base Layer {@base}](<#Base Layer {@base}>)
   - [Navigation Layer {@navigation}](<#Navigation Layer {@navigation}>)
   - [Tmux Layer {@tmux}](<#Tmux Layer {@tmux}>)
@@ -141,8 +141,13 @@ Define base layer (should be first defined layer in configuration file)
 (deflayermap (navigation)
   lalt @tty
 
-  e C-S-tab ;; previous tab
-  r C-tab ;; next tab
+  m C-S-tab ;; previous tab
+  , C-tab ;; next tab
+
+  r C-. ;; paste
+  t C-i ;; yank/copy
+  f C-/ ;; undo
+  b C-b ;; cut
 
   u pgdn
   o pgup
@@ -186,9 +191,9 @@ Define base layer (should be first defined layer in configuration file)
   spc @tty
   lsft @tmux-movement
 
-  w (macro $tmux-leader i) ;; create new window
-  e (macro $tmux-leader C-r) ;; focus previous window
-  r (macro $tmux-leader C-l) ;; focus next window
+  n (macro $tmux-leader i) ;; create new window
+  m (macro $tmux-leader C-r) ;; focus previous window
+  , (macro $tmux-leader C-l) ;; focus next window
 
   u (macro $tmux-leader S-q) ;; split pane vertical
   o (macro $tmux-leader S-5) ;; split pane horizontal
@@ -214,8 +219,8 @@ Define base layer (should be first defined layer in configuration file)
   j (macro $tmux-leader S--) ;; move pane left
   l (macro $tmux-leader S-=) ;; move pane right
 
-  e (macro $tmux-leader C-S-r) ;; move window left
-  r (macro $tmux-leader C-S-l) ;; move window right
+  m (macro $tmux-leader C-S-r) ;; move window left
+  , (macro $tmux-leader C-S-l) ;; move window right
 )
 ```
 

@@ -31,15 +31,9 @@
     },
     "",
     "",
-    {
-      "a": 4
-    },
-    "tmux-new-window",
-    "tmux-prev-window",
-    "tmux-next-window",
-    {
-      "a": 7
-    },
+    "",
+    "",
+    "",
     "",
     "",
     {
@@ -77,14 +71,12 @@
     },
     "tmux-detach-session",
     {
-      "t": "#4c4f69\n\n\n#8839ef",
       "n": true
     },
     "tmux-left-pane",
     "tmux-down-pane",
     "tmux-right-pane",
     {
-      "t": "#4c4f69",
       "a": 7
     },
     "",
@@ -115,12 +107,12 @@
       "a": 4
     },
     "tmux-close-pane",
+    "tmux-new-window",
+    "tmux-prev-window",
+    "tmux-next-window",
     {
       "a": 7
     },
-    "",
-    "",
-    "",
     "",
     {
       "a": 4

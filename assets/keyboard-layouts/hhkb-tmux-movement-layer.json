@@ -32,14 +32,8 @@
     "",
     "",
     "",
-    {
-      "a": 4
-    },
-    "tmux-move-win-left",
-    "tmux-move-win-right",
-    {
-      "a": 7
-    },
+    "",
+    "",
     "",
     "",
     "",
@@ -68,23 +62,19 @@
     "",
     "",
     {
-      "t": "#4c4f69\n\n\n#8839ef",
       "a": 4,
       "n": true
     },
     "tmux-move-pane-left",
     {
-      "t": "#4c4f69",
       "a": 7
     },
     "",
     {
-      "t": "#4c4f69\n\n\n#8839ef",
       "a": 4
     },
     "tmux-move-pane-right",
     {
-      "t": "#4c4f69",
       "a": 7
     },
     "",
@@ -111,8 +101,14 @@
     "",
     "",
     "",
-    "",
-    "",
+    {
+      "a": 4
+    },
+    "tmux-move-win-left",
+    "tmux-move-win-right",
+    {
+      "a": 7
+    },
     "",
     "",
     {
