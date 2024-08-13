@@ -12,8 +12,6 @@ $required_packages = (
     "fzf",
     "7zip",
     "msklc",
-    # core workflow
-    "autohotkey1.1",
     # web
     "firefox",
     "googlechrome",

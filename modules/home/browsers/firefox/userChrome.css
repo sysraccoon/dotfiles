@@ -37,7 +37,8 @@ Window controls will be all wrong without it
 }
 
 #urlbar-container {
-  min-width:unset !important 
+  min-width:unset !important;
+  --urlbar-container-height: var(--uc-toolbar-height) !important;
 }
 
 :root[tabsintitlebar] #toolbar-menubar{

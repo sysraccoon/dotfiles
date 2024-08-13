@@ -7,6 +7,7 @@
 - [Spec](<#Spec>)
 - [Programmable Layers {kanata}](<#Programmable Layers {kanata}>)
   - [Introduction](<#Introduction>)
+  - [Setup](<#Setup>)
   - [Legend](<#Legend>)
   - [General](<#General>)
   - [Base Layer {@base}](<#Base Layer {@base}>)
@@ -40,6 +41,11 @@ found here: [default.kbd](../modules/combined/keyboard/kanata/default.kbd)
 <<kanata-config-body>>
 ```
 
+
+### Setup
+
+
+
 ### Legend
 
 ![layout-legend](../assets/keyboard-layouts/layout-legend.png)
@@ -54,18 +60,13 @@ Configuration file **must** have exactly one `defsrc` entry. This defines the or
 also have to match 100% `defsrc`, and that actual keyboard would be physically unable to trigger
 about 40% of keymaps, but it allow easily apply this configuration to any other keyboard.
 
-> [!NOTE]
->
-> My language layouts and kanata settings are kept separately. But all pictures show the actual
-> result that I have in combination
-
 ```{.kbd #kanata-config-body}
 (defsrc
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  kp*  kp-
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn  kp7  kp8  kp9  kp+
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret                        kp4  kp5  kp6
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
+  grv  1    2    3    4    5    6    7    8    9    0    [    ]    bspc  ins  home pgup  nlck kp/  kp*  kp-
+  tab  '    ,    .    p    y    f    g    c    r    l    /    =    \     del  end  pgdn  kp7  kp8  kp9  kp+
+  caps a    o    e    u    i    d    h    t    n    s    -    ret                        kp4  kp5  kp6
+  lsft ;    q    j    k    x    b    m    w    v    z    rsft                 up         kp1  kp2  kp3  kprt
   lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght  kp0  kp.
 )
 ```
@@ -105,16 +106,13 @@ Define aliases to easily access from `deflayer`.
 (defalias
   lctl (tap-hold $tt $ht esc lctl)
   a (tap-hold-release $tt $ht a lalt)
-  s (tap-hold-release $tt $ht s lmet)
-
-  d (tap-hold-release $tt $ht d lsft)
-  f (tap-hold-release $tt $ht f lctl)
-  j (tap-hold-release $tt $ht j rctl)
-  k (tap-hold-release $tt $ht k rsft)
-  l (tap-hold-release $tt $ht l rmet)
-
-  ; (tap-hold-release $tt $ht ; ralt)
-
+  o (tap-hold-release $tt $ht o lmet)
+  e (tap-hold-release $tt $ht e lsft)
+  u (tap-hold-release $tt $ht u lctl)
+  h (tap-hold-release $tt $ht h rctl)
+  t (tap-hold-release $tt $ht t rsft)
+  n (tap-hold-release $tt $ht n rmet)
+  s (tap-hold-release $tt $ht s ralt)
   spc (tap-hold $tt $ht spc @nav)
   lalt @tmux
 )
@@ -125,10 +123,10 @@ Define base layer (should be first defined layer in configuration file)
 ```{.kbd #kanata-config-body}
 (deflayer base
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  kp*  kp-
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn  kp7  kp8  kp9  kp+
-  @lctl @a @s   @d   @f    g    h   @j   @k   @l   @;    '    ret                        kp4  kp5  kp6
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
+  grv  1    2    3    4    5    6    7    8    9    0    [    ]    bspc  ins  home pgup  nlck kp/  kp*  kp-
+  tab  '    ,    .    p    y    f    g    c    r    l    /    =    \     del  end  pgdn  kp7  kp8  kp9  kp+
+  @lctl @a @o   @e   @u    i    d   @h   @t   @n   @s    -    ret                        kp4  kp5  kp6
+  lsft ;    q    j    k    x    b    m    w    v    z    rsft                 up         kp1  kp2  kp3  kprt
   @lctl lmet @lalt           @spc            ralt rmet cmp  rctl            left down rght  kp0  kp.
 )
 ```
@@ -142,26 +140,26 @@ Define base layer (should be first defined layer in configuration file)
   lalt @tty
 
   m C-S-tab ;; previous tab
-  , C-tab ;; next tab
+  w C-tab ;; next tab
 
-  r C-. ;; paste
-  t C-i ;; yank/copy
-  f C-/ ;; undo
-  b C-b ;; cut
+  p C-v ;; paste
+  y C-c ;; yank/copy
+  u C-z ;; undo
+  x C-x ;; cut
 
-  u pgdn
-  o pgup
+  g pgdn
+  r pgup
 
-  i up
-  j left
-  k down
-  l rght
+  c up
+  h left
+  t down
+  n rght
 
-  h C-left
-  ; C-rght
+  d C-left
+  s C-rght
 
-  n home
-  . end
+  b home
+  v end
 
   1 f1
   2 f2
@@ -173,8 +171,8 @@ Define base layer (should be first defined layer in configuration file)
   8 f8
   9 f9
   0 f10
-  - f11
-  = f12
+  [ f11
+  ] f12
 )
 ```
 
@@ -191,22 +189,22 @@ Define base layer (should be first defined layer in configuration file)
   spc @tty
   lsft @tmux-movement
 
-  n (macro $tmux-leader i) ;; create new window
-  m (macro $tmux-leader C-r) ;; focus previous window
-  , (macro $tmux-leader C-l) ;; focus next window
+  b (macro $tmux-leader i) ;; create new window
+  m (macro $tmux-leader C-p) ;; focus previous window
+  w (macro $tmux-leader C-n) ;; focus next window
 
-  u (macro $tmux-leader S-q) ;; split pane vertical
-  o (macro $tmux-leader S-5) ;; split pane horizontal
+  g (macro $tmux-leader S-q) ;; split pane vertical
+  r (macro $tmux-leader S-5) ;; split pane horizontal
 
-  h (macro $tmux-leader h) ;; detach from session
+  d (macro $tmux-leader d) ;; detach from session
 
-  i C-v ;; tmux-vim-navigation up
-  j C-j ;; tmux-vim-navigation left
-  k C-c ;; tmux-vim-navigation down
-  l C-p ;; tmux-vim-navigation right
+  c C-k ;; tmux-vim-navigation up
+  h C-h ;; tmux-vim-navigation left
+  t C-j ;; tmux-vim-navigation down
+  n C-l ;; tmux-vim-navigation right
 
-  b (macro $tmux-leader b) ;; kill pane
-  / (macro $tmux-leader /) ;; zoom pane
+  x (macro $tmux-leader x) ;; close pane
+  z (macro $tmux-leader z) ;; zoom pane
 )
 ```
 
@@ -216,11 +214,11 @@ Define base layer (should be first defined layer in configuration file)
 
 ```{.kbd #kanata-config-body}
 (deflayermap (tmux-movement)
-  j (macro $tmux-leader S--) ;; move pane left
-  l (macro $tmux-leader S-=) ;; move pane right
+  h (macro $tmux-leader S-[) ;; move pane left
+  n (macro $tmux-leader S-]) ;; move pane right
 
-  m (macro $tmux-leader C-S-r) ;; move window left
-  , (macro $tmux-leader C-S-l) ;; move window right
+  m (macro $tmux-leader C-S-p) ;; move window left
+  w (macro $tmux-leader C-S-n) ;; move window right
 )
 ```
 
