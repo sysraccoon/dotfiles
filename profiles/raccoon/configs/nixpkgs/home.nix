@@ -34,6 +34,8 @@
     nmap
     psmisc
     usbutils
+    gobuster
+    seclists
 
     # VM
     vagrant
