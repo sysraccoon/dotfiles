@@ -1,5 +1,5 @@
 let
-  wallpaper = ../../modules/combined/desktops/resources/wallpapers/default.jpg;
+  wallpaper = ./stylix-placeholder.png;
 in {
   nixosModules.default = {
     config,

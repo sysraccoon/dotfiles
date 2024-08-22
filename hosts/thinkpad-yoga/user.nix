@@ -86,8 +86,6 @@
 
     xdg.dataFile.fonts.source = impurity.link ../../resources/fonts;
 
-    home.file.".background-image".source = impurity.link ../../resources/wallpapers/default.jpg;
-
     home.file.".icons/McMojava-X-cursors".source = ../../resources/icons/McMojava-X-cursors;
     home.file.".icons/McMojava-hypr-cursors".source = ../../resources/icons/McMojava-hypr-cursors;
   };

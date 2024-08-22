@@ -87,12 +87,11 @@
         wlogout.source = impurity.link ./wlogout;
       };
 
-      home.file.".background-image".source = impurity.link ../resources/wallpapers/default.jpg;
-
       stylix.targets.hyprland.enable = true;
 
       sys.home.tools.rofi.enable = lib.mkDefault true;
       sys.home.tools.waybar.enable = lib.mkDefault true;
+      sys.home.tools.swaybg.enable = lib.mkDefault true;
     };
   };
 }
