@@ -5,6 +5,7 @@ vim.opt.relativenumber = true
 -- ~/~ end
 -- ~/~ begin <<notes/nvim.md#nvim-lua-general>>[1]
 vim.opt.autoindent = true
+vim.opt.smartindent = false
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
@@ -240,7 +241,7 @@ require("lazy").setup({
         },
         auto_install = true,
         highlight = { enable = true },
-        indent = { enable = true },
+        indent = { enable = false },
       })
     end,
   },

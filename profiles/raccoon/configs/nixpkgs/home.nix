@@ -52,7 +52,7 @@
     gnome.gnome-sound-recorder
     mpv
     vlc
-    cinnamon.nemo
+    nemo
     calibre
     tor-browser-bundle-bin
     rtorrent

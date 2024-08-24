@@ -7,12 +7,12 @@
 - [Nix home-manager module](<#Nix home-manager module>)
 - [ZSH configuration](<#ZSH configuration>)
 - [Lua configuration](<#Lua configuration>)
-  - [General](#General)
+  - [General](<#General>)
   - [Plugin Manager {lazy}](<#Plugin Manager {lazy}>)
   - [Colorscheme {catppuccin}](<#Colorscheme {catppuccin}>)
   - [Fuzzy Finder {telescope.nvim}](<#Fuzzy Finder {telescope.nvim}>)
-  - [LSP](#LSP)
-  - [Treesitter](#Treesitter)
+  - [LSP](<#LSP>)
+  - [Treesitter](<#Treesitter>)
   - [Auto Completion {nvim-cmp}](<#Auto Completion {nvim-cmp}>)
   - [Snippets {luasnip}](<#Snippets {luasnip}>)
   - [Auto Formatting {conform.nvim}](<#Auto Formatting {conform.nvim}>)
@@ -21,10 +21,10 @@
   - [Quick Navigation {hop.nvim}](<#Quick Navigation {hop.nvim}>)
   - [Buffer Navigation {harpoon}](<#Buffer Navigation {harpoon}>)
   - [Language Specific](<#Language Specific>)
-    - [Markdown](#Markdown)
-    - [Lua](#Lua)
-  - [Miscellaneous](#Miscellaneous)
-    - [Colorizer](#Colorizer)
+    - [Markdown](<#Markdown>)
+    - [Lua](<#Lua>)
+  - [Miscellaneous](<#Miscellaneous>)
+    - [Colorizer](<#Colorizer>)
     - [Save files as Root](<#Save files as Root>)
     - [Tmux integration](<#Tmux integration>)
 
@@ -182,6 +182,7 @@ Use 2 spaces by default for filetypes that don't configured for specific indenta
 
 ```lua {.lua #nvim-lua-general}
 vim.opt.autoindent = true
+vim.opt.smartindent = false
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
@@ -499,7 +500,7 @@ It can build syntax tree for a source file. If you want more information, watch 
       },
       auto_install = true,
       highlight = { enable = true },
-      indent = { enable = true },
+      indent = { enable = false },
     })
   end,
 },
