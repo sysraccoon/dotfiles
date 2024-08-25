@@ -1,0 +1,26 @@
+<span color='#f5e0dc' weight='normal' fallback='true' lang='rosewater'>  Rosewater </span>
+<span color='#f2cdcd' weight='normal' fallback='true' lang='flamingo'>  Flamingo </span>
+<span color='#f5c2e7' weight='normal' fallback='true' lang='pink'>  Pink </span>
+<span color='#cba6f7' weight='normal' fallback='true' lang='mauve'>  Mauve </span>
+<span color='#f38ba8' weight='normal' fallback='true' lang='red'>  Red </span>
+<span color='#eba0ac' weight='normal' fallback='true' lang='maroon'>  Maroon </span>
+<span color='#fab387' weight='normal' fallback='true' lang='peach'>  Peach </span>
+<span color='#f9e2af' weight='normal' fallback='true' lang='yellow'>  Yellow </span>
+<span color='#a6e3a1' weight='normal' fallback='true' lang='green'>  Green </span>
+<span color='#94e2d5' weight='normal' fallback='true' lang='teal'>  Teal </span>
+<span color='#89dceb' weight='normal' fallback='true' lang='sky'>  Sky </span>
+<span color='#74c7ec' weight='normal' fallback='true' lang='sapphire'>  Sapphire </span>
+<span color='#89b4fa' weight='normal' fallback='true' lang='blue'>  Blue </span>
+<span color='#b4befe' weight='normal' fallback='true' lang='lavender'>  Lavender </span>
+<span color='#cdd6f4' weight='normal' fallback='true' lang='text'>  Text </span>
+<span color='#bac2de' weight='normal' fallback='true' lang='subtext1'>  Subtext 1 </span>
+<span color='#a6adc8' weight='normal' fallback='true' lang='subtext0'>  Subtext 0 </span>
+<span color='#9399b2' weight='normal' fallback='true' lang='overlay2'>  Overlay 2 </span>
+<span color='#7f849c' weight='normal' fallback='true' lang='overlay1'>  Overlay 1 </span>
+<span color='#6c7086' weight='normal' fallback='true' lang='overlay0'>  Overlay 0 </span>
+<span color='#585b70' weight='normal' fallback='true' lang='surface2'>  Surface 2 </span>
+<span color='#45475a' weight='normal' fallback='true' lang='surface1'>  Surface 1 </span>
+<span color='#313244' weight='normal' fallback='true' lang='surface0'>  Surface 0 </span>
+<span color='#1e1e2e' weight='normal' fallback='true' lang='base'>  Base </span>
+<span color='#181825' weight='normal' fallback='true' lang='mantle'>  Mantle </span>
+<span color='#11111b' weight='normal' fallback='true' lang='crust'>  Crust </span>

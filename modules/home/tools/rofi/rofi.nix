@@ -16,6 +16,7 @@ in {
       rofi-wayland
     ];
 
+    xdg.configFile."rofi/catpuccin-color-palette.txt".source = impurity.link ./catpuccin-color-palette.txt;
     xdg.configFile."rofi/config.rasi".text = ''
       /* @theme reset all previusly initialized style parameters */
       @theme "${impurity.link ./theme.rasi}"
