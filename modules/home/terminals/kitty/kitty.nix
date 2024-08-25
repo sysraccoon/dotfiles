@@ -19,13 +19,9 @@ in {
     programs.kitty = {
       enable = true;
       extraConfig = ''
-
+        include ${impurity.link ./theme.conf}
         include ${impurity.link ./kitty.conf}
-
       '';
     };
-
-    stylix.targets.kitty.enable = true;
-    stylix.targets.kitty.variant256Colors = true;
   };
 }

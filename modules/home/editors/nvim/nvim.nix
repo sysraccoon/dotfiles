@@ -52,9 +52,6 @@ in {
       "nvim/snippets".source = impurity.link ./snippets;
     };
     # ~/~ end
-    # ~/~ begin <<notes/nvim.md#nvim-nix-config>>[2]
-    stylix.targets.vim.enable = false;
-    # ~/~ end
   };
 }
 # ~/~ end

@@ -1,9 +1,21 @@
-/*
-This theme rely on external color palette
-See ./rofi.nix for more details
-*/
-
 * {
+    color0: #1e1e2e;
+    color1: #181825;
+    color2: #313244;
+    color3: #45475a;
+    color4: #585b70;
+    color5: #cdd6f4;
+    color6: #f5e0dc;
+    color7: #b4befe;
+    color8: #f38ba8;
+    color9: #fab387;
+    color10: #1e1e2e;
+    color11: #1e1e2e;
+    color12: #f38ba8;
+    color13: #fab387;
+    color14: #a6e3a1;
+    color15: #94e2d5;
+
     spacing: 2;
     background-color: var(color0);
 

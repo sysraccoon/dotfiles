@@ -31,7 +31,5 @@ in {
     xdg.configFile = {
       "tmuxinator/dotfiles.yml".source = impurity.link ./layouts/dotfiles.yml;
     };
-
-    stylix.targets.tmux.enable = true;
   };
 }

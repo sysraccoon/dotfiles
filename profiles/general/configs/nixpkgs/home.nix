@@ -114,4 +114,12 @@
   home.file.".gitconfig".source = impurity.link ../git/gitconfig;
   home.file.".profile".source = impurity.link ../shell/profile;
   home.file."bin".source = impurity.link ../../bin;
+
+  home.pointerCursor = {
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
+    x11.enable = true;
+    gtk.enable = true;
+  };
 }

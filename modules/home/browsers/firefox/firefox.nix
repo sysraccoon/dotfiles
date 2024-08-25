@@ -73,10 +73,5 @@ in {
         "x-scheme-handler/https" = ["firefox.desktop"];
       };
     };
-
-    stylix.targets.firefox = {
-      enable = true;
-      profileNames = ["main"];
-    };
   };
 }

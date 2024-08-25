@@ -1,8 +1,19 @@
-/*
-This theme rely on external color palette
-See ./waybar.nix for more details
-*/
-
+@define-color color0 #1e1e2e;
+@define-color color1 #181825;
+@define-color color2 #313244;
+@define-color color3 #45475a;
+@define-color color4 #585b70;
+@define-color color5 #cdd6f4;
+@define-color color6 #f5e0dc;
+@define-color color7 #b4befe;
+@define-color color8 #f38ba8;
+@define-color color9 #fab387;
+@define-color color10 #1e1e2e;
+@define-color color11 #1e1e2e;
+@define-color color12 #f38ba8;
+@define-color color13 #fab387;
+@define-color color14 #a6e3a1;
+@define-color color15 #94e2d5;
 
 @define-color bg @color0;
 @define-color fg @color6;

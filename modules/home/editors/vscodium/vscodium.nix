@@ -69,8 +69,6 @@ in {
       })
     ];
 
-    # stylix.targets.vscode.enable = true;
-
     xdg.configFile."VSCodium/User/settings.json".source = impurity.link ./settings.json;
     xdg.configFile."VSCodium/User/keybindings.json".source = impurity.link ./keybindings.json;
   };

@@ -118,12 +118,6 @@ xdg.configFile = {
 };
 ```
 
-I don't like stylix variant of highlighting for neovim. See [[#Colorscheme {catppuccin}]] section.
-
-```nix {.nix #nvim-nix-config}
-stylix.targets.vim.enable = false;
-```
-
 ## ZSH configuration
 
 Set neovim as my main editor in zsh. Full configuration of zsh in [separate file](./zsh.md)
