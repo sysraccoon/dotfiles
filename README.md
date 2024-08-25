@@ -13,3 +13,5 @@ markdown with [entangled](https://entangled.github.io/).
 - [Keyboards, Layouts, Hotkeys](notes/keyboard.md)
 - [NeoVim Configuration](notes/nvim.md)
 - [ZSH Configuration](notes/zsh.md)
+- [Windows Imperative Configuration](notes/win.md)
+
