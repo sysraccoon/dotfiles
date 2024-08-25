@@ -106,6 +106,7 @@ window {
     border: 2px;
     border-color: var(window-border);
     background-color: var(background);
+    width: 400px;
 }
 mainbox {
     padding: 0;
