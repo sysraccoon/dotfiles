@@ -7,12 +7,12 @@
 - [Nix home-manager module](<#Nix home-manager module>)
 - [ZSH configuration](<#ZSH configuration>)
 - [Lua configuration](<#Lua configuration>)
-  - [General](<#General>)
+  - [General](#General)
   - [Plugin Manager {lazy}](<#Plugin Manager {lazy}>)
   - [Colorscheme {catppuccin}](<#Colorscheme {catppuccin}>)
   - [Fuzzy Finder {telescope.nvim}](<#Fuzzy Finder {telescope.nvim}>)
-  - [LSP](<#LSP>)
-  - [Treesitter](<#Treesitter>)
+  - [LSP](#LSP)
+  - [Treesitter](#Treesitter)
   - [Auto Completion {nvim-cmp}](<#Auto Completion {nvim-cmp}>)
   - [Snippets {luasnip}](<#Snippets {luasnip}>)
   - [Auto Formatting {conform.nvim}](<#Auto Formatting {conform.nvim}>)
@@ -21,10 +21,11 @@
   - [Quick Navigation {hop.nvim}](<#Quick Navigation {hop.nvim}>)
   - [Buffer Navigation {harpoon}](<#Buffer Navigation {harpoon}>)
   - [Language Specific](<#Language Specific>)
-    - [Markdown](<#Markdown>)
-    - [Lua](<#Lua>)
-  - [Miscellaneous](<#Miscellaneous>)
-    - [Colorizer](<#Colorizer>)
+    - [Markdown](#Markdown)
+    - [Lua](#Lua)
+    - [Typescript](#Typescript)
+  - [Miscellaneous](#Miscellaneous)
+    - [Colorizer](#Colorizer)
     - [Save files as Root](<#Save files as Root>)
     - [Tmux integration](<#Tmux integration>)
 
@@ -430,12 +431,13 @@ Servers used for specific languages are described in the relevant sections:
 
 - [[#Markdown]]
 - [[#Lua]]
+- [[#Typescript]]
 
 ```lua {.lua #nvim-lua-lsp-config}
 local servers = {
   <<nvim-lua-lsp-markdown>>
   <<nvim-lua-lsp-lua>>
-  tsserver = {},
+  <<nvim-lua-lsp-typescript>>
   jedi_language_server = {},
   nil_ls = {},
 }
@@ -899,6 +901,31 @@ lua_ls = {
 
 ```lua {.lua #nvim-lua-formatter-lua}
 lua = { "stylua" },
+```
+
+#### Typescript
+
+[tsserver](<https://github.com/microsoft/TypeScript/wiki/Standalone-Server-(tsserver)>) used as
+language server. See [[#LSP]] section for more information about LSP configuration.
+
+Orginize imports command [source](https://www.reddit.com/r/neovim/comments/rtpbpg/comment/hquiy76/)
+
+```lua {.lua #nvim-lua-lsp-typescript}
+tsserver = {
+  commands = {
+    OrganizeImports = {
+      function()
+        local params = {
+          command = "_typescript.organizeImports",
+          arguments = { vim.api.nvim_buf_get_name(0) },
+          title = "",
+        }
+        vim.lsp.buf.execute_command(params)
+      end,
+      description = "Organize Imports",
+    },
+  },
+},
 ```
 
 ### Miscellaneous

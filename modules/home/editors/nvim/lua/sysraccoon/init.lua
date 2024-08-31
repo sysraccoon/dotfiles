@@ -190,7 +190,23 @@ require("lazy").setup({
           },
         },
         -- ~/~ end
-        tsserver = {},
+        -- ~/~ begin <<notes/nvim.md#nvim-lua-lsp-typescript>>[init]
+        tsserver = {
+          commands = {
+            OrganizeImports = {
+              function()
+                local params = {
+                  command = "_typescript.organizeImports",
+                  arguments = { vim.api.nvim_buf_get_name(0) },
+                  title = "",
+                }
+                vim.lsp.buf.execute_command(params)
+              end,
+              description = "Organize Imports",
+            },
+          },
+        },
+        -- ~/~ end
         jedi_language_server = {},
         nil_ls = {},
       }
@@ -587,3 +603,4 @@ require("lazy").setup({
 })
 -- ~/~ end
 -- ~/~ end
+
