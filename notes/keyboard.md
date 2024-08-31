@@ -265,6 +265,6 @@ Used to temporary disable almost all layers
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn  kp7  kp8  kp9  kp+
   lctl a    s    d    f    g    h    j    k    l   ;    '    ret                         kp4  kp5  kp6
   lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
-  lctl lmet @lalt           @spc            ralt rmet cmp  rctl            left down rght  kp0  kp.
+  lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght  kp0  kp.
 )
 ```
