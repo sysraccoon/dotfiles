@@ -14,6 +14,7 @@
   - [Tmux Layer {@tmux}](<#Tmux Layer {@tmux}>)
   - [Tmux Movement Layer {@tmux-movement}](<#Tmux Movement Layer {@tmux-movement}>)
   - [TTY Layer {@tty}](<#TTY Layer {@tty}>)
+  - [Transparent Layer {@transparent}](<#Transparent Layer {@transparent}>)
 
 <!-- toc-end -->
 
@@ -76,9 +77,11 @@ Define timeouts for `tap-hold` bindings.
 (defvar
   tap-timeout 100
   hold-timeout 200
+  tap-dance-timeout 200
 
   tt $tap-timeout
   ht $hold-timeout
+  tdt $tap-dance-timeout
 )
 ```
 
@@ -90,6 +93,8 @@ Define layer switch aliases
   tty (layer-while-held tty)
   tmux (layer-while-held tmux)
   tmux-movement (layer-while-held tmux-movement)
+  set-base (layer-switch base)
+  set-transparent (layer-switch transparent)
 )
 ```
 
@@ -117,6 +122,8 @@ Define aliases to easily access from `deflayer`.
 
   spc (tap-hold $tt $ht spc @nav)
   lalt @tmux
+
+  base-to-transparent (tap-dance $tdt ( kp* (macro kp* kp*) @set-transparent))
 )
 ```
 
@@ -125,7 +132,7 @@ Define base layer (should be first defined layer in configuration file)
 ```{.kbd #kanata-config-body}
 (deflayer base
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  kp*  kp-
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  @base-to-transparent  kp-
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn  kp7  kp8  kp9  kp+
   @lctl @a @s   @d   @f    g    h   @j   @k   @l   @;    '    ret                        kp4  kp5  kp6
   lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
@@ -239,5 +246,25 @@ Used to quickly switch between linux tty's.
   5 C-A-f5
   6 C-A-f6
   7 C-A-f7
+)
+```
+
+### Transparent Layer {@transparent}
+
+Used to temporary disable almost all layers
+
+```{.kbd #kanata-config-body}
+
+(defalias
+  transparent-to-base (tap-dance $tdt ( kp* (macro kp* kp*) @set-base))
+)
+
+(deflayer transparent
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  @transparent-to-base  kp-
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn  kp7  kp8  kp9  kp+
+  lctl a    s    d    f    g    h    j    k    l   ;    '    ret                         kp4  kp5  kp6
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
+  lctl lmet @lalt           @spc            ralt rmet cmp  rctl            left down rght  kp0  kp.
 )
 ```
