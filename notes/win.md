@@ -18,9 +18,8 @@ See more general information about keyboard configuration in [keyboard article](
 
 ### Configure kanata
 
-1. Download latest windows kanata build from [release page](https://github.com/jtroo/kanata/releases)
-2. Place it somewhere and add to `PATH` variable.
-3. Add script to autostart by using `dotfiles\modules\combined\keyboard\kanata\autostart-kanata.ps1` (edit path to kanata.exe if need)
+1. Run scoop sync first (it install kanata executable)
+2. Add script to autostart by using `dotfiles\modules\combined\keyboard\kanata\autostart-kanata.ps1`
 
 ### Configure RU layout with dvorak virtual codes
 

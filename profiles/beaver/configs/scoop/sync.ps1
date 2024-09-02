@@ -1,5 +1,6 @@
 scoop bucket add "extras"
 scoop bucket add "versions"
+scoop bucket add sysraccoon https://github.com/sysraccoon/scoop-bucket
 
 $required_packages = (
     # cli
@@ -12,9 +13,12 @@ $required_packages = (
     "fzf",
     "7zip",
     "msklc",
+    "kanata-winiov2",
+
     # web
     "firefox",
     "googlechrome",
+
     # record
     "obs-studio"
 )
