@@ -190,7 +190,7 @@ This my [starship.toml](modules/home/shells/zsh/starship.toml).
 add_newline = true
 
 format = """\
-╭$username$directory$git_branch$fill$nix_shell$python$shell
+╭$shell$username$directory$git_branch$fill$nix_shell$python
 ╰$character\
 """
 
@@ -225,6 +225,7 @@ symbol = ' '
 
 [shell]
 zsh_indicator = ''
+powershell_indicator = '─⌠ [󰨊]($style) ⌡'
 ion_indicator = '─⌠ [ion]($style) ⌡'
 format = '$indicator'
 disabled = false
