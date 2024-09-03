@@ -1,6 +1,7 @@
 scoop bucket add "extras"
 scoop bucket add "versions"
-scoop bucket add sysraccoon https://github.com/sysraccoon/scoop-bucket
+scoop bucket add "nerd-fonts"
+scoop bucket add "sysraccoon" "https://github.com/sysraccoon/scoop-bucket"
 
 $required_packages = (
     # cli
@@ -14,13 +15,17 @@ $required_packages = (
     "7zip",
     "msklc",
     "kanata-winiov2",
+    "starship",
 
     # web
     "firefox",
     "googlechrome",
 
     # record
-    "obs-studio"
+    "obs-studio",
+
+    # fonts
+    "SourceCodePro-NF-Mono"
 )
 
 $not_required_packages = $(scoop list | where { $_.Name -notin $required_packages } | select -ExpandProperty Name)
