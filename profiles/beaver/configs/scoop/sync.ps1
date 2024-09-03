@@ -16,6 +16,7 @@ $required_packages = (
     "msklc",
     "kanata-winiov2",
     "starship",
+    "Flow-Launcher",
 
     # web
     "firefox",
