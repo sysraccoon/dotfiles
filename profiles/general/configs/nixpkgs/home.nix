@@ -70,6 +70,8 @@
     exfatprogs
     openssl
     tokei
+    bitwarden-desktop
+    bitwarden-cli
 
     # dev
     (python310.withPackages (ps:
