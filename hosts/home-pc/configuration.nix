@@ -21,5 +21,6 @@
     # caps2esc.enable = true;
   };
 
+  sys.nixos.network.vpn.enable = true;
   sys.nixos.virtualization.enable = true;
 }

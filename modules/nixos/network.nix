@@ -12,6 +12,10 @@ in {
       default = [];
       description = "users that need add to network related groups";
     };
+
+    vpn = {
+      enable = lib.mkEnableOption "toggle vpn setup";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -26,5 +30,7 @@ in {
     };
 
     networking.enableIPv6 = true;
+
+    services.mullvad-vpn.enable = cfg.vpn.enable;
   };
 }
