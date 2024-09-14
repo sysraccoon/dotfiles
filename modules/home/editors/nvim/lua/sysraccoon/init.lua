@@ -81,6 +81,9 @@ vim.keymap.set("n", "<PageDown>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 -- ~/~ end
+-- ~/~ begin <<notes/nvim.md#nvim-lua-general>>[14]
+vim.cmd([[ autocmd FileType markdown :setlocal sw=2 ts=2 sts=2 ]])
+-- ~/~ end
 -- ~/~ begin <<notes/nvim.md#nvim-lua-plugins>>[init]
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -597,6 +600,26 @@ require("lazy").setup({
       { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
       { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
+  },
+  -- ~/~ end
+  -- ~/~ begin <<notes/nvim.md#nvim-lua-lazy-plugins>>[16]
+  {
+    "paw-utils",
+    name = "paw-utils",
+    dir = "~/.config/nvim/lua/paw-utils",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    keys = {
+      {
+        mode = "n",
+        "<leader>ww",
+        function()
+          require("paw-utils"):paw_save_state()
+        end,
+      },
     },
   },
   -- ~/~ end

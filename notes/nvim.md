@@ -7,12 +7,12 @@
 - [Nix home-manager module](<#Nix home-manager module>)
 - [ZSH configuration](<#ZSH configuration>)
 - [Lua configuration](<#Lua configuration>)
-  - [General](#General)
+  - [General](<#General>)
   - [Plugin Manager {lazy}](<#Plugin Manager {lazy}>)
   - [Colorscheme {catppuccin}](<#Colorscheme {catppuccin}>)
   - [Fuzzy Finder {telescope.nvim}](<#Fuzzy Finder {telescope.nvim}>)
-  - [LSP](#LSP)
-  - [Treesitter](#Treesitter)
+  - [LSP](<#LSP>)
+  - [Treesitter](<#Treesitter>)
   - [Auto Completion {nvim-cmp}](<#Auto Completion {nvim-cmp}>)
   - [Snippets {luasnip}](<#Snippets {luasnip}>)
   - [Auto Formatting {conform.nvim}](<#Auto Formatting {conform.nvim}>)
@@ -21,13 +21,14 @@
   - [Quick Navigation {hop.nvim}](<#Quick Navigation {hop.nvim}>)
   - [Buffer Navigation {harpoon}](<#Buffer Navigation {harpoon}>)
   - [Language Specific](<#Language Specific>)
-    - [Markdown](#Markdown)
-    - [Lua](#Lua)
-    - [Typescript](#Typescript)
-  - [Miscellaneous](#Miscellaneous)
-    - [Colorizer](#Colorizer)
+    - [Markdown](<#Markdown>)
+    - [Lua](<#Lua>)
+    - [Typescript](<#Typescript>)
+  - [Miscellaneous](<#Miscellaneous>)
+    - [Colorizer](<#Colorizer>)
     - [Save files as Root](<#Save files as Root>)
     - [Tmux integration](<#Tmux integration>)
+    - [Motion Canvas custom utils](<#Motion Canvas custom utils>)
 
 <!-- toc-end -->
 
@@ -876,6 +877,11 @@ marksman = {},
 markdown = { { "prettierd" } },
 ```
 
+Force set tab size
+```lua {.lua #nvim-lua-general}
+vim.cmd([[ autocmd FileType markdown :setlocal sw=2 ts=2 sts=2 ]])
+```
+
 #### Lua
 
 [lua-ls](https://github.com/luals/lua-language-server) used as language server. See [[#LSP]] section
@@ -982,6 +988,31 @@ Add seamless navigation between tmux panes and neovim windows
     { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
     { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
     { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+  },
+},
+```
+
+#### Motion Canvas custom utils
+
+My commands to simplify creating animations in motion canvas
+
+```lua {.lua #nvim-lua-lazy-plugins}
+{
+  "paw-utils",
+  name = "paw-utils",
+  dir = "~/.config/nvim/lua/paw-utils",
+  lazy = false,
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
+  keys = {
+    {
+      mode = "n",
+      "<leader>ww",
+      function()
+        require("paw-utils"):paw_save_state()
+      end,
+    },
   },
 },
 ```
