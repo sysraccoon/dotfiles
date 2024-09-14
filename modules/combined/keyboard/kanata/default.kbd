@@ -22,7 +22,8 @@
 ;; ~/~ end
 ;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[2]
 (defalias
-  nav (layer-while-held navigation)
+  ext (layer-while-held extended)
+  paw (layer-while-held paw)
   tty (layer-while-held tty)
   tmux (layer-while-held tmux)
   tmux-movement (layer-while-held tmux-movement)
@@ -44,7 +45,7 @@
 
   ; (tap-hold-release $tt $ht ; ralt)
 
-  spc (tap-hold $tt $ht spc @nav)
+  spc (tap-hold $tt $ht spc @ext)
   lalt @tmux
 
   base-to-transparent (tap-dance $tdt ( kp* (macro kp* kp*) @set-transparent))
@@ -61,7 +62,7 @@
 )
 ;; ~/~ end
 ;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[5]
-(deflayermap (navigation)
+(deflayermap (extended)
   lalt @tty
 
   m C-S-tab ;; previous tab
@@ -101,6 +102,22 @@
 )
 ;; ~/~ end
 ;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[6]
+(deflayermap (paw)
+  z f13
+  x f14
+  c f15
+  v f16
+  a f17
+  s f18
+  d f19
+  f f20
+  q f21
+  w f22
+  e f23
+  r f24
+)
+;; ~/~ end
+;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[7]
 (defvar
   tmux-leader C-spc
 )
@@ -118,16 +135,16 @@
 
   h (macro $tmux-leader h) ;; detach from session
 
-  i C-v ;; tmux-vim-navigation up
-  j C-j ;; tmux-vim-navigation left
-  k C-c ;; tmux-vim-navigation down
-  l C-p ;; tmux-vim-navigation right
+  i C-v ;; tmux-vim-extended up
+  j C-j ;; tmux-vim-extended left
+  k C-c ;; tmux-vim-extended down
+  l C-p ;; tmux-vim-extended right
 
   b (macro $tmux-leader b) ;; kill pane
   / (macro $tmux-leader /) ;; zoom pane
 )
 ;; ~/~ end
-;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[7]
+;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[8]
 (deflayermap (tmux-movement)
   j (macro $tmux-leader S--) ;; move pane left
   l (macro $tmux-leader S-=) ;; move pane right
@@ -136,7 +153,7 @@
   , (macro $tmux-leader C-S-l) ;; move window right
 )
 ;; ~/~ end
-;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[8]
+;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[9]
 (deflayermap (tty)
   1 C-A-f1
   2 C-A-f2
@@ -147,7 +164,7 @@
   7 C-A-f7
 )
 ;; ~/~ end
-;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[9]
+;; ~/~ begin <<notes/keyboard.md#kanata-config-body>>[10]
 
 (defalias
   transparent-to-base (tap-dance $tdt ( kp* (macro kp* kp*) @set-base))

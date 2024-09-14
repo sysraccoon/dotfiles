@@ -10,7 +10,8 @@
   - [Legend](<#Legend>)
   - [General](<#General>)
   - [Base Layer {@base}](<#Base Layer {@base}>)
-  - [Navigation Layer {@navigation}](<#Navigation Layer {@navigation}>)
+  - [Extended Layer {@extended}](<#Extended Layer {@extended}>)
+  - [Paw Shortcut Layer {@paw}](<#Paw Shortcut Layer {@paw}>)
   - [Tmux Layer {@tmux}](<#Tmux Layer {@tmux}>)
   - [Tmux Movement Layer {@tmux-movement}](<#Tmux Movement Layer {@tmux-movement}>)
   - [TTY Layer {@tty}](<#TTY Layer {@tty}>)
@@ -89,7 +90,8 @@ Define layer switch aliases
 
 ```{.kbd #kanata-config-body}
 (defalias
-  nav (layer-while-held navigation)
+  ext (layer-while-held extended)
+  paw (layer-while-held paw)
   tty (layer-while-held tty)
   tmux (layer-while-held tmux)
   tmux-movement (layer-while-held tmux-movement)
@@ -120,7 +122,7 @@ Define aliases to easily access from `deflayer`.
 
   ; (tap-hold-release $tt $ht ; ralt)
 
-  spc (tap-hold $tt $ht spc @nav)
+  spc (tap-hold $tt $ht spc @ext)
   lalt @tmux
 
   base-to-transparent (tap-dance $tdt ( kp* (macro kp* kp*) @set-transparent))
@@ -140,12 +142,12 @@ Define base layer (should be first defined layer in configuration file)
 )
 ```
 
-### Navigation Layer {@navigation}
+### Extended Layer {@extended}
 
-![hhkb-navigation-layer](../assets/keyboard-layouts/hhkb-navigation-layer.png)
+![hhkb-extended-layer](../assets/keyboard-layouts/hhkb-navigation-layer.png)
 
 ```{.kbd #kanata-config-body}
-(deflayermap (navigation)
+(deflayermap (extended)
   lalt @tty
 
   m C-S-tab ;; previous tab
@@ -185,6 +187,27 @@ Define base layer (should be first defined layer in configuration file)
 )
 ```
 
+### Paw Shortcut Layer {@paw}
+
+Used as additional layer for shortcuts
+
+```{.kbd #kanata-config-body}
+(deflayermap (paw)
+  z f13
+  x f14
+  c f15
+  v f16
+  a f17
+  s f18
+  d f19
+  f f20
+  q f21
+  w f22
+  e f23
+  r f24
+)
+```
+
 ### Tmux Layer {@tmux}
 
 ![hhkb-tmux-layer](../assets/keyboard-layouts/hhkb-tmux-layer.png)
@@ -207,10 +230,10 @@ Define base layer (should be first defined layer in configuration file)
 
   h (macro $tmux-leader h) ;; detach from session
 
-  i C-v ;; tmux-vim-navigation up
-  j C-j ;; tmux-vim-navigation left
-  k C-c ;; tmux-vim-navigation down
-  l C-p ;; tmux-vim-navigation right
+  i C-v ;; tmux-vim-extended up
+  j C-j ;; tmux-vim-extended left
+  k C-c ;; tmux-vim-extended down
+  l C-p ;; tmux-vim-extended right
 
   b (macro $tmux-leader b) ;; kill pane
   / (macro $tmux-leader /) ;; zoom pane
