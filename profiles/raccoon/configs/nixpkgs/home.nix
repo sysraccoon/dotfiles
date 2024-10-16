@@ -36,6 +36,8 @@
     usbutils
     gobuster
     seclists
+    websocat
+    docker-compose
 
     # VM
     vagrant

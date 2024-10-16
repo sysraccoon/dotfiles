@@ -41,8 +41,11 @@ in {
         };
       };
       spiceUSBRedirection.enable = true;
-      # docker.enable = true;
-      docker.storageDriver = "btrfs";
+      docker = {
+        enable = true;
+        rootless.enable = true;
+        storageDriver = "btrfs";
+      };
     };
   };
 }
