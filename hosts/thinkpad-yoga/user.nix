@@ -57,7 +57,6 @@
       obs-studio
       gnome.gnome-sound-recorder
       mpv
-      calibre
       tor-browser-bundle-bin
       rtorrent
       qbittorrent

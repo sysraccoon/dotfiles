@@ -40,7 +40,6 @@
     docker-compose
 
     # VM
-    vagrant
     qemu
     wineWowPackages.stable
     spice
@@ -55,7 +54,6 @@
     mpv
     vlc
     nemo
-    calibre
     tor-browser-bundle-bin
     rtorrent
     gnome-solanum

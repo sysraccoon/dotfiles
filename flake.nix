@@ -20,10 +20,7 @@
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
-    adb-install-cert = {
-      url = "git+ssh://git@github.com/sysraccoon/adb-install-cert";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    adb-install-cert.url = "git+ssh://git@github.com/sysraccoon/adb-install-cert";
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
