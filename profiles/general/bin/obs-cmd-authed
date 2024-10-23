@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+OBS_WEBSOCKET_CONFIG=$(cat ~/.config/obs-studio/plugin_config/obs-websocket/config.json)
+obs-cmd --websocket "obsws://localhost:$(echo $OBS_WEBSOCKET_CONFIG | jq ".server_port")/$(echo $OBS_WEBSOCKET_CONFIG | jq ".server_password" -r)" $@

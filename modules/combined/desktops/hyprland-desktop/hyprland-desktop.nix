@@ -53,6 +53,10 @@
         plugins = [
           pkgs.hyprlandPlugins.hy3
         ];
+        settings.env =
+          map
+          (key: "${key},${builtins.toString config.home.sessionVariables."${key}"}")
+          (builtins.attrNames config.home.sessionVariables);
 
         extraConfig = ''
           source = ${impurity.link ./hyprland.conf}

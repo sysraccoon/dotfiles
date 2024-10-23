@@ -6,6 +6,7 @@ rec {
       tmux
       zathura
       obsidian
+      kando
     ];
   };
 
@@ -14,4 +15,5 @@ rec {
   tmux = import ./tmux/tmux.nix;
   zathura = import ./zathura/zathura.nix;
   obsidian = import ./obsidian/obsidian.nix;
+  kando = import ./kando/kando.nix;
 }

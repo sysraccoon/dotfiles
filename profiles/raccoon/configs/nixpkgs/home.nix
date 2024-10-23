@@ -50,7 +50,7 @@
     webcord
     tdesktop
     libreoffice
-    gnome.gnome-sound-recorder
+    gnome-sound-recorder
     mpv
     vlc
     nemo
@@ -68,6 +68,8 @@
     vial
     qmk
     pomodoro-gtk
+    davinci-resolve
+    obs-cmd
 
     # dev/re
     jetbrains.pycharm-community
@@ -122,6 +124,7 @@
   sys.home.terminals.alacritty.enable = true;
   sys.home.terminals.kitty.enable = true;
   sys.home.tools.obsidian.enable = true;
+  sys.home.tools.kando.enable = true;
 
   xdg.configFile."mimeapps.list".force = true;
   xdg.mimeApps = {
