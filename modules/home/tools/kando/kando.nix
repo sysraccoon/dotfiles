@@ -16,6 +16,11 @@ in {
       pkgs.kando
     ];
 
+    xdg.configFile = {
+      "kando/menus.json".source = impurity.link ./menus.json;
+      "kando/config.json".source = impurity.link ./config.json;
+    };
+
     wayland.windowManager.hyprland.settings = {
       exec-once = [
         "kando"

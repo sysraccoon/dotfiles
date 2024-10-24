@@ -1,0 +1,233 @@
+{
+  "menus": [
+    {
+      "shortcut": "Control+Space",
+      "shortcutID": "window-manager-menu",
+      "centered": false,
+      "root": {
+        "type": "submenu",
+        "name": "WM Menu",
+        "icon": "hyprland",
+        "iconTheme": "simple-icons",
+        "children": [
+          {
+            "type": "command",
+            "data": {
+              "command": "hyprctl dispatch fullscreen",
+              "delayed": true
+            },
+            "name": "Toggle Fullscreen",
+            "icon": "zoom_out_map",
+            "iconTheme": "material-symbols-rounded"
+          },
+          {
+            "type": "submenu",
+            "data": {},
+            "name": "Recording",
+            "icon": "emergency_recording",
+            "iconTheme": "material-symbols-rounded",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "obs-cmd-authed recording start",
+                  "delayed": true
+                },
+                "name": "Start Recording",
+                "icon": "play_circle",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "obs-cmd-authed recording stop",
+                  "delayed": true
+                },
+                "name": "Stop Recording",
+                "icon": "stop_circle",
+                "iconTheme": "material-symbols-rounded"
+              }
+            ]
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "hyprctl dispatch killactive",
+              "delayed": true
+            },
+            "name": "Close Window",
+            "icon": "tab_close",
+            "iconTheme": "material-symbols-rounded"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "wlogout",
+              "delayed": true
+            },
+            "name": "Logout",
+            "icon": "power_settings_circle",
+            "iconTheme": "material-symbols-rounded"
+          }
+        ]
+      }
+    },
+    {
+      "root": {
+        "type": "submenu",
+        "name": "App Launcher",
+        "icon": "rocket_launch",
+        "iconTheme": "material-symbols-rounded",
+        "children": [
+          {
+            "type": "command",
+            "data": {
+              "command": "obsidian",
+              "delayed": false
+            },
+            "name": "Obsidian",
+            "icon": "obsidian",
+            "iconTheme": "simple-icons",
+            "angle": 0
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "obs",
+              "delayed": false
+            },
+            "name": "OBS-Studio",
+            "icon": "obsstudio",
+            "iconTheme": "simple-icons",
+            "angle": 45
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "firefox",
+              "delayed": false
+            },
+            "name": "Firefox",
+            "icon": "firefoxbrowser",
+            "iconTheme": "simple-icons",
+            "angle": 90
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "discord",
+              "delayed": false
+            },
+            "name": "Discord",
+            "icon": "discord",
+            "iconTheme": "simple-icons",
+            "angle": 180
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "telegram-desktop",
+              "delayed": false
+            },
+            "name": "Telegram",
+            "icon": "telegram",
+            "iconTheme": "simple-icons",
+            "angle": 225
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "davinci-resolve",
+              "delayed": false
+            },
+            "name": "Davinci Resolve",
+            "icon": "davinciresolve",
+            "iconTheme": "simple-icons",
+            "angle": 315
+          }
+        ]
+      },
+      "shortcut": "",
+      "shortcutID": "app-specific",
+      "centered": false,
+      "anchored": false
+    },
+    {
+      "root": {
+        "type": "submenu",
+        "name": "Firefox",
+        "icon": "firefoxbrowser",
+        "iconTheme": "simple-icons",
+        "children": [
+          {
+            "type": "hotkey",
+            "data": {
+              "hotkey": "ControlLeft+KeyO",
+              "delayed": true
+            },
+            "name": "Refresh",
+            "icon": "wifi_protected_setup",
+            "iconTheme": "material-symbols-rounded"
+          },
+          {
+            "type": "hotkey",
+            "data": {
+              "hotkey": "AltLeft+ArrowRight",
+              "delayed": true
+            },
+            "name": "Forward",
+            "icon": "arrow_right_alt",
+            "iconTheme": "material-symbols-rounded",
+            "angle": 90
+          },
+          {
+            "type": "submenu",
+            "data": {},
+            "name": "Bookmarks",
+            "icon": "bookmark_star",
+            "iconTheme": "material-symbols-rounded",
+            "children": [
+              {
+                "type": "uri",
+                "data": {
+                  "uri": "https://studio.youtube.com/channel/@sys.raccoon"
+                },
+                "name": "YouTube Studio",
+                "icon": "youtubestudio",
+                "iconTheme": "simple-icons"
+              },
+              {
+                "type": "uri",
+                "data": {
+                  "uri": "https://search.nixos.org/packages?channel=unstable"
+                },
+                "name": "Search Nix Package",
+                "icon": "nixos",
+                "iconTheme": "simple-icons"
+              }
+            ]
+          },
+          {
+            "type": "hotkey",
+            "data": {
+              "hotkey": "AltLeft+ArrowLeft",
+              "delayed": true
+            },
+            "name": "Backward",
+            "icon": "arrow_left_alt",
+            "iconTheme": "material-symbols-rounded",
+            "angle": 270
+          }
+        ]
+      },
+      "shortcut": "",
+      "shortcutID": "app-specific",
+      "centered": false,
+      "anchored": false,
+      "conditions": {
+        "appName": "firefox"
+      }
+    }
+  ],
+  "templates": []
+}
